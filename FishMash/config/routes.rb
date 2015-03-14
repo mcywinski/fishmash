@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+
+  namespace :api, defaults: {format: :json} do
+    resources :lists, only: [:index, :show]
+  end
+
   root 'home#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
