@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FishMashApp.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,20 +7,94 @@ using System.Threading.Tasks;
 
 namespace FishMashApp.Models
 {
-    class ListOfWords
+    class ListOfWords : BaseViewModel
     {
-        public int Id { get; set; }
+        private int id;
+        private string name;
+        private string description;
+        private int mainLanguageId;
+        private int foreignLanguageId;
+        private DateTime dateCreatedAt;
+        private DateTime dateUpdatedAt;
 
-        public string Name { get; set; }
+        public int Id
+        {
+            get { return id; }
+            set
+            {
+                id = value;
+                OnPropertyChanged("Id");
+            }
+        }
+        public string Name
+        {
+            get { return name; }
+            set
+            {
+                name = value;
+                OnPropertyChanged("Name");
+            }
+        }
+        public string Description
+        {
+            get
+            {
+                return description;
+            }
+            set
+            {
+                description = value;
+                OnPropertyChanged("Description");
+            }
+        }
 
-        public string Description { get; set; }
+        public int MainLanguageId
+        {
+            get
+            {
+                return mainLanguageId;
+            }
+            set
+            {
+                mainLanguageId = value;
+                OnPropertyChanged("MainLanguageId");
+            }
+        }
 
-        public int MainLanguageId { get; set; }
+        public int ForeignLanguageId {
+            get
+            {
+                return foreignLanguageId;
+            }
+            set
+            {
+                foreignLanguageId = value;
+                OnPropertyChanged("ForeginLanguageId");
+            }
+        }
 
-        public int ForeignLanguageId { get; set; }
+        public DateTime DateCreatedAt {
+            get
+            {
+                return dateCreatedAt;
+            }
+            set
+            {
+                dateCreatedAt = value;
+                OnPropertyChanged("DateCreatedAt");
+            }
+        }
 
-        public DateTime DateCreatedAt { get; set; }
-
-        public DateTime DateUpdatedAt { get; set; }
+        public DateTime DateUpdatedAt {
+            get
+            {
+                return dateUpdatedAt;
+            }
+            set
+            {
+                dateUpdatedAt = value;
+                OnPropertyChanged("DateUpdatedAt");
+            }
+        }
     }
 }

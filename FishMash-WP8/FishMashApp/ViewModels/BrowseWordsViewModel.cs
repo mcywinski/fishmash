@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FishMashApp.Models;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -24,7 +25,16 @@ namespace FishMashApp.ViewModels
         public BrowseWordsViewModel()
         {
             ListOfList = new ObservableCollection<BaseViewModel>();
+            FillList();
         }
 
+        public async void FillList()
+        {            
+            List<ListOfWords> temp = await WebAPI.WebService.GetListOfListAsync();
+            foreach (ListOfWords t in temp)
+            {
+                ListOfList.Add(t);
+            }
+        }
     }
 }

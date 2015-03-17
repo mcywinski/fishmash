@@ -131,6 +131,7 @@
     <Compile Include="Views\BrowseWordsView.xaml.cs">
       <DependentUpon>BrowseWordsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WebAPI\WebService.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
