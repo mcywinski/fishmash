@@ -7,14 +7,14 @@ import android.database.sqlite.SQLiteOpenHelper;
 import elenx.net.fishmash.Constant;
 import elenx.net.fishmash.R;
 
-public class WordsSQLiteOpener extends SQLiteOpenHelper
+public class WordListQLiteOpener extends SQLiteOpenHelper
 {
     private static String create;
 
-    public WordsSQLiteOpener(Context context)
+    public WordListQLiteOpener(Context context)
     {
         super(context, Constant.DATABASE_NAME, null, 1);
-        create = context.getString(R.string.create);
+        create = context.getString(R.string.create_wordlists);
     }
 
     @Override

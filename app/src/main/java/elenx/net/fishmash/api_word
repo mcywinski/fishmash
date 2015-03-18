@@ -12,7 +12,7 @@
   {
     "id":2,
     "name":"Animals",
-    "description":"Basic animal-related vocebulary",
+    "description":"Basic animal-related vocabulary",
     "main_language_id":1,
     "foreign_language_id":2,
     "created_at":"2015-03-14T20:42:32.679Z",

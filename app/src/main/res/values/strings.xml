@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">Fishmash</string>
 
-    <string name="action_settings">Settings</string>
+    <string name="update_wordlists">Aktualizuj listy słówek</string>
 
-    <string name="create">
-        CREATE TABLE words
+    <string name="create_wordlists">
+        CREATE TABLE wordLists
         (
             id INTEGER PRIMARY KEY,
             name TEXT,
