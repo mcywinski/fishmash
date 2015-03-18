@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FishMashApp.Views;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -25,7 +26,6 @@ namespace FishMashApp.UserControls
         public ListViewUserControl()
         {
             this.InitializeComponent();
-            
         }
 
         /// <summary>
@@ -36,5 +36,6 @@ namespace FishMashApp.UserControls
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
         }
+
     }
 }

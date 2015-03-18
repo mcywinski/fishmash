@@ -24,7 +24,6 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <overlay:ListDetailsUserControl
-                            
                             />
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>

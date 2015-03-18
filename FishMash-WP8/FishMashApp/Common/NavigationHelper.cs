@@ -109,24 +109,24 @@ namespace FishMashApp.Common
 
         #region Navigation support
 
-        RelayCommand _goBackCommand;
-        RelayCommand _goForwardCommand;
+        RelayCommand_old _goBackCommand;
+        RelayCommand_old _goForwardCommand;
 
         /// <summary>
-        /// <see cref="RelayCommand"/> used to bind to the back Button's Command property
+        /// <see cref="RelayCommand_old"/> used to bind to the back Button's Command property
         /// for navigating to the most recent item in back navigation history, if a Frame
         /// manages its own navigation history.
         /// 
-        /// The <see cref="RelayCommand"/> is set up to use the virtual method <see cref="GoBack"/>
+        /// The <see cref="RelayCommand_old"/> is set up to use the virtual method <see cref="GoBack"/>
         /// as the Execute Action and <see cref="CanGoBack"/> for CanExecute.
         /// </summary>
-        public RelayCommand GoBackCommand
+        public RelayCommand_old GoBackCommand
         {
             get
             {
                 if (_goBackCommand == null)
                 {
-                    _goBackCommand = new RelayCommand(
+                    _goBackCommand = new RelayCommand_old(
                         () => this.GoBack(),
                         () => this.CanGoBack());
                 }
@@ -138,19 +138,19 @@ namespace FishMashApp.Common
             }
         }
         /// <summary>
-        /// <see cref="RelayCommand"/> used for navigating to the most recent item in 
+        /// <see cref="RelayCommand_old"/> used for navigating to the most recent item in 
         /// the forward navigation history, if a Frame manages its own navigation history.
         /// 
-        /// The <see cref="RelayCommand"/> is set up to use the virtual method <see cref="GoForward"/>
+        /// The <see cref="RelayCommand_old"/> is set up to use the virtual method <see cref="GoForward"/>
         /// as the Execute Action and <see cref="CanGoForward"/> for CanExecute.
         /// </summary>
-        public RelayCommand GoForwardCommand
+        public RelayCommand_old GoForwardCommand
         {
             get
             {
                 if (_goForwardCommand == null)
                 {
-                    _goForwardCommand = new RelayCommand(
+                    _goForwardCommand = new RelayCommand_old(
                         () => this.GoForward(),
                         () => this.CanGoForward());
                 }

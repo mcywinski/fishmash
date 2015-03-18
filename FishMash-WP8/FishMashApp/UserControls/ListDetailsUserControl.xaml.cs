@@ -24,6 +24,7 @@ namespace FishMashApp.UserControls
     /// </summary>
     public sealed partial class ListDetailsUserControl : Page
     {
+
         public ListDetailsUserControl()
         {
             this.InitializeComponent();
@@ -42,6 +43,7 @@ namespace FishMashApp.UserControls
         private void List_Tapped(object sender, TappedRoutedEventArgs e)
         {
             object t = this.ListId.Text.ToString();
+            
             //Frame.Navigate(typeof(WordView), t);
             
         }

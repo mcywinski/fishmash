@@ -1,11 +1,13 @@
 ﻿using FishMashApp.Common;
 using FishMashApp.Models;
+using FishMashApp.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace FishMashApp.ViewModels
 {
@@ -21,6 +23,17 @@ namespace FishMashApp.ViewModels
         
         #endregion
 
+        public ICommand Click
+        {
+            get
+            {
+                return null ??
+                    new RelayCommand(o =>
+                    {
+                        this.navigationService.Naviagte(typeof(WordView));
+                    });
+            }
+        }
     #endregion
 
         public BrowseWordsViewModel(INavigationService navigationService)
@@ -37,6 +50,11 @@ namespace FishMashApp.ViewModels
             {
                 ListOfList.Add(t);
             }
+        }
+
+        public void goToNextPage()
+        {
+            this.navigationService.Naviagte(typeof(WordView));
         }
     }
 }
