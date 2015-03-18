@@ -3,12 +3,20 @@ class Api::ListsController < ApplicationController
 
   def index
     lists = WordList.all
-    respond_with lists
+
+    lists_dto = Array.new
+    lists.each do |list|
+      lists_dto.push(list.to_dto(false))
+    end
+
+    respond_with lists_dto
   end
 
   def show
     list = WordList.find params[:id]
-    respond_with list
+    list_dto = list.to_dto(true)
+
+    respond_with list_dto
   end
 
   private

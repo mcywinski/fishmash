@@ -8,4 +8,26 @@ class WordList < ActiveRecord::Base
   validates :name, presence: true, length: { minimum: 3 }
   validates :main_language, presence: true
   validates :foreign_language, presence: true
+
+  # Returns a hash containing word list details.
+  def to_dto(get_words)
+  	# Converting the main object
+  	list_dto = Hash.new
+  	list_dto[:id] = self.id
+  	list_dto[:name] = self.name
+  	list_dto[:description] = self.description
+  	list_dto[:main_language_id] = self.main_language_id
+  	list_dto[:foreign_language_id] = self.foreign_language_id
+  	list_dto[:updated_at] = self.updated_at
+
+  	full_list = Hash.new
+    full_list[:details] = list_dto
+
+  	if get_words
+    	words_dto = Word.get_list_dto(self.id)
+    	full_list[:words] = words_dto
+	end
+
+  	return full_list
+  end
 end
