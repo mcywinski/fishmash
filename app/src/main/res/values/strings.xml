@@ -1,6 +1,18 @@
 <resources>
     <string name="app_name">Fishmash</string>
 
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
+    <string name="create">
+        CREATE TABLE words
+        (
+            id INTEGER PRIMARY KEY,
+            name TEXT,
+            description TEXT,
+            mainLanguage NUMERIC,
+            foreignLanguage NUMERIC,
+            createdAt TEXT,
+            updatedAt TEXT
+        );
+    </string>
 </resources>

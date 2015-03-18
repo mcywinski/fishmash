@@ -1,18 +1,35 @@
-package elenx.net.fishmash;
+package elenx.net.fishmash.activities;
 
-import android.support.v7.app.ActionBarActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+
+import elenx.net.fishmash.R;
 
 public class MainActivity extends ActionBarActivity
 {
-
     @Override
-    protected void onCreate(Bundle savedInstanceState)
+    protected void onPostCreate(Bundle savedInstanceState)
     {
-        super.onCreate(savedInstanceState);
+        super.onPostCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        findViewById(R.id.viewWordsButton).setOnClickListener
+        (
+            new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+                    Intent intent = new Intent(getApplicationContext(), ViewWordsActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+        );
     }
 
     @Override

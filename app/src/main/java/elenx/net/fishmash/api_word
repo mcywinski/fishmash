@@ -1,0 +1,41 @@
+// http://localhost:3000/api/lists
+[
+  {
+    "id":1,
+    "name":"General English revision",
+    "description":"Powtórka testowa",
+    "main_language_id":1,
+    "foreign_language_id":2,
+    "created_at":"2015-03-14T20:42:32.674Z",
+    "updated_at":"2015-03-14T20:42:32.674Z"
+  },
+  {
+    "id":2,
+    "name":"Animals",
+    "description":"Basic animal-related vocebulary",
+    "main_language_id":1,
+    "foreign_language_id":2,
+    "created_at":"2015-03-14T20:42:32.679Z",
+    "updated_at":"2015-03-14T20:42:32.679Z"
+  },
+  {
+    "id":3,
+    "name":"Familie",
+    "description":"Podstawowy zakres słownictwa z zakresu rodziny z języka niemieckiego.",
+    "main_language_id":1,
+    "foreign_language_id":3,
+    "created_at":"2015-03-14T20:42:32.683Z",
+    "updated_at":"2015-03-14T20:42:32.683Z"
+  }
+]
+
+// http://localhost:3000/api/lists/2
+{
+  "id":2,
+  "name":"Animals",
+  "description":"Basic animal-related vocebulary",
+  "main_language_id":1,
+  "foreign_language_id":2,
+  "created_at":"2015-03-14T20:42:32.679Z",
+  "updated_at":"2015-03-14T20:42:32.679Z"
+}
