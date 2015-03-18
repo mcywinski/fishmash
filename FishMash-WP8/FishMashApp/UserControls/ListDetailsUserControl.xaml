@@ -9,6 +9,12 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <TextBlock Text="{Binding Name}" />
+        <TextBlock Text="{Binding Name}" 
+                   FontSize="20"
+                   x:Name="Name"/>
+        <TextBlock x:Name="ListId"
+                   Text="{Binding Id}"
+                   Visibility="Collapsed"
+                                       />
     </Grid>
 </Page>

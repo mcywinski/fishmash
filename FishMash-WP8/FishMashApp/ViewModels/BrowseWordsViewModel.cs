@@ -30,8 +30,8 @@ namespace FishMashApp.ViewModels
 
         public async void FillList()
         {            
-            List<ListOfWords> temp = await WebAPI.WebService.GetListOfListAsync();
-            foreach (ListOfWords t in temp)
+            List<ListOfLists> temp = await WebAPI.WebService.GetListOfListAsync();
+            foreach (ListOfLists t in temp)
             {
                 ListOfList.Add(t);
             }

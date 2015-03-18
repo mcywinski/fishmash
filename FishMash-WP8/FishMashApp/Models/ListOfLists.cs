@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FishMashApp.Models
 {
-    class ListOfWords : BaseViewModel
+    class ListOfLists : BaseViewModel
     {
         private int id;
         private string name;
