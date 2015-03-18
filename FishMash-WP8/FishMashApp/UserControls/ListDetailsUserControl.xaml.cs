@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FishMashApp.Common;
+using FishMashApp.Views;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -25,6 +27,7 @@ namespace FishMashApp.UserControls
         public ListDetailsUserControl()
         {
             this.InitializeComponent();
+
         }
 
         /// <summary>
@@ -35,5 +38,13 @@ namespace FishMashApp.UserControls
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
         }
+
+        private void List_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            object t = this.ListId.Text.ToString();
+            //Frame.Navigate(typeof(WordView), t);
+            
+        }
+
     }
 }

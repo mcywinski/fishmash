@@ -8,7 +8,7 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <Grid Tapped="Grid_Tapped">
         <TextBlock Text="{Binding Name}" 
                    FontSize="20"
                    x:Name="Name"/>

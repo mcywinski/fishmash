@@ -25,6 +25,7 @@ namespace FishMashApp.UserControls
         public ListViewUserControl()
         {
             this.InitializeComponent();
+            
         }
 
         /// <summary>

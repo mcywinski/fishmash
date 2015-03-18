@@ -1,7 +1,9 @@
-﻿using System;
+﻿using FishMashApp.Common;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Core;
@@ -11,6 +13,7 @@ namespace FishMashApp.ViewModels
 {
     class BaseViewModel : INotifyPropertyChanged
     {
+        protected INavigationService navigationService;
         public BaseViewModel()
         {
 
@@ -34,7 +37,7 @@ namespace FishMashApp.ViewModels
             }
         }
         public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged(string propertyName = null)
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
 
             OnUIThread(() =>

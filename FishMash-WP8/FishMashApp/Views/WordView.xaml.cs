@@ -1,5 +1,4 @@
 ﻿using FishMashApp.Common;
-using FishMashApp.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -24,20 +23,14 @@ namespace FishMashApp.Views
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class BrowseWordsView : Page
+    public sealed partial class WordView : Page
     {
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
-        private BrowseWordsViewModel viewModel;
 
-        public BrowseWordsView()
+        public WordView()
         {
             this.InitializeComponent();
-
-            viewModel = new BrowseWordsViewModel(new NavigationService());
-            this.DataContext = viewModel;
-            this.ListViewUC.DataContext = viewModel;
-            
 
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;

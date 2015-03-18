@@ -100,6 +100,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\WordView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -116,6 +120,7 @@
       <DependentUpon>ItemPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\ListOfLists.cs" />
+    <Compile Include="Models\Word.cs" />
     <Compile Include="PivotPage.xaml.cs">
       <DependentUpon>PivotPage.xaml</DependentUpon>
     </Compile>
@@ -130,6 +135,9 @@
     <Compile Include="ViewModels\BrowseWordsViewModel.cs" />
     <Compile Include="Views\BrowseWordsView.xaml.cs">
       <DependentUpon>BrowseWordsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WordView.xaml.cs">
+      <DependentUpon>WordView.xaml</DependentUpon>
     </Compile>
     <Compile Include="WebAPI\WebService.cs" />
   </ItemGroup>

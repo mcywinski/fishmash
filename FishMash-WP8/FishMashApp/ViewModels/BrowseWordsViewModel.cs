@@ -1,4 +1,5 @@
-﻿using FishMashApp.Models;
+﻿using FishMashApp.Common;
+using FishMashApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -22,8 +23,9 @@ namespace FishMashApp.ViewModels
 
     #endregion
 
-        public BrowseWordsViewModel()
+        public BrowseWordsViewModel(INavigationService navigationService)
         {
+            this.navigationService = navigationService;
             ListOfList = new ObservableCollection<BaseViewModel>();
             FillList();
         }

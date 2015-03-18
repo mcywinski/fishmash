@@ -14,7 +14,8 @@
             <ItemsControl Name="Screen" 
                       ItemsSource="{Binding ListOfList}"
                       HorizontalAlignment="Stretch"
-                      VerticalAlignment="Stretch">
+                      VerticalAlignment="Stretch"
+                      >
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <StackPanel/>
@@ -22,7 +23,9 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <overlay:ListDetailsUserControl/>
+                        <overlay:ListDetailsUserControl
+                            
+                            />
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
