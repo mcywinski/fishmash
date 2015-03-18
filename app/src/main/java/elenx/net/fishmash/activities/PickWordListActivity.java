@@ -1,10 +1,12 @@
 package elenx.net.fishmash.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.ScrollView;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -14,27 +16,28 @@ import elenx.net.fishmash.models.WordList;
 
 public class PickWordListActivity extends OptionsActivity
 {
-    private ScrollView wordListScrollView;
-
     @Override
     protected void onPostCreate(Bundle savedInstanceState)
     {
         super.onPostCreate(savedInstanceState);
+        setContentView(R.layout.activity_pickwordlist);
 
-        wordListScrollView = (ScrollView) findViewById(R.id.wordListsScrollView);
+        showWordLists();
     }
 
     private void showWordLists()
     {
+        TableLayout wordListsTable = (TableLayout) findViewById(R.id.wordListsTable);
+
         WordListDAO wordListDAO = new WordListDAO(this);
         List<WordList> wordLists = wordListDAO.selectAll();
+
+        Log.e("count", String.valueOf(wordLists.size()));
 
         for(final WordList wordList : wordLists)
         {
             TextView textView = new TextView(this);
             textView.setText(wordList.getName());
-            wordListScrollView.addView(textView);
-
             textView.setOnClickListener
             (
                 new View.OnClickListener()
@@ -42,13 +45,15 @@ public class PickWordListActivity extends OptionsActivity
                     @Override
                     public void onClick(View v)
                     {
-                        Intent intent = new Intent(getApplicationContext(), ViewWordsActivity.class);
-                        intent.putExtra("id", wordList.getId());
-                        startActivity(intent);
-                        finish();
+                        Toast.makeText(getApplicationContext(), wordList.getName(), Toast.LENGTH_SHORT).show();
                     }
                 }
             );
+
+            TableRow tableRow = new TableRow(this);
+            tableRow.addView(textView);
+
+            wordListsTable.addView(tableRow);
         }
     }
 }
