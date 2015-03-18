@@ -3,14 +3,20 @@ package elenx.net.fishmash.models;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Iterator;
-import java.util.List;
-
+/*
+http://localhost:3000/api/lists/2
+{
+	"id":2,
+	"name":"Animals",
+	"description":"Basic animal-related vocabulary",
+	"main_language_id":1,
+	"foreign_language_id":2,
+	"created_at":"2015-03-14T20:42:32.679Z",
+	"updated_at":"2015-03-14T20:42:32.679Z"
+}
+ */
 public class WordList
 {
-    private List<Word> wordList;
-    private Iterator<Word> wordListIterator;
-
     private int id;
     private String name;
     private String description;
@@ -24,10 +30,15 @@ public class WordList
         this.id = id;
     }
 
-    public WordList(JSONObject jsonObject) throws JSONException
+    public WordList(JSONObject json) throws JSONException
     {
-        this.id = jsonObject.getInt("id");
-        this.name = jsonObject.getString("name");
+        this.id = json.getInt("id");
+        this.name = json.getString("name");
+        this.description = json.getString("description");
+        this.mainLanguage = new Language(json.getInt("main_language_id"));
+        this.foreignLanguage = new Language(json.getInt("foreign_language_id"));
+        this.createdAt = new FishmashCalendar(json.getString("created_at"));
+        this.updatedAt = new FishmashCalendar(json.getString("updated_at"));
     }
 
     public int getId()

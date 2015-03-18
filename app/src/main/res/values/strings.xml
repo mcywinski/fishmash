@@ -9,8 +9,8 @@
             id INTEGER PRIMARY KEY,
             name TEXT,
             description TEXT,
-            mainLanguage NUMERIC,
-            foreignLanguage NUMERIC,
+            mainLanguageId NUMERIC,
+            foreignLanguageId NUMERIC,
             createdAt TEXT,
             updatedAt TEXT
         );

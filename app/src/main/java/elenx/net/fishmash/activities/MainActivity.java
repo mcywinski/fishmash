@@ -21,7 +21,7 @@ public class MainActivity extends OptionsActivity
                 @Override
                 public void onClick(View v)
                 {
-                    Intent intent = new Intent(getApplicationContext(), ViewWordsActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), PickWordListActivity.class);
                     startActivity(intent);
                     finish();
                 }

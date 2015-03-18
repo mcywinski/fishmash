@@ -2,8 +2,8 @@ package elenx.net.fishmash.models;
 
 public class Language
 {
-    int id;
-    String name;
+    private int id;
+    private String name;
 
     public Language(int id)
     {

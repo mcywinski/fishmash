@@ -27,6 +27,6 @@ public class FishmashCalendar extends GregorianCalendar
 
     public String getAsSqlString()
     {
-        return dateFormat.format(this);
+        return dateFormat.format(getTime());
     }
 }

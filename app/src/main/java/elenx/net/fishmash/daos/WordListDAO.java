@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -13,14 +14,14 @@ import elenx.net.fishmash.openers.WordListQLiteOpener;
 
 public class WordListDAO
 {
-    private final static String TABLE = "wordList";
+    private final static String TABLE = "wordLists";
     private final static String[] COLUMNS = new String[]
     {
         "id",
         "name",
         "description",
-        "mainLanguage",
-        "foreignLanguage",
+        "mainLanguageId",
+        "foreignLanguageId",
         "createdAt",
         "updatedAt",
     };
@@ -39,6 +40,14 @@ public class WordListDAO
         wordListQLiteOpener.close();
     }
 
+    public void insert(List<WordList> wordLists)
+    {
+        for(WordList wordList : wordLists)
+        {
+            insert(wordList);
+        }
+    }
+
     public void insert(WordList wordList)
     {
         ContentValues contentValues = new ContentValues();
@@ -53,22 +62,34 @@ public class WordListDAO
         sqLiteDatabase.insert(TABLE, null, contentValues);
     }
 
-    public void insert(List<WordList> wordLists)
-    {
-        for(WordList wordList : wordLists)
-        {
-            insert(wordList);
-        }
-    }
-
     public void delete(WordList wordList)
     {
-        sqLiteDatabase.delete(TABLE, "id=" + wordList.getId(), null);
+        try
+        {
+            sqLiteDatabase.delete(TABLE, "id=" + wordList.getId(), null);
+        }
+        catch(SQLiteException e)
+        {
+            if(!e.getMessage().contains("no such table"))
+            {
+                throw e;
+            }
+        }
     }
 
     public void truncate()
     {
-        sqLiteDatabase.delete(TABLE, null, null);
+        try
+        {
+            sqLiteDatabase.delete(TABLE, null, null);
+        }
+        catch(SQLiteException e)
+        {
+            if(!e.getMessage().contains("no such table"))
+            {
+                throw e;
+            }
+        }
     }
 
     public List<WordList> selectAll()

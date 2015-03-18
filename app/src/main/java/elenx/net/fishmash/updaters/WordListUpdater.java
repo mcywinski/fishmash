@@ -1,43 +1,58 @@
 package elenx.net.fishmash.updaters;
 
-import android.app.ProgressDialog;
-import android.content.Context;
 import android.os.AsyncTask;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
-import java.net.URL;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Scanner;
 
-import elenx.net.fishmash.Constant;
+import elenx.net.fishmash.activities.OptionsActivity;
 import elenx.net.fishmash.daos.WordListDAO;
 import elenx.net.fishmash.models.WordList;
 
 public class WordListUpdater extends AsyncTask<Void, Integer, Void>
 {
-    private Context context;
-    private ProgressDialog progressDialog;
+    private static final String MOCK = "" +
+        "["+
+        "  {"+
+        "    \"id\":1,"+
+        "    \"name\":\"General English revision\","+
+        "    \"description\":\"Powtórka testowa\","+
+        "    \"main_language_id\":1,"+
+        "    \"foreign_language_id\":2,"+
+        "    \"created_at\":\"2015-03-14T20:42:32.674Z\","+
+        "    \"updated_at\":\"2015-03-14T20:42:32.674Z\""+
+        "  },"+
+        "  {"+
+        "    \"id\":2,"+
+        "    \"name\":\"Animals\","+
+        "    \"description\":\"Basic animal-related vocabulary\","+
+        "    \"main_language_id\":1,"+
+        "    \"foreign_language_id\":2,"+
+        "    \"created_at\":\"2015-03-14T20:42:32.679Z\","+
+        "    \"updated_at\":\"2015-03-14T20:42:32.679Z\""+
+        "  },"+
+        "  {"+
+        "    \"id\":3,"+
+        "    \"name\":\"Familie\","+
+        "    \"description\":\"Podstawowy zakres słownictwa z zakresu rodziny z języka niemieckiego.\","+
+        "    \"main_language_id\":1,"+
+        "    \"foreign_language_id\":3,"+
+        "    \"created_at\":\"2015-03-14T20:42:32.683Z\","+
+        "    \"updated_at\":\"2015-03-14T20:42:32.683Z\""+
+        "  }"+
+        "]";
+
+    private OptionsActivity optionsActivity;
     private JSONArray jsonArray;
     private List<WordList> wordLists;
 
-    public WordListUpdater(Context context)
+    public WordListUpdater(OptionsActivity optionsActivity)
     {
-        this.context = context;
-    }
-
-    @Override
-    protected void onPreExecute()
-    {
-        super.onPreExecute();
-
-        progressDialog = new ProgressDialog(context);
-        progressDialog.setCancelable(false);
-        progressDialog.show();
+        this.optionsActivity = optionsActivity;
     }
 
     @Override
@@ -50,7 +65,7 @@ public class WordListUpdater extends AsyncTask<Void, Integer, Void>
 
         convertJsonToList();
         publishProgress(2);
-
+//
         updateDatabase();
         publishProgress(3);
 
@@ -67,37 +82,43 @@ public class WordListUpdater extends AsyncTask<Void, Integer, Void>
         switch(values[0])
         {
             case 0:
+                optionsActivity.signal("Łączenie...");
+                break;
+
+            case 1:
+                optionsActivity.signal("Pobieranie...");
+                break;
+
+            case 2:
+                optionsActivity.signal("Konwertowanie...");
+                break;
+
+            case 3:
+                optionsActivity.signal("Zapisywanie...");
                 break;
         }
-    }
-
-    @Override
-    protected void onPostExecute(Void aVoid)
-    {
-        super.onPostExecute(aVoid);
-
-        progressDialog.dismiss();
     }
 
     private void fetchWordListsAsJson()
     {
         try
         {
-            URL url = new URL(Constant.API + Constant.LISTS);
-            Scanner scanner = new Scanner(url.openStream());
+//            URL url = new URL(Constant.API + Constant.LISTS);
+//            Scanner scanner = new Scanner(url.openStream());
+//
+//            StringBuilder stringBuilder = new StringBuilder();
+//
+//            scanner.useDelimiter("\\Z");
+//
+//            while(scanner.hasNext())
+//            {
+//                stringBuilder.append(scanner.nextLine());
+//            }
 
-            StringBuilder stringBuilder = new StringBuilder();
-
-            scanner.useDelimiter("\\Z");
-
-            while(scanner.hasNext())
-            {
-                stringBuilder.append(scanner.nextLine());
-            }
-
-            jsonArray = new JSONArray(stringBuilder.toString());
+            jsonArray = new JSONArray(MOCK);
+//            jsonArray = new JSONArray(stringBuilder.toString());
         }
-        catch(IOException | JSONException e)
+        catch(JSONException e)
         {
             e.printStackTrace();
         }
@@ -110,17 +131,19 @@ public class WordListUpdater extends AsyncTask<Void, Integer, Void>
         JSONObject jsonObject;
         int size = jsonArray.length();
 
-        for(int i = 0; i < size; i++)
+        try
         {
-            try
+            for(int i = 0; i < size; i++)
             {
                 jsonObject = jsonArray.getJSONObject(i);
-                wordLists.add(new WordList(jsonObject));
+
+                WordList wordList = new WordList(jsonObject);
+                wordLists.add(wordList);
             }
-            catch(JSONException e)
-            {
-                e.printStackTrace();
-            }
+        }
+        catch(JSONException e)
+        {
+            e.printStackTrace();
         }
 
         return wordLists;
@@ -128,7 +151,7 @@ public class WordListUpdater extends AsyncTask<Void, Integer, Void>
 
     private void updateDatabase()
     {
-        WordListDAO wordListDAO = new WordListDAO(context);
+        WordListDAO wordListDAO = new WordListDAO(optionsActivity);
         wordListDAO.truncate();
         wordListDAO.insert(wordLists);
     }
