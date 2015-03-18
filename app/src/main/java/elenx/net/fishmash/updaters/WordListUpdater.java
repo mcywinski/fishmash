@@ -65,7 +65,7 @@ public class WordListUpdater extends AsyncTask<Void, Integer, Void>
 
         convertJsonToList();
         publishProgress(2);
-//
+
         updateDatabase();
         publishProgress(3);
 
@@ -76,8 +76,6 @@ public class WordListUpdater extends AsyncTask<Void, Integer, Void>
     protected void onProgressUpdate(Integer... values)
     {
         super.onProgressUpdate(values);
-
-        /// TODO
 
         switch(values[0])
         {
