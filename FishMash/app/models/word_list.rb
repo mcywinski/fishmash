@@ -6,8 +6,8 @@ class WordList < ActiveRecord::Base
   has_many :words, through: :word_list_memberships
 
   validates :name, presence: true, length: { minimum: 3 }
-  validates :main_language, presence: true
-  validates :foreign_language, presence: true
+  validates :main_language_id, presence: true
+  validates :foreign_language_id, presence: true
 
   # Returns a hash containing word list details.
   def to_dto(get_words)
