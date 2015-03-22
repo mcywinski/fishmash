@@ -19,7 +19,7 @@ class WordListsController < ApplicationController
 	def create
 		word_list = WordList.new(word_list_create_params)
 		if word_list.save
-			redirect_to wordlists_path
+			redirect_to edit_wordlist_path(word_list)
 		else
 			flash[:errors] = stringify_errors(word_list)
 			redirect_to new_wordlist_path
