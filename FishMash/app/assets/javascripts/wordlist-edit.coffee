@@ -29,7 +29,7 @@ addWordToList = (word) ->
       word_id: word.id
     success: ->
       getWords()
-    error: (a, b, c) ->
+    error: ->
       alert('An error has occured while adding the word to the list. Try again, please.')
 
 $ ->
