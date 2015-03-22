@@ -8,6 +8,13 @@
 </head>
 <body>
 
+<% unless flash[:errors].blank? %>
+  <!-- Errors container -->
+  <div>
+    <%= raw flash[:errors] %>
+  </div>
+<% end %>
+
 <%= yield %>
 
 </body>
