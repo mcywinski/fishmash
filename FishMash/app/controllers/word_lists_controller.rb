@@ -26,6 +26,10 @@ class WordListsController < ApplicationController
 		end
 	end
 
+	def edit
+		@word_list = WordList.find(params[:id])
+	end
+
 	private
 
 	def word_list_create_params

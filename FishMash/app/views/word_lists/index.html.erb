@@ -16,6 +16,7 @@
     	  <td><em><%= list.description %></em></td>
     	  <td><%= output_language list.main_language %></em></td>
     	  <td><%= output_language list.foreign_language %></td>
+        <td><%= link_to "Edit list", edit_wordlist_path(list) %></td>
     	</tr>
     <% end %>
   </table>

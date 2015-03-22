@@ -1,0 +1,24 @@
+<h1>List: <%= @word_list.name %></h1>
+<div>
+  <h3>Add a word to the list</h3>
+  <p>
+    <input id="wordlist-phrase" type="text" placeholder="Foreign phrase" />
+  </p>
+  <p>
+    <input id="wordlist-meaning" type="text" placeholder="Meaning" />
+  </p>
+  <p>
+    <button id="wordlist-edit-add" type="button">Add word</button>
+  </p>
+</div>
+
+<div id="wordlist-list">
+</div>
+
+<script type="text/javascript">
+  // Data for creating the words
+  var phraseLanguageId = <%= @word_list.foreign_language.id %>;
+  var meaningLanguageId = <%= @word_list.main_language.id %>;
+
+  var wordListId = <%= @word_list.id %>;
+</script>
