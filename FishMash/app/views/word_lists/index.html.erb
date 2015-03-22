@@ -6,12 +6,12 @@
 	 <th>Main language</th>
 	 <th>Foreign language</th>
   </tr>
-<% @lists.each do |list| %>
-	<tr>
-	  <td><%= link_to list.name, wordlist_path(list) %></td>
-	  <td><em><%= list.description %></em></td>
-	  <td><%= output_language list.main_language %></em></td>
-	  <td><%= output_language list.foreign_language %></td>
-	</tr>
-<% end %>
+  <% @lists.each do |list| %>
+  	<tr>
+  	  <td><%= link_to list.name, wordlist_path(list) %></td>
+  	  <td><em><%= list.description %></em></td>
+  	  <td><%= output_language list.main_language %></em></td>
+  	  <td><%= output_language list.foreign_language %></td>
+  	</tr>
+  <% end %>
 </table>
