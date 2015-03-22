@@ -1,4 +1,20 @@
-<h1><%= @list.name %></h1>
-<p><em><%= @list.description %></em></p>
+<div>
+  <h1><%= @list.name %></h1>
+  <p><em><%= @list.description %></em></p>
+</div>
+<div id="wordlist-wordview">
+  <div id="wordlist-wordview-main">
+  </div>
+  <div id="wordlist-wordview-foreign">
+  </div>
+</div>
+<div>
+  <p>
+    <em>Use side arrow keys to navigate between the words and top & down arrow keys to switch languages.</em>
+  </p>
+</div>
 
-<!-- TODO: Display list members -->
+<!-- Data consumed by word_lists.coffee -->
+<script type="text/javascript">
+  var listId = <%= @list.id %>;
+</script>
