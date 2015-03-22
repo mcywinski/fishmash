@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20150318092251) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "languages", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
@@ -28,8 +31,8 @@ ActiveRecord::Schema.define(version: 20150318092251) do
     t.datetime "updated_at",   null: false
   end
 
-  add_index "word_list_memberships", ["word_id"], name: "index_word_list_memberships_on_word_id"
-  add_index "word_list_memberships", ["word_list_id"], name: "index_word_list_memberships_on_word_list_id"
+  add_index "word_list_memberships", ["word_id"], name: "index_word_list_memberships_on_word_id", using: :btree
+  add_index "word_list_memberships", ["word_list_id"], name: "index_word_list_memberships_on_word_list_id", using: :btree
 
   create_table "word_lists", force: :cascade do |t|
     t.string   "name"
@@ -40,8 +43,8 @@ ActiveRecord::Schema.define(version: 20150318092251) do
     t.datetime "updated_at",          null: false
   end
 
-  add_index "word_lists", ["foreign_language_id"], name: "index_word_lists_on_foreign_language_id"
-  add_index "word_lists", ["main_language_id"], name: "index_word_lists_on_main_language_id"
+  add_index "word_lists", ["foreign_language_id"], name: "index_word_lists_on_foreign_language_id", using: :btree
+  add_index "word_lists", ["main_language_id"], name: "index_word_lists_on_main_language_id", using: :btree
 
   create_table "words", force: :cascade do |t|
     t.string   "phrase"
@@ -52,7 +55,7 @@ ActiveRecord::Schema.define(version: 20150318092251) do
     t.datetime "updated_at",          null: false
   end
 
-  add_index "words", ["meaning_language_id"], name: "index_words_on_meaning_language_id"
-  add_index "words", ["phrase_language_id"], name: "index_words_on_phrase_language_id"
+  add_index "words", ["meaning_language_id"], name: "index_words_on_meaning_language_id", using: :btree
+  add_index "words", ["phrase_language_id"], name: "index_words_on_phrase_language_id", using: :btree
 
 end

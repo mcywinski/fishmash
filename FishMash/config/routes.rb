@@ -4,9 +4,8 @@ Rails.application.routes.draw do
     resources :lists, only: [:index, :show]
   end
 
-  get '/wordlists', to: 'word_lists#index'
-  get '/wordlists/:list_id', to: 'word_lists#show'
-
+  resources :wordlists, controller: 'word_lists'
+  
   root 'home#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
