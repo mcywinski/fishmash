@@ -26,7 +26,7 @@ class WordList < ActiveRecord::Base
   	if get_words
     	words_dto = Word.get_list_dto(self.id)
     	full_list[:words] = words_dto
-	end
+	  end
 
   	return full_list
   end
