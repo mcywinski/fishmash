@@ -58,5 +58,7 @@ $ ->
           meaning_language_id: meaningLanguageId
       success: (word) ->
         addWordToList(word)
+        $(wordForeignInput).val('')
+        $(wordMeaningInput).val('')
       error: ->
         alert('An error has occured while creating the word. Try again, please.')
