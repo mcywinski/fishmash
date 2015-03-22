@@ -7,6 +7,6 @@ class WordListsController < ApplicationController
 
 	# Displaying specific wordlist
 	def show
-		@list = WordList.find(params[:list_id])
+		@list = WordList.find(params[:id])
 	end
 end
