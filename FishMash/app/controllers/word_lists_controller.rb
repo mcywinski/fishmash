@@ -1,11 +1,11 @@
 class WordListsController < ApplicationController
 
-	#Fetching all lists from database
+	# Displaying all lists
 	def index
 		@lists = WordList.all
 	end
 
-	#Showing specific wordlist
+	# Displaying specific wordlist
 	def show
 		@list = WordList.find(params[:list_id])
 	end
