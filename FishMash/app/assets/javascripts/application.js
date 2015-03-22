@@ -14,4 +14,5 @@
 //= require jquery_ujs
 //= require turbolinks
 //= stub wordlist-browse
+//= stub wordlist-edit
 //= require_tree .

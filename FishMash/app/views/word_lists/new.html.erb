@@ -1,0 +1,17 @@
+<%= form_for :word_list, url: wordlists_path, action: :create do |f| %>
+  <p>
+    <%= f.text_field :name, placeholder: "Enter the list name" %>
+  </p>
+  <p>
+    <%= f.text_area :description, placeholder: "Shortly descrive the purpose or content of this word list..." %>
+  </p>
+  <p>
+    <%= f.select :main_language_id, create_select_options(@languages, "Main language") %>
+  </p>
+  <p>
+    <%= f.select :foreign_language_id, create_select_options(@languages, "Foreign language") %>
+  </p>
+  <p>
+    <%= f.submit "Create a word list" %>
+  </p>
+<% end %>
