@@ -30,6 +30,13 @@ class WordListsController < ApplicationController
 		@word_list = WordList.find(params[:id])
 	end
 
+	# Deletes an instance of WordList.
+	def destroy
+		word_list = WordList.find(params[:id])
+		word_list.destroy
+		redirect_to wordlists_path
+	end
+
 	private
 
 	def word_list_create_params
