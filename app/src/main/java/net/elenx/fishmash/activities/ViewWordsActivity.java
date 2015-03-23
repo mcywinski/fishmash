@@ -1,4 +1,4 @@
-package elenx.net.fishmash.activities;
+package net.elenx.fishmash.activities;
 
 import android.os.Bundle;
 import android.widget.Button;

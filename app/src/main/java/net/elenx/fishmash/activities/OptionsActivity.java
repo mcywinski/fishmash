@@ -1,4 +1,4 @@
-package elenx.net.fishmash.activities;
+package net.elenx.fishmash.activities;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -6,7 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import elenx.net.fishmash.R;
-import elenx.net.fishmash.updaters.WordListUpdater;
+import net.elenx.fishmash.updaters.WordListUpdater;
 
 public class OptionsActivity extends Activity
 {

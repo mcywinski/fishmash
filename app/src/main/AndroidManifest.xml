@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".activities.MainActivity"
+            android:name="net.elenx.fishmash.activities.MainActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,8 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.PickWordListActivity"/>
-        <activity android:name=".activities.ViewWordsActivity"/>
+        <activity android:name="net.elenx.fishmash.activities.PickWordListActivity"/>
+        <activity android:name="net.elenx.fishmash.activities.ViewWordsActivity"/>
     </application>
 
 </manifest>

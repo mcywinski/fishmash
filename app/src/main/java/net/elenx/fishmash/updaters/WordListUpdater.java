@@ -1,4 +1,4 @@
-package elenx.net.fishmash.updaters;
+package net.elenx.fishmash.updaters;
 
 import android.os.AsyncTask;
 
@@ -6,46 +6,19 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.net.URL;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Scanner;
 
-import elenx.net.fishmash.activities.OptionsActivity;
-import elenx.net.fishmash.daos.WordListDAO;
-import elenx.net.fishmash.models.WordList;
+import net.elenx.fishmash.Constant;
+import net.elenx.fishmash.activities.OptionsActivity;
+import net.elenx.fishmash.daos.WordListDAO;
+import net.elenx.fishmash.models.WordList;
 
 public class WordListUpdater extends AsyncTask<Void, Integer, Void>
 {
-    private static final String MOCK = "" +
-        "["+
-        "  {"+
-        "    \"id\":1,"+
-        "    \"name\":\"General English revision\","+
-        "    \"description\":\"Powtórka testowa\","+
-        "    \"main_language_id\":1,"+
-        "    \"foreign_language_id\":2,"+
-        "    \"created_at\":\"2015-03-14T20:42:32.674Z\","+
-        "    \"updated_at\":\"2015-03-14T20:42:32.674Z\""+
-        "  },"+
-        "  {"+
-        "    \"id\":2,"+
-        "    \"name\":\"Animals\","+
-        "    \"description\":\"Basic animal-related vocabulary\","+
-        "    \"main_language_id\":1,"+
-        "    \"foreign_language_id\":2,"+
-        "    \"created_at\":\"2015-03-14T20:42:32.679Z\","+
-        "    \"updated_at\":\"2015-03-14T20:42:32.679Z\""+
-        "  },"+
-        "  {"+
-        "    \"id\":3,"+
-        "    \"name\":\"Familie\","+
-        "    \"description\":\"Podstawowy zakres słownictwa z zakresu rodziny z języka niemieckiego.\","+
-        "    \"main_language_id\":1,"+
-        "    \"foreign_language_id\":3,"+
-        "    \"created_at\":\"2015-03-14T20:42:32.683Z\","+
-        "    \"updated_at\":\"2015-03-14T20:42:32.683Z\""+
-        "  }"+
-        "]";
-
     private OptionsActivity optionsActivity;
     private JSONArray jsonArray;
     private List<WordList> wordLists;
@@ -101,22 +74,20 @@ public class WordListUpdater extends AsyncTask<Void, Integer, Void>
     {
         try
         {
-//            URL url = new URL(Constant.API + Constant.LISTS);
-//            Scanner scanner = new Scanner(url.openStream());
-//
-//            StringBuilder stringBuilder = new StringBuilder();
-//
-//            scanner.useDelimiter("\\Z");
-//
-//            while(scanner.hasNext())
-//            {
-//                stringBuilder.append(scanner.nextLine());
-//            }
+            URL url = new URL(Constant.API + Constant.LISTS);
+            Scanner scanner = new Scanner(url.openStream());
 
-            jsonArray = new JSONArray(MOCK);
-//            jsonArray = new JSONArray(stringBuilder.toString());
+            StringBuilder stringBuilder = new StringBuilder();
+            scanner.useDelimiter("\\Z");
+
+            while(scanner.hasNext())
+            {
+                stringBuilder.append(scanner.nextLine());
+            }
+
+            jsonArray = new JSONArray(stringBuilder.toString());
         }
-        catch(JSONException e)
+        catch(JSONException | IOException e)
         {
             e.printStackTrace();
         }
@@ -133,7 +104,7 @@ public class WordListUpdater extends AsyncTask<Void, Integer, Void>
         {
             for(int i = 0; i < size; i++)
             {
-                jsonObject = jsonArray.getJSONObject(i);
+                jsonObject = jsonArray.getJSONObject(i).getJSONObject("details");
 
                 WordList wordList = new WordList(jsonObject);
                 wordLists.add(wordList);

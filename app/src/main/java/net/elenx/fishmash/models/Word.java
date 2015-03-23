@@ -1,4 +1,4 @@
-package elenx.net.fishmash.models;
+package net.elenx.fishmash.models;
 
 public class Word
 {

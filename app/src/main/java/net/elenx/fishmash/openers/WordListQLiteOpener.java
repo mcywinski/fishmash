@@ -1,10 +1,10 @@
-package elenx.net.fishmash.openers;
+package net.elenx.fishmash.openers;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import elenx.net.fishmash.Constant;
+import net.elenx.fishmash.Constant;
 import elenx.net.fishmash.R;
 
 public class WordListQLiteOpener extends SQLiteOpenHelper

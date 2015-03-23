@@ -1,4 +1,4 @@
-package elenx.net.fishmash.models;
+package net.elenx.fishmash.models;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

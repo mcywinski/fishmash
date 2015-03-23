@@ -1,4 +1,4 @@
-package elenx.net.fishmash;
+package net.elenx.fishmash;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

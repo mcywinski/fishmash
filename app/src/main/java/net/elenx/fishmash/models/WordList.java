@@ -1,20 +1,8 @@
-package elenx.net.fishmash.models;
+package net.elenx.fishmash.models;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/*
-http://localhost:3000/api/lists/2
-{
-	"id":2,
-	"name":"Animals",
-	"description":"Basic animal-related vocabulary",
-	"main_language_id":1,
-	"foreign_language_id":2,
-	"created_at":"2015-03-14T20:42:32.679Z",
-	"updated_at":"2015-03-14T20:42:32.679Z"
-}
- */
 public class WordList
 {
     private int id;
@@ -77,7 +65,7 @@ public class WordList
 
     public void setMainLanguage(int mainLanguageId)
     {
-        this.mainLanguage = new Language(mainLanguageId);
+        setMainLanguage(new Language(mainLanguageId));
     }
 
     public Language getForeignLanguage()
@@ -92,7 +80,7 @@ public class WordList
 
     public void setForeignLanguage(int foreignLanguageId)
     {
-        this.foreignLanguage = new Language(foreignLanguageId);
+        setForeignLanguage(new Language(foreignLanguageId));
     }
 
     public FishmashCalendar getUpdatedAt()
@@ -107,6 +95,6 @@ public class WordList
 
     public void setUpdatedAt(String sqlDate)
     {
-        this.updatedAt = new FishmashCalendar(sqlDate);
+        setUpdatedAt(new FishmashCalendar(sqlDate));
     }
 }

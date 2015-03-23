@@ -1,4 +1,4 @@
-package elenx.net.fishmash.activities;
+package net.elenx.fishmash.activities;
 
 import android.content.Intent;
 import android.os.Bundle;

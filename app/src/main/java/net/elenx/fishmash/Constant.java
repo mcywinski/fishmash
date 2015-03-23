@@ -1,9 +1,9 @@
-package elenx.net.fishmash;
+package net.elenx.fishmash;
 
 public class Constant
 {
     public static String DATABASE_NAME = "fishmash";
 
-    public static String API = "http://localhost:3000/api/";
+    public static String API = "https://shrouded-fjord-4731.herokuapp.com/api/";
     public static String LISTS = "lists";
 }

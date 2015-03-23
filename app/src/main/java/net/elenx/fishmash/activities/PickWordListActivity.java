@@ -1,4 +1,4 @@
-package elenx.net.fishmash.activities;
+package net.elenx.fishmash.activities;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -11,8 +11,8 @@ import android.widget.Toast;
 import java.util.List;
 
 import elenx.net.fishmash.R;
-import elenx.net.fishmash.daos.WordListDAO;
-import elenx.net.fishmash.models.WordList;
+import net.elenx.fishmash.daos.WordListDAO;
+import net.elenx.fishmash.models.WordList;
 
 public class PickWordListActivity extends OptionsActivity
 {

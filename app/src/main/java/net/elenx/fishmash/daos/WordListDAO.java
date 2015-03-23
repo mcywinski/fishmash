@@ -1,4 +1,4 @@
-package elenx.net.fishmash.daos;
+package net.elenx.fishmash.daos;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -9,8 +9,8 @@ import android.database.sqlite.SQLiteException;
 import java.util.LinkedList;
 import java.util.List;
 
-import elenx.net.fishmash.models.WordList;
-import elenx.net.fishmash.openers.WordListQLiteOpener;
+import net.elenx.fishmash.models.WordList;
+import net.elenx.fishmash.openers.WordListQLiteOpener;
 
 public class WordListDAO
 {
