@@ -1,0 +1,102 @@
+<style>
+  .apidoc thead {
+    font-weight: bold;
+  }
+
+  .warning {
+    background-color: #ff7f7f;
+  }
+
+  .warning-emphasis {
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  .code {
+    font-family: "Courier New", Courier, monospace;
+    font-size: x-small;
+  }
+
+  .code-json {
+    width: 200px;
+  }
+</style>
+
+<h1>FishMash API documentation</h1>
+<table class="apidoc" border="1">
+  <thead>
+    <tr>
+      <td>Action path</td>
+      <td>HTTP Verb</td>
+      <td>Required parameters</td>
+      <td>Description</td>
+      <td>Returned data example</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="code">/api/lists</td>
+      <td>GET</td>
+      <td>
+        None
+      </td>
+      <td>
+        Returns a list of available word lists.
+      </td>
+      <td class="code code-json">
+        [{"details":{"id":1,"name":"General English revision","description":"Powtórka testowa - angielski","main_language_id":1,"foreign_language_id":2,"updated_at":"2015-03-22T11:15:06.336Z"}},{"details":{"id":2,"name":"Wiederholung der deutschen","description":"Powtórka testowa - niemiecki","main_language_id":1,"foreign_language_id":3,"updated_at":"2015-03-22T11:15:06.341Z"}},{"details":{"id":3,"name":"Répétition des Français","description":"Powtórka testowa - francuski","main_language_id":1,"foreign_language_id":4,"updated_at":"2015-03-22T11:15:06.345Z"}}
+      </td>
+    </tr>
+    <tr>
+      <td class="code">/api/lists/:list_id/add</td>
+      <td>POST</td>
+      <td>
+        <ul>
+          <li>list_id - passed in URL, an ID of the word list.</li>
+          <li>word_id - passed in request body, an ID of the word to be added.</li>
+        </ul>
+      </td>
+      <td>
+        <span class="warning"><span class="warning-emphasis">Warning:</span> Internal method for web application.</span>
+        <br />
+        Adds a word to the words list.
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class="code">/api/lists/:id</td>
+      <td>GET</td>
+      <td>
+        <ul>
+          <li>id - an ID of the word list to get details.</li>
+        </ul>
+      </td>
+      <td>
+        Returns a list with all words related to it.
+      </td>
+      <td class="code code-json">
+        {"details":{"id":2,"name":"Wiederholung der deutschen","description":"Powtórka testowa - niemiecki","main_language_id":1,"foreign_language_id":3,"updated_at":"2015-03-22T11:15:06.341Z"},"words":[{"id":5,"phrase":"Katze","meaning":"Kot"},{"id":6,"phrase":"Hund","meaning":"Pies"},{"id":7,"phrase":"Schmetterling","meaning":"Motyl"},{"id":8,"phrase":"Pferd","meaning":"Koń"}]}
+      </td>
+    </tr>
+    <tr>
+      <td class="code">/api/words</td>
+      <td>POST</td>
+      <td>
+        <ul>
+          <li>phrase</li>
+          <li>meaning</li>
+          <li>phrase_language_id</li>
+          <li>meaning_language_id</li>
+        </ul>
+      </td>
+      <td>
+        <span class="warning"><span class="warning-emphasis">Waning:</span> Internal method for web application.</span>
+        <br />
+        Creates a new word instance.
+      </td>
+      <td class="code code-json">
+        {"id":39,"phrase":"apfel","meaning":"jabłko","phrase_language_id":3,"meaning_language_id":1,"created_at":"2015-03-23T00:27:55.079Z","updated_at":"2015-03-23T00:27:55.079Z"}
+      </td>
+    </tr>
+  </tbody>
+</table>

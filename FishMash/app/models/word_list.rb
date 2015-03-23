@@ -11,6 +11,7 @@ class WordList < ActiveRecord::Base
   validates :name, presence: true, length: { minimum: 3 }
   validates :main_language_id, presence: true
   validates :foreign_language_id, presence: true
+  validates_with LanguageDifferenceValidator
 
   # Returns a hash containing word list details.
   def to_dto(get_words)
