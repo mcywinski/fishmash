@@ -37,7 +37,6 @@ public class WordList
         this.description = json.getString("description");
         this.mainLanguage = new Language(json.getInt("main_language_id"));
         this.foreignLanguage = new Language(json.getInt("foreign_language_id"));
-        this.createdAt = new FishmashCalendar(json.getString("created_at"));
         this.updatedAt = new FishmashCalendar(json.getString("updated_at"));
     }
 
@@ -94,21 +93,6 @@ public class WordList
     public void setForeignLanguage(int foreignLanguageId)
     {
         this.foreignLanguage = new Language(foreignLanguageId);
-    }
-
-    public FishmashCalendar getCreatedAt()
-    {
-        return createdAt;
-    }
-
-    public void setCreatedAt(FishmashCalendar createdAt)
-    {
-        this.createdAt = createdAt;
-    }
-
-    public void setCreatedAt(String sqlDate)
-    {
-        this.createdAt = new FishmashCalendar(sqlDate);
     }
 
     public FishmashCalendar getUpdatedAt()

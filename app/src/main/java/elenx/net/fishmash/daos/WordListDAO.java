@@ -22,7 +22,6 @@ public class WordListDAO
         "description",
         "mainLanguageId",
         "foreignLanguageId",
-        "createdAt",
         "updatedAt",
     };
 
@@ -56,8 +55,7 @@ public class WordListDAO
         contentValues.put(COLUMNS[2], wordList.getDescription());
         contentValues.put(COLUMNS[3], wordList.getMainLanguage().getId());
         contentValues.put(COLUMNS[4], wordList.getForeignLanguage().getId());
-        contentValues.put(COLUMNS[5], wordList.getCreatedAt().getAsSqlString());
-        contentValues.put(COLUMNS[6], wordList.getUpdatedAt().getAsSqlString());
+        contentValues.put(COLUMNS[5], wordList.getUpdatedAt().getAsSqlString());
 
         sqLiteDatabase.insert(TABLE, null, contentValues);
     }
@@ -132,8 +130,7 @@ public class WordListDAO
         wordList.setDescription(cursor.getString(2));
         wordList.setMainLanguage(cursor.getInt(3));
         wordList.setForeignLanguage(cursor.getInt(4));
-        wordList.setCreatedAt(cursor.getString(5));
-        wordList.setUpdatedAt(cursor.getString(6));
+        wordList.setUpdatedAt(cursor.getString(5));
 
         return wordList;
     }
