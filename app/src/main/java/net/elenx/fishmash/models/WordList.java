@@ -10,7 +10,6 @@ public class WordList
     private String description;
     private Language mainLanguage;
     private Language foreignLanguage;
-    private FishmashCalendar createdAt;
     private FishmashCalendar updatedAt;
 
     public WordList(int id)

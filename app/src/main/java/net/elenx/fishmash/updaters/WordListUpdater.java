@@ -2,6 +2,11 @@ package net.elenx.fishmash.updaters;
 
 import android.os.AsyncTask;
 
+import net.elenx.fishmash.Constant;
+import net.elenx.fishmash.activities.OptionsActivity;
+import net.elenx.fishmash.daos.WordListDAO;
+import net.elenx.fishmash.models.WordList;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -11,11 +16,6 @@ import java.net.URL;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
-
-import net.elenx.fishmash.Constant;
-import net.elenx.fishmash.activities.OptionsActivity;
-import net.elenx.fishmash.daos.WordListDAO;
-import net.elenx.fishmash.models.WordList;
 
 public class WordListUpdater extends AsyncTask<Void, Integer, Void>
 {

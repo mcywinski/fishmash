@@ -6,11 +6,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import net.elenx.fishmash.models.WordList;
 import net.elenx.fishmash.openers.WordListQLiteOpener;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public class WordListDAO
 {

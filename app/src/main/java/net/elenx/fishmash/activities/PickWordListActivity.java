@@ -8,11 +8,12 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import net.elenx.fishmash.daos.WordListDAO;
+import net.elenx.fishmash.models.WordList;
+
 import java.util.List;
 
 import elenx.net.fishmash.R;
-import net.elenx.fishmash.daos.WordListDAO;
-import net.elenx.fishmash.models.WordList;
 
 public class PickWordListActivity extends OptionsActivity
 {
