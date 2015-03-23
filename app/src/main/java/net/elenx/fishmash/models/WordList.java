@@ -1,7 +1,11 @@
 package net.elenx.fishmash.models;
 
+import android.database.Cursor;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.List;
 
 public class WordList
 {
@@ -12,9 +16,16 @@ public class WordList
     private Language foreignLanguage;
     private FishmashCalendar updatedAt;
 
-    public WordList(int id)
+    private List<Word> words;
+
+    public WordList(Cursor cursor)
     {
-        this.id = id;
+        this.id = cursor.getInt(0);
+        this.name = cursor.getString(1);
+        this.description = cursor.getString(2);
+        this.mainLanguage = new Language(cursor.getInt(3));
+        this.foreignLanguage = new Language(cursor.getInt(4));
+        this.updatedAt = new FishmashCalendar(cursor.getString(5));
     }
 
     public WordList(JSONObject json) throws JSONException
@@ -47,24 +58,9 @@ public class WordList
         return description;
     }
 
-    public void setDescription(String description)
-    {
-        this.description = description;
-    }
-
     public Language getMainLanguage()
     {
         return mainLanguage;
-    }
-
-    public void setMainLanguage(Language mainLanguage)
-    {
-        this.mainLanguage = mainLanguage;
-    }
-
-    public void setMainLanguage(int mainLanguageId)
-    {
-        setMainLanguage(new Language(mainLanguageId));
     }
 
     public Language getForeignLanguage()
@@ -72,28 +68,8 @@ public class WordList
         return foreignLanguage;
     }
 
-    public void setForeignLanguage(Language foreignLanguage)
-    {
-        this.foreignLanguage = foreignLanguage;
-    }
-
-    public void setForeignLanguage(int foreignLanguageId)
-    {
-        setForeignLanguage(new Language(foreignLanguageId));
-    }
-
     public FishmashCalendar getUpdatedAt()
     {
         return updatedAt;
-    }
-
-    public void setUpdatedAt(FishmashCalendar updatedAt)
-    {
-        this.updatedAt = updatedAt;
-    }
-
-    public void setUpdatedAt(String sqlDate)
-    {
-        setUpdatedAt(new FishmashCalendar(sqlDate));
     }
 }

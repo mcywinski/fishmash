@@ -2,8 +2,8 @@ package net.elenx.fishmash;
 
 public class Constant
 {
-    public static String DATABASE_NAME = "fishmash";
+    public static final String DATABASE_NAME = "fishmash";
 
-    public static String API = "https://shrouded-fjord-4731.herokuapp.com/api/";
-    public static String LISTS = "lists";
+    public static final String API = "https://shrouded-fjord-4731.herokuapp.com/api/";
+    public static final String LISTS = "lists";
 }

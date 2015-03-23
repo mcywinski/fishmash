@@ -100,7 +100,7 @@ public class WordListDAO
 
         while(!cursor.isAfterLast())
         {
-            WordList wordList = cursorToWordList(cursor);
+            WordList wordList = new WordList(cursor);
             wordLists.add(wordList);
             cursor.moveToNext();
         }
@@ -121,17 +121,5 @@ public class WordListDAO
         cursor.close();
 
         return count;
-    }
-
-    private WordList cursorToWordList(Cursor cursor)
-    {
-        WordList wordList = new WordList(cursor.getInt(0));
-        wordList.setName(cursor.getString(1));
-        wordList.setDescription(cursor.getString(2));
-        wordList.setMainLanguage(cursor.getInt(3));
-        wordList.setForeignLanguage(cursor.getInt(4));
-        wordList.setUpdatedAt(cursor.getString(5));
-
-        return wordList;
     }
 }
