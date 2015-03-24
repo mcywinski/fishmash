@@ -2,11 +2,15 @@ package net.elenx.fishmash.activities;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import elenx.net.fishmash.R;
 import net.elenx.fishmash.updaters.WordListUpdater;
+
+import elenx.net.fishmash.R;
 
 public class OptionsActivity extends Activity
 {
@@ -48,7 +52,15 @@ public class OptionsActivity extends Activity
     {
         if(progressDialog != null)
         {
-            progressDialog.setTitle(message);
+            progressDialog.setMessage(message);
         }
+    }
+
+    public boolean isOnline()
+    {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+
+        return netInfo != null && netInfo.isConnected();
     }
 }

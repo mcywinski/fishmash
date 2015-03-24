@@ -1,7 +1,5 @@
 package net.elenx.fishmash.updaters;
 
-import android.os.AsyncTask;
-
 import net.elenx.fishmash.Constant;
 import net.elenx.fishmash.activities.OptionsActivity;
 import net.elenx.fishmash.daos.WordListDAO;
@@ -17,9 +15,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
-public class WordListUpdater extends AsyncTask<Void, Integer, Void>
+public class WordListUpdater extends FishmashUpdater
 {
-    private OptionsActivity optionsActivity;
     private JSONArray jsonArray;
     private List<WordList> wordLists;
 
@@ -31,43 +28,23 @@ public class WordListUpdater extends AsyncTask<Void, Integer, Void>
     @Override
     protected Void doInBackground(Void... params)
     {
-        publishProgress(0);
+        publishProgress(CONNECTING);
 
+        if(!optionsActivity.isOnline())
+        {
+            return null;
+        }
+
+        publishProgress(DOWNLOADING);
         fetchWordListsAsJson();
-        publishProgress(1);
 
+        publishProgress(CONVERTING);
         convertJsonToList();
-        publishProgress(2);
 
+        publishProgress(SAVING);
         updateDatabase();
-        publishProgress(3);
 
         return null;
-    }
-
-    @Override
-    protected void onProgressUpdate(Integer... values)
-    {
-        super.onProgressUpdate(values);
-
-        switch(values[0])
-        {
-            case 0:
-                optionsActivity.signal("Łączenie...");
-                break;
-
-            case 1:
-                optionsActivity.signal("Pobieranie...");
-                break;
-
-            case 2:
-                optionsActivity.signal("Konwertowanie...");
-                break;
-
-            case 3:
-                optionsActivity.signal("Zapisywanie...");
-                break;
-        }
     }
 
     private void fetchWordListsAsJson()
