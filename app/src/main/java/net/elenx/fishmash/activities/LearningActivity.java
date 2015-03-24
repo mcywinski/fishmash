@@ -15,8 +15,8 @@ public class LearningActivity extends OptionsActivity
         super.onPostCreate(savedInstanceState);
         setContentView(R.layout.activity_viewwords);
 
-        nextWordButton = (Button) findViewById(R.id.nextWordButton);
-
         updateWords(getIntent().getLongExtra("wordListId", -1));
+
+        nextWordButton = (Button) findViewById(R.id.nextWordButton);
     }
 }

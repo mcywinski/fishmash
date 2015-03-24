@@ -21,7 +21,7 @@ public class WordListsDAO extends FishmashDAO<WordList>
                 "description",
                 "mainLanguageId",
                 "foreignLanguageId",
-                "updatedAt",
+                "updatedAt"
             }
         );
 

@@ -16,8 +16,8 @@
         CREATE TABLE words
         (
             id INTEGER PRIMARY KEY,
-            phase TEXT,
-            meaning TEXT,
+            phrase TEXT,
+            meaning TEXT
         );
     </string>
 </resources>

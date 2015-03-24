@@ -37,7 +37,7 @@ public class OptionsActivity extends ProgressDialogActivity
 
     protected void updateWords(long id)
     {
-        if(id < 0)
+        if(id <= 0)
         {
             return;
         }
@@ -45,5 +45,4 @@ public class OptionsActivity extends ProgressDialogActivity
         WordsUpdater wordsUpdater = new WordsUpdater(this, id);
         wordsUpdater.execute();
     }
-
 }

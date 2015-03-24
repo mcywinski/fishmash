@@ -7,26 +7,26 @@ import org.json.JSONObject;
 
 public class Word extends FishmashModel
 {
-    private String phase;
+    private String phrase;
     private String meaning;
 
     public Word(Cursor cursor)
     {
         super(cursor);
-        this.phase = cursor.getString(1);
+        this.phrase = cursor.getString(1);
         this.meaning = cursor.getString(2);
     }
 
     public Word(JSONObject json) throws JSONException
     {
         super(json);
-        this.phase = json.getString("phase");
+        this.phrase = json.getString("phrase");
         this.meaning = json.getString("meaning");
     }
 
-    public String getPhase()
+    public String getPhrase()
     {
-        return phase;
+        return phrase;
     }
 
     public String getMeaning()
