@@ -11,27 +11,30 @@ public class WordListsDAO extends FishmashDAO<WordList>
 {
     public WordListsDAO(Context context)
     {
-        sqLiteDatabase = new WordListsOpener(context).getWritableDatabase();
+        super
+        (
+            "wordLists",
+            new String[]
+            {
+                "id",
+                "name",
+                "description",
+                "mainLanguageId",
+                "foreignLanguageId",
+                "updatedAt",
+            }
+        );
 
-        TABLE = "wordLists";
-        COLUMNS = new String[]
-        {
-            "id",
-            "name",
-            "description",
-            "mainLanguageId",
-            "foreignLanguageId",
-            "updatedAt",
-        };
+        sqLiteDatabase = new WordListsOpener(context).getWritableDatabase();
     }
 
     @Override
     public void insert(WordList wordList)
     {
         ContentValues contentValues = modelToContentValues(wordList);
-        contentValues.put(COLUMNS[0], wordList.getId());
+        contentValues.put(columns[0], wordList.getId());
 
-        sqLiteDatabase.insert(TABLE, null, contentValues);
+        sqLiteDatabase.insert(table, null, contentValues);
     }
 
     @Override
@@ -40,7 +43,7 @@ public class WordListsDAO extends FishmashDAO<WordList>
         ContentValues contentValues = modelToContentValues(wordList);
         String[] updateId = new String[]{String.valueOf(wordList.getId())};
 
-        sqLiteDatabase.update(TABLE, contentValues, "id=?", updateId);
+        sqLiteDatabase.update(table, contentValues, "id=?", updateId);
     }
 
     @Override
@@ -53,11 +56,11 @@ public class WordListsDAO extends FishmashDAO<WordList>
     public ContentValues modelToContentValues(WordList wordList)
     {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COLUMNS[1], wordList.getName());
-        contentValues.put(COLUMNS[2], wordList.getDescription());
-        contentValues.put(COLUMNS[3], wordList.getMainLanguage().getId());
-        contentValues.put(COLUMNS[4], wordList.getForeignLanguage().getId());
-        contentValues.put(COLUMNS[5], wordList.getUpdatedAt().getAsSqlString());
+        contentValues.put(columns[1], wordList.getName());
+        contentValues.put(columns[2], wordList.getDescription());
+        contentValues.put(columns[3], wordList.getMainLanguage().getId());
+        contentValues.put(columns[4], wordList.getForeignLanguage().getId());
+        contentValues.put(columns[5], wordList.getUpdatedAt().getAsSqlString());
 
         return contentValues;
     }

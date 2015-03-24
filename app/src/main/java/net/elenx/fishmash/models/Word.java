@@ -1,18 +1,36 @@
 package net.elenx.fishmash.models;
 
+import android.database.Cursor;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Word
+public class Word extends FishmashModel
 {
-    private int id;
     private String phase;
     private String meaning;
 
-    public Word(JSONObject jsonWord) throws JSONException
+    public Word(Cursor cursor)
     {
-        this.id = jsonWord.getInt("id");
-        this.phase = jsonWord.getString("phase");
-        this.meaning = jsonWord.getString("meaning");
+        super(cursor);
+        this.phase = cursor.getString(1);
+        this.meaning = cursor.getString(2);
+    }
+
+    public Word(JSONObject json) throws JSONException
+    {
+        super(json);
+        this.phase = json.getString("phase");
+        this.meaning = json.getString("meaning");
+    }
+
+    public String getPhase()
+    {
+        return phase;
+    }
+
+    public String getMeaning()
+    {
+        return meaning;
     }
 }

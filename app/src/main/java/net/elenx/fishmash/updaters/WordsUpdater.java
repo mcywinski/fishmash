@@ -66,6 +66,8 @@ public class WordsUpdater extends FishmashUpdater
     @Override
     public void save()
     {
-
+//        WordListsDAO wordListsDAO = new WordListsDAO(optionsActivity);
+//        wordListsDAO.truncate();
+//        wordListsDAO.insert(wordLists);
     }
 }

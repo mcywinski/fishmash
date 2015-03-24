@@ -7,9 +7,8 @@ import org.json.JSONObject;
 
 import java.util.List;
 
-public class WordList
+public class WordList extends FishmashModel
 {
-    private int id;
     private String name;
     private String description;
     private Language mainLanguage;
@@ -20,7 +19,7 @@ public class WordList
 
     public WordList(Cursor cursor)
     {
-        this.id = cursor.getInt(0);
+        super(cursor);
         this.name = cursor.getString(1);
         this.description = cursor.getString(2);
         this.mainLanguage = new Language(cursor.getInt(3));
@@ -30,17 +29,12 @@ public class WordList
 
     public WordList(JSONObject json) throws JSONException
     {
-        this.id = json.getInt("id");
+        super(json);
         this.name = json.getString("name");
         this.description = json.getString("description");
         this.mainLanguage = new Language(json.getInt("main_language_id"));
         this.foreignLanguage = new Language(json.getInt("foreign_language_id"));
         this.updatedAt = new FishmashCalendar(json.getString("updated_at"));
-    }
-
-    public int getId()
-    {
-        return id;
     }
 
     public String getName()

@@ -11,17 +11,23 @@ import java.util.List;
 
 public abstract class FishmashDAO<FishmashModel> implements DAOInterface<FishmashModel>
 {
-    protected static String TABLE = "";
-    protected static String[] COLUMNS = new String[]{};
+    protected String table;
+    protected String[] columns;
 
     protected SQLiteDatabase sqLiteDatabase;
+
+    protected FishmashDAO(String table, String[] columns)
+    {
+        this.table = table;
+        this.columns = columns;
+    }
 
     @Override
     public List<FishmashModel> selectAll()
     {
         List<FishmashModel> fishmashModelList = new LinkedList<>();
 
-        Cursor cursor = sqLiteDatabase.query(TABLE, COLUMNS, null, null, null, null, null);
+        Cursor cursor = sqLiteDatabase.query(table, columns, null, null, null, null, null);
 
         cursor.moveToFirst();
 
@@ -42,7 +48,7 @@ public abstract class FishmashDAO<FishmashModel> implements DAOInterface<Fishmas
     {
         String[] idToSelect = new String[]{String.valueOf(id)};
 
-        Cursor cursor = sqLiteDatabase.query(TABLE, COLUMNS, "id = ?", idToSelect, null, null, null);
+        Cursor cursor = sqLiteDatabase.query(table, columns, "id = ?", idToSelect, null, null, null);
 
         cursor.moveToFirst();
 
@@ -72,7 +78,7 @@ public abstract class FishmashDAO<FishmashModel> implements DAOInterface<Fishmas
     {
         try
         {
-            sqLiteDatabase.delete(TABLE, "id=" + id, null);
+            sqLiteDatabase.delete(table, "id=" + id, null);
         }
         catch(SQLiteException e)
         {
@@ -94,7 +100,7 @@ public abstract class FishmashDAO<FishmashModel> implements DAOInterface<Fishmas
     @Override
     public long count()
     {
-        Cursor cursor = sqLiteDatabase.rawQuery("SELECT COUNT(*) FROM " + TABLE, null);
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT COUNT(*) FROM " + table, null);
         cursor.moveToFirst();
 
         int count = cursor.getInt(0);
@@ -109,7 +115,7 @@ public abstract class FishmashDAO<FishmashModel> implements DAOInterface<Fishmas
     {
         try
         {
-            sqLiteDatabase.delete(TABLE, null, null);
+            sqLiteDatabase.delete(table, null, null);
         }
         catch(SQLiteException e)
         {
