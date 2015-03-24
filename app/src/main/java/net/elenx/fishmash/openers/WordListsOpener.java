@@ -4,9 +4,9 @@ import android.content.Context;
 
 import elenx.net.fishmash.R;
 
-public class WordListOpener extends FishmashSQLiteOpener
+public class WordListsOpener extends FishmashSQLiteOpener
 {
-    public WordListOpener(Context context)
+    public WordListsOpener(Context context)
     {
         super(context);
         create = context.getString(R.string.create_wordlists);

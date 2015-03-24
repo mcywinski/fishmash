@@ -8,7 +8,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import net.elenx.fishmash.daos.WordListDAO;
+import net.elenx.fishmash.daos.WordListsDAO;
 import net.elenx.fishmash.models.WordList;
 
 import java.util.List;
@@ -30,8 +30,8 @@ public class PickWordListActivity extends OptionsActivity
     {
         TableLayout wordListsTable = (TableLayout) findViewById(R.id.wordListsTable);
 
-        WordListDAO wordListDAO = new WordListDAO(this);
-        List<WordList> wordLists = wordListDAO.selectAll();
+        WordListsDAO wordListsDAO = new WordListsDAO(this);
+        List<WordList> wordLists = wordListsDAO.selectAll();
 
         Log.e("count", String.valueOf(wordLists.size()));
 

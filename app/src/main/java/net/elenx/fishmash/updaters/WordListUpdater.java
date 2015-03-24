@@ -2,7 +2,7 @@ package net.elenx.fishmash.updaters;
 
 import net.elenx.fishmash.Constant;
 import net.elenx.fishmash.activities.OptionsActivity;
-import net.elenx.fishmash.daos.WordListDAO;
+import net.elenx.fishmash.daos.WordListsDAO;
 import net.elenx.fishmash.models.WordList;
 
 import org.json.JSONArray;
@@ -65,8 +65,8 @@ public class WordListUpdater extends FishmashUpdater
     @Override
     public void save()
     {
-        WordListDAO wordListDAO = new WordListDAO(optionsActivity);
-        wordListDAO.truncate();
-        wordListDAO.insert(wordLists);
+        WordListsDAO wordListsDAO = new WordListsDAO(optionsActivity);
+        wordListsDAO.truncate();
+        wordListsDAO.insert(wordLists);
     }
 }
