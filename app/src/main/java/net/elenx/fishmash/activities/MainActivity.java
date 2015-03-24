@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import net.elenx.fishmash.R;
+import net.elenx.fishmash.updaters.WordListUpdater;
 
 public class MainActivity extends OptionsActivity
 {
@@ -25,6 +26,8 @@ public class MainActivity extends OptionsActivity
     {
         super.onPostCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        new WordListUpdater(this).execute();
 
         findViewById(R.id.viewWordsButton).setOnClickListener
         (
