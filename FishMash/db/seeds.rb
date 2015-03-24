@@ -56,3 +56,23 @@ wordlist_memberships_list = [
 wordlist_memberships_list.each do |word_id, word_list_id|
        WordListMembership.create(word_id: word_id, word_list_id: word_list_id)
 end
+
+exams_list = [
+       ['Test 1 - Animals', 'Test about animals', '2016-01-01 00:00:00', '2016-01-08 00:00:00', '2016-01-09 00:00:00', '2016-01-16 00:00:00', 4],
+       ['Test 1 - die Tiere', 'Der Test an Tieren', '2016-01-01 00:00:00', '2016-01-08 00:00:00', '2016-01-09 00:00:00', '2016-01-16 00:00:00', 4],
+       ['Test 1 - Animaux', 'Test sur les animaux', '2016-01-01 00:00:00', '2016-01-08 00:00:00', '2016-01-09 00:00:00', '2016-01-16 00:00:00', 4]
+]
+
+exams_list.each do |name, description, date_practice_start, date_practice_finish, date_exam_start, date_exam_finish, word_count|
+       Exam.create(name: name, description: description, date_practice_start: date_practice_start, date_practice_finish: date_practice_finish, date_exam_start: date_exam_start, date_exam_finish: date_exam_finish, word_count: word_count)
+end
+
+wordlist_exams_list = [
+       [1,1],
+       [2,2],
+       [3,3]
+]
+
+wordlist_exams_list.each do |wordlist_id, exam_id|
+       WordListExam.create(wordlist_id: wordlist_id, exam_id: exam_id)
+end

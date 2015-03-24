@@ -1,6 +1,6 @@
 class CreateWordlistExams < ActiveRecord::Migration
   def change
-    create_table :wordlist_exams do |t|
+    create_table :word_list_exams do |t|
       t.references :wordlist
       t.references :exam
 

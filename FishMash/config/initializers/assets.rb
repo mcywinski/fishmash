@@ -12,3 +12,4 @@ Rails.application.config.assets.version = '1.0'
 
 Rails.application.config.assets.precompile += %w( wordlist-browse.js )
 Rails.application.config.assets.precompile += %w( wordlist-edit.js )
+Rails.application.config.assets.precompile += %w( exam.js )

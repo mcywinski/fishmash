@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <!-- Only testing purposes-->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+    <script type="text/javascript">
+      $(function(){
+        $( '#practice-date-start' ).datepicker();
+        $( '#practice-date-finish' ).datepicker();
+        $( '#exam-date-start' ).datepicker();
+        $( '#exam-date-finish' ).datepicker();
+      });
+    </script>
+
+  </head>
+  <body>
+    <h1>New exam</h1>
+    <%= form_for :exam, url: exams_path, action: :create do |f| %>
+      <p>
+        <%= f.text_field :name, placeholder: "Enter the exam name" %>
+      </p>
+      <p>
+        <%= f.text_area :description, placeholder: "Shortly descrive the content of this exam..." %>
+      </p>
+      <p>
+         <%= f.text_field :date_practice_start, placeholder: "Start date of practice", id: 'practice-date-start' %>
+      </p>
+      <p>
+        <%= f.text_field :date_practice_finish, placeholder: "Finish date of practice", id: 'practice-date-finish' %>
+      </p>
+      <p>
+        <%= f.text_field :date_exam_start, placeholder: "Start date of exam", id: 'exam-date-start' %>
+      </p>
+      <p>
+        <%= f.text_field :date_exam_finish, placeholder: "Finish date of exam", id: 'exam-date-finish' %>
+      </p>
+      <p>
+        <%= f.select :wordlist_id, create_select_options(@lists, "Word List for exam") %>
+      </p>
+      <p>
+        <%= f.submit "Create an exam" %>
+      </p>
+    <% end %>
+  </body>
+</html>
