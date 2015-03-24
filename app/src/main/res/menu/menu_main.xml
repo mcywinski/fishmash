@@ -1,19 +1,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:context=".MainActivity">
 
     <item android:id="@+id/main_menu"
-          android:title="@string/main_menu"
-          android:orderInCategory="100"
-          app:showAsAction="never" />
+          android:title="@string/main_menu"/>
 
     <item android:id="@+id/update_wordlists"
-          android:title="@string/update_wordlists"
-          android:orderInCategory="100"
-          app:showAsAction="never" />
+          android:title="@string/update_wordlists"/>
 
     <item android:id="@+id/exit"
-          android:title="@string/exit"
-          android:orderInCategory="100"
-          app:showAsAction="never" />
+          android:title="@string/exit"/>
 </menu>

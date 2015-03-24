@@ -15,6 +15,12 @@ public class MainActivity extends OptionsActivity
     }
 
     @Override
+    protected void mainMenu()
+    {
+        // do not do anything, when main menu option has been selected
+    }
+
+    @Override
     protected void onPostCreate(Bundle savedInstanceState)
     {
         super.onPostCreate(savedInstanceState);
