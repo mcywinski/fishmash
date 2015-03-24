@@ -36,8 +36,8 @@ namespace FishMashApp.Views
 
             viewModel = new BrowseWordsViewModel(new NavigationService());
             this.DataContext = viewModel;
-            this.ListViewUC.DataContext = viewModel;
-            
+
+            Common.Settings.Instance.navigationService = new Common.NavigationService();
 
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;

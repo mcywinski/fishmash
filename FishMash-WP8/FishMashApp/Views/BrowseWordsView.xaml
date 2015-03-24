@@ -7,6 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     xmlns:view="using:FishMashApp.UserControls"
+    xmlns:overlay="using:FishMashApp.UserControls"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid x:Name="LayoutRoot">
@@ -30,9 +31,25 @@
 
         <!--TODO: Content should be placed within the following grid-->
         <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
-            <view:ListViewUserControl
-                x:Name="ListViewUC"
-                />
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <ItemsControl Name="Screen" 
+                      ItemsSource="{Binding ListOfList}"
+                      HorizontalAlignment="Stretch"
+                      VerticalAlignment="Stretch"
+                      >
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <overlay:ListDetailsUserControl 
+                                x:Name="ListDetails"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
         </Grid>
     </Grid>
 </Page>

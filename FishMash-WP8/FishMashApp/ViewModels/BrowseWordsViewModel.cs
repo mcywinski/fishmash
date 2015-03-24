@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using FishMashApp.WebAPI;
 
 namespace FishMashApp.ViewModels
 {
@@ -44,9 +45,9 @@ namespace FishMashApp.ViewModels
         }
 
         public async void FillList()
-        {            
-            List<ListOfLists> temp = await WebAPI.WebService.GetListOfListAsync();
-            foreach (ListOfLists t in temp)
+        {
+            List<ListOfLists> x = await WebService.GetListOfListAsync();
+            foreach (ListOfLists t in x)
             {
                 ListOfList.Add(t);
             }

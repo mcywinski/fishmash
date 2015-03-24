@@ -107,5 +107,10 @@ namespace FishMashApp.Views
         }
 
         #endregion
+
+        private void Button_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            Common.Settings.Instance.navigationService.Naviagte(typeof(BrowseWordsView));
+        }
     }
 }
