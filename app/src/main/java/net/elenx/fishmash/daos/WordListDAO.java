@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 
 import net.elenx.fishmash.models.WordList;
-import net.elenx.fishmash.openers.WordListQLiteOpener;
+import net.elenx.fishmash.openers.WordListOpener;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -26,17 +26,17 @@ public class WordListDAO
     };
 
     private final SQLiteDatabase sqLiteDatabase;
-    private final WordListQLiteOpener wordListQLiteOpener;
+    private final WordListOpener wordListOpener;
 
     public WordListDAO(Context context)
     {
-        wordListQLiteOpener = new WordListQLiteOpener(context);
-        sqLiteDatabase = wordListQLiteOpener.getWritableDatabase();
+        wordListOpener = new WordListOpener(context);
+        sqLiteDatabase = wordListOpener.getWritableDatabase();
     }
 
     public void close()
     {
-        wordListQLiteOpener.close();
+        wordListOpener.close();
     }
 
     public void insert(List<WordList> wordLists)

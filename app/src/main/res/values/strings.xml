@@ -1,17 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Fishmash</string>
-
-    <string name="update_wordlists">Aktualizuj listy słówek</string>
-
-    <string name="create_wordlists">
-        CREATE TABLE wordLists
-        (
-            id INTEGER PRIMARY KEY,
-            name TEXT,
-            description TEXT,
-            mainLanguageId NUMERIC,
-            foreignLanguageId NUMERIC,
-            updatedAt TEXT
-        );
-    </string>
 </resources>

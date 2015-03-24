@@ -5,22 +5,23 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import net.elenx.fishmash.Constant;
-import elenx.net.fishmash.R;
 
-public class WordListQLiteOpener extends SQLiteOpenHelper
+public class FishmashSQLiteOpener extends SQLiteOpenHelper
 {
-    private static String create;
+    protected static String create;
 
-    public WordListQLiteOpener(Context context)
+    public FishmashSQLiteOpener(Context context)
     {
         super(context, Constant.DATABASE_NAME, null, 1);
-        create = context.getString(R.string.create_wordlists);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db)
     {
-        db.execSQL(create);
+        if(create != null)
+        {
+            db.execSQL(create);
+        }
     }
 
     @Override
