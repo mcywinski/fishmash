@@ -5,25 +5,25 @@ import android.database.Cursor;
 
 import java.util.List;
 
-public interface DAOInterface<FishmashModel>
+public interface DAOInterface<Model>
 {
-    List<FishmashModel> selectAll();
-    FishmashModel select(long id);
+    List<Model> selectAll();
+    Model select(long id);
 
-    void insert(FishmashModel fishmashModel);
-    void insert(List<FishmashModel> fishmashModelList);
+    void insert(Model model);
+    void insert(List<Model> modelList);
 
-    void update(FishmashModel fishmashModel);
-    void update(List<FishmashModel> fishmashModelList);
+    void update(Model model);
+    void update(List<Model> modelList);
 
     void delete(long id);
-    void delete(FishmashModel fishmashModel);
+    void delete(Model model);
 
     long count();
     void truncate();
     void close();
 
-    FishmashModel cursorToModel(Cursor cursor);
-    ContentValues modelToContentValues(FishmashModel fishmashModel);
-    long getId(FishmashModel fishmashModel);
+    Model cursorToModel(Cursor cursor);
+    ContentValues modelToContentValues(Model model);
+    long getIdOf(Model model);
 }

@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 
 import net.elenx.fishmash.models.Word;
-import net.elenx.fishmash.openers.WordsOpener;
 
 public class WordsDAO extends FishmashDAO<Word>
 {
@@ -13,6 +12,7 @@ public class WordsDAO extends FishmashDAO<Word>
     {
         super
         (
+            context,
             "words",
             new String[]
             {
@@ -21,8 +21,6 @@ public class WordsDAO extends FishmashDAO<Word>
                 "meaning"
             }
         );
-
-        sqLiteDatabase = new WordsOpener(context).getWritableDatabase();
     }
 
     @Override
@@ -42,7 +40,7 @@ public class WordsDAO extends FishmashDAO<Word>
     }
 
     @Override
-    public long getId(Word word)
+    public long getIdOf(Word word)
     {
         return word.getId();
     }
