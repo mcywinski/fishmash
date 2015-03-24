@@ -67,7 +67,7 @@ public abstract class FishmashUpdater extends AsyncTask<Void, Integer, Void> imp
         }
     }
 
-    protected final String getJsonStringFrom(String apiSection)
+    protected final String getStringFrom(String apiSection)
     {
         try
         {

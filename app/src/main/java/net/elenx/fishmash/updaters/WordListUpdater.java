@@ -27,7 +27,7 @@ public class WordListUpdater extends FishmashUpdater
     {
         try
         {
-            jsonArray = new JSONArray(getJsonStringFrom(Constant.LISTS));
+            jsonArray = new JSONArray(getStringFrom(Constant.LISTS));
         }
         catch(JSONException e)
         {
