@@ -7,14 +7,14 @@ import org.json.JSONObject;
 
 public abstract class FishmashModel implements ModelInterface
 {
-    protected long id;
+    private long id;
 
-    protected FishmashModel(Cursor cursor)
+    FishmashModel(Cursor cursor)
     {
         this.id = cursor.getLong(0);
     }
 
-    protected FishmashModel(JSONObject json) throws JSONException
+    FishmashModel(JSONObject json) throws JSONException
     {
         this.id = json.getLong("id");
     }

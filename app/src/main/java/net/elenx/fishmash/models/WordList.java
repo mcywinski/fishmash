@@ -5,8 +5,6 @@ import android.database.Cursor;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.List;
-
 public class WordList extends FishmashModel
 {
     private String name;
@@ -14,8 +12,6 @@ public class WordList extends FishmashModel
     private Language mainLanguage;
     private Language foreignLanguage;
     private FishmashCalendar updatedAt;
-
-    private List<Word> words;
 
     public WordList(Cursor cursor)
     {
@@ -40,11 +36,6 @@ public class WordList extends FishmashModel
     public String getName()
     {
         return name;
-    }
-
-    public void setName(String name)
-    {
-        this.name = name;
     }
 
     public String getDescription()

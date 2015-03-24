@@ -5,18 +5,10 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".PickWordListActivity">
 
-    <ScrollView
+    <TableLayout
+        android:id="@+id/wordListsTable"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true">
-
-
-        <TableLayout
-            android:id="@+id/wordListsTable"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        </TableLayout>
-    </ScrollView>
+        android:layout_height="wrap_content">
+    </TableLayout>
 
 </RelativeLayout>

@@ -14,12 +14,12 @@ import java.util.List;
 
 public abstract class FishmashDAO<FishmashModel> implements DAOInterface<FishmashModel>
 {
-    protected String table;
-    protected String[] columns;
+    private final String table;
+    final String[] columns;
 
-    protected SQLiteDatabase sqLiteDatabase;
+    private final SQLiteDatabase sqLiteDatabase;
 
-    protected FishmashDAO(Context context, String table, String[] columns)
+    FishmashDAO(Context context, String table, String[] columns)
     {
         this.table = table;
         this.columns = columns;

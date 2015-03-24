@@ -6,14 +6,14 @@ import java.util.GregorianCalendar;
 
 public class FishmashCalendar extends GregorianCalendar
 {
-    private static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss.SSS'Z'");
+    private final static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss.SSS'Z'");
 
     public FishmashCalendar(String sqlDate)
     {
         setFromSqlString(sqlDate);
     }
 
-    public void setFromSqlString(String sqlDate)
+    private void setFromSqlString(String sqlDate)
     {
         try
         {

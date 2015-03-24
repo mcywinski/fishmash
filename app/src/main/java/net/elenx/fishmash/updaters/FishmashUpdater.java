@@ -10,14 +10,14 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Scanner;
 
-public abstract class FishmashUpdater extends AsyncTask<Void, Integer, Void> implements UpdaterInterface
+abstract class FishmashUpdater extends AsyncTask<Void, Integer, Void> implements UpdaterInterface
 {
-    protected static final int CONNECTING = 0;
-    protected static final int DOWNLOADING = 1;
-    protected static final int CONVERTING = 2;
-    protected static final int SAVING = 3;
+    private static final int CONNECTING = 0;
+    private static final int DOWNLOADING = 1;
+    private static final int CONVERTING = 2;
+    private static final int SAVING = 3;
 
-    protected OptionsActivity optionsActivity;
+    OptionsActivity optionsActivity;
 
     @Override
     protected void onPreExecute()
@@ -76,7 +76,7 @@ public abstract class FishmashUpdater extends AsyncTask<Void, Integer, Void> imp
         }
     }
 
-    protected final String getStringFrom(String apiSection)
+    final String getStringFrom(String apiSection)
     {
         try
         {

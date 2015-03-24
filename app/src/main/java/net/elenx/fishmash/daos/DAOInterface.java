@@ -5,7 +5,7 @@ import android.database.Cursor;
 
 import java.util.List;
 
-public interface DAOInterface<Model>
+interface DAOInterface<Model>
 {
     List<Model> selectAll();
     Model select(long id);

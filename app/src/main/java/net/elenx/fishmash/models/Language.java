@@ -2,15 +2,15 @@ package net.elenx.fishmash.models;
 
 public class Language
 {
-    private int id;
+    private final long id;
     private String name;
 
-    public Language(int id)
+    public Language(long id)
     {
         this.id = id;
     }
 
-    public int getId()
+    public long getId()
     {
         return id;
     }

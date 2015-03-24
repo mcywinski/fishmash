@@ -6,7 +6,7 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
-public class ProgressDialogActivity extends Activity
+public abstract class ProgressDialogActivity extends Activity
 {
     private ProgressDialog progressDialog;
 

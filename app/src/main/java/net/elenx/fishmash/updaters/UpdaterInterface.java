@@ -1,6 +1,6 @@
 package net.elenx.fishmash.updaters;
 
-public interface UpdaterInterface
+interface UpdaterInterface
 {
     void download();
 

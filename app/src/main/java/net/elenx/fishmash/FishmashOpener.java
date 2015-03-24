@@ -9,7 +9,7 @@ import java.util.List;
 
 public class FishmashOpener extends SQLiteOpenHelper
 {
-    private static List<String> createTableQueries = new LinkedList<>();
+    private static final List<String> createTableQueries = new LinkedList<>();
 
     public FishmashOpener(Context context)
     {

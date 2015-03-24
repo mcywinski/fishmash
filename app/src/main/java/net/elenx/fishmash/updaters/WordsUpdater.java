@@ -14,7 +14,7 @@ import java.util.List;
 
 public class WordsUpdater extends FishmashUpdater
 {
-    private long wordListId;
+    private final long wordListId;
     private JSONObject jsonWordList;
     private List<Word> words;
 

@@ -8,7 +8,7 @@ import net.elenx.fishmash.R;
 import net.elenx.fishmash.updaters.WordListUpdater;
 import net.elenx.fishmash.updaters.WordsUpdater;
 
-public class OptionsActivity extends ProgressDialogActivity
+public abstract class OptionsActivity extends ProgressDialogActivity
 {
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
@@ -42,7 +42,7 @@ public class OptionsActivity extends ProgressDialogActivity
         return true;
     }
 
-    protected void mainMenu()
+    void mainMenu()
     {
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(intent);
@@ -55,7 +55,7 @@ public class OptionsActivity extends ProgressDialogActivity
         wordListUpdater.execute();
     }
 
-    protected void updateWords(long id)
+    void updateWords(long id)
     {
         if(id <= 0)
         {
