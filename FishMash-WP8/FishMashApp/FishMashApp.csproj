@@ -135,6 +135,7 @@
     </Compile>
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\BrowseWordsViewModel.cs" />
+    <Compile Include="ViewModels\WordViewModel.cs" />
     <Compile Include="Views\BrowseWordsView.xaml.cs">
       <DependentUpon>BrowseWordsView.xaml</DependentUpon>
     </Compile>

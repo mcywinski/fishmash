@@ -1,6 +1,7 @@
-﻿using FishMashApp.Common;
-using FishMashApp.Models;
+﻿using FishMash.WebAPI;
+using FishMashApp.Common;
 using FishMashApp.Views;
+using FishMashApp.WebAPI;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,57 +9,48 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using FishMashApp.WebAPI;
 
 namespace FishMashApp.ViewModels
 {
-    class BrowseWordsViewModel : BaseViewModel
+    class WordViewModel : BaseViewModel
     {
-    #region Properties
         #region Binding
-        public ObservableCollection<ListOfLists> ListOfList
+        public ObservableCollection<ReadWord.Word> ListOfWords
         {
             get;
             set;
         }
-        
-        #endregion
 
-        public ICommand Click
+        public ICommand ButtonBack
         {
             get
             {
                 return null ??
                     new RelayCommand(o =>
                     {
-                        this.navigationService.Naviagte(typeof(WordView));
+                        this.navigationService.Naviagte(typeof(BrowseWordsView));
                     });
             }
         }
-    #endregion
+        #endregion
 
-        public BrowseWordsViewModel(INavigationService navigationService)
+        public WordViewModel(INavigationService navigationService)
         {
             this.navigationService = navigationService;
-            ListOfList = new ObservableCollection<ListOfLists>();
+            ListOfWords = new ObservableCollection<ReadWord.Word>();
             FillList(); //only for temp
         }
 
         public async void FillList()
         {
-            List<ListOfLists> x = await WebService.GetListOfListAsync();
+            List<ReadWord.Word> x = await WebService.GetWordsOfListAsync(1);
             OnUIThread(() =>
             {
-                foreach (ListOfLists t in x)
+                foreach (ReadWord.Word t in x)
                 {
-                    ListOfList.Add(t);
+                    ListOfWords.Add(t);
                 }
             });
-        }
-
-        public void goToNextPage()
-        {
-            this.navigationService.Naviagte(typeof(WordView));
         }
     }
 }

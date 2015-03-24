@@ -1,4 +1,5 @@
 ﻿using FishMashApp.Common;
+using FishMashApp.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -25,12 +26,15 @@ namespace FishMashApp.Views
     /// </summary>
     public sealed partial class WordView : Page
     {
+        private WordViewModel viewModel;
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
 
         public WordView()
         {
             this.InitializeComponent();
+            viewModel = new WordViewModel(new NavigationService());
+            this.DataContext = viewModel;
 
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
@@ -108,9 +112,5 @@ namespace FishMashApp.Views
 
         #endregion
 
-        private void Button_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            Common.Settings.Instance.navigationService.Naviagte(typeof(BrowseWordsView));
-        }
     }
 }

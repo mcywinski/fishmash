@@ -11,12 +11,62 @@ using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Converters;
 using System.Diagnostics;
 using FishMash.WebAPI;
+using System.Globalization;
 
 
 namespace FishMashApp.WebAPI
 {
     class WebService
     {
+        async static public Task<List<ReadWord.Word>> GetWordsOfListAsync(int id)
+        {
+            List<ReadWord.Word> list = new List<ReadWord.Word>();
+            try
+            {
+                string url = "https://shrouded-fjord-4731.herokuapp.com/api/lists/" +
+                    id.ToString("0", CultureInfo.InvariantCulture);
+                var u = new Uri(url);
+
+                var client = new HttpClient();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                var response = await client.GetAsync(u);
+                if (!response.IsSuccessStatusCode)
+                {
+                    Debug.WriteLine("Wysłanie zapytania nie powiodło się!");
+                    throw new Exception();
+                }
+                //Debug.WriteLine(response);
+
+                var result = await response.Content.ReadAsStringAsync();
+                //Debug.WriteLine(result);
+
+                var temp = JsonConvert.DeserializeObject<ReadWord>(result);
+
+                for (int i = 0; i < temp.Words.Count(); i++)
+                {
+                    list.Add(new ReadWord.Word
+                    {
+                        Id = Convert.ToInt32(temp.Words[0]),
+                        Meaning = temp.Words[1].ToString(),
+                        Phrase = temp.Words[2].ToString()
+                    });
+                }
+                return list;
+            }
+            catch (JsonSerializationException jsonerr)
+            {
+                Debug.WriteLine(jsonerr.ToString());
+                Debug.WriteLine("Brak dostępu do internetu.");
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.ToString());
+                throw new Exception("Brak internetu");
+            }
+            return list;
+        }
+
         async static public Task<List<ListOfLists>> GetListOfListAsync()
         {
             List<ListOfLists> list = new List<ListOfLists>();
