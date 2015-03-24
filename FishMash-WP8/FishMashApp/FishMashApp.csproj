@@ -143,6 +143,8 @@
     </Compile>
     <Compile Include="WebAPI\ReadListModel.cs" />
     <Compile Include="WebAPI\ReadListModel.Details.cs" />
+    <Compile Include="WebAPI\ReadWord.cs" />
+    <Compile Include="WebAPI\ReadWord.Word.cs" />
     <Compile Include="WebAPI\WebService.cs" />
   </ItemGroup>
   <ItemGroup>
