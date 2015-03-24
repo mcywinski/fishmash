@@ -9,11 +9,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
-import java.net.URL;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Scanner;
 
 public class WordListUpdater extends FishmashUpdater
 {
@@ -30,22 +27,14 @@ public class WordListUpdater extends FishmashUpdater
     {
         try
         {
-            URL url = new URL(Constant.API + Constant.LISTS);
-            Scanner scanner = new Scanner(url.openStream());
-
-            StringBuilder stringBuilder = new StringBuilder();
-            scanner.useDelimiter("\\Z");
-
-            while(scanner.hasNext())
-            {
-                stringBuilder.append(scanner.nextLine());
-            }
-
-            jsonArray = new JSONArray(stringBuilder.toString());
+            jsonArray = new JSONArray(getJsonStringFrom(Constant.LISTS));
         }
-        catch(JSONException | IOException e)
+        catch(JSONException e)
         {
             e.printStackTrace();
+
+            // avoid null pointer
+            jsonArray = new JSONArray();
         }
     }
 

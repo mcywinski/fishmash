@@ -2,7 +2,12 @@ package net.elenx.fishmash.updaters;
 
 import android.os.AsyncTask;
 
+import net.elenx.fishmash.Constant;
 import net.elenx.fishmash.activities.OptionsActivity;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.Scanner;
 
 import elenx.net.fishmash.R;
 
@@ -59,6 +64,31 @@ public abstract class FishmashUpdater extends AsyncTask<Void, Integer, Void> imp
             case SAVING:
                 optionsActivity.signal(optionsActivity.getString(R.string.saving));
                 break;
+        }
+    }
+
+    protected final String getJsonStringFrom(String apiSection)
+    {
+        try
+        {
+            URL url = new URL(Constant.API + apiSection);
+            Scanner scanner = new Scanner(url.openStream());
+
+            StringBuilder stringBuilder = new StringBuilder();
+            scanner.useDelimiter("\\Z");
+
+            while(scanner.hasNext())
+            {
+                stringBuilder.append(scanner.nextLine());
+            }
+
+            return stringBuilder.toString();
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+
+            return "";
         }
     }
 }
