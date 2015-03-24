@@ -20,6 +20,22 @@ public abstract class FishmashUpdater extends AsyncTask<Void, Integer, Void> imp
     protected OptionsActivity optionsActivity;
 
     @Override
+    protected void onPreExecute()
+    {
+        super.onPreExecute();
+
+        optionsActivity.showProgressDialog();
+    }
+
+    @Override
+    protected void onPostExecute(Void aVoid)
+    {
+        super.onPostExecute(aVoid);
+
+        optionsActivity.dismissProgressDialog();
+    }
+
+    @Override
     protected final Void doInBackground(Void... params)
     {
         publishProgress(CONNECTING);

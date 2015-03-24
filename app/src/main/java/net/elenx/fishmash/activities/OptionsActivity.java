@@ -29,22 +29,28 @@ public class OptionsActivity extends Activity
 
         if(id == R.id.update_wordlists)
         {
-            progressDialog = new ProgressDialog(this);
-            progressDialog.setCancelable(false);
-            progressDialog.show();
-
             WordListUpdater wordListUpdater = new WordListUpdater(this);
             wordListUpdater.execute();
-
-            if(progressDialog.isShowing())
-            {
-                progressDialog.dismiss();
-            }
 
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void showProgressDialog()
+    {
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+    }
+
+    public void dismissProgressDialog()
+    {
+        if(progressDialog != null && progressDialog.isShowing())
+        {
+            progressDialog.dismiss();
+        }
     }
 
     public void signal(String message)
