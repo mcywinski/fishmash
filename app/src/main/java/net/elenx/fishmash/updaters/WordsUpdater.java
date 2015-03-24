@@ -2,6 +2,7 @@ package net.elenx.fishmash.updaters;
 
 import net.elenx.fishmash.Constant;
 import net.elenx.fishmash.activities.OptionsActivity;
+import net.elenx.fishmash.daos.WordsDAO;
 import net.elenx.fishmash.models.Word;
 
 import org.json.JSONArray;
@@ -13,11 +14,11 @@ import java.util.List;
 
 public class WordsUpdater extends FishmashUpdater
 {
-    private int wordListId;
+    private long wordListId;
     private JSONObject jsonWordList;
     private List<Word> words;
 
-    public WordsUpdater(OptionsActivity optionsActivity, int wordListId)
+    public WordsUpdater(OptionsActivity optionsActivity, long wordListId)
     {
         this.optionsActivity = optionsActivity;
         this.wordListId = wordListId;
@@ -66,8 +67,8 @@ public class WordsUpdater extends FishmashUpdater
     @Override
     public void save()
     {
-//        WordListsDAO wordListsDAO = new WordListsDAO(optionsActivity);
-//        wordListsDAO.truncate();
-//        wordListsDAO.insert(wordLists);
+        WordsDAO wordsDAO = new WordsDAO(optionsActivity);
+        wordsDAO.truncate();
+        wordsDAO.insert(words);
     }
 }

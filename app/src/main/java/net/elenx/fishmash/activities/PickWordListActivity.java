@@ -1,12 +1,11 @@
 package net.elenx.fishmash.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import net.elenx.fishmash.R;
 import net.elenx.fishmash.daos.WordListsDAO;
@@ -32,8 +31,6 @@ public class PickWordListActivity extends OptionsActivity
         WordListsDAO wordListsDAO = new WordListsDAO(this);
         List<WordList> wordLists = wordListsDAO.selectAll();
 
-        Log.e("count", String.valueOf(wordLists.size()));
-
         for(final WordList wordList : wordLists)
         {
             TextView textView = new TextView(this);
@@ -45,7 +42,10 @@ public class PickWordListActivity extends OptionsActivity
                     @Override
                     public void onClick(View v)
                     {
-                        Toast.makeText(getApplicationContext(), wordList.getName(), Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getApplicationContext(), LearningActivity.class);
+                        intent.putExtra("wordListId", wordList.getId());
+                        startActivity(intent);
+                        finish();
                     }
                 }
             );

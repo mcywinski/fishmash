@@ -1,20 +1,14 @@
 package net.elenx.fishmash.activities;
 
-import android.app.Activity;
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import net.elenx.fishmash.R;
 import net.elenx.fishmash.updaters.WordListUpdater;
+import net.elenx.fishmash.updaters.WordsUpdater;
 
-public class OptionsActivity extends Activity
+public class OptionsActivity extends ProgressDialogActivity
 {
-    private ProgressDialog progressDialog;
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
@@ -25,47 +19,31 @@ public class OptionsActivity extends Activity
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
-        int id = item.getItemId();
-
-        if(id == R.id.update_wordlists)
+        switch(item.getItemId())
         {
-            WordListUpdater wordListUpdater = new WordListUpdater(this);
-            wordListUpdater.execute();
-
-            return true;
+            case R.id.update_wordlists:
+                updateWordLists();
+                break;
         }
 
-        return super.onOptionsItemSelected(item);
+        return true;
     }
 
-    public void showProgressDialog()
+    private void updateWordLists()
     {
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setCancelable(false);
-        progressDialog.show();
+        WordListUpdater wordListUpdater = new WordListUpdater(this);
+        wordListUpdater.execute();
     }
 
-    public void dismissProgressDialog()
+    protected void updateWords(long id)
     {
-        if(progressDialog != null && progressDialog.isShowing())
+        if(id < 0)
         {
-            progressDialog.dismiss();
+            return;
         }
+
+        WordsUpdater wordsUpdater = new WordsUpdater(this, id);
+        wordsUpdater.execute();
     }
 
-    public void signal(String message)
-    {
-        if(progressDialog != null)
-        {
-            progressDialog.setMessage(message);
-        }
-    }
-
-    public boolean isOnline()
-    {
-        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo netInfo = cm.getActiveNetworkInfo();
-
-        return netInfo != null && netInfo.isConnected();
-    }
 }

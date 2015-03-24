@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.widget.Button;
 
 import net.elenx.fishmash.R;
-import net.elenx.fishmash.updaters.WordsUpdater;
 
 public class LearningActivity extends OptionsActivity
 {
@@ -18,8 +17,6 @@ public class LearningActivity extends OptionsActivity
 
         nextWordButton = (Button) findViewById(R.id.nextWordButton);
 
-        int wordListId = 1;
-
-        WordsUpdater wordsUpdater = new WordsUpdater(this, wordListId);
+        updateWords(getIntent().getLongExtra("wordListId", -1));
     }
 }
