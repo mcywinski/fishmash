@@ -6,7 +6,7 @@ import net.elenx.fishmash.activities.OptionsActivity;
 
 import elenx.net.fishmash.R;
 
-public abstract class FishmashUpdater extends AsyncTask<Void, Integer, Void>
+public abstract class FishmashUpdater extends AsyncTask<Void, Integer, Void> implements UpdaterInterface
 {
     protected static final int CONNECTING = 0;
     protected static final int DOWNLOADING = 1;
@@ -14,6 +14,28 @@ public abstract class FishmashUpdater extends AsyncTask<Void, Integer, Void>
     protected static final int SAVING = 3;
 
     protected OptionsActivity optionsActivity;
+
+    @Override
+    protected final Void doInBackground(Void... params)
+    {
+        publishProgress(CONNECTING);
+
+        if(!optionsActivity.isOnline())
+        {
+            return null;
+        }
+
+        publishProgress(DOWNLOADING);
+        download();
+
+        publishProgress(CONVERTING);
+        convert();
+
+        publishProgress(SAVING);
+        save();
+
+        return null;
+    }
 
     @Override
     protected void onProgressUpdate(Integer... state)

@@ -26,28 +26,7 @@ public class WordListUpdater extends FishmashUpdater
     }
 
     @Override
-    protected Void doInBackground(Void... params)
-    {
-        publishProgress(CONNECTING);
-
-        if(!optionsActivity.isOnline())
-        {
-            return null;
-        }
-
-        publishProgress(DOWNLOADING);
-        fetchWordListsAsJson();
-
-        publishProgress(CONVERTING);
-        convertJsonToList();
-
-        publishProgress(SAVING);
-        updateDatabase();
-
-        return null;
-    }
-
-    private void fetchWordListsAsJson()
+    public void download()
     {
         try
         {
@@ -70,7 +49,8 @@ public class WordListUpdater extends FishmashUpdater
         }
     }
 
-    private List<WordList> convertJsonToList()
+    @Override
+    public void convert()
     {
         wordLists = new LinkedList<>();
 
@@ -91,11 +71,10 @@ public class WordListUpdater extends FishmashUpdater
         {
             e.printStackTrace();
         }
-
-        return wordLists;
     }
 
-    private void updateDatabase()
+    @Override
+    public void save()
     {
         WordListDAO wordListDAO = new WordListDAO(optionsActivity);
         wordListDAO.truncate();

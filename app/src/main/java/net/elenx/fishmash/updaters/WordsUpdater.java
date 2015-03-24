@@ -4,7 +4,6 @@ import net.elenx.fishmash.activities.OptionsActivity;
 
 public class WordsUpdater extends FishmashUpdater
 {
-    private OptionsActivity optionsActivity;
     private int wordListId;
 
     public WordsUpdater(OptionsActivity optionsActivity, int wordListId)
@@ -14,21 +13,20 @@ public class WordsUpdater extends FishmashUpdater
     }
 
     @Override
-    protected Void doInBackground(Void... params)
+    public void download()
     {
-        publishProgress(CONNECTING);
 
-        if(!optionsActivity.isOnline())
-        {
-            return null;
-        }
+    }
 
-        publishProgress(DOWNLOADING);
+    @Override
+    public void convert()
+    {
 
-        publishProgress(CONVERTING);
+    }
 
-        publishProgress(SAVING);
+    @Override
+    public void save()
+    {
 
-        return null;
     }
 }
