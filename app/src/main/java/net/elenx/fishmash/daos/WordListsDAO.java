@@ -29,24 +29,6 @@ public class WordListsDAO extends FishmashDAO<WordList>
     }
 
     @Override
-    public void insert(WordList wordList)
-    {
-        ContentValues contentValues = modelToContentValues(wordList);
-        contentValues.put(columns[0], wordList.getId());
-
-        sqLiteDatabase.insert(table, null, contentValues);
-    }
-
-    @Override
-    public void update(WordList wordList)
-    {
-        ContentValues contentValues = modelToContentValues(wordList);
-        String[] updateId = new String[]{String.valueOf(wordList.getId())};
-
-        sqLiteDatabase.update(table, contentValues, "id=?", updateId);
-    }
-
-    @Override
     public WordList cursorToModel(Cursor cursor)
     {
         return new WordList(cursor);
@@ -63,5 +45,11 @@ public class WordListsDAO extends FishmashDAO<WordList>
         contentValues.put(columns[5], wordList.getUpdatedAt().getAsSqlString());
 
         return contentValues;
+    }
+
+    @Override
+    public long getId(WordList wordList)
+    {
+        return wordList.getId();
     }
 }

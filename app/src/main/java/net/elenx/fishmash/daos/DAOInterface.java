@@ -25,4 +25,5 @@ public interface DAOInterface<FishmashModel>
 
     FishmashModel cursorToModel(Cursor cursor);
     ContentValues modelToContentValues(FishmashModel fishmashModel);
+    long getId(FishmashModel fishmashModel);
 }

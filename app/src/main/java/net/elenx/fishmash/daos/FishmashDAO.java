@@ -1,5 +1,6 @@
 package net.elenx.fishmash.daos;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
@@ -65,12 +66,30 @@ public abstract class FishmashDAO<FishmashModel> implements DAOInterface<Fishmas
     }
 
     @Override
+    public void insert(FishmashModel fishmashModel)
+    {
+        ContentValues contentValues = modelToContentValues(fishmashModel);
+        contentValues.put(columns[0], getId(fishmashModel));
+
+        sqLiteDatabase.insert(table, null, contentValues);
+    }
+
+    @Override
     public void update(List<FishmashModel> fishmashModelList)
     {
         for(FishmashModel fishmashModel : fishmashModelList)
         {
             update(fishmashModel);
         }
+    }
+
+    @Override
+    public void update(FishmashModel fishmashModel)
+    {
+        ContentValues contentValues = modelToContentValues(fishmashModel);
+        String[] updateId = new String[]{String.valueOf(getId(fishmashModel))};
+
+        sqLiteDatabase.update(table, contentValues, "id=?", updateId);
     }
 
     @Override
