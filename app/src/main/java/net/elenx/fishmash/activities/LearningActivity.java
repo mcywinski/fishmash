@@ -13,7 +13,7 @@ public class LearningActivity extends OptionsActivity
     protected void onPostCreate(Bundle savedInstanceState)
     {
         super.onPostCreate(savedInstanceState);
-        setContentView(R.layout.activity_viewwords);
+        setContentView(R.layout.activity_learning);
 
         updateWords(getIntent().getLongExtra("wordListId", -1));
 

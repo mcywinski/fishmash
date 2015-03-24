@@ -9,6 +9,12 @@ import net.elenx.fishmash.R;
 public class MainActivity extends OptionsActivity
 {
     @Override
+    public void onBackPressed()
+    {
+        finish();
+    }
+
+    @Override
     protected void onPostCreate(Bundle savedInstanceState)
     {
         super.onPostCreate(savedInstanceState);

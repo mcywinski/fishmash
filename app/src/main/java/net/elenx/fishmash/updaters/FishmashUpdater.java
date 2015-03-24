@@ -22,16 +22,12 @@ public abstract class FishmashUpdater extends AsyncTask<Void, Integer, Void> imp
     @Override
     protected void onPreExecute()
     {
-        super.onPreExecute();
-
         optionsActivity.showProgressDialog();
     }
 
     @Override
     protected void onPostExecute(Void aVoid)
     {
-        super.onPostExecute(aVoid);
-
         optionsActivity.dismissProgressDialog();
     }
 
@@ -60,8 +56,6 @@ public abstract class FishmashUpdater extends AsyncTask<Void, Integer, Void> imp
     @Override
     protected void onProgressUpdate(Integer... state)
     {
-        super.onProgressUpdate(state);
-
         switch(state[0])
         {
             case CONNECTING:

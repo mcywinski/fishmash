@@ -3,7 +3,6 @@ package net.elenx.fishmash.openers;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import net.elenx.fishmash.Constant;
 
@@ -19,8 +18,6 @@ public abstract class FishmashSQLiteOpener extends SQLiteOpenHelper
     @Override
     public void onCreate(SQLiteDatabase db)
     {
-        Log.e("CREATE:", create != null ? create : "NULL");
-
         if(create != null)
         {
             db.execSQL(create);
