@@ -2,7 +2,7 @@ package net.elenx.fishmash.openers;
 
 import android.content.Context;
 
-import elenx.net.fishmash.R;
+import net.elenx.fishmash.R;
 
 public class WordListsOpener extends FishmashSQLiteOpener
 {

@@ -3,9 +3,8 @@ package net.elenx.fishmash.activities;
 import android.os.Bundle;
 import android.widget.Button;
 
+import net.elenx.fishmash.R;
 import net.elenx.fishmash.updaters.WordsUpdater;
-
-import elenx.net.fishmash.R;
 
 public class LearningActivity extends OptionsActivity
 {

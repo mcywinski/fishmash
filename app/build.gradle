@@ -5,7 +5,7 @@ android {
     buildToolsVersion "21.1.2"
 
     defaultConfig {
-        applicationId "elenx.net.fishmash"
+        applicationId "net.elenx.fishmash"
         minSdkVersion 15
         targetSdkVersion 22
         versionCode 1

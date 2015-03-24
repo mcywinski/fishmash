@@ -3,13 +3,12 @@ package net.elenx.fishmash.updaters;
 import android.os.AsyncTask;
 
 import net.elenx.fishmash.Constant;
+import net.elenx.fishmash.R;
 import net.elenx.fishmash.activities.OptionsActivity;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.Scanner;
-
-import elenx.net.fishmash.R;
 
 public abstract class FishmashUpdater extends AsyncTask<Void, Integer, Void> implements UpdaterInterface
 {

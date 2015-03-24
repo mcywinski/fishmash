@@ -8,9 +8,8 @@ import android.net.NetworkInfo;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import net.elenx.fishmash.R;
 import net.elenx.fishmash.updaters.WordListUpdater;
-
-import elenx.net.fishmash.R;
 
 public class OptionsActivity extends Activity
 {

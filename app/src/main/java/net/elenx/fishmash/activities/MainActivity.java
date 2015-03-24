@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import elenx.net.fishmash.R;
+import net.elenx.fishmash.R;
 
 public class MainActivity extends OptionsActivity
 {
