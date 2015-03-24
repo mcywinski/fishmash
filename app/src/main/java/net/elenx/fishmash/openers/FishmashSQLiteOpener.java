@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import net.elenx.fishmash.Constant;
 
-public class FishmashSQLiteOpener extends SQLiteOpenHelper
+public abstract class FishmashSQLiteOpener extends SQLiteOpenHelper
 {
     protected static String create;
 
