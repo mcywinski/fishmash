@@ -103,6 +103,14 @@ namespace FishMashApp.Views
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             this.navigationHelper.OnNavigatedTo(e);
+            if (e.Parameter.ToString() != "")
+            {
+                viewModel.FillList(Convert.ToInt32(e.Parameter.ToString()));
+            }
+            else
+            {
+                Frame.Navigate(typeof(BrowseWordsView));
+            }
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)

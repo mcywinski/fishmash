@@ -38,12 +38,12 @@ namespace FishMashApp.ViewModels
         {
             this.navigationService = navigationService;
             ListOfWords = new ObservableCollection<ReadWord.Word>();
-            FillList(); //only for temp
+            //FillList(); //only for temp
         }
 
-        public async void FillList()
+        public async void FillList(int i)
         {
-            List<ReadWord.Word> x = await WebService.GetWordsOfListAsync(1);
+            List<ReadWord.Word> x = await WebService.GetWordsOfListAsync(i);
             OnUIThread(() =>
             {
                 foreach (ReadWord.Word t in x)

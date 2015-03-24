@@ -47,9 +47,9 @@ namespace FishMashApp.WebAPI
                 {
                     list.Add(new ReadWord.Word
                     {
-                        Id = Convert.ToInt32(temp.Words[0]),
-                        Meaning = temp.Words[1].ToString(),
-                        Phrase = temp.Words[2].ToString()
+                        Id = Convert.ToInt32(temp.Words[i].Id),
+                        Meaning = temp.Words[i].Meaning.ToString(),
+                        Phrase = temp.Words[i].Phrase.ToString()
                     });
                 }
                 return list;

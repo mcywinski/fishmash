@@ -29,7 +29,7 @@
 
         <!--TODO: Content should be placed within the following grid-->
         <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
-            <Button Command="{Binding ButtonBack}" VerticalAlignment="Top" HorizontalAlignment="Left">Back</Button>
+            
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <ItemsControl Name="Screen" 
                       ItemsSource="{Binding ListOfWords}"
@@ -43,8 +43,16 @@
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Phrase}" 
-                               FontSize="20" />
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{Binding Phrase}" 
+                               FontSize="20" Grid.Column="0"/>
+                                <TextBlock Text="{Binding Meaning}" 
+                               FontSize="20" Grid.Column="1"/>
+                            </Grid>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
