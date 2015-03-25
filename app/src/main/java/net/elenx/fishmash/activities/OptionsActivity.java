@@ -44,12 +44,12 @@ public abstract class OptionsActivity extends ProgressDialogActivity
 
     void mainMenu()
     {
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        Intent intent = new Intent(getApplicationContext(), MenuActivity.class);
         startActivity(intent);
         finish();
     }
 
-    private void updateWordLists()
+    void updateWordLists()
     {
         WordListUpdater wordListUpdater = new WordListUpdater(this);
         wordListUpdater.execute();

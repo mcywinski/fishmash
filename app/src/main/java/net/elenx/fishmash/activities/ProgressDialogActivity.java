@@ -40,4 +40,11 @@ public abstract class ProgressDialogActivity extends Activity
 
         return netInfo != null && netInfo.isConnected();
     }
+
+    @Override
+    protected void onPause()
+    {
+        super.onPause();
+        dismissProgressDialog();
+    }
 }
