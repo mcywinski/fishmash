@@ -2,8 +2,6 @@ package net.elenx.fishmash.activities;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.speech.tts.TextToSpeech;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -78,14 +76,12 @@ public class LearningActivity extends SpeakingActivity
     @Override
     public void onInit(int i)
     {
-        if(i == TextToSpeech.SUCCESS)
+        super.onInit(i);
+
+        if(isReadyToSpeak)
         {
             speakCheckBox.setVisibility(View.VISIBLE);
             speakNowButton.setVisibility(View.VISIBLE);
-        }
-        else
-        {
-            Log.e("TTS", String.valueOf(i));
         }
     }
 
@@ -140,7 +136,7 @@ public class LearningActivity extends SpeakingActivity
                     }
                     else
                     {
-                        Toast.makeText(me, "Od nowa", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(me, "Od początku", Toast.LENGTH_SHORT).show();
                         rewind();
                         nextWordButton.performClick();
                     }
@@ -151,13 +147,8 @@ public class LearningActivity extends SpeakingActivity
 
     private void speakPhraseAndMeaning()
     {
-        if(isOffline())
-        {
-            return;
-        }
-
-        speak(phrase, phraseLocale);
-        speak(meaning, meaningLocale);
+        say(phrase, phraseLocale);
+        say(meaning, meaningLocale);
     }
 
     private void colorAccordingToSpeakAbility(TextView textView, Locale locale)

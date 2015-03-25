@@ -7,4 +7,7 @@
     <string name="speak">Odczytuj</string>
     <string name="speak_now">Odczytaj</string>
     <string name="show_meaning">Pokaż znaczenie</string>
+
+    <string name="phrase">Fraza</string>
+    <string name="meaning">Znaczenie</string>
 </resources>

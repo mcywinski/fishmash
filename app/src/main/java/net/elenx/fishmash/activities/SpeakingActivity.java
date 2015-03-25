@@ -1,20 +1,21 @@
 package net.elenx.fishmash.activities;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.speech.tts.TextToSpeech;
 
+import java.util.HashMap;
 import java.util.Locale;
 
 abstract class SpeakingActivity extends OptionsActivity implements TextToSpeech.OnInitListener
 {
     private TextToSpeech textToSpeech;
+    protected boolean isReadyToSpeak = false;
 
     @Override
-    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState)
+    protected void onPostCreate(Bundle savedInstanceState)
     {
-        super.onCreate(savedInstanceState, persistentState);
-        textToSpeech = new TextToSpeech(this, this);
+        super.onPostCreate(savedInstanceState);
+        textToSpeech = new TextToSpeech(this,this);
     }
 
     @Override
@@ -29,14 +30,28 @@ abstract class SpeakingActivity extends OptionsActivity implements TextToSpeech.
         super.onDestroy();
     }
 
-    synchronized void speak(String text, Locale language)
+    @Override
+    public void onInit(int i)
     {
-        if(textToSpeech == null || text == null || language == null)
+        if(i == TextToSpeech.SUCCESS)
+        {
+            isReadyToSpeak = true;
+        }
+    }
+
+    synchronized void say(String text)
+    {
+        say(text, Locale.US);
+    }
+
+    synchronized void say(String text, Locale language)
+    {
+        if(!isReadyToSpeak || textToSpeech == null || text == null || language == null)
         {
             return;
         }
 
         textToSpeech.setLanguage(language);
-        textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+        textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, new HashMap<String, String>());
     }
 }

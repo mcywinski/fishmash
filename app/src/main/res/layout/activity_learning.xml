@@ -10,18 +10,18 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/phraseTextView"
+        android:text="@string/phrase"
         android:layout_centerVertical="true"
-        android:layout_alignRight="@+id/meaningTextView"
-        android:layout_alignEnd="@+id/meaningTextView"/>
+        android:layout_centerHorizontal="true"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:id="@+id/meaningTextView"
+        android:text="@string/meaning"
         android:layout_below="@+id/phraseTextView"
         android:layout_centerHorizontal="true"/>
-
 
     <CheckBox
         android:layout_width="wrap_content"
@@ -33,7 +33,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:visibility="invisible"/>
-
 
     <Button
         android:layout_width="wrap_content"
