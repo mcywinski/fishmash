@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import net.elenx.fishmash.R;
 import net.elenx.fishmash.daos.WordListsDAO;
@@ -14,6 +15,7 @@ import net.elenx.fishmash.models.Word;
 import net.elenx.fishmash.models.WordList;
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.Locale;
 
 public class LearningActivity extends SpeakingActivity
@@ -24,11 +26,25 @@ public class LearningActivity extends SpeakingActivity
     private String phrase;
     private String meaning;
 
+    private Button nextWordButton;
+
+    private Iterator<Word> wordIterator;
+    private List<Word> words;
+
+    private LearningActivity me;
+
     @Override
     protected void onPostCreate(Bundle savedInstanceState)
     {
         super.onPostCreate(savedInstanceState);
         setContentView(R.layout.activity_learning);
+
+        initEverything();
+    }
+
+    private void initEverything()
+    {
+        me = this;
 
         long wordListId = getIntent().getLongExtra("wordListId", -1);
         updateWords(wordListId);
@@ -48,12 +64,21 @@ public class LearningActivity extends SpeakingActivity
                 }
             }
         );
+
+        prepareForLearning();
     }
 
     @Override
-    public void onInit(int status)
+    protected void onPostResume()
     {
-        prepareForLearning();
+        super.onPostResume();
+        nextWordButton.performClick();
+    }
+
+    @Override
+    public void onInit(int i)
+    {
+        super.onInit(i);
     }
 
     private void prepareForLearning()
@@ -62,9 +87,25 @@ public class LearningActivity extends SpeakingActivity
         final TextView meaningTextView = (TextView) findViewById(R.id.meaningTextView);
         final CheckBox speakCheckBox = (CheckBox) findViewById(R.id.speakCheckBox);
 
-        final Iterator<Word> wordIterator = new WordsDAO(this).selectAll().iterator();
+        words = new WordsDAO(this).selectAll();
 
-        Button nextWordButton = (Button) findViewById(R.id.nextWordButton);
+        rewind();
+
+        Button showMeaningButton = (Button) findViewById(R.id.showMeaningButton);
+        showMeaningButton.setOnClickListener
+        (
+            new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View view)
+                {
+                    meaningTextView.setText(meaning);
+                    colorAccordingToSpeakAbility(meaningTextView, meaningLocale);
+                }
+            }
+        );
+
+        nextWordButton = (Button) findViewById(R.id.nextWordButton);
         nextWordButton.setOnClickListener
         (
             new View.OnClickListener()
@@ -82,8 +123,7 @@ public class LearningActivity extends SpeakingActivity
                         phraseTextView.setText(phrase);
                         colorAccordingToSpeakAbility(phraseTextView, phraseLocale);
 
-                        meaningTextView.setText(meaning);
-                        colorAccordingToSpeakAbility(meaningTextView, meaningLocale);
+                        meaningTextView.setText("");
 
                         if(speakCheckBox.isChecked())
                         {
@@ -92,18 +132,22 @@ public class LearningActivity extends SpeakingActivity
                     }
                     else
                     {
-                        mainMenu();
+                        Toast.makeText(me, "Od nowa", Toast.LENGTH_SHORT).show();
+                        rewind();
+                        nextWordButton.performClick();
                     }
                 }
             }
         );
-
-        // show first word
-        nextWordButton.performClick();
     }
 
     private void speakPhraseAndMeaning()
     {
+        if(!isOnline())
+        {
+            return;
+        }
+
         speak(phrase, phraseLocale);
         speak(meaning, meaningLocale);
     }
@@ -118,5 +162,10 @@ public class LearningActivity extends SpeakingActivity
         {
             textView.setTextColor(Color.GREEN);
         }
+    }
+
+    private void rewind()
+    {
+        wordIterator = words.iterator();
     }
 }

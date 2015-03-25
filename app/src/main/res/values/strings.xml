@@ -7,4 +7,5 @@
     <string name="speak">Odczytuj</string>
     <string name="speak_now">Odczytaj</string>
     <string name="splash_screen">splashScreen</string>
+    <string name="show_meaning">Pokaż znaczenie</string>
 </resources>

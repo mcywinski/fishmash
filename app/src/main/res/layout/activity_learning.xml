@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/phraseTextView"
+        android:text="phrase"
         android:layout_centerVertical="true"
         android:layout_alignRight="@+id/meaningTextView"
         android:layout_alignEnd="@+id/meaningTextView"/>
@@ -19,19 +20,10 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:id="@+id/meaningTextView"
-        android:layout_above="@+id/nextWordButton"
+        android:text="meaning"
+        android:layout_below="@+id/phraseTextView"
         android:layout_centerHorizontal="true"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/next_word"
-        android:id="@+id/nextWordButton"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"/>
 
     <CheckBox
         android:layout_width="wrap_content"
@@ -43,12 +35,34 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"/>
 
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/speak_now"
         android:id="@+id/speakNowButton"
         android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/show_meaning"
+        android:id="@+id/showMeaningButton"
+        android:layout_above="@+id/nextWordButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/next_word"
+        android:id="@+id/nextWordButton"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"/>
 </RelativeLayout>

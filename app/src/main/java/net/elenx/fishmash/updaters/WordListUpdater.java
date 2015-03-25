@@ -65,6 +65,11 @@ public class WordListUpdater extends FishmashUpdater
     @Override
     public void save()
     {
+        if(wordLists.size() < 1)
+        {
+            return;
+        }
+
         WordListsDAO wordListsDAO = new WordListsDAO(optionsActivity);
         wordListsDAO.truncate();
         wordListsDAO.insert(wordLists);

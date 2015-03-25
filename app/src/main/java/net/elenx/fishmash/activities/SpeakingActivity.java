@@ -17,6 +17,12 @@ abstract class SpeakingActivity extends OptionsActivity implements TextToSpeech.
     }
 
     @Override
+    public void onInit(int i)
+    {
+
+    }
+
+    @Override
     protected void onDestroy()
     {
         if(textToSpeech != null)
