@@ -18,8 +18,6 @@ class ExamsController < ApplicationController
 		wordlist_exam = WordListExam.new
 
 		if wordlist
-			exam.word_count = (WordListMembership.where(word_list_id: wordlist.id)).count
-
 			if exam.save
 				wordlist_exam.wordlist_id = wordlist.id
 				wordlist_exam.exam_id = exam.id
@@ -39,7 +37,7 @@ class ExamsController < ApplicationController
 	private
 
 	def new_exam_params
-		params.require(:exam).permit(:name, :description, :date_practice_start, :date_practice_finish, :date_exam_start, :date_exam_finish)
+		params.require(:exam).permit(:name, :description, :date_practice_start, :date_practice_finish, :date_exam_start, :date_exam_finish, :word_count)
 	end
 
 end
