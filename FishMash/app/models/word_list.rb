@@ -5,6 +5,9 @@ class WordList < ActiveRecord::Base
   has_many :word_list_memberships, dependent: :destroy
   has_many :words, through: :word_list_memberships
 
+  has_many :word_list_exams
+  has_many :exams, through: :word_list_exams
+
   validates :name, presence: true, length: { minimum: 3 }
   validates :main_language_id, presence: true
   validates :foreign_language_id, presence: true
