@@ -8,7 +8,7 @@ wordListContainer = '#wordlist-list'
 # Logic
 
 renderWord = (word) ->
-  $(wordListContainer).append('<span>' + word.phrase + '</span> - <span>' + word.meaning + '</span><br>')
+  $(wordListContainer).append('<span>' + word.phrase + '</span> - <span>' + word.meaning + '</span> - <a class="removeWordLink" word-id="' + word.id + '" href="#">Remove</a><br />')
 
 getWords = () ->
   $.ajax
@@ -18,8 +18,19 @@ getWords = () ->
       $(wordListContainer).empty()
       wordList.words.reverse() # Reversing in order to display chronogically newest words on top of the list.
       renderWord word for word in wordList.words
+      $('.removeWordLink').click ->
+        wordId = parseInt($(this).attr('word-id'))
+        $.ajax
+          type: 'POST'
+          url: '/api/lists/' + wordListId + '/remove'
+          data:
+            word_id: wordId
+          success: ->
+            getWords()
+          error: ->
+            alert('An error has occured while removing the word from the list. Try again, plase.')
     error: ->
-      alert('An error has occured while getting the word list. Try again, please')
+      alert('An error has occured while getting the word list. Try again, please.')
 
 addWordToList = (word) ->
   $.ajax

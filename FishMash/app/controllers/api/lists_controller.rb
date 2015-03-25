@@ -30,5 +30,14 @@ class Api::ListsController < ApplicationController
     respond_with nil, location: ''
   end
 
+  def remove
+    word_list = WordList.find(params[:list_id])
+    word = Word.find(params[:word_id])
+
+    word_list.words.delete word if word_list.words.include? word
+
+    respond_with nil, location: ''
+  end
+
   private
 end

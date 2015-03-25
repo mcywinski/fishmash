@@ -3,6 +3,9 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  def api
+  end
+
   def stringify_errors(model)
   	errors = ""
   	model.errors.full_messages.each do |msg|
