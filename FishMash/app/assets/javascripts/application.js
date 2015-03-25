@@ -12,6 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require twitter/bootstrap
 //= require turbolinks
 //= stub wordlist-browse
+//= stub wordlist-edit
 //= require_tree .

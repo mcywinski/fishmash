@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
-
+  get 'api' => 'application#api'
   namespace :api, defaults: {format: :json} do
-    resources :lists, only: [:index, :show]
+    resources :lists, only: [:index, :show] do
+      post 'add'
+      post 'remove'
+    end
+    resources :words, only: [:create]
   end
 
   resources :wordlists, controller: 'word_lists'
-  
+
   root 'home#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,0 +1,93 @@
+body, html {
+  margin: 0;
+  padding: 0;
+}
+
+.fish-index-1 {
+  background-image: image_url('index_1.svg');
+  background-size: cover;
+  min-height: 500px;
+  font-size: 32px;
+  color: #888;
+  font-family: 'Amatic SC';
+  padding: 50px;
+}
+
+.fish-index-1 h1 {
+  margin-top: 100px;
+  font-size: 68px;
+  color: #2b2b2b;
+  font-family: 'Arimo';
+}
+
+.fish-index-2 {
+  background: #2b2b2b;
+  color: #fff;
+  min-height: 500px;
+  background-image: image_url('shark.svg');
+  background-size: 100% 100%;
+  padding: 50px;
+}
+
+.fish-index-2 h1 {
+  font-family: 'Arimo';
+  font-size: 48px;
+}
+
+.fish-index-2 p {
+  font-family: 'Amatic SC';
+  font-size: 24px;
+}
+
+.fish-index-2 img {
+  width: 40%;  
+}
+
+.fish-index-2 .fish-tab {
+  min-height: 300px;
+  margin: 50px 0px;
+}
+
+.fish-index-2 .fish-tab div {
+  width: 95%;
+  min-height: 300px;
+  text-align: center;
+}
+
+.fish-index-3 {
+  padding: 50px;
+  min-height: 500px;
+  color: #2b2b2b;
+  text-align: center;
+}
+
+.fish-index-3 img {
+  width: 100%; 
+  margin: 25px 0px;
+}
+
+.fish-index-3 h1 {
+  font-size: 68px;
+  font-family: 'Arimo';
+}
+
+.fish-index-3 p {
+  font-size: 24px;
+  font-family: 'Amatic SC';
+}
+
+.fish-footer {
+  background: #fb6400;
+}
+
+.fish-footer-content {
+  padding-top: 25px;
+  color: #fff;
+  font-family: 'Amatic SC';
+  font-size: 24px;
+}
+
+.fish-footer-content ul {
+  list-style: none;
+}
+
