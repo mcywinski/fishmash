@@ -2,6 +2,7 @@ package net.elenx.fishmash.activities;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -28,6 +29,9 @@ public class LearningActivity extends SpeakingActivity
 
     private Button nextWordButton;
 
+    private CheckBox speakCheckBox;
+    private Button speakNowButton;
+
     private Iterator<Word> wordIterator;
     private List<Word> words;
 
@@ -37,13 +41,12 @@ public class LearningActivity extends SpeakingActivity
     protected void onPostCreate(Bundle savedInstanceState)
     {
         super.onPostCreate(savedInstanceState);
-        setContentView(R.layout.activity_learning);
-
-        initEverything();
     }
 
     private void initEverything()
     {
+        setContentView(R.layout.activity_learning);
+
         me = this;
 
         long wordListId = getIntent().getLongExtra("wordListId", -1);
@@ -53,7 +56,8 @@ public class LearningActivity extends SpeakingActivity
         phraseLocale = wordList.getForeignLanguage().getLocale();
         meaningLocale = wordList.getMainLanguage().getLocale();
 
-        findViewById(R.id.speakNowButton).setOnClickListener
+        speakNowButton = (Button) findViewById(R.id.speakNowButton);
+        speakNowButton.setOnClickListener
         (
             new View.OnClickListener()
             {
@@ -79,13 +83,20 @@ public class LearningActivity extends SpeakingActivity
     public void onInit(int i)
     {
         super.onInit(i);
+        initEverything();
+
+        if(i == TextToSpeech.SUCCESS)
+        {
+            speakCheckBox.setVisibility(View.VISIBLE);
+            speakNowButton.setVisibility(View.VISIBLE);
+        }
     }
 
     private void prepareForLearning()
     {
         final TextView phraseTextView = (TextView) findViewById(R.id.phraseTextView);
         final TextView meaningTextView = (TextView) findViewById(R.id.meaningTextView);
-        final CheckBox speakCheckBox = (CheckBox) findViewById(R.id.speakCheckBox);
+        speakCheckBox = (CheckBox) findViewById(R.id.speakCheckBox);
 
         words = new WordsDAO(this).selectAll();
 

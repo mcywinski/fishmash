@@ -16,11 +16,6 @@ abstract class SpeakingActivity extends OptionsActivity implements TextToSpeech.
         textToSpeech = new TextToSpeech(this, this);
     }
 
-    @Override
-    public void onInit(int i)
-    {
-
-    }
 
     @Override
     protected void onDestroy()
@@ -43,5 +38,11 @@ abstract class SpeakingActivity extends OptionsActivity implements TextToSpeech.
 
         textToSpeech.setLanguage(language);
         textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+    }
+
+    @Override
+    public void onInit(int i)
+    {
+
     }
 }
