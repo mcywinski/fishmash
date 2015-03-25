@@ -1,25 +1,41 @@
 apply plugin: 'com.android.application'
 
-android {
+android
+{
     compileSdkVersion 22
-    buildToolsVersion "21.1.2"
+    buildToolsVersion '21.1.2'
 
-    defaultConfig {
+    defaultConfig
+    {
         applicationId "net.elenx.fishmash"
-        minSdkVersion 15
+        minSdkVersion 10
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
     }
-    buildTypes {
-        release {
+
+    buildTypes
+    {
+        release
+        {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+
+        debug
+        {
+            debuggable true
+        }
+    }
+
+    productFlavors
+    {
+
     }
 }
 
-dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+dependencies
+{
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:22.0.0'
 }
