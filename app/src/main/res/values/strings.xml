@@ -4,4 +4,6 @@
 
     <string name="learning">Nauka</string>
     <string name="next_word">Następne słówko</string>
+    <string name="speak">Odczytuj</string>
+    <string name="speak_now">Odczytaj</string>
 </resources>
