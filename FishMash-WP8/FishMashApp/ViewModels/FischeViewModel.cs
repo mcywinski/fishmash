@@ -16,6 +16,7 @@ namespace FishMashApp.ViewModels
         private List<ReadWord.Word> listOfWords;
         private int currentWordId;
         private bool showTranslatedWord;
+        private bool emptyList;
 
         #region Binding
         private string wordTranslate;
@@ -66,37 +67,46 @@ namespace FishMashApp.ViewModels
         #region ButtonsEvent
         private void nextWord()
         {
-            if (currentWordId >= listOfWords.Count - 1)
+            if (!emptyList)
             {
-                currentWordId = 0;
+                if (currentWordId >= listOfWords.Count - 1)
+                {
+                    currentWordId = 0;
+                }
+                else
+                {
+                    currentWordId++;
+                }
+                reloadWord();
             }
-            else
-            {
-                currentWordId++;
-            }
-            reloadWord();
         }
         private void previousWord()
         {
-            if (currentWordId == 0)
-                currentWordId = listOfWords.Count - 1;
-            else
-                currentWordId--;
+            if (!emptyList)
+            {
+                if (currentWordId == 0)
+                    currentWordId = listOfWords.Count - 1;
+                else
+                    currentWordId--;
 
-            reloadWord();
+                reloadWord();
+            }
         }
 
         public void WordTranslateGridTapped()
         {
-            if (showTranslatedWord)
+            if (!emptyList)
             {
-                showTranslatedWord = false;
-                WordTranslate = listOfWords[currentWordId].Phrase.ToString();
-            }
-            else
-            {
-                showTranslatedWord = true;
-                WordTranslate = listOfWords[currentWordId].Meaning.ToString();
+                if (showTranslatedWord)
+                {
+                    showTranslatedWord = false;
+                    WordTranslate = listOfWords[currentWordId].Phrase.ToString();
+                }
+                else
+                {
+                    showTranslatedWord = true;
+                    WordTranslate = listOfWords[currentWordId].Meaning.ToString();
+                }
             }
         }
         #endregion
@@ -114,12 +124,14 @@ namespace FishMashApp.ViewModels
         {
             if (listOfWords.Count == 0)
             {
-                WordTranslate = "Brak pobranych słówek"; 
+                WordTranslate = "Brak pobranych słówek";
+                emptyList = true;
             }
             else
             {
                 currentWordId = 0;
                 showTranslatedWord = false;
+                emptyList = false;
                 WordTranslate = listOfWords[currentWordId].Meaning.ToString();
             }
         }
@@ -127,6 +139,7 @@ namespace FishMashApp.ViewModels
         private void reloadWord()
         {            
             WordTranslate = listOfWords[currentWordId].Meaning.ToString();
+            showTranslatedWord = false;
         }
 
         #endregion
