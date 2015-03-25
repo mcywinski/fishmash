@@ -1,16 +1,14 @@
-<h1>Word lists</h1>
-<p>
-  <%= link_to "Create a new list", new_wordlist_path %>
-</p>
-<p>
+<div class="col-md-12" style="height: 75px;"></div>
+<div class="col-md-3"></div>
+<div class="col-md-6">
   <table>
-    <tr>
-  	 <th>List name</th>
-  	 <th>Description</th>
-  	 <th>Main language</th>
-  	 <th>Foreign language</th>
-     <th></th>
-     <th></th>
+    <tr class="fish-table-header">
+  	 <td>List name</td>
+  	 <td>Description</td>
+  	 <td>Main language</td>
+  	 <td>Foreign language</td>
+     <td></td>
+     <td></td>
     </tr>
     <% @lists.each do |list| %>
     	<tr>
@@ -23,4 +21,7 @@
     	</tr>
     <% end %>
   </table>
-</p>
+  <br>
+  <%= link_to "Create a new list", new_wordlist_path %>
+</div>
+<div class="col-md-3"></div>

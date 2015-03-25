@@ -1,0 +1,62 @@
+table {
+  width: 100%;
+  border: 1px solid #fb6400;
+}
+
+table td {
+  padding: 10px 25px;  
+}
+
+.fish-table-header {
+  background: #fb6400;
+  color: #fff;
+  font-weight: bold;
+}
+
+.fish-h1, .fish-h2, .fish-h3, .fish-h4 {
+  font-family: 'Lobster';  
+}
+
+.fish-h1 {
+  font-size: 48px;
+}
+
+.fish-h2 {
+  font-size: 32px;
+}
+
+.fish-h3 {
+  font-size: 24px;
+}
+
+.fish-h4 {
+  font-size: 18px;
+}
+
+button {
+  border: none;
+  background: #fb6400;
+  color: #fff;
+  padding: 10px 25px;
+  transition: all 0.2s;
+}
+
+button:hover {
+  background: #2b2b2b;
+}
+
+button span {
+  margin-right: 25px;  
+}
+
+input, textarea {
+  background: #fff;
+  border: 1px solid #fb6400;
+  color: #fb6400;
+  padding: 10px 25px;
+}
+
+textarea {
+  width: 100%;
+  min-height: 200px;
+}
