@@ -9,12 +9,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Windows.UI.Input;
 
 namespace FishMashApp.ViewModels
 {
     class WordViewModel : BaseViewModel
     {
         #region Binding
+        
         public ObservableCollection<ReadWord.Word> ListOfWords
         {
             get;

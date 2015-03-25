@@ -100,6 +100,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\FicheView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\WordView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -135,9 +139,13 @@
     </Compile>
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\BrowseWordsViewModel.cs" />
+    <Compile Include="ViewModels\FischeViewModel.cs" />
     <Compile Include="ViewModels\WordViewModel.cs" />
     <Compile Include="Views\BrowseWordsView.xaml.cs">
       <DependentUpon>BrowseWordsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FicheView.xaml.cs">
+      <DependentUpon>FicheView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\WordView.xaml.cs">
       <DependentUpon>WordView.xaml</DependentUpon>

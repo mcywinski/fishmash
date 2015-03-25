@@ -43,7 +43,7 @@ namespace FishMashApp.UserControls
         private void Grid_Tapped(object sender, TappedRoutedEventArgs e)
         {
             object t = this.ListId.Text.ToString();
-            Common.Settings.Instance.navigationService.Navigate(typeof(WordView), t);
+            Common.Settings.Instance.navigationService.Navigate(typeof(FicheView), t);
         }
 
     }
