@@ -10,7 +10,6 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/phraseTextView"
-        android:text="phrase"
         android:layout_centerVertical="true"
         android:layout_alignRight="@+id/meaningTextView"
         android:layout_alignEnd="@+id/meaningTextView"/>
@@ -20,7 +19,6 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:id="@+id/meaningTextView"
-        android:text="meaning"
         android:layout_below="@+id/phraseTextView"
         android:layout_centerHorizontal="true"/>
 

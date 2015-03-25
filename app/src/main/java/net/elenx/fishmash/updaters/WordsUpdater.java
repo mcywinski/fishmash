@@ -67,7 +67,7 @@ public class WordsUpdater extends FishmashUpdater
     @Override
     public void save()
     {
-        if(words.size() < 1)
+        if(words.size() == 0)
         {
             return;
         }

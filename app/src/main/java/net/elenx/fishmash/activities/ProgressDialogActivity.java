@@ -33,12 +33,12 @@ public abstract class ProgressDialogActivity extends Activity
         }
     }
 
-    public boolean isOnline()
+    public boolean isOffline()
     {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netInfo = connectivityManager.getActiveNetworkInfo();
 
-        return netInfo != null && netInfo.isConnected();
+        return netInfo == null || !netInfo.isConnected();
     }
 
     @Override

@@ -36,7 +36,7 @@ abstract class FishmashUpdater extends AsyncTask<Void, Integer, Void> implements
     {
         publishProgress(CONNECTING);
 
-        if(!optionsActivity.isOnline())
+        if(optionsActivity.isOffline())
         {
             return null;
         }

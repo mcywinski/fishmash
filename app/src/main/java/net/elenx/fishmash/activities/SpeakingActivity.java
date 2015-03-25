@@ -1,6 +1,7 @@
 package net.elenx.fishmash.activities;
 
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.speech.tts.TextToSpeech;
 
 import java.util.Locale;
@@ -10,12 +11,11 @@ abstract class SpeakingActivity extends OptionsActivity implements TextToSpeech.
     private TextToSpeech textToSpeech;
 
     @Override
-    protected void onPostCreate(Bundle savedInstanceState)
+    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState)
     {
-        super.onPostCreate(savedInstanceState);
+        super.onCreate(savedInstanceState, persistentState);
         textToSpeech = new TextToSpeech(this, this);
     }
-
 
     @Override
     protected void onDestroy()
@@ -31,18 +31,12 @@ abstract class SpeakingActivity extends OptionsActivity implements TextToSpeech.
 
     synchronized void speak(String text, Locale language)
     {
-        if(language == null)
+        if(textToSpeech == null || text == null || language == null)
         {
             return;
         }
 
         textToSpeech.setLanguage(language);
         textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null);
-    }
-
-    @Override
-    public void onInit(int i)
-    {
-
     }
 }

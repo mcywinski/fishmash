@@ -3,6 +3,7 @@ package net.elenx.fishmash.activities;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -41,6 +42,7 @@ public class LearningActivity extends SpeakingActivity
     protected void onPostCreate(Bundle savedInstanceState)
     {
         super.onPostCreate(savedInstanceState);
+        initEverything();
     }
 
     private void initEverything()
@@ -70,25 +72,20 @@ public class LearningActivity extends SpeakingActivity
         );
 
         prepareForLearning();
-    }
-
-    @Override
-    protected void onPostResume()
-    {
-        super.onPostResume();
         nextWordButton.performClick();
     }
 
     @Override
     public void onInit(int i)
     {
-        super.onInit(i);
-        initEverything();
-
         if(i == TextToSpeech.SUCCESS)
         {
             speakCheckBox.setVisibility(View.VISIBLE);
             speakNowButton.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            Log.e("TTS", String.valueOf(i));
         }
     }
 
@@ -154,7 +151,7 @@ public class LearningActivity extends SpeakingActivity
 
     private void speakPhraseAndMeaning()
     {
-        if(!isOnline())
+        if(isOffline())
         {
             return;
         }
