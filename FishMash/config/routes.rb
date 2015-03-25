@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: :json} do
     resources :lists, only: [:index, :show] do
       post 'add'
+      post 'remove'
     end
     resources :words, only: [:create]
   end
