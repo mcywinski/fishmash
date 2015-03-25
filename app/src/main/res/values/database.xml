@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="create_wordlists">
+        CREATE TABLE wordLists
+        (
+            id INTEGER PRIMARY KEY,
+            name TEXT,
+            description TEXT,
+            mainLanguageId NUMERIC,
+            foreignLanguageId NUMERIC,
+            updatedAt TEXT
+        );
+    </string>
+
+    <string name="create_words">
+        CREATE TABLE words
+        (
+            id INTEGER PRIMARY KEY,
+            phrase TEXT,
+            meaning TEXT
+        );
+    </string>
+</resources>

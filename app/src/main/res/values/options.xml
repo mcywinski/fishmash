@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="main_menu">Menu główne</string>
+    <string name="update_wordlists">Aktualizuj listy słówek</string>
+    <string name="exit">Wyjdź</string>
+</resources>
