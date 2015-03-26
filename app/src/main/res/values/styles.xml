@@ -5,7 +5,7 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="splashScreenTheme" parent="@android:style/Theme.DeviceDefault.Light.NoActionBar">
+    <style name="splashScreenTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="android:windowBackground">@mipmap/fishmash_splash</item>
     </style>
 

@@ -39,11 +39,6 @@ abstract class SpeakingActivity extends OptionsActivity implements TextToSpeech.
         }
     }
 
-    synchronized void say(String text)
-    {
-        say(text, Locale.US);
-    }
-
     synchronized void say(String text, Locale language)
     {
         if(!isReadyToSpeak || textToSpeech == null || text == null || language == null)
