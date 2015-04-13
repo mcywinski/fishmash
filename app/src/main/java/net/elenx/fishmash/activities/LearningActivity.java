@@ -35,6 +35,7 @@ public class LearningActivity extends SpeakingActivity
     private List<Word> words;
 
     private LearningActivity me;
+    private Button showMeaningButton;
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState)
@@ -45,12 +46,25 @@ public class LearningActivity extends SpeakingActivity
 
     private void initEverything()
     {
-        setContentView(R.layout.activity_learning);
-
         me = this;
 
+        setContentView(R.layout.activity_learning);
+
         long wordListId = getIntent().getLongExtra("wordListId", -1);
+
+        if(wordListId <= 0)
+        {
+            return;
+        }
+
         updateWords(wordListId);
+
+        words = new WordsDAO(this).selectAll();
+
+        if(words.size() < 1)
+        {
+            return;
+        }
 
         WordList wordList = new WordListsDAO(this).select(wordListId);
         phraseLocale = wordList.getForeignLanguage().getLocale();
@@ -78,7 +92,7 @@ public class LearningActivity extends SpeakingActivity
     {
         super.onInit(i);
 
-        if(isReadyToSpeak)
+        if(isReadyToSpeak && speakCheckBox != null && speakNowButton != null)
         {
             speakCheckBox.setVisibility(View.VISIBLE);
             speakNowButton.setVisibility(View.VISIBLE);
@@ -91,11 +105,9 @@ public class LearningActivity extends SpeakingActivity
         final TextView meaningTextView = (TextView) findViewById(R.id.meaningTextView);
         speakCheckBox = (CheckBox) findViewById(R.id.speakCheckBox);
 
-        words = new WordsDAO(this).selectAll();
-
         rewind();
 
-        Button showMeaningButton = (Button) findViewById(R.id.showMeaningButton);
+        showMeaningButton = (Button) findViewById(R.id.showMeaningButton);
         showMeaningButton.setOnClickListener
         (
             new View.OnClickListener()
@@ -139,6 +151,12 @@ public class LearningActivity extends SpeakingActivity
                         Toast.makeText(me, "Od początku", Toast.LENGTH_SHORT).show();
                         rewind();
                         nextWordButton.performClick();
+                    }
+
+                    if(isReadyToSpeak)
+                    {
+                        speakCheckBox.setVisibility(View.VISIBLE);
+                        speakNowButton.setVisibility(View.VISIBLE);
                     }
                 }
             }

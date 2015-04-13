@@ -57,11 +57,6 @@ public abstract class OptionsActivity extends ProgressDialogActivity
 
     void updateWords(long id)
     {
-        if(id <= 0)
-        {
-            return;
-        }
-
         WordsUpdater wordsUpdater = new WordsUpdater(this, id);
         wordsUpdater.execute();
     }
