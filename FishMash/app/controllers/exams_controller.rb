@@ -13,16 +13,18 @@ class ExamsController < ApplicationController
 	end
 
 	def create
-		wordlist = WordList.find(params[:exam][:wordlist_id]) 
+		@wordlists = Array.new
+		# Removing first, empty element from wordlist_id array
+		wordlist_id_helper = params[:exam][:wordlist_id].drop(1)
+		wordlists = WordList.find(wordlist_id_helper)
 		exam = Exam.new(new_exam_params)	
-		wordlist_exam = WordListExam.new
 
-		if wordlist
+		if wordlists
 			if exam.save
-				wordlist_exam.wordlist_id = wordlist.id
-				wordlist_exam.exam_id = exam.id
-
-				wordlist_exam.save
+				wordlists.each do |wordlist|
+					wordlists_exam = WordListExam.new(wordlist_id: wordlist.id, exam_id: exam.id)
+					wordlists_exam.save
+				end
 				redirect_to exams_path
 			else
 				flash[:errors] = stringify_errors(exam)

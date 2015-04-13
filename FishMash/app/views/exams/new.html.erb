@@ -1,6 +1,6 @@
 <html>
-  <head>
-    <%= javascript_include_tag 'exams', 'data-turbolinks-track' => true %>
+  <head> 
+     <%= javascript_include_tag 'exams', 'data-turbolinks-track' => true %>
   </head>
   <body>
     <h1>New exam</h1>
@@ -27,7 +27,7 @@
         <%= f.text_field :word_count, placeholder: "Word count", id: 'word-count' %>
       </p>
       <p>
-        <%= f.select :wordlist_id, create_select_options(@lists, "Word List for exam") %>
+        <%= f.select :wordlist_id, @lists.collect { |wordlist| [wordlist.name, wordlist.id] }, {}, multiple: true %>
       </p>
       <p>
         <%= f.submit "Create an exam" %>
