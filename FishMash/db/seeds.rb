@@ -1,8 +1,8 @@
 language_list = [
        ['Polski', 'Język polski'],
-       ['Angielski', 'Język angielski'],
-       ['Niemiecki', 'Język niemiecki'],
-       ['Francuski', 'Język francuski']
+       ['English', 'English language'],
+       ['Deutsch', 'Deutsch sprache'],
+       ['Francais', 'Francais']
 ]
 
 language_list.each do |name, description|
