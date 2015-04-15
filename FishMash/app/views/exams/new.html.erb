@@ -1,0 +1,37 @@
+<html>
+  <head> 
+     <%= javascript_include_tag 'exams', 'data-turbolinks-track' => true %>
+  </head>
+  <body>
+    <h1>New exam</h1>
+    <%= form_for :exam, url: exams_path, action: :create do |f| %>
+      <p>
+        <%= f.text_field :name, placeholder: "Enter the exam name" %>
+      </p>
+      <p>
+        <%= f.text_area :description, placeholder: "Shortly descrive the content of this exam..." %>
+      </p>
+      <p>
+         <%= f.text_field :date_practice_start, placeholder: "Start date of practice", id: 'practice-date-start' %>
+      </p>
+      <p>
+        <%= f.text_field :date_practice_finish, placeholder: "Finish date of practice", id: 'practice-date-finish' %>
+      </p>
+      <p>
+        <%= f.text_field :date_exam_start, placeholder: "Start date of exam", id: 'exam-date-start' %>
+      </p>
+      <p>
+        <%= f.text_field :date_exam_finish, placeholder: "Finish date of exam", id: 'exam-date-finish' %>
+      </p>
+      <p>
+        <%= f.text_field :word_count, placeholder: "Word count", id: 'word-count' %>
+      </p>
+      <p>
+        <%= f.select :wordlist_id, @lists.collect { |wordlist| [wordlist.name, wordlist.id] }, {}, multiple: true %>
+      </p>
+      <p>
+        <%= f.submit "Create an exam" %>
+      </p>
+    <% end %>
+  </body>
+</html>
