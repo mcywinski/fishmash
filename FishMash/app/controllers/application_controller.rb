@@ -33,4 +33,22 @@ class ApplicationController < ActionController::Base
   	end
   	return errors
   end
+
+  def render_status(status_code)
+    render nothing: true, status: status_code
+  end
+
+  def api_authorize
+    token = ApiToken.find_by(token: api_token)
+    render_status :unauthorized if !token
+  end
+
+  def api_get_user
+    token = ApiToken.find_by(token: api_token)
+    return token.user
+  end
+
+  def api_token
+    params.require(:api_token)
+  end
 end
