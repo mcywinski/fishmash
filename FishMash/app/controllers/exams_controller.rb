@@ -19,22 +19,17 @@ class ExamsController < ApplicationController
 		wordlists = WordList.find(wordlist_id_helper)
 		exam = Exam.new(new_exam_params)	
 
-		if wordlists
-			if exam.save
-				wordlists.each do |wordlist|
-					wordlists_exam = WordListExam.new(wordlist_id: wordlist.id, exam_id: exam.id)
-					wordlists_exam.save
-				end
+		if exam.save
+			wordlists.each do |wordlist|
+				wordlists_exam = WordListExam.new(wordlist_id: wordlist.id, exam_id: exam.id)
+				wordlists_exam.save
 				redirect_to exams_path
+			end
 			else
 				flash[:errors] = stringify_errors(exam)
 				redirect_to new_exam_path
 			end
-		else
-			flash[:errors] = stringify_errors(exam)
-			redirect_to new_exam_path
 		end
-	end
 
 	private
 
