@@ -98,5 +98,64 @@
         {"id":39,"phrase":"apfel","meaning":"jabłko","phrase_language_id":3,"meaning_language_id":1,"created_at":"2015-03-23T00:27:55.079Z","updated_at":"2015-03-23T00:27:55.079Z"}
       </td>
     </tr>
+
+    <tr>
+      <td class="code">/api/users/authenticate</td>
+      <td>POST</td>
+      <td>
+        <div>
+          <h5>Parameters</h5>
+          <ul>
+            <li>user<br />
+              <ul>
+                <li>login</li>
+                <li>password</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h5>Example data</h5>
+          <p class="code code-json">
+            user: {
+   login: 'foo',
+   password: 'bar'
+  }
+          </p>
+        </div>
+      </td>
+      <td>
+        Returns login token and it's properties if provided login and corresponding password are valid. 401 (Unauthorized) is returned if provided credentials are invalid.
+      </td>
+      <td class="code code-json">
+        {"id":4,"token":"4062c2081a205da7c1a48f713c8b5d16","user_id":1,"created_at":"2015-04-19T22:16:40.673Z","updated_at":"2015-04-19T22:16:40.673Z"}
+      </td>
+    </tr>
+
+    <tr>
+      <td class="code">/api/users/:id</td>
+      <td>GET</td>
+      <td>
+        <div>
+          <h5>Parameters</h5>
+          <ul>
+            <li>id - passed in URL, user id</li>
+            <li>api_token - passed in request body</li>
+          </ul>
+        </div>
+        <div>
+          <h5>Example data</h5>
+          <p class="code code-json">
+            token: '4062c2081a205da7c1a48f713c8b5d16'
+          </p>
+        </div>
+      </td>
+      <td>
+        Returns basic account information depending on the unique login token passed in request body.
+      </td>
+      <td class="code code-json">
+        created_at: "2015-04-19T16:32:39.645Z", email: "test@domain.com", login: "foo", updated_at: "2015-04-19T20:54:59.080Z", user_type: null
+      </td>
+    </tr>
   </tbody>
 </table>
