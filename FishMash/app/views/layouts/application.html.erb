@@ -5,28 +5,49 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-
-
-
 </head>
 <body>
 
 <% unless flash[:errors].blank? %>
   <!-- Errors container -->
-  <div>
+  <div class="alert alert-error" role="alert">
     <%= raw flash[:errors] %>
   </div>
 <% end %>
+<% unless @errors.blank? %>
+  <div class="alert alert-error" role="alert">
+    <%= raw @errors %>
+  </div>
+<% end %>
 
+<% unless flash[:success].blank? %>
+  <!-- Success messages container -->
+  <div class="alert alert-success" role="alert">
+    <%= raw flash[:success] %>
+  </div>
+<% end %>
+<% unless @success.blank? %>
+  <div class="alert alert-success" role="alert">
+    <%= raw @success %>
+  </div>
+<% end %>
 
 <div class="col-md-12 fish-nav">
   <ul>
     <li>about</li>
-    <li>login</li>
+    <% if !is_user_logged_in? %>
+      <li><%= link_to 'Login', login_users_path %></li>
+    <% else %>
+      <li><%= link_to 'Logout', logout_users_path %></li>
+    <% end %>
     <li class="fish-nav-logo">
       <%= image_tag "logo_fff.svg"%>
     </li>
-    <li>register</li>
+    <% if !is_user_logged_in? %>
+      <li><%= link_to 'Register', register_users_path %></li>
+    <% else %>
+      <li><%= link_to 'Profile', profile_users_path %></li>
+    <% end %>
     <li>contact</li>
   </ul>
 </div>
@@ -34,7 +55,9 @@
   CODED AND DESIGNED BY: <span style="color: #2b2b2b">TEN GUYS ONE CODE</span>
 </div>
 
-<%= yield %>
+<div class="container">
+  <%= yield %>
+</div>
 
 </body>
 </html>
