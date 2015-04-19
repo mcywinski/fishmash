@@ -7,6 +7,13 @@ class ApplicationController < ActionController::Base
   def api
   end
 
+  def require_login
+    unless is_user_logged_in?
+      flash[:errors] = 'You must be logged in to access this area.'
+      redirect_to root_path
+    end
+  end
+
   def is_user_logged_in?
     !(session[:logged_user_id].nil?)
   end

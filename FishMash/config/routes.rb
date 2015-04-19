@@ -16,7 +16,10 @@ Rails.application.routes.draw do
       post 'authenticate'
       get 'logout'
       get 'register'
+      get 'profile'
     end
+    
+    post 'set_password'
   end
   root 'home#index'
 

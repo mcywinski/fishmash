@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :require_login, only: [:profile, :set_password]
+
   def register
     @user = User.new
   end
@@ -36,13 +38,45 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
 
-  private
+  def profile
+    @user = User.find(get_logged_user_id)
+  end
 
+  def set_password
+    #Routing check
+    if params[:user_id].to_i != get_logged_user_id
+      flash[:errors] = "Invalid user profile!"
+      redirect_to root_path and return
+    end
+
+    #Old password check
+    user = User.find(get_logged_user_id).try(:authenticate, set_password_params[:password_old])
+    if !user
+      flash[:errors] = "You have provided incorrect old password."
+      redirect_to profile_users_path and return
+    end
+
+    #Change
+    password_params = { password: set_password_params[:password], password_confirmation: set_password_params[:password_confirmation] }
+    if user.update(password_params)
+      flash[:success] = "Password has been successfuly changed."
+    else
+      flash[:errors] = stringify_errors(user)
+    end
+
+    redirect_to profile_users_path
+  end
+
+  private
     def user_create_params
       params.require(:user).permit(:login, :email, :password, :password_confirmation)
     end
 
     def user_login_params
       params.require(:user).permit(:login, :password)
+    end
+
+    def set_password_params
+      params.require(:user).permit(:password_old, :password, :password_confirmation)
     end
 end

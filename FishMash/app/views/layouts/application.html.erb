@@ -45,6 +45,8 @@
     </li>
     <% if !is_user_logged_in? %>
       <li><%= link_to 'Register', register_users_path %></li>
+    <% else %>
+      <li><%= link_to 'Profile', profile_users_path %></li>
     <% end %>
     <li>contact</li>
   </ul>
