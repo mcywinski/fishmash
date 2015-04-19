@@ -5,19 +5,20 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-
-
-
 </head>
 <body>
 
 <% unless flash[:errors].blank? %>
   <!-- Errors container -->
-  <div>
+  <div class="alert alert-error" role="alert">
     <%= raw flash[:errors] %>
   </div>
 <% end %>
-
+<% unless @errors.blank? %>
+  <div class="alert alert-error" role="alert">
+    <%= raw @errors %>
+  </div>
+<% end %>
 
 <div class="col-md-12 fish-nav">
   <ul>
@@ -26,7 +27,7 @@
     <li class="fish-nav-logo">
       <%= image_tag "logo_fff.svg"%>
     </li>
-    <li>register</li>
+    <li><%= link_to 'Register', register_users_path %></li>
     <li>contact</li>
   </ul>
 </div>
@@ -34,7 +35,9 @@
   CODED AND DESIGNED BY: <span style="color: #2b2b2b">TEN GUYS ONE CODE</span>
 </div>
 
-<%= yield %>
+<div class="container">
+  <%= yield %>
+</div>
 
 </body>
 </html>
