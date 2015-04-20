@@ -20,4 +20,17 @@
             meaning TEXT
         );
     </string>
+
+    <string name="create_user">
+        CREATE TABLE user
+        (
+            id INTEGER PRIMARY KEY,
+            token TEXT,
+            email TEXT,
+            created_at TEXT,
+            updated_at TEXT,
+            email TEXT,
+            user_type INTEGER
+        );
+    </string>
 </resources>
