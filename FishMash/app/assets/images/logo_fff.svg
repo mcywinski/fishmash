@@ -59,7 +59,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -82,7 +82,7 @@
              transform="translate(1.50221,0)">
             <g
                style="fill:#ffffff"
-               transform="translate(339.41122,-141.1026)"
+               transform="matrix(1,0,0,1.0171327,339.41122,-160.0098)"
                id="g3218-79"
                clip-path="url(#clipPath3006)">
               <path

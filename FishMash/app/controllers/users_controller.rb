@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :require_login, only: [:profile, :set_password]
+  layout 'blank', only: [:login, :authenticate]
 
   def register
     @user = User.new
