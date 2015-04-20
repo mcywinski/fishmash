@@ -10,4 +10,8 @@
 
     <string name="phrase">Fraza</string>
     <string name="meaning">Znaczenie</string>
+    <string name="log_in">Zaloguj</string>
+    <string name="logo">Logo</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
 </resources>

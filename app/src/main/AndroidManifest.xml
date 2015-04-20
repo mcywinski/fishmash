@@ -25,6 +25,7 @@
         <activity android:name="net.elenx.fishmash.activities.PickWordListActivity"/>
         <activity android:name="net.elenx.fishmash.activities.LearningActivity"/>
         <activity android:name="net.elenx.fishmash.activities.MenuActivity"/>
+        <activity android:name="net.elenx.fishmash.activities.LoginActivity"/>
     </application>
 
 </manifest>
