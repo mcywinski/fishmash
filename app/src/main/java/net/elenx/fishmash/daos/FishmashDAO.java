@@ -19,7 +19,7 @@ public abstract class FishmashDAO<Model> implements DAOInterface<Model>
 
     private final SQLiteDatabase sqLiteDatabase;
 
-    FishmashDAO(Context context, String table, String[] columns)
+    public FishmashDAO(Context context, String table, String[] columns)
     {
         this.table = table;
         this.columns = columns;

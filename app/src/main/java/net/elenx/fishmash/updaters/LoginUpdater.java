@@ -2,16 +2,19 @@ package net.elenx.fishmash.updaters;
 
 import net.elenx.fishmash.Constant;
 import net.elenx.fishmash.activities.OptionsActivity;
+import net.elenx.fishmash.models.Authenticate;
 import net.elenx.fishmash.models.LoginPassword;
-import net.elenx.fishmash.models.User;
 
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.web.client.RestTemplate;
 
 public class LoginUpdater extends FishmashUpdater
 {
     private static final RestTemplate restTemplate = new RestTemplate();
 
-    private User user;
+    private Authenticate authenticate;
 
     private String login;
     private String password;
@@ -29,13 +32,19 @@ public class LoginUpdater extends FishmashUpdater
     {
         try
         {
-            LoginPassword loginPassword = new LoginPassword(login, password);
-            user = restTemplate.postForObject(Constant.AUTHENTICATE, loginPassword, User.class);
+            LoginPassword loginPassword = new LoginPassword("android1", "1android");
+
+            HttpHeaders requestHeaders = new HttpHeaders();
+            requestHeaders.setContentType(new MediaType("application", "json"));
+            HttpEntity<String> user = new HttpEntity<>(loginPassword.toJson(), requestHeaders);
+
+            authenticate = restTemplate.postForObject(Constant.API + Constant.AUTHENTICATE, user, Authenticate.class);
         }
         catch(Exception e)
         {
             // avoid null pointer
-            user = new User();
+            authenticate = new Authenticate();
+            e.printStackTrace();
         }
     }
 

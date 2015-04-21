@@ -10,12 +10,13 @@ import net.elenx.fishmash.updaters.WordsUpdater;
 
 public abstract class OptionsActivity extends ProgressDialogActivity
 {
-    protected OptionsActivity me = this;
+    protected final OptionsActivity me = this;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
         getMenuInflater().inflate(R.menu.menu_main, menu);
+
         return true;
     }
 
@@ -33,9 +34,11 @@ public abstract class OptionsActivity extends ProgressDialogActivity
             case R.id.main_menu:
                 mainMenu();
                 break;
+
             case R.id.update_wordlists:
                 updateWordLists();
                 break;
+
             case R.id.exit:
                finish();
                 break;

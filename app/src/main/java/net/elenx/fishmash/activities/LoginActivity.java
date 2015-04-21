@@ -1,7 +1,6 @@
 package net.elenx.fishmash.activities;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,9 +15,9 @@ public class LoginActivity extends OptionsActivity
     private Button buttonLogIn;
 
     @Override
-    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState)
+    protected void onPostCreate(Bundle savedInstanceState)
     {
-        super.onCreate(savedInstanceState, persistentState);
+        super.onPostCreate(savedInstanceState);
         setContentView(R.layout.actvity_login);
 
         editTextLogin = (EditText) findViewById(R.id.editTextLogin);
@@ -39,13 +38,5 @@ public class LoginActivity extends OptionsActivity
                 }
             }
         );
-    }
-
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState)
-    {
-        super.onPostCreate(savedInstanceState);
-
-
     }
 }
