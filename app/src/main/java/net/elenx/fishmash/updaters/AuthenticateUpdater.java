@@ -10,7 +10,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.web.client.RestTemplate;
 
-public class LoginUpdater extends FishmashUpdater
+public class AuthenticateUpdater extends FishmashUpdater
 {
     private static final RestTemplate restTemplate = new RestTemplate();
 
@@ -19,7 +19,7 @@ public class LoginUpdater extends FishmashUpdater
     private String login;
     private String password;
 
-    public LoginUpdater(OptionsActivity optionsActivity, String login, String password)
+    public AuthenticateUpdater(OptionsActivity optionsActivity, String login, String password)
     {
         super(optionsActivity);
 

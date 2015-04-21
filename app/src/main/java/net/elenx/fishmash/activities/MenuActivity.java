@@ -40,14 +40,14 @@ public class MenuActivity extends OptionsActivity
                         }
                 );
 
-        findViewById(R.id.buttonLogin).setOnClickListener
+        findViewById(R.id.buttonAuthenticate).setOnClickListener
                 (
                         new View.OnClickListener()
                         {
                             @Override
                             public void onClick(View view)
                             {
-                                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                                Intent intent = new Intent(getApplicationContext(), AuthenticateActivity.class);
                                 startActivity(intent);
                                 finish();
                             }

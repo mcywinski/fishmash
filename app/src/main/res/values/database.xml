@@ -21,7 +21,7 @@
         );
     </string>
 
-    <string name="create_user">
+    <string name="create_authenticate">
         CREATE TABLE user
         (
             id INTEGER PRIMARY KEY,
@@ -33,4 +33,5 @@
             user_type INTEGER
         );
     </string>
+    
 </resources>

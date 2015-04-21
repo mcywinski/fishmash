@@ -1,13 +1,16 @@
-package net.elenx.fishmash;
+package net.elenx.fishmash.daos;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import net.elenx.fishmash.Constant;
+import net.elenx.fishmash.R;
+
 import java.util.LinkedList;
 import java.util.List;
 
-public class FishmashOpener extends SQLiteOpenHelper
+class FishmashOpener extends SQLiteOpenHelper
 {
     private static final List<String> createTableQueries = new LinkedList<>();
 
@@ -17,6 +20,7 @@ public class FishmashOpener extends SQLiteOpenHelper
 
         createTableQueries.add(context.getString(R.string.create_wordlists));
         createTableQueries.add(context.getString(R.string.create_words));
+        createTableQueries.add(context.getString(R.string.create_authenticate));
     }
 
     @Override

@@ -6,9 +6,9 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import net.elenx.fishmash.R;
-import net.elenx.fishmash.updaters.LoginUpdater;
+import net.elenx.fishmash.updaters.AuthenticateUpdater;
 
-public class LoginActivity extends OptionsActivity
+public class AuthenticateActivity extends OptionsActivity
 {
     private EditText editTextLogin;
     private EditText editTextPassword;
@@ -18,7 +18,7 @@ public class LoginActivity extends OptionsActivity
     protected void onPostCreate(Bundle savedInstanceState)
     {
         super.onPostCreate(savedInstanceState);
-        setContentView(R.layout.actvity_login);
+        setContentView(R.layout.actvity_authenticate);
 
         editTextLogin = (EditText) findViewById(R.id.editTextLogin);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
@@ -34,7 +34,7 @@ public class LoginActivity extends OptionsActivity
                     String login = editTextLogin.getText().toString();
                     String password = editTextPassword.getText().toString();
 
-                    new LoginUpdater(me, login, password).execute();
+                    new AuthenticateUpdater(me, login, password).execute();
                 }
             }
         );

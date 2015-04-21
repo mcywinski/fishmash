@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New Button"
-        android:id="@+id/buttonLogin"
+        android:id="@+id/buttonAuthenticate"
         android:layout_below="@+id/buttonViewWords"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
