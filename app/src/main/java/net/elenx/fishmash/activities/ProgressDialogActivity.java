@@ -44,7 +44,7 @@ public abstract class ProgressDialogActivity extends Activity
     @Override
     protected void onPause()
     {
-        super.onPause();
         dismissProgressDialog();
+        super.onPause();
     }
 }

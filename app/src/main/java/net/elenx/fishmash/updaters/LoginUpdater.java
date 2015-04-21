@@ -1,7 +1,5 @@
 package net.elenx.fishmash.updaters;
 
-import android.util.Log;
-
 import net.elenx.fishmash.Constant;
 import net.elenx.fishmash.activities.OptionsActivity;
 import net.elenx.fishmash.models.LoginPassword;
@@ -11,7 +9,8 @@ import org.springframework.web.client.RestTemplate;
 
 public class LoginUpdater extends FishmashUpdater
 {
-    private OptionsActivity optionsActivity;
+    private static final RestTemplate restTemplate = new RestTemplate();
+
     private User user;
 
     private String login;
@@ -30,8 +29,8 @@ public class LoginUpdater extends FishmashUpdater
     {
         try
         {
-            user = new RestTemplate().postForObject(Constant.AUTHENTICATE, new LoginPassword(login, password), User.class);
-            Log.e("udalo", "sie");
+            LoginPassword loginPassword = new LoginPassword(login, password);
+            user = restTemplate.postForObject(Constant.AUTHENTICATE, loginPassword, User.class);
         }
         catch(Exception e)
         {

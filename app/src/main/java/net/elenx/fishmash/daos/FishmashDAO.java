@@ -7,12 +7,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 
 import net.elenx.fishmash.FishmashOpener;
-import net.elenx.fishmash.models.ModelInterface;
+import net.elenx.fishmash.models.FishmashModel;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public abstract class FishmashDAO<FishmashModel> implements DAOInterface<FishmashModel>
+public abstract class FishmashDAO<Model> implements DAOInterface<Model>
 {
     private final String table;
     final String[] columns;
@@ -28,9 +28,9 @@ public abstract class FishmashDAO<FishmashModel> implements DAOInterface<Fishmas
     }
 
     @Override
-    public List<FishmashModel> selectAll()
+    public List<Model> selectAll()
     {
-        List<FishmashModel> fishmashModelList = new LinkedList<>();
+        List<Model> modelList = new LinkedList<>();
 
         Cursor cursor = sqLiteDatabase.query(table, columns, null, null, null, null, null);
 
@@ -38,18 +38,18 @@ public abstract class FishmashDAO<FishmashModel> implements DAOInterface<Fishmas
 
         while(!cursor.isAfterLast())
         {
-            FishmashModel fishmashModel = cursorToModel(cursor);
-            fishmashModelList.add(fishmashModel);
+            Model model = cursorToModel(cursor);
+            modelList.add(model);
             cursor.moveToNext();
         }
 
         cursor.close();
 
-        return fishmashModelList;
+        return modelList;
     }
 
     @Override
-    public FishmashModel select(long id)
+    public Model select(long id)
     {
         String[] idToSelect = new String[]{String.valueOf(id)};
 
@@ -61,37 +61,37 @@ public abstract class FishmashDAO<FishmashModel> implements DAOInterface<Fishmas
     }
 
     @Override
-    public void insert(List<FishmashModel> fishmashModelList)
+    public void insert(List<Model> modelList)
     {
-        for(FishmashModel fishmashModel : fishmashModelList)
+        for(Model model : modelList)
         {
-            insert(fishmashModel);
+            insert(model);
         }
     }
 
     @Override
-    public void insert(FishmashModel fishmashModel)
+    public void insert(Model model)
     {
-        ContentValues contentValues = modelToContentValues(fishmashModel);
-        contentValues.put(columns[0], getIdOf(fishmashModel));
+        ContentValues contentValues = modelToContentValues(model);
+        contentValues.put(columns[0], getIdOf(model));
 
         sqLiteDatabase.insert(table, null, contentValues);
     }
 
     @Override
-    public void update(List<FishmashModel> fishmashModelList)
+    public void update(List<Model> modelList)
     {
-        for(FishmashModel fishmashModel : fishmashModelList)
+        for(Model model : modelList)
         {
-            update(fishmashModel);
+            update(model);
         }
     }
 
     @Override
-    public void update(FishmashModel fishmashModel)
+    public void update(Model model)
     {
-        ContentValues contentValues = modelToContentValues(fishmashModel);
-        String[] updateId = new String[]{String.valueOf(getIdOf(fishmashModel))};
+        ContentValues contentValues = modelToContentValues(model);
+        String[] updateId = new String[]{String.valueOf(getIdOf(model))};
 
         sqLiteDatabase.update(table, contentValues, "id=?", updateId);
     }
@@ -113,11 +113,11 @@ public abstract class FishmashDAO<FishmashModel> implements DAOInterface<Fishmas
     }
 
     @Override
-    public void delete(FishmashModel fishmashModel)
+    public void delete(Model model)
     {
-        ModelInterface modelInterface = (ModelInterface) fishmashModel;
+        FishmashModel fishmashModel = (FishmashModel) model;
 
-        delete(modelInterface.getId());
+        delete(fishmashModel.getId());
     }
 
     @Override
