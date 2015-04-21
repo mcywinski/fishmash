@@ -26,18 +26,32 @@ public class MenuActivity extends OptionsActivity
         super.onPostCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-        findViewById(R.id.viewWordsButton).setOnClickListener
-        (
-            new View.OnClickListener()
-            {
-                @Override
-                public void onClick(View v)
-                {
-                    Intent intent = new Intent(getApplicationContext(), PickWordListActivity.class);
-                    startActivity(intent);
-                    finish();
-                }
-            }
-        );
+        findViewById(R.id.buttonViewWords).setOnClickListener
+                (
+                        new View.OnClickListener()
+                        {
+                            @Override
+                            public void onClick(View v)
+                            {
+                                Intent intent = new Intent(getApplicationContext(), PickWordListActivity.class);
+                                startActivity(intent);
+                                finish();
+                            }
+                        }
+                );
+
+        findViewById(R.id.buttonLogin).setOnClickListener
+                (
+                        new View.OnClickListener()
+                        {
+                            @Override
+                            public void onClick(View view)
+                            {
+                                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                                startActivity(intent);
+                                finish();
+                            }
+                        }
+                );
     }
 }

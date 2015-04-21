@@ -33,8 +33,6 @@ public class WordsUpdater extends FishmashUpdater
         }
         catch(JSONException e)
         {
-            e.printStackTrace();
-
             // avoid null pointer
             jsonWordList = new JSONObject();
         }

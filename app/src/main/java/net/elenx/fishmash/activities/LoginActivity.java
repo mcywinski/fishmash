@@ -7,30 +7,20 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import net.elenx.fishmash.R;
-import net.elenx.fishmash.rest.FishmashRestConsumer;
-import net.elenx.fishmash.rest.RestListener;
-
-import org.json.JSONObject;
-import org.springframework.web.client.RestTemplate;
+import net.elenx.fishmash.updaters.LoginUpdater;
 
 public class LoginActivity extends OptionsActivity
 {
     private EditText editTextLogin;
     private EditText editTextPassword;
     private Button buttonLogIn;
-    private OptionsActivity me = this;
 
     @Override
     public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState)
     {
         super.onCreate(savedInstanceState, persistentState);
         setContentView(R.layout.actvity_login);
-    }
 
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState)
-    {
-        super.onPostCreate(savedInstanceState);
         editTextLogin = (EditText) findViewById(R.id.editTextLogin);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
         buttonLogIn = (Button) findViewById(R.id.buttonLogIn);
@@ -45,32 +35,17 @@ public class LoginActivity extends OptionsActivity
                     String login = editTextLogin.getText().toString();
                     String password = editTextPassword.getText().toString();
 
-                    new FishmashRestConsumer<>
-                    (
-                        me,
-                        new RestListener<JSONObject>()
-                        {
-                            @Override
-                            public JSONObject makeRequest()
-                            {
-                                return new RestTemplate().getForObject("", JSONObject.class);
-                            }
-
-                            @Override
-                            public void onFailure()
-                            {
-
-                            }
-
-                            @Override
-                            public void onSuccess(JSONObject result)
-                            {
-
-                            }
-                        }
-                    ).execute();
+                    new LoginUpdater(me, login, password).execute();
                 }
             }
         );
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState)
+    {
+        super.onPostCreate(savedInstanceState);
+
+
     }
 }

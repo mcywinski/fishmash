@@ -1,15 +1,18 @@
 package net.elenx.fishmash.updaters;
 
+import android.util.Log;
+
 import net.elenx.fishmash.Constant;
 import net.elenx.fishmash.activities.OptionsActivity;
+import net.elenx.fishmash.models.LoginPassword;
+import net.elenx.fishmash.models.User;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.springframework.web.client.RestTemplate;
 
 public class LoginUpdater extends FishmashUpdater
 {
     private OptionsActivity optionsActivity;
-    private JSONObject jsonObjectUser;
+    private User user;
 
     private String login;
     private String password;
@@ -27,12 +30,13 @@ public class LoginUpdater extends FishmashUpdater
     {
         try
         {
-            jsonObjectUser = new JSONObject(getStringFrom(Constant.LISTS + Constant.AUTHENTICATE));
+            user = new RestTemplate().postForObject(Constant.AUTHENTICATE, new LoginPassword(login, password), User.class);
+            Log.e("udalo", "sie");
         }
-        catch(JSONException e)
+        catch(Exception e)
         {
             // avoid null pointer
-            jsonObjectUser = new JSONObject();
+            user = new User();
         }
     }
 

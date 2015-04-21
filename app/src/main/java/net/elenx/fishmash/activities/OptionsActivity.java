@@ -10,6 +10,8 @@ import net.elenx.fishmash.updaters.WordsUpdater;
 
 public abstract class OptionsActivity extends ProgressDialogActivity
 {
+    protected OptionsActivity me = this;
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
