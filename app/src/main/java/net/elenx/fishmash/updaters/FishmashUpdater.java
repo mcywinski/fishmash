@@ -12,12 +12,7 @@ import java.util.Scanner;
 
 abstract class FishmashUpdater extends AsyncTask<Void, Integer, Void> implements UpdaterInterface
 {
-    private static final int CONNECTING = 0;
-    private static final int DOWNLOADING = 1;
-    private static final int CONVERTING = 2;
-    private static final int SAVING = 3;
-
-    OptionsActivity optionsActivity;
+    protected OptionsActivity optionsActivity;
 
     @Override
     protected void onPreExecute()
