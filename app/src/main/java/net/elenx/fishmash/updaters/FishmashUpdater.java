@@ -14,6 +14,11 @@ abstract class FishmashUpdater extends AsyncTask<Void, Integer, Void> implements
 {
     protected OptionsActivity optionsActivity;
 
+    protected FishmashUpdater(OptionsActivity optionsActivity)
+    {
+        this.optionsActivity = optionsActivity;
+    }
+
     @Override
     protected void onPreExecute()
     {

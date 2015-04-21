@@ -16,7 +16,8 @@ public class LoginUpdater extends FishmashUpdater
 
     public LoginUpdater(OptionsActivity optionsActivity, String login, String password)
     {
-        this.optionsActivity = optionsActivity;
+        super(optionsActivity);
+
         this.login = login;
         this.password = password;
     }
@@ -30,8 +31,6 @@ public class LoginUpdater extends FishmashUpdater
         }
         catch(JSONException e)
         {
-            e.printStackTrace();
-
             // avoid null pointer
             jsonObjectUser = new JSONObject();
         }

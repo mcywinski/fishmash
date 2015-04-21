@@ -20,7 +20,7 @@ public class WordsUpdater extends FishmashUpdater
 
     public WordsUpdater(OptionsActivity optionsActivity, long wordListId)
     {
-        this.optionsActivity = optionsActivity;
+        super(optionsActivity);
         this.wordListId = wordListId;
     }
 

@@ -19,7 +19,7 @@ public class WordListUpdater extends FishmashUpdater
 
     public WordListUpdater(OptionsActivity optionsActivity)
     {
-        this.optionsActivity = optionsActivity;
+        super(optionsActivity);
     }
 
     @Override

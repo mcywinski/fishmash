@@ -20,6 +20,9 @@ import java.util.Locale;
 
 public class LearningActivity extends SpeakingActivity
 {
+    private TextView phraseTextView;
+    private TextView meaningTextView;
+
     private Locale phraseLocale;
     private Locale meaningLocale;
 
@@ -101,8 +104,8 @@ public class LearningActivity extends SpeakingActivity
 
     private void prepareForLearning()
     {
-        final TextView phraseTextView = (TextView) findViewById(R.id.phraseTextView);
-        final TextView meaningTextView = (TextView) findViewById(R.id.meaningTextView);
+        phraseTextView = (TextView) findViewById(R.id.phraseTextView);
+        meaningTextView = (TextView) findViewById(R.id.meaningTextView);
         speakCheckBox = (CheckBox) findViewById(R.id.speakCheckBox);
 
         rewind();
@@ -117,6 +120,18 @@ public class LearningActivity extends SpeakingActivity
                 {
                     meaningTextView.setText(meaning);
                     colorAccordingToSpeakAbility(meaningTextView, meaningLocale);
+                }
+            }
+        );
+
+        phraseTextView.setOnClickListener
+        (
+            new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View view)
+                {
+                    showMeaningButton.performClick();
                 }
             }
         );
