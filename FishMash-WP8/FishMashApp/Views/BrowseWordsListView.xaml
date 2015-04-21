@@ -52,4 +52,21 @@
             </ScrollViewer>
         </Grid>
     </Grid>
+    <Page.BottomAppBar>
+        <CommandBar ClosedDisplayMode="Compact">
+            <CommandBar.PrimaryCommands>
+                
+                <AppBarButton Label="Zaloguj"
+                              Icon="Permissions"
+                              Click="LogInButton_Click"
+                              />
+                <AppBarButton Label="Ustawienia"
+                              Icon="Setting"
+                              />
+            </CommandBar.PrimaryCommands>
+
+
+
+        </CommandBar>
+    </Page.BottomAppBar>
 </Page>

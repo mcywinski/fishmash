@@ -19,6 +19,32 @@ namespace FishMashApp.ViewModels
 
         }
 
+        /// <summary>
+        /// Set Visibility on WPF elements.
+        /// </summary>
+        /// <param name="value">If true it return Visible, else return Collapsed.</param>
+        /// <returns></returns>
+        protected string SetVisibility(bool value)
+        {
+            if (!value)
+                return "Collapsed";
+            else
+                return "Visible";
+        }
+
+        /// <summary>
+        /// Check Visibility on string.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        protected bool CheckVisibility(string value)
+        {
+            if (value == "Visible")
+                return true;
+            else
+                return false;
+        }
+
         #region PropertyChanged
         protected delegate void OnUIThreadDelegate();
         protected async void OnUIThread(DispatchedHandler onUIThreadDelegate)

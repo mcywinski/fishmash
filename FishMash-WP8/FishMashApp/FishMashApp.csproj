@@ -157,6 +157,7 @@
     <Compile Include="ViewModels\BrowseWordsViewModel.cs" />
     <Compile Include="ViewModels\FischeViewModel.cs" />
     <Compile Include="ViewModels\LoginAndRegistation\LoginViewModel.cs" />
+    <Compile Include="ViewModels\LoginAndRegistation\RegistrationViewModel.cs" />
     <Compile Include="ViewModels\WordViewModel.cs" />
     <Compile Include="Views\BrowseWordsListView.xaml.cs">
       <DependentUpon>BrowseWordsListView.xaml</DependentUpon>

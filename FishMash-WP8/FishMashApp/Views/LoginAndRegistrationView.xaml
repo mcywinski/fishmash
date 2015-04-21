@@ -7,18 +7,20 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     xmlns:view="using:FishMashApp.Views.LoginAndRegistration"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="#00ACF0">
     
     <Grid>
         <Pivot>
             <PivotItem Header="logowanie"
                        x:Name="LogIn">
-                <view:LoginUserControl/>
+                <view:LoginUserControl
+                    x:Name="LoginUserControl"/>
             </PivotItem>
             <PivotItem Header="rejestracja"
                        x:Name="Rejestration"
                        >
-                <view:RegistrationUserControl/>
+                <view:RegistrationUserControl
+                    x:Name="RegistrationUserControl"/>
             </PivotItem>
         </Pivot>
 

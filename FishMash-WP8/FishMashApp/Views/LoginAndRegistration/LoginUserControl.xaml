@@ -47,13 +47,7 @@
                     Content="Zaloguj" 
                     Command="{Binding LogInClick}"/>
 
-        <TextBlock Text="{Binding LogInInfoText}"
-                       
-                       Grid.Row="6"
-                       FontSize="20"
-                       Foreground="red"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Center"/>
+
         <ProgressBar
             Visibility="{Binding ProgressBarVisibility}"
             Grid.Row="7"

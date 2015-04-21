@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FishMashApp.ViewModels.LoginAndRegistation;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,6 +23,7 @@ namespace FishMashApp.Views.LoginAndRegistration
         public LoginUserControl()
         {
             this.InitializeComponent();
+            this.DataContext = new LoginViewModel();
         }
     }
 }

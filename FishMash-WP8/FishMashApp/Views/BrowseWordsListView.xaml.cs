@@ -114,5 +114,10 @@ namespace FishMashApp.Views
         }
 
         #endregion
+
+        private void LogInButton_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(LoginAndRegistrationView));
+        }
     }
 }

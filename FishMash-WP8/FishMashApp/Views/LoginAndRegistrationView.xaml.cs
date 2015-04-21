@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FishMashApp.ViewModels.LoginAndRegistation;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,6 +23,9 @@ namespace FishMashApp.Views
     /// </summary>
     public sealed partial class LoginAndRegistrationView : Page
     {
+        LoginViewModel loginViewModel;
+        RegistrationViewModel registrationViewModel;
+
         public LoginAndRegistrationView()
         {
             this.InitializeComponent();
