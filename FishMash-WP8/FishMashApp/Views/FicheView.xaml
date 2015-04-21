@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="#00ACF0">
 
     <Grid x:Name="LayoutRoot">
 
@@ -45,7 +45,7 @@
                     Command="{Binding NextButtonClick}"/>
             
             <Grid Margin="10" 
-                  Background="Gray" 
+                  Background="#0075a4" 
                   Grid.Row="1" 
                   Tapped="WordTranslate_Tapped">
                 <TextBlock Text="{Binding WordTranslate}"
