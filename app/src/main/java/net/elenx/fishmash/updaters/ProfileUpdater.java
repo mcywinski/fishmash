@@ -17,7 +17,7 @@ public class ProfileUpdater extends FishmashUpdater
     private UpdaterListener updaterListener;
     private Profile profile;
 
-    ProfileUpdater(OptionsActivity optionsActivity, UpdaterListener updaterListener)
+    public ProfileUpdater(OptionsActivity optionsActivity, UpdaterListener updaterListener)
     {
         super(optionsActivity);
 

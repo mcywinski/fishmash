@@ -5,32 +5,65 @@ import android.widget.TextView;
 
 import net.elenx.fishmash.R;
 import net.elenx.fishmash.daos.ProfileDAO;
+import net.elenx.fishmash.models.Profile;
+import net.elenx.fishmash.updaters.ProfileUpdater;
+import net.elenx.fishmash.updaters.UpdaterListener;
 
 public class ProfileActivity extends OptionsActivity
 {
+    private TextView loginData;
+    private TextView emailData;
+    private TextView createdAtData;
+    private TextView updatedAtData;
+
     @Override
-    protected void onPostCreate(Bundle savedInstanceState)
+    protected void onPostCreate(final Bundle savedInstanceState)
+    {
+        super.onPostCreate(savedInstanceState);
+
+        setContentView(R.layout.activity_profile);
+
+        loginData = (TextView) findViewById(R.id.textViewLoginData);
+        emailData = (TextView) findViewById(R.id.textViewEmailData);
+        createdAtData = (TextView) findViewById(R.id.textViewCreatedAtData);
+        updatedAtData = (TextView) findViewById(R.id.textViewUpdatedAtData);
+
+        new ProfileUpdater
+        (
+            this,
+            new UpdaterListener()
+            {
+                @Override
+                public void onSuccess()
+                {
+                    showProfile();
+                }
+
+                @Override
+                public void onFailure()
+                {
+                    logout();
+                }
+            }
+        ).execute();
+    }
+
+    private void showProfile()
     {
         ProfileDAO profileDAO = new ProfileDAO(this);
 
-//        if(profileDAO.count() <= 0)
-//        {
-//            logout();
-//        }
+        if(profileDAO.count() <= 0)
+        {
+            logout();
+            
+            return;
+        }
 
-        super.onPostCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        Profile profile = profileDAO.selectAll().get(0);
 
-        TextView loginData = (TextView) findViewById(R.id.textViewLoginData);
-        TextView emailData = (TextView) findViewById(R.id.textViewEmailData);
-        TextView createdAtData = (TextView) findViewById(R.id.textViewCreatedAtData);
-        TextView updatedAtData = (TextView) findViewById(R.id.textViewUpdatedAtData);
-
-//        Profile profile = profileDAO.selectAll().get(0);
-//
-//        loginData.setText(profile.getLogin());
-//        emailData.setText(profile.getEmail());
-//        createdAtData.setText(profile.getCreated_at());
-//        updatedAtData.setText(profile.getUpdated_at());
+        loginData.setText(profile.getLogin());
+        emailData.setText(profile.getEmail());
+        createdAtData.setText(profile.getCreated_at());
+        updatedAtData.setText(profile.getUpdated_at());
     }
 }
