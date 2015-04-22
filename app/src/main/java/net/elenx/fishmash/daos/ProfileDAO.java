@@ -29,13 +29,20 @@ public class ProfileDAO extends FishmashDAO<Profile>
     @Override
     public Profile cursorToModel(Cursor cursor)
     {
-        return null;
+        return new Profile(cursor);
     }
 
     @Override
     public ContentValues modelToContentValues(Profile profile)
     {
-        return null;
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(columns[1], profile.getCreated_at());
+        contentValues.put(columns[2], profile.getEmail());
+        contentValues.put(columns[3], profile.getLogin());
+        contentValues.put(columns[4], profile.getUpdated_at());
+        contentValues.put(columns[5], profile.getUser_type());
+
+        return contentValues;
     }
 
     @Override

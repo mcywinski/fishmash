@@ -1,12 +1,24 @@
 package net.elenx.fishmash.models;
 
-public class Profile
+import android.database.Cursor;
+
+public class Profile extends FishmashModel
 {
     private String created_at;
     private String email;
     private String login;
     private String updated_at;
     private String user_type;
+
+    public Profile(Cursor cursor)
+    {
+        super(cursor);
+        this.created_at = cursor.getString(1);
+        this.email = cursor.getString(2);
+        this.login = cursor.getString(3);
+        this.updated_at = cursor.getString(4);
+        this.user_type = cursor.getString(5);
+    }
 
     public String getCreated_at()
     {
