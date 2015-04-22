@@ -6,12 +6,16 @@ import net.elenx.fishmash.Constant;
 import net.elenx.fishmash.R;
 import net.elenx.fishmash.activities.OptionsActivity;
 
+import org.springframework.web.client.RestTemplate;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.Scanner;
 
 abstract class FishmashUpdater extends AsyncTask<Void, Integer, Void> implements UpdaterInterface
 {
+    protected static final RestTemplate restTemplate = new RestTemplate();
+
     final OptionsActivity optionsActivity;
 
     FishmashUpdater(OptionsActivity optionsActivity)
@@ -34,21 +38,28 @@ abstract class FishmashUpdater extends AsyncTask<Void, Integer, Void> implements
     @Override
     protected final Void doInBackground(Void... params)
     {
-        publishProgress(CONNECTING);
-
-        if(optionsActivity.isOffline())
+        try
         {
-            return null;
+            publishProgress(CONNECTING);
+
+            if(optionsActivity.isOffline())
+            {
+                return null;
+            }
+
+            publishProgress(DOWNLOADING);
+            download();
+
+            publishProgress(CONVERTING);
+            convert();
+
+            publishProgress(SAVING);
+            save();
         }
-
-        publishProgress(DOWNLOADING);
-        download();
-
-        publishProgress(CONVERTING);
-        convert();
-
-        publishProgress(SAVING);
-        save();
+        catch(Exception ignored)
+        {
+            // permit to continue - we will use cache, and take actions in onFailure()
+        }
 
         return null;
     }

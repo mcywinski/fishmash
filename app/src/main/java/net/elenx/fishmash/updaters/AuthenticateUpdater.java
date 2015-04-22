@@ -4,22 +4,19 @@ import net.elenx.fishmash.Constant;
 import net.elenx.fishmash.activities.OptionsActivity;
 import net.elenx.fishmash.daos.AuthenticateDAO;
 import net.elenx.fishmash.models.Authenticate;
-import net.elenx.fishmash.models.LoginPassword;
+import net.elenx.fishmash.models.containers.LoginPassword;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
-import org.springframework.web.client.RestTemplate;
 
 public class AuthenticateUpdater extends FishmashUpdater
 {
-    private static final RestTemplate restTemplate = new RestTemplate();
-
-    private Authenticate authenticate;
-
     private final String login;
     private final String password;
     private final UpdaterListener updaterListener;
+
+    private Authenticate authenticate;
 
     public AuthenticateUpdater(OptionsActivity optionsActivity, String login, String password, UpdaterListener updaterListener)
     {
@@ -39,9 +36,10 @@ public class AuthenticateUpdater extends FishmashUpdater
 
             HttpHeaders requestHeaders = new HttpHeaders();
             requestHeaders.setContentType(new MediaType("application", "json"));
-            HttpEntity<String> user = new HttpEntity<>(loginPassword.toJson(), requestHeaders);
 
-            authenticate = restTemplate.postForObject(Constant.API + Constant.AUTHENTICATE, user, Authenticate.class);
+            HttpEntity<String> httpEntity = new HttpEntity<>(loginPassword.toJson(), requestHeaders);
+
+            authenticate = restTemplate.postForObject(Constant.API + Constant.AUTHENTICATE, httpEntity, Authenticate.class);
         }
         catch(Exception ignored)
         {
