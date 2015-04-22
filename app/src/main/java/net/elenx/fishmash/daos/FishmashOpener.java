@@ -18,7 +18,7 @@ class FishmashOpener extends SQLiteOpenHelper
     {
         super(context, Constant.DATABASE_NAME, null, 1);
 
-        createTableQueries.add(context.getString(R.string.create_wordlists));
+        createTableQueries.add(context.getString(R.string.create_wordLists));
         createTableQueries.add(context.getString(R.string.create_words));
         createTableQueries.add(context.getString(R.string.create_authenticate));
     }

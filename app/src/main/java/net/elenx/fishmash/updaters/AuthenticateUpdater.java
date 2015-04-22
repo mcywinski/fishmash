@@ -2,6 +2,7 @@ package net.elenx.fishmash.updaters;
 
 import net.elenx.fishmash.Constant;
 import net.elenx.fishmash.activities.OptionsActivity;
+import net.elenx.fishmash.daos.AuthenticateDAO;
 import net.elenx.fishmash.models.Authenticate;
 import net.elenx.fishmash.models.LoginPassword;
 
@@ -32,7 +33,7 @@ public class AuthenticateUpdater extends FishmashUpdater
     {
         try
         {
-            LoginPassword loginPassword = new LoginPassword("android1", "1android");
+            LoginPassword loginPassword = new LoginPassword(login, password);
 
             HttpHeaders requestHeaders = new HttpHeaders();
             requestHeaders.setContentType(new MediaType("application", "json"));
@@ -40,11 +41,9 @@ public class AuthenticateUpdater extends FishmashUpdater
 
             authenticate = restTemplate.postForObject(Constant.API + Constant.AUTHENTICATE, user, Authenticate.class);
         }
-        catch(Exception e)
+        catch(Exception ignored)
         {
-            // avoid null pointer
-            authenticate = new Authenticate();
-            e.printStackTrace();
+
         }
     }
 
@@ -57,6 +56,13 @@ public class AuthenticateUpdater extends FishmashUpdater
     @Override
     public void save()
     {
+        if(authenticate == null)
+        {
+            return;
+        }
 
+        AuthenticateDAO authenticateDAO = new AuthenticateDAO(optionsActivity);
+        authenticateDAO.truncate();
+        authenticateDAO.insert(authenticate);
     }
 }

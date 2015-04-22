@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="create_wordlists">
+    <string name="create_wordLists">
         CREATE TABLE wordLists
         (
             id INTEGER PRIMARY KEY,
@@ -22,15 +22,13 @@
     </string>
 
     <string name="create_authenticate">
-        CREATE TABLE user
+        CREATE TABLE authenticate
         (
             id INTEGER PRIMARY KEY,
             token TEXT,
-            email TEXT,
+            user_id INTEGER,
             created_at TEXT,
-            updated_at TEXT,
-            email TEXT,
-            user_type INTEGER
+            updated_at TEXT
         );
     </string>
     
