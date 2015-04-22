@@ -17,4 +17,8 @@
     
     <string name="offline">Brak połączenia z internetem</string>
     <string name="bad_credentials">Login lub hasło jest niepoprawne</string>
+    <string name="label_login">Login:</string>
+    <string name="label_email">Email:</string>
+    <string name="label_createdAt">Użytkownikiem od:</string>
+    <string name="label_updatedAt">Zaktualizowany:</string>
 </resources>

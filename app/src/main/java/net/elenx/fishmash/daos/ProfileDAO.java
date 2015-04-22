@@ -13,7 +13,7 @@ public class ProfileDAO extends FishmashDAO<Profile>
         super
         (
             context,
-            "userdata",
+            "profile",
             new String[]
             {
                 "id",

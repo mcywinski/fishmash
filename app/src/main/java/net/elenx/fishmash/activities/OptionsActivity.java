@@ -54,7 +54,7 @@ public abstract class OptionsActivity extends ProgressDialogActivity
                 break;
 
             case R.id.profile:
-                profile();
+                switchIntentTo(ProfileActivity.class);
                 break;
 
             case R.id.logout:
@@ -71,16 +71,7 @@ public abstract class OptionsActivity extends ProgressDialogActivity
 
     void mainMenu()
     {
-        Intent intent = new Intent(getApplicationContext(), MenuActivity.class);
-        startActivity(intent);
-        finish();
-    }
-
-    void profile()
-    {
-        Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
-        startActivity(intent);
-        finish();
+        switchIntentTo(MenuActivity.class);
     }
 
     private void updateWordLists()
@@ -100,11 +91,16 @@ public abstract class OptionsActivity extends ProgressDialogActivity
         return authenticateDAO.selectAll().size() > 0;
     }
 
-    private void logout()
+    protected void logout()
     {
         new AuthenticateDAO(this).truncate();
 
-        Intent intent = new Intent(getApplicationContext(), AuthenticateActivity.class);
+        switchIntentTo(AuthenticateActivity.class);
+    }
+
+    private void switchIntentTo(Class<?> clazz)
+    {
+        Intent intent = new Intent(getApplicationContext(), clazz);
         startActivity(intent);
         finish();
     }
