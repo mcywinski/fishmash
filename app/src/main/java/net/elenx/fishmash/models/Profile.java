@@ -4,11 +4,16 @@ import android.database.Cursor;
 
 public class Profile extends FishmashModel
 {
-    private final String created_at;
-    private final String email;
-    private final String login;
-    private final String updated_at;
-    private final String user_type;
+    private String created_at;
+    private String email;
+    private String login;
+    private String updated_at;
+    private String user_type;
+
+    public Profile()
+    {
+
+    }
 
     public Profile(Cursor cursor)
     {

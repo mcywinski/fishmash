@@ -56,8 +56,9 @@ abstract class FishmashUpdater extends AsyncTask<Void, Integer, Void> implements
             publishProgress(SAVING);
             save();
         }
-        catch(Exception ignored)
+        catch(Exception e)
         {
+            e.printStackTrace();
             // permit to continue - we will use cache, and take actions in onFailure()
         }
 

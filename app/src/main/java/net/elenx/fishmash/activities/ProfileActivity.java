@@ -59,11 +59,21 @@ public class ProfileActivity extends OptionsActivity
             return;
         }
 
-        Profile profile = profileDAO.selectAll().get(0);
+        final Profile profile = profileDAO.selectAll().get(0);
 
-        loginData.setText(profile.getLogin());
-        emailData.setText(profile.getEmail());
-        createdAtData.setText(profile.getCreated_at());
-        updatedAtData.setText(profile.getUpdated_at());
+        runOnUiThread
+        (
+            new Runnable()
+            {
+                @Override
+                public void run()
+                {
+                    loginData.setText(profile.getLogin());
+                    emailData.setText(profile.getEmail());
+                    createdAtData.setText(profile.getCreated_at());
+                    updatedAtData.setText(profile.getUpdated_at());
+                }
+            }
+        );
     }
 }
