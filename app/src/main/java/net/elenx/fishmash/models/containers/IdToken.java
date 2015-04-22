@@ -13,6 +13,6 @@ public class IdToken
 
     public String toJson()
     {
-        return "\"id\": \"" + user_id + "\", \"api_token\": " + token + "\"";
+        return "\"id\": \"" + user_id + "\", \"api_token\": \"" + token + "\"";
     }
 }
