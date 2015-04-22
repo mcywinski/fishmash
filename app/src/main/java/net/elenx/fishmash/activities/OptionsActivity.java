@@ -1,16 +1,30 @@
 package net.elenx.fishmash.activities;
 
 import android.content.Intent;
+import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import net.elenx.fishmash.R;
+import net.elenx.fishmash.daos.AuthenticateDAO;
 import net.elenx.fishmash.updaters.WordListUpdater;
 import net.elenx.fishmash.updaters.WordsUpdater;
 
 public abstract class OptionsActivity extends ProgressDialogActivity
 {
     protected final OptionsActivity me = this;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState)
+    {
+        super.onCreate(savedInstanceState, persistentState);
+
+        if(!isAuthenticated())
+        {
+            logout();
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
@@ -39,6 +53,10 @@ public abstract class OptionsActivity extends ProgressDialogActivity
                 updateWordLists();
                 break;
 
+            case R.id.logout:
+                logout();
+                break;
+
             case R.id.exit:
                finish();
                 break;
@@ -56,13 +74,27 @@ public abstract class OptionsActivity extends ProgressDialogActivity
 
     void updateWordLists()
     {
-        WordListUpdater wordListUpdater = new WordListUpdater(this);
-        wordListUpdater.execute();
+        new WordListUpdater(this).execute();
     }
 
     void updateWords(long id)
     {
-        WordsUpdater wordsUpdater = new WordsUpdater(this, id);
-        wordsUpdater.execute();
+        new WordsUpdater(this, id).execute();
+    }
+
+    protected boolean isAuthenticated()
+    {
+        AuthenticateDAO authenticateDAO = new AuthenticateDAO(this);
+
+        return authenticateDAO.selectAll().size() > 0;
+    }
+
+    protected void logout()
+    {
+        new AuthenticateDAO(this).truncate();
+
+        Intent intent = new Intent(getApplicationContext(), AuthenticateActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

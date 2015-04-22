@@ -8,8 +8,6 @@ interface UpdaterInterface
     int SAVING = 3;
 
     void download();
-
     void convert();
-
     void save();
 }

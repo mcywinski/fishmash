@@ -8,6 +8,9 @@
     <item android:id="@+id/update_wordlists"
           android:title="@string/update_wordlists"/>
 
+    <item android:id="@+id/logout"
+          android:title="@string/logout"/>
+
     <item android:id="@+id/exit"
           android:title="@string/exit"/>
 </menu>

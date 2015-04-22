@@ -1,5 +1,6 @@
 package net.elenx.fishmash.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 public class MainActivity extends OptionsActivity
@@ -8,13 +9,23 @@ public class MainActivity extends OptionsActivity
     protected void onPostCreate(Bundle savedInstanceState)
     {
         super.onPostCreate(savedInstanceState);
-        updateWordLists();
+
+        if(isAuthenticated())
+        {
+            mainMenu();
+        }
+        else
+        {
+            Intent intent = new Intent(getApplicationContext(), AuthenticateActivity.class);
+            startActivity(intent);
+            finish();
+        }
     }
 
     @Override
-    protected void onPostResume()
+    public void onBackPressed()
     {
-        super.onPostResume();
-        mainMenu();
+        // override default action (go to menu) to forbid login skip
+        onPause();
     }
 }
