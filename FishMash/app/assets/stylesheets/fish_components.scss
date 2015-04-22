@@ -14,7 +14,7 @@ table td {
 }
 
 .fish-h1, .fish-h2, .fish-h3, .fish-h4 {
-  font-family: 'Lobster';  
+  font-family: 'Lobster 1.4';  
 }
 
 .fish-h1 {
@@ -68,5 +68,18 @@ textarea {
   margin:  10px 0px;
   width: 100%;
   overflow: hidden;
+}
+
+a {
+  color: #333;  
+}
+
+a:hover {
+  color: #555;
+  text-decoration: none;
+}
+
+table a {
+  color: #888;  
 }
 
