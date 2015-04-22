@@ -6,7 +6,6 @@ import net.elenx.fishmash.daos.AuthenticateDAO;
 import net.elenx.fishmash.daos.ProfileDAO;
 import net.elenx.fishmash.models.Authenticate;
 import net.elenx.fishmash.models.Profile;
-import net.elenx.fishmash.models.containers.IdToken;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -37,13 +36,11 @@ public class ProfileUpdater extends FishmashUpdater
 
         Authenticate authenticate = authenticateDAO.selectAll().get(0);
 
-        IdToken idToken = new IdToken(authenticate.getUser_id(), authenticate.getToken());
-
         HttpHeaders requestHeaders = new HttpHeaders();
         requestHeaders.setContentType(new MediaType("application", "json"));
-        HttpEntity<String> user = new HttpEntity<>(idToken.toJson(), requestHeaders);
+        HttpEntity<String> entity = new HttpEntity<>("\"api_token\":\"" + authenticate.getToken() + "\"", requestHeaders);
 
-        profile = restTemplate.postForObject(Constant.API + Constant.USER_INFO, user, Profile.class);
+        profile = restTemplate.postForObject(Constant.API + Constant.PROFILE + authenticate.getUser_id(), entity, Profile.class);
     }
 
     @Override

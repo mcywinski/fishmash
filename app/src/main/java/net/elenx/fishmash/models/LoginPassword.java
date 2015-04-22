@@ -1,4 +1,4 @@
-package net.elenx.fishmash.models.containers;
+package net.elenx.fishmash.models;
 
 public class LoginPassword
 {
