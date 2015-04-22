@@ -1,24 +1,38 @@
-<h1>Sign up at FishMash</h1>
+<div class="fish-register-box">
+<div class="col-md-6">
+<h1>Sign up</h1>
+<br>
 <%= form_for @user, url: users_path, method: :post do |f| %>
   <div class="form-group">
-    <%= f.label :email %>
-    <%= f.text_field :email %>
+    <%= f.text_field :email, :placeholder => 'email' %>
   </div>
   <div class="form-group">
-    <%= f.label :login %>
-    <%= f.text_field :login %>
+    <%= f.text_field :login, :placeholder => 'login' %>
   </div>
   <div class="form-group">
     <p>
-      <%= f.label :password %>
-      <%= f.password_field :password %>
+      <%= f.password_field :password, :placeholder => 'password' %>
     </p>
     <p>
-      <%= f.label "Confirm password" %>
-      <%= f.password_field :password_confirmation %>
+      <%= f.password_field :password_confirmation, :placeholder => 'repeat password' %>
     </p>
   </div>
   <div class="form-group">
     <%= f.submit "Sign up" %>
   </div>
 <% end %>
+</div>
+
+<div class="col-md-6">
+  <h1>Simple rules:</h1>
+  <p>FishMash is free and it always will be free.</p>
+  <p>
+    TUTAJ BĘDZIE GRAFIKA REKLAMOWA
+  </p>
+  <p>
+    Lorem ipsum dolor sit amet enim. Etiam ullamcorper. Suspendisse a pellentesque dui, non felis. Maecenas malesuada elit lectus felis, malesuada ultricies. Curabitur et ligula. Ut molestie a, ultricies porta urna. Vestibulum commodo volutpat a, convallis ac, laoreet enim. Phasellus fermentum in, dolor. Pellentesque facilisis. 
+  </p>
+
+</div>
+
+</div>

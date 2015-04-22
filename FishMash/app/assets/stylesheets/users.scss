@@ -6,7 +6,7 @@
   background: image_url('tweed.png'); 
 }
 
-.fish-login-box {
+.fish-login-box, .fish-register-box {
   margin: 50px auto;
   width: 400px;
   background: #fff;
@@ -15,6 +15,11 @@
   padding-bottom: 20px;
   text-align: center;
   box-shadow: 0px 0px 25px #777;
+  overflow: auto;
+}
+
+.fish-register-box {
+  width: 700px;  
 }
 
 .blank-layout-body img {
@@ -22,13 +27,13 @@
   margin-bottom: 50px;
 }
 
-.fish-login-box input {
+.fish-login-box input, .fish-register-box input {
   width: 100%; 
   text-align: center;
   background: #fff;
 }
 
-.fish-login-box input[type="submit"] {
+.fish-login-box input[type="submit"], .fish-register-box input[type="submit"] {
   background: #FF6600;
   color: #fff;
   font-size: 21px;
@@ -36,7 +41,7 @@
 
 @media screen and (max-width: 800px) {
 
-  .fish-login-box {
+  .fish-login-box, .fish-register-box {
     width: 100%;
     margin: 0px;
     border-radius: 0px;

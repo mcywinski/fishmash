@@ -1,6 +1,6 @@
 <div class="fish-login-box">
 
-<%= image_tag "logo.svg"%>
+<%= link_to raw(image_tag 'logo.svg'), root_path %>
 
 <%= form_for :user, url: authenticate_users_path do |f| %>
   <div class="form-group">
