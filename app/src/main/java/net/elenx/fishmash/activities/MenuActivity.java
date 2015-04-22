@@ -39,5 +39,17 @@ public class MenuActivity extends OptionsActivity
                 }
             }
         );
+
+        findViewById(R.id.buttonShowOptions).setOnClickListener
+        (
+            new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View view)
+                {
+                    openOptionsMenu();
+                }
+            }
+        );
     }
 }

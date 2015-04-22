@@ -21,4 +21,5 @@
     <string name="label_email">Email:</string>
     <string name="label_createdAt">Uczniem od:</string>
     <string name="label_updatedAt">Zmieniany:</string>
+    <string name="show_options">Pokaż opcje</string>
 </resources>
