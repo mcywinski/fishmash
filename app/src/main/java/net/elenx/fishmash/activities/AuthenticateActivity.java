@@ -1,5 +1,7 @@
 package net.elenx.fishmash.activities;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.view.View;
@@ -74,54 +76,80 @@ public class AuthenticateActivity extends OptionsActivity
         textViewFailedLogin = (TextView) findViewById(R.id.textViewFailedLogin);
         editTextLogin = (EditText) findViewById(R.id.editTextLogin);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
-        Button buttonLogIn = (Button) findViewById(R.id.buttonLogIn);
 
         if(isOffline())
         {
             showOfflineWarning();
         }
 
+        prepareButtonLogInListener();
+        prepareButtonRegisterListener();
+    }
+
+    private void prepareButtonRegisterListener()
+    {
+        Button buttonRegister = (Button) findViewById(R.id.buttonRegister);
+
+        buttonRegister.setOnClickListener
+        (
+            new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View view)
+                {
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://shrouded-fjord-4731.herokuapp.com/users/register"));
+                    startActivity(browserIntent);
+                    finish();
+                }
+            }
+        );
+    }
+
+    private void prepareButtonLogInListener()
+    {
+        Button buttonLogIn = (Button) findViewById(R.id.buttonLogIn);
+
         buttonLogIn.setOnClickListener
-                (
-                        new View.OnClickListener()
+        (
+            new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View view)
+                {
+                    if(isOffline())
+                    {
+                        showOfflineWarning();
+
+                        return;
+                    }
+
+                    hideWarning();
+
+                    String login = editTextLogin.getText().toString();
+                    String password = editTextPassword.getText().toString();
+
+                    new AuthenticateUpdater
+                    (
+                        me,
+                        login,
+                        password,
+                        new UpdaterListener()
                         {
                             @Override
-                            public void onClick(View view)
+                            public void onSuccess()
                             {
-                                if(isOffline())
-                                {
-                                    showOfflineWarning();
+                                mainMenu();
+                            }
 
-                                    return;
-                                }
-
-                                hideWarning();
-
-                                String login = editTextLogin.getText().toString();
-                                String password = editTextPassword.getText().toString();
-
-                                new AuthenticateUpdater
-                                        (
-                                                me,
-                                                login,
-                                                password,
-                                                new UpdaterListener()
-                                                {
-                                                    @Override
-                                                    public void onSuccess()
-                                                    {
-                                                        mainMenu();
-                                                    }
-
-                                                    @Override
-                                                    public void onFailure()
-                                                    {
-                                                        showBadCredentialsWarning();
-                                                    }
-                                                }
-                                        ).execute();
+                            @Override
+                            public void onFailure()
+                            {
+                                showBadCredentialsWarning();
                             }
                         }
-                );
+                    ).execute();
+                }
+            }
+        );
     }
 }
