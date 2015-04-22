@@ -29,7 +29,7 @@ class UsersController < ApplicationController
     else
       set_logged_user_id(user.id)
       flash[:success] = "You've successfuly signed in."
-      redirect_to root_path
+      redirect_to wordlists_path
     end
   end
 
