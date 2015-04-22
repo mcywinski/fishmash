@@ -41,7 +41,7 @@
       <li><%= link_to 'Logout', logout_users_path %></li>
     <% end %>
     <li class="fish-nav-logo">
-      <%= image_tag "logo_fff.svg"%>
+      <%= link_to raw(image_tag "logo_fff.svg"), root_url %>
     </li>
     <% if !is_user_logged_in? %>
       <li><%= link_to 'Register', register_users_path %></li>
