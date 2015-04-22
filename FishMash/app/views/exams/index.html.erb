@@ -1,17 +1,19 @@
-<h1>Exams</h1>
-<p>
-  <%= link_to "Create a new exam", new_exam_path %>
-</p>
+<div class="col-md-2"></div>
+<div class="col-md-8">
+<h1 class="fish-h1">Exams</h1>
+<div class="fish-button-bar">
+  <%= link_to "Create a new exam", new_exam_path, :class => 'button-link' %>
+</div>
 <p>
   <table>
-    <tr>
-  	 <th>Exam name</th>
-  	 <th>Description</th>
-  	 <th>Date practice start</th>
-     <th>Date practice finish</th>
-     <th>Date exam start</th>
-     <th>Date exam finish</th>
-  	 <th>Word count</th>
+    <tr class="fish-table-header">
+  	 <td>Exam name</td>
+  	 <td>Description</td>
+  	 <td>Date practice start</td>
+     <td>Date practice finish</td>
+     <td>Date exam start</td>
+     <td>Date exam finish</td>
+  	 <td>Word count</td>
     </tr>
     <% @exams.each do |exam| %>
     	<tr>
@@ -26,3 +28,5 @@
     <% end %>
   </table>
 </p>
+</div>
+<div class="col-md-2"></div>
