@@ -5,8 +5,11 @@
     <item android:id="@+id/main_menu"
           android:title="@string/main_menu"/>
 
-    <item android:id="@+id/update_wordlists"
-          android:title="@string/update_wordlists"/>
+    <item android:id="@+id/update_wordLists"
+          android:title="@string/update_wordLists"/>
+
+    <item android:id="@+id/profile"
+          android:title="@string/profile"/>
 
     <item android:id="@+id/logout"
           android:title="@string/logout"/>

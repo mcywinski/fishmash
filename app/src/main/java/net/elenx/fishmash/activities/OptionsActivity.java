@@ -49,8 +49,12 @@ public abstract class OptionsActivity extends ProgressDialogActivity
                 mainMenu();
                 break;
 
-            case R.id.update_wordlists:
+            case R.id.update_wordLists:
                 updateWordLists();
+                break;
+
+            case R.id.profile:
+                profile();
                 break;
 
             case R.id.logout:
@@ -68,6 +72,13 @@ public abstract class OptionsActivity extends ProgressDialogActivity
     void mainMenu()
     {
         Intent intent = new Intent(getApplicationContext(), MenuActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    void profile()
+    {
+        Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
         startActivity(intent);
         finish();
     }

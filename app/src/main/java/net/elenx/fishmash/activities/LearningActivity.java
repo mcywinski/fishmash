@@ -37,7 +37,6 @@ public class LearningActivity extends SpeakingActivity
     private Iterator<Word> wordIterator;
     private List<Word> words;
 
-    private LearningActivity me;
     private Button showMeaningButton;
 
     @Override
@@ -49,8 +48,6 @@ public class LearningActivity extends SpeakingActivity
 
     private void initEverything()
     {
-        me = this;
-
         setContentView(R.layout.activity_learning);
 
         long wordListId = getIntent().getLongExtra("wordListId", -1);

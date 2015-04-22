@@ -19,15 +19,15 @@ public class AuthenticateUpdater extends FishmashUpdater
 
     private final String login;
     private final String password;
-    private final AuthenticationListener authenticationListener;
+    private final UpdaterListener updaterListener;
 
-    public AuthenticateUpdater(OptionsActivity optionsActivity, String login, String password, AuthenticationListener authenticationListener)
+    public AuthenticateUpdater(OptionsActivity optionsActivity, String login, String password, UpdaterListener updaterListener)
     {
         super(optionsActivity);
 
         this.login = login;
         this.password = password;
-        this.authenticationListener = authenticationListener;
+        this.updaterListener = updaterListener;
     }
 
     @Override
@@ -60,7 +60,7 @@ public class AuthenticateUpdater extends FishmashUpdater
     {
         if(authenticate == null)
         {
-            authenticationListener.onFailure();
+            updaterListener.onFailure();
             return;
         }
 
@@ -68,6 +68,6 @@ public class AuthenticateUpdater extends FishmashUpdater
         authenticateDAO.truncate();
         authenticateDAO.insert(authenticate);
 
-        authenticationListener.onSuccess();
+        updaterListener.onSuccess();
     }
 }

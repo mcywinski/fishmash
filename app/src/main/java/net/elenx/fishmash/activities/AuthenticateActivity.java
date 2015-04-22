@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import net.elenx.fishmash.R;
 import net.elenx.fishmash.updaters.AuthenticateUpdater;
-import net.elenx.fishmash.updaters.AuthenticationListener;
+import net.elenx.fishmash.updaters.UpdaterListener;
 
 public class AuthenticateActivity extends OptionsActivity
 {
@@ -105,7 +105,7 @@ public class AuthenticateActivity extends OptionsActivity
                                                 me,
                                                 login,
                                                 password,
-                                                new AuthenticationListener()
+                                                new UpdaterListener()
                                                 {
                                                     @Override
                                                     public void onSuccess()

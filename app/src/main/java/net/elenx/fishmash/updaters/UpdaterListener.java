@@ -1,6 +1,6 @@
 package net.elenx.fishmash.updaters;
 
-public interface AuthenticationListener
+public interface UpdaterListener
 {
     void onSuccess();
     void onFailure();

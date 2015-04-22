@@ -1,6 +1,6 @@
 package net.elenx.fishmash.models;
 
-public class User
+public class Profile
 {
     private String created_at;
     private String email;

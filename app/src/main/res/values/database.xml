@@ -31,5 +31,16 @@
             updated_at TEXT
         );
     </string>
-    
+
+    <string name="create_profile">
+        CREATE TABLE profile
+        (
+            id INTEGER PRIMARY KEY,
+            created_at TEXT,
+            email TEXT,
+            login TEXT,
+            updated_at TEXT,
+            user_type TEXT
+        );
+    </string>
 </resources>
