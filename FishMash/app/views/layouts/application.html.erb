@@ -36,19 +36,19 @@
   <ul>
     <li>about</li>
     <% if !is_user_logged_in? %>
-      <li><%= link_to 'Login', login_users_path %></li>
+      <li><%= link_to 'login', login_users_path %></li>
     <% else %>
-      <li><%= link_to 'Logout', logout_users_path %></li>
-      <li><%= link_to 'Exams', exams_path %></li>
+      <li><%= link_to 'logout', logout_users_path %></li>
+      <li><%= link_to 'exams', exams_path %></li>
     <% end %>
     <li class="fish-nav-logo">
       <%= link_to raw(image_tag "logo_fff.svg"), root_url %>
     </li>
     <% if !is_user_logged_in? %>
-      <li><%= link_to 'Register', register_users_path %></li>
+      <li><%= link_to 'register', register_users_path %></li>
     <% else %>
-      <li><%= link_to 'Profile', profile_users_path %></li>
-      <li><%= link_to 'Word lists', wordlists_path %></li>
+      <li><%= link_to 'word lists', wordlists_path %></li>
+      <li><%= link_to 'profile', profile_users_path %></li>
     <% end %>
     <li>contact</li>
   </ul>
