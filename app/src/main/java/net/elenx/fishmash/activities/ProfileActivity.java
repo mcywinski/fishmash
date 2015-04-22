@@ -55,7 +55,7 @@ public class ProfileActivity extends OptionsActivity
         if(profileDAO.count() <= 0)
         {
             logout();
-            
+
             return;
         }
 

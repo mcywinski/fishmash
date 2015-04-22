@@ -14,7 +14,7 @@ import java.util.Scanner;
 
 abstract class FishmashUpdater extends AsyncTask<Void, Integer, Void> implements UpdaterInterface
 {
-    protected static final RestTemplate restTemplate = new RestTemplate();
+    static final RestTemplate restTemplate = new RestTemplate();
 
     final OptionsActivity optionsActivity;
 

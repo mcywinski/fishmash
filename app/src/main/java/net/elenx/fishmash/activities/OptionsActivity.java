@@ -91,7 +91,7 @@ public abstract class OptionsActivity extends ProgressDialogActivity
         return authenticateDAO.selectAll().size() > 0;
     }
 
-    protected void logout()
+    void logout()
     {
         new AuthenticateDAO(this).truncate();
 
