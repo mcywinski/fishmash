@@ -13,7 +13,7 @@ import net.elenx.fishmash.updaters.WordsUpdater;
 
 public abstract class OptionsActivity extends ProgressDialogActivity
 {
-    protected final OptionsActivity me = this;
+    final OptionsActivity me = this;
 
     @Override
     public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState)
@@ -72,7 +72,7 @@ public abstract class OptionsActivity extends ProgressDialogActivity
         finish();
     }
 
-    void updateWordLists()
+    private void updateWordLists()
     {
         new WordListUpdater(this).execute();
     }
@@ -82,14 +82,14 @@ public abstract class OptionsActivity extends ProgressDialogActivity
         new WordsUpdater(this, id).execute();
     }
 
-    protected boolean isAuthenticated()
+    boolean isAuthenticated()
     {
         AuthenticateDAO authenticateDAO = new AuthenticateDAO(this);
 
         return authenticateDAO.selectAll().size() > 0;
     }
 
-    protected void logout()
+    private void logout()
     {
         new AuthenticateDAO(this).truncate();
 

@@ -17,7 +17,7 @@ public class MenuActivity extends OptionsActivity
     @Override
     protected void mainMenu()
     {
-        // do not do anything, when main menu option has been selected
+        // do not call super, because super redirects here
     }
 
     @Override
@@ -27,17 +27,17 @@ public class MenuActivity extends OptionsActivity
         setContentView(R.layout.activity_menu);
 
         findViewById(R.id.buttonViewWords).setOnClickListener
-                (
-                        new View.OnClickListener()
-                        {
-                            @Override
-                            public void onClick(View v)
-                            {
-                                Intent intent = new Intent(getApplicationContext(), PickWordListActivity.class);
-                                startActivity(intent);
-                                finish();
-                            }
-                        }
-                );
+        (
+            new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+                    Intent intent = new Intent(getApplicationContext(), PickWordListActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+        );
     }
 }

@@ -16,7 +16,6 @@ public class AuthenticateActivity extends OptionsActivity
     private TextView textViewFailedLogin;
     private EditText editTextLogin;
     private EditText editTextPassword;
-    private Button buttonLogIn;
 
     @Override
     public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState)
@@ -61,6 +60,11 @@ public class AuthenticateActivity extends OptionsActivity
         );
     }
 
+    private void hideWarning()
+    {
+        textViewFailedLogin.setVisibility(View.VISIBLE);
+    }
+
     @Override
     protected void onPostCreate(Bundle savedInstanceState)
     {
@@ -70,7 +74,7 @@ public class AuthenticateActivity extends OptionsActivity
         textViewFailedLogin = (TextView) findViewById(R.id.textViewFailedLogin);
         editTextLogin = (EditText) findViewById(R.id.editTextLogin);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
-        buttonLogIn = (Button) findViewById(R.id.buttonLogIn);
+        Button buttonLogIn = (Button) findViewById(R.id.buttonLogIn);
 
         if(isOffline())
         {
@@ -78,44 +82,46 @@ public class AuthenticateActivity extends OptionsActivity
         }
 
         buttonLogIn.setOnClickListener
-        (
-            new View.OnClickListener()
-            {
-                @Override
-                public void onClick(View view)
-                {
-                    if(isOffline())
-                    {
-                        showOfflineWarning();
-
-                        return;
-                    }
-
-                    String login = editTextLogin.getText().toString();
-                    String password = editTextPassword.getText().toString();
-
-                    new AuthenticateUpdater
-                    (
-                        me,
-                        login,
-                        password,
-                        new AuthenticationListener()
+                (
+                        new View.OnClickListener()
                         {
                             @Override
-                            public void onSuccess()
+                            public void onClick(View view)
                             {
-                                mainMenu();
-                            }
+                                if(isOffline())
+                                {
+                                    showOfflineWarning();
 
-                            @Override
-                            public void onFailure()
-                            {
-                                showBadCredentialsWarning();
+                                    return;
+                                }
+
+                                hideWarning();
+
+                                String login = editTextLogin.getText().toString();
+                                String password = editTextPassword.getText().toString();
+
+                                new AuthenticateUpdater
+                                        (
+                                                me,
+                                                login,
+                                                password,
+                                                new AuthenticationListener()
+                                                {
+                                                    @Override
+                                                    public void onSuccess()
+                                                    {
+                                                        mainMenu();
+                                                    }
+
+                                                    @Override
+                                                    public void onFailure()
+                                                    {
+                                                        showBadCredentialsWarning();
+                                                    }
+                                                }
+                                        ).execute();
                             }
                         }
-                    ).execute();
-                }
-            }
-        );
+                );
     }
 }

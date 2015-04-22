@@ -17,9 +17,9 @@ public class AuthenticateUpdater extends FishmashUpdater
 
     private Authenticate authenticate;
 
-    private String login;
-    private String password;
-    private AuthenticationListener authenticationListener;
+    private final String login;
+    private final String password;
+    private final AuthenticationListener authenticationListener;
 
     public AuthenticateUpdater(OptionsActivity optionsActivity, String login, String password, AuthenticationListener authenticationListener)
     {

@@ -9,17 +9,17 @@ public abstract class FishmashModel
 {
     private long id;
 
-    public FishmashModel()
+    FishmashModel()
     {
 
     }
 
-    protected FishmashModel(Cursor cursor)
+    FishmashModel(Cursor cursor)
     {
         this.id = cursor.getLong(0);
     }
 
-    protected FishmashModel(JSONObject json) throws JSONException
+    FishmashModel(JSONObject json) throws JSONException
     {
         this.id = json.getLong("id");
     }

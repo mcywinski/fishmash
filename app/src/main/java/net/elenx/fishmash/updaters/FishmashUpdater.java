@@ -12,9 +12,9 @@ import java.util.Scanner;
 
 abstract class FishmashUpdater extends AsyncTask<Void, Integer, Void> implements UpdaterInterface
 {
-    protected OptionsActivity optionsActivity;
+    final OptionsActivity optionsActivity;
 
-    protected FishmashUpdater(OptionsActivity optionsActivity)
+    FishmashUpdater(OptionsActivity optionsActivity)
     {
         this.optionsActivity = optionsActivity;
     }
