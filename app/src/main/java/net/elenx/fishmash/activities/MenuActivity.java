@@ -25,7 +25,7 @@ public class MenuActivity extends OptionsActivity
     protected void onPostCreate(Bundle savedInstanceState)
     {
         super.onPostCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu);
+        attach(R.layout.activity_menu);
 
         findViewById(R.id.buttonViewWords).setOnClickListener
         (

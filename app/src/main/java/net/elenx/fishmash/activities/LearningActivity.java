@@ -49,7 +49,7 @@ public class LearningActivity extends SpeakingActivity
 
     private void initEverything()
     {
-        setContentView(R.layout.activity_learning);
+        attach(R.layout.activity_learning);
 
         long wordListId = getIntent().getLongExtra("wordListId", -1);
 
