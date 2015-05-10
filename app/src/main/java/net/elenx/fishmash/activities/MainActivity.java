@@ -3,6 +3,8 @@ package net.elenx.fishmash.activities;
 import android.content.Intent;
 import android.os.Bundle;
 
+import net.elenx.fishmash.activities.core.OptionsActivity;
+
 public class MainActivity extends OptionsActivity
 {
     @Override

@@ -1,4 +1,4 @@
-package net.elenx.fishmash.activities;
+package net.elenx.fishmash.activities.core;
 
 import android.app.Activity;
 import android.app.ProgressDialog;

@@ -1,4 +1,4 @@
-package net.elenx.fishmash.activities;
+package net.elenx.fishmash.activities.core;
 
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
@@ -6,10 +6,10 @@ import android.speech.tts.TextToSpeech;
 import java.util.HashMap;
 import java.util.Locale;
 
-abstract class SpeakingActivity extends OptionsActivity implements TextToSpeech.OnInitListener
+abstract public class SpeakingActivity extends OptionsActivity implements TextToSpeech.OnInitListener
 {
     private TextToSpeech textToSpeech;
-    boolean isReadyToSpeak = false;
+    protected boolean isReadyToSpeak = false;
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState)
@@ -39,7 +39,7 @@ abstract class SpeakingActivity extends OptionsActivity implements TextToSpeech.
         }
     }
 
-    synchronized void say(String text, Locale language)
+    protected synchronized void say(String text, Locale language)
     {
         if(!isReadyToSpeak || textToSpeech == null || text == null || language == null)
         {

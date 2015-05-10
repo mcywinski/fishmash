@@ -4,7 +4,7 @@ import android.os.AsyncTask;
 
 import net.elenx.fishmash.Constant;
 import net.elenx.fishmash.R;
-import net.elenx.fishmash.activities.OptionsActivity;
+import net.elenx.fishmash.activities.core.OptionsActivity;
 
 import org.springframework.web.client.RestTemplate;
 

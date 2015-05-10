@@ -1,7 +1,7 @@
 package net.elenx.fishmash.updaters;
 
 import net.elenx.fishmash.Constant;
-import net.elenx.fishmash.activities.OptionsActivity;
+import net.elenx.fishmash.activities.core.OptionsActivity;
 import net.elenx.fishmash.daos.WordsDAO;
 import net.elenx.fishmash.models.Word;
 

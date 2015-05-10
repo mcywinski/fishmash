@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import net.elenx.fishmash.R;
+import net.elenx.fishmash.activities.core.SpeakingActivity;
 import net.elenx.fishmash.daos.WordListsDAO;
 import net.elenx.fishmash.daos.WordsDAO;
 import net.elenx.fishmash.models.Word;

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import net.elenx.fishmash.R;
+import net.elenx.fishmash.activities.core.OptionsActivity;
 
 public class MenuActivity extends OptionsActivity
 {

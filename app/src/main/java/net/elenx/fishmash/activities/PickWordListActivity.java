@@ -8,6 +8,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import net.elenx.fishmash.R;
+import net.elenx.fishmash.activities.core.OptionsActivity;
 import net.elenx.fishmash.daos.WordListsDAO;
 import net.elenx.fishmash.models.WordList;
 

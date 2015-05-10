@@ -1,4 +1,4 @@
-package net.elenx.fishmash.activities;
+package net.elenx.fishmash.activities.core;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,13 +7,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import net.elenx.fishmash.R;
+import net.elenx.fishmash.activities.AuthenticateActivity;
+import net.elenx.fishmash.activities.MenuActivity;
+import net.elenx.fishmash.activities.ProfileActivity;
 import net.elenx.fishmash.daos.AuthenticateDAO;
 import net.elenx.fishmash.updaters.WordListUpdater;
 import net.elenx.fishmash.updaters.WordsUpdater;
 
 public abstract class OptionsActivity extends ProgressDialogActivity
 {
-    final OptionsActivity me = this;
+    protected final OptionsActivity me = this;
 
     @Override
     public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState)
@@ -69,7 +72,7 @@ public abstract class OptionsActivity extends ProgressDialogActivity
         return true;
     }
 
-    void mainMenu()
+    protected void mainMenu()
     {
         switchIntentTo(MenuActivity.class);
     }
@@ -79,19 +82,19 @@ public abstract class OptionsActivity extends ProgressDialogActivity
         new WordListUpdater(this).execute();
     }
 
-    void updateWords(long id)
+    protected void updateWords(long id)
     {
         new WordsUpdater(this, id).execute();
     }
 
-    boolean isAuthenticated()
+    protected boolean isAuthenticated()
     {
         AuthenticateDAO authenticateDAO = new AuthenticateDAO(this);
 
         return authenticateDAO.selectAll().size() > 0;
     }
 
-    void logout()
+    protected void logout()
     {
         new AuthenticateDAO(this).truncate();
 

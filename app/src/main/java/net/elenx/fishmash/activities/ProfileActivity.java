@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import net.elenx.fishmash.R;
+import net.elenx.fishmash.activities.core.OptionsActivity;
 import net.elenx.fishmash.daos.ProfileDAO;
 import net.elenx.fishmash.models.Profile;
 import net.elenx.fishmash.updaters.ProfileUpdater;
