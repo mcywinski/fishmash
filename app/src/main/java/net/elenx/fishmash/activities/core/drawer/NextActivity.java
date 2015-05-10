@@ -11,7 +11,6 @@ public class NextActivity extends DrawerActivity
     {
         super.onCreate(savedInstanceState);
 
-        changeActionBarTitle("next");
-        attach(R.layout.activity_next);
+        injectActivity("Next", R.layout.activity_next);
     }
 }

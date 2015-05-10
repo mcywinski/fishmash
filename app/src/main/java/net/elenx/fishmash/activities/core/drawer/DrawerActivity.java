@@ -7,6 +7,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
@@ -89,7 +90,7 @@ public abstract class DrawerActivity extends AppCompatActivity implements Naviga
         return super.onCreateOptionsMenu(menu);
     }
 
-    protected void attach(int resourceId)
+    private void attach(int resourceId)
     {
         RelativeLayout relativeLayout = (RelativeLayout) layoutInflater.inflate(resourceId, null);
 
@@ -97,9 +98,20 @@ public abstract class DrawerActivity extends AppCompatActivity implements Naviga
         container.addView(relativeLayout);
     }
 
-    protected void changeActionBarTitle(CharSequence title)
+    private void changeActionBarTitle(CharSequence title)
     {
         this.title = title;
         restoreActionBar();
+    }
+
+    protected void injectActivity(CharSequence title, int resourceId)
+    {
+        attach(resourceId);
+        changeActionBarTitle(title);
+    }
+
+    protected void injectActivity(CharSequence title, View view)
+    {
+        injectActivity(title, view.getId());
     }
 }
