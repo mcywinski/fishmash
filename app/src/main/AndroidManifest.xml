@@ -28,8 +28,5 @@
         <activity android:name="net.elenx.fishmash.activities.PickWordListActivity"/>
         <activity android:name="net.elenx.fishmash.activities.ProfileActivity"/>
 
-        <activity android:name=".activities.core.drawer.NextActivity"/>
-        <activity android:name=".activities.core.drawer.OtherActivity"/>
-
     </application>
 </manifest>

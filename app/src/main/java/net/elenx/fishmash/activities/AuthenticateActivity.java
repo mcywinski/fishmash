@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import net.elenx.fishmash.Constant;
 import net.elenx.fishmash.R;
 import net.elenx.fishmash.activities.core.OptionsActivity;
 import net.elenx.fishmash.updaters.AuthenticateUpdater;
@@ -19,6 +20,7 @@ public class AuthenticateActivity extends OptionsActivity
     private TextView textViewFailedLogin;
     private EditText editTextLogin;
     private EditText editTextPassword;
+    private Button buttonLogIn;
 
     @Override
     public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState)
@@ -97,7 +99,7 @@ public class AuthenticateActivity extends OptionsActivity
                 @Override
                 public void onClick(View view)
                 {
-                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://shrouded-fjord-4731.herokuapp.com/users/register"));
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(Constant.REGISTER));
                     startActivity(browserIntent);
                     finish();
                 }
@@ -107,7 +109,7 @@ public class AuthenticateActivity extends OptionsActivity
 
     private void prepareButtonLogInListener()
     {
-        Button buttonLogIn = (Button) findViewById(R.id.buttonLogIn);
+        buttonLogIn = (Button) findViewById(R.id.buttonLogIn);
 
         buttonLogIn.setOnClickListener
         (

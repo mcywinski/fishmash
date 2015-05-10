@@ -1,8 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="main_menu">Menu główne</string>
-    <string name="update_wordLists">Aktualizuj listy słówek</string>
+    <string name="update_wordlists">Aktualizuj listy słówek</string>
     <string name="profile">Profil</string>
     <string name="logout">Wyloguj</string>
     <string name="exit">Wyjdź</string>
+
+    <string-array name="position_to_resource_name">
+        <item>main_menu</item>
+        <item>update_wordlists</item>
+        <item>profile</item>
+        <item>logout</item>
+        <item>exit</item>
+    </string-array>
+
+    <string-array name="position_to_resource_value">
+        <item>@string/main_menu</item>
+        <item>@string/update_wordlists</item>
+        <item>@string/profile</item>
+        <item>@string/logout</item>
+        <item>@string/exit</item>
+    </string-array>
+
 </resources>

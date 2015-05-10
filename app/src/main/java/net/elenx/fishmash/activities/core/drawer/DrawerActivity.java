@@ -1,24 +1,26 @@
 package net.elenx.fishmash.activities.core.drawer;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
 import net.elenx.fishmash.R;
 
+import java.util.Arrays;
+import java.util.List;
+
 public abstract class DrawerActivity extends AppCompatActivity implements NavigationDrawerCallbacks
 {
+    private static List<String> drawerItemPositionToResourceName;
+
     private NavigationDrawerFragment navigationDrawerFragment;
     private LayoutInflater layoutInflater;
     private ActionBar actionBar;
-    private boolean isFirstExecution = true;
 
     protected FrameLayout container;
     protected CharSequence title;
@@ -40,34 +42,6 @@ public abstract class DrawerActivity extends AppCompatActivity implements Naviga
             R.id.navigation_drawer,
             (DrawerLayout) findViewById(R.id.main_drawer_layout)
         );
-    }
-
-    @Override
-    public void onNavigationDrawerItemSelected(int position)
-    {
-        Intent intent;
-
-        switch(position)
-        {
-            case 0:
-            case 2:
-                intent = new Intent(this, NextActivity.class);
-                break;
-            case 1:
-            default:
-                intent = new Intent(this, OtherActivity.class);
-                break;
-        }
-
-        if(isFirstExecution)
-        {
-            isFirstExecution = false;
-        }
-        else
-        {
-            startActivity(intent);
-            finish();
-        }
     }
 
     public void restoreActionBar()
@@ -110,8 +84,15 @@ public abstract class DrawerActivity extends AppCompatActivity implements Naviga
         changeActionBarTitle(title);
     }
 
-    protected void injectActivity(CharSequence title, View view)
+    protected int drawerItemPositionToResourceId(int position)
     {
-        injectActivity(title, view.getId());
+        if(drawerItemPositionToResourceName == null)
+        {
+            drawerItemPositionToResourceName = Arrays.asList(getResources().getStringArray(R.array.position_to_resource_name));
+        }
+
+        String resourceName = drawerItemPositionToResourceName.get(position);
+
+        return getResources().getIdentifier(resourceName, "string", getPackageName());
     }
 }

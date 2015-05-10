@@ -3,8 +3,7 @@ package net.elenx.fishmash.activities.core;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.util.Log;
 
 import net.elenx.fishmash.R;
 import net.elenx.fishmash.activities.AuthenticateActivity;
@@ -30,46 +29,38 @@ public abstract class OptionsActivity extends ProgressDialogActivity
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-
-        return true;
-    }
-
-    @Override
     public void onBackPressed()
     {
         mainMenu();
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item)
+    public void onNavigationDrawerItemSelected(int position)
     {
-        switch(item.getItemId())
+        Log.e(String.valueOf(position), String.valueOf(drawerItemPositionToResourceId(position)));
+
+        switch(drawerItemPositionToResourceId(position))
         {
-            case R.id.main_menu:
+            case R.string.main_menu:
                 mainMenu();
                 break;
 
-            case R.id.update_wordLists:
+            case R.string.update_wordlists:
                 updateWordLists();
                 break;
 
-            case R.id.profile:
+            case R.string.profile:
                 switchIntentTo(ProfileActivity.class);
                 break;
 
-            case R.id.logout:
+            case R.string.logout:
                 logout();
                 break;
 
-            case R.id.exit:
-               finish();
+            case R.string.exit:
+                finish();
                 break;
         }
-
-        return true;
     }
 
     protected void mainMenu()
@@ -101,7 +92,7 @@ public abstract class OptionsActivity extends ProgressDialogActivity
         switchIntentTo(AuthenticateActivity.class);
     }
 
-    private void switchIntentTo(Class<?> clazz)
+    protected void switchIntentTo(Class<?> clazz)
     {
         Intent intent = new Intent(getApplicationContext(), clazz);
         startActivity(intent);
