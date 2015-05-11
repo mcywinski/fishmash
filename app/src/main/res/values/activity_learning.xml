@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="learning">Nauka</string>
+
+    <string name="next_word">Następne słówko</string>
+    <string name="speak">Odczytuj</string>
+    <string name="speak_now">Odczytaj</string>
+    <string name="show_meaning">Pokaż znaczenie</string>
+    <string name="phrase">Fraza</string>
+    <string name="meaning">Znaczenie</string>
+</resources>

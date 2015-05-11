@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="navigation_drawer_open">Pokaż opcje</string>
+    <string name="navigation_drawer_close">Zamknij opcje</string>
 
-    <string name="website">Website</string>
-    <string name="action_settings">Settings</string>
-
-    <string name="authenticate">Autentykacja</string>
-    <string name="learning">Nauka</string>
-    <string name="pick_wordlist">Wybierz listę</string>
-    <string name="profile">Profil</string>
-    <string name="logout">Wyloguj</string>
-
+    <!--
+    WARNING!
+    Two arrays below must have exactly same order,
+    or else descriptions will mislead user!
+    -->
     <string-array name="position_to_resource_name">
         <item>pick_wordlist</item>
         <item>profile</item>

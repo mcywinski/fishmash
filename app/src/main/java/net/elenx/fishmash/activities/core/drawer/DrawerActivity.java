@@ -66,7 +66,7 @@ public abstract class DrawerActivity extends AppCompatActivity implements Naviga
     {
         if(!navigationDrawerFragment.isDrawerOpen())
         {
-            getMenuInflater().inflate(R.menu.main, menu);
+            getMenuInflater().inflate(R.menu.toolbar_options, menu);
             restoreActionBar();
 
             return true;

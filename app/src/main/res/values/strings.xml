@@ -1,24 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Fishmash</string>
-
-    <string name="next_word">Następne słówko</string>
-    <string name="speak">Odczytuj</string>
-    <string name="speak_now">Odczytaj</string>
-    <string name="show_meaning">Pokaż znaczenie</string>
-
-    <string name="phrase">Fraza</string>
-    <string name="meaning">Znaczenie</string>
-    <string name="log_in">Zaloguj</string>
-    <string name="logo">Logo</string>
-    <string name="login">Login</string>
-    <string name="password">Hasło</string>
-    
-    <string name="offline">Brak połączenia z internetem</string>
-    <string name="bad_credentials">Login lub hasło jest niepoprawne</string>
-    <string name="label_login">Login:</string>
-    <string name="label_email">Email:</string>
-    <string name="label_createdAt">Uczniem od:</string>
-    <string name="label_updatedAt">Zmieniany:</string>
-    <string name="register">Rejestracja</string>
 </resources>
