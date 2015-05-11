@@ -19,11 +19,11 @@ public abstract class DrawerActivity extends AppCompatActivity implements Naviga
 {
     private static List<String> drawerItemPositionToResourceName;
 
-    private NavigationDrawerFragment navigationDrawerFragment;
     private LayoutInflater layoutInflater;
     private ActionBar actionBar;
     private DrawerLayout drawerLayout;
 
+    protected NavigationDrawerFragment navigationDrawerFragment;
     protected FrameLayout container;
     protected CharSequence title;
 

@@ -202,4 +202,9 @@ public class NavigationDrawerFragment extends Fragment
     {
         NavigationDrawerFragment.userLearnedDrawer = userLearnedDrawer;
     }
+
+    public static void setCurrentSelectedPosition(int currentSelectedPosition)
+    {
+        NavigationDrawerFragment.currentSelectedPosition = currentSelectedPosition;
+    }
 }

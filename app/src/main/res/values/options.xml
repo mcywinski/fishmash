@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="pick_wordlist">Menu główne</string>
+    <string name="pick_wordlist">Wybierz listę</string>
     <string name="profile">Profil</string>
     <string name="logout">Wyloguj</string>
 

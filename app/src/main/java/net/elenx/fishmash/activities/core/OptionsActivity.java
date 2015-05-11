@@ -9,6 +9,7 @@ import net.elenx.fishmash.R;
 import net.elenx.fishmash.activities.AuthenticateActivity;
 import net.elenx.fishmash.activities.PickWordListActivity;
 import net.elenx.fishmash.activities.ProfileActivity;
+import net.elenx.fishmash.activities.core.drawer.NavigationDrawerFragment;
 import net.elenx.fishmash.daos.AuthenticateDAO;
 import net.elenx.fishmash.updaters.WordsUpdater;
 
@@ -75,6 +76,8 @@ public abstract class OptionsActivity extends ProgressDialogActivity
     {
         new AuthenticateDAO(this).truncate();
 
+        NavigationDrawerFragment.setCurrentSelectedPosition(0);
+
         switchIntentTo(AuthenticateActivity.class);
     }
 
@@ -87,7 +90,19 @@ public abstract class OptionsActivity extends ProgressDialogActivity
             return;
         }
 
-        Log.e(getClass().toString(), clazz.toString());
+        Log.e(myClass.toString(), clazz.toString());
+
+        if(myClass == PickWordListActivity.class && clazz == AuthenticateActivity.class)
+        {
+            try
+            {
+                throw new Exception();
+            }
+            catch(Exception e)
+            {
+                Log.e("pickword", "authenticate", e);
+            }
+        }
 
         Intent intent = new Intent(getApplicationContext(), clazz);
         startActivity(intent);
