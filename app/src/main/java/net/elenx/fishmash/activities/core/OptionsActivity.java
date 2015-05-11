@@ -66,7 +66,9 @@ public abstract class OptionsActivity extends ProgressDialogActivity
     {
         AuthenticateDAO authenticateDAO = new AuthenticateDAO(this);
 
-        return authenticateDAO.selectAll().size() > 0;
+        Log.e("isAuthenticated", authenticateDAO.count() > 0 ? "tak" : "nie");
+
+        return authenticateDAO.count() > 0;
     }
 
     protected void logout()
@@ -78,14 +80,14 @@ public abstract class OptionsActivity extends ProgressDialogActivity
 
     protected void switchIntentTo(Class<?> clazz)
     {
-        Log.e(getClass().toString(), clazz.toString());
-
         Class myClass = getClass();
 
-        if(myClass == clazz || myClass == AuthenticateActivity.class)
+        if(myClass == clazz)
         {
             return;
         }
+
+        Log.e(getClass().toString(), clazz.toString());
 
         Intent intent = new Intent(getApplicationContext(), clazz);
         startActivity(intent);

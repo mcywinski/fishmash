@@ -58,8 +58,8 @@ abstract class FishmashUpdater extends AsyncTask<Void, Integer, Void> implements
         }
         catch(Exception e)
         {
-            e.printStackTrace();
             // permit to continue - we will use cache, and take actions in onFailure()
+            e.printStackTrace();
         }
 
         return null;

@@ -22,4 +22,5 @@
     <string name="label_updatedAt">Zmieniany:</string>
     <string name="show_options">Pokaż opcje</string>
     <string name="register">Rejestracja</string>
+    <string name="server_unreachable">Serwer nieosiągalny</string>
 </resources>

@@ -32,43 +32,6 @@ public class AuthenticateActivity extends OptionsActivity
         }
     }
 
-    private void showOfflineWarning()
-    {
-        runOnUiThread
-        (
-            new Runnable()
-            {
-                @Override
-                public void run()
-                {
-                    textViewFailedLogin.setVisibility(View.VISIBLE);
-                    textViewFailedLogin.setText(getText(R.string.offline));
-                }
-            }
-        );
-    }
-
-    private void showBadCredentialsWarning()
-    {
-        runOnUiThread
-                (
-                        new Runnable()
-                        {
-                            @Override
-                            public void run()
-                            {
-                                textViewFailedLogin.setVisibility(View.VISIBLE);
-                                textViewFailedLogin.setText(getText(R.string.bad_credentials));
-                            }
-                        }
-                );
-    }
-
-    private void hideWarning()
-    {
-        textViewFailedLogin.setVisibility(View.VISIBLE);
-    }
-
     @Override
     protected void onPostCreate(Bundle savedInstanceState)
     {
@@ -92,24 +55,6 @@ public class AuthenticateActivity extends OptionsActivity
     public void onNavigationDrawerItemSelected(int position)
     {
         // disable whole drawer
-    }
-
-    private void prepareButtonRegisterListener()
-    {
-        Button buttonRegister = (Button) findViewById(R.id.buttonRegister);
-
-        buttonRegister.setOnClickListener
-        (
-            new View.OnClickListener()
-            {
-                @Override
-                public void onClick(View view)
-                {
-                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(Constant.REGISTER));
-                    startActivity(browserIntent);
-                }
-            }
-        );
     }
 
     private void prepareButtonLogInListener()
@@ -158,5 +103,58 @@ public class AuthenticateActivity extends OptionsActivity
                 }
             }
         );
+    }
+
+    private void prepareButtonRegisterListener()
+    {
+        Button buttonRegister = (Button) findViewById(R.id.buttonRegister);
+
+        buttonRegister.setOnClickListener
+        (
+            new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View view)
+                {
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(Constant.REGISTER));
+                    startActivity(browserIntent);
+                }
+            }
+        );
+    }
+
+    private void showOfflineWarning()
+    {
+        runOnUiThread
+        (
+            new Runnable()
+            {
+                @Override
+                public void run()
+                {
+                    textViewFailedLogin.setText(getText(R.string.offline));
+                }
+            }
+        );
+    }
+
+    private void showBadCredentialsWarning()
+    {
+        runOnUiThread
+        (
+            new Runnable()
+            {
+                @Override
+                public void run()
+                {
+                    textViewFailedLogin.setText(getText(R.string.bad_credentials));
+                }
+            }
+        );
+    }
+
+    private void hideWarning()
+    {
+        textViewFailedLogin.setText("");
     }
 }

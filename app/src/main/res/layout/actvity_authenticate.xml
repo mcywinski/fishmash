@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text=""
-        android:visibility="invisible"
+        android:visibility="visible"
         android:id="@+id/textViewFailedLogin"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"/>

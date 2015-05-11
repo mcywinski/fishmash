@@ -59,6 +59,7 @@ public class AuthenticateUpdater extends FishmashUpdater
         if(authenticate == null)
         {
             updaterListener.onFailure();
+
             return;
         }
 
