@@ -21,7 +21,7 @@ public class PickWordListActivity extends OptionsActivity
     protected void onPostCreate(Bundle savedInstanceState)
     {
         super.onPostCreate(savedInstanceState);
-        injectActivity("Pick wordlist", R.layout.activity_pickwordlist);
+        injectActivity(getString(R.string.pick_wordlist), R.layout.activity_pickwordlist);
 
         new WordListUpdater(this).execute();
         showWordLists();

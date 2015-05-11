@@ -67,8 +67,6 @@ public abstract class OptionsActivity extends ProgressDialogActivity
     {
         AuthenticateDAO authenticateDAO = new AuthenticateDAO(this);
 
-        Log.e("isAuthenticated", authenticateDAO.count() > 0 ? "tak" : "nie");
-
         return authenticateDAO.count() > 0;
     }
 
@@ -76,7 +74,7 @@ public abstract class OptionsActivity extends ProgressDialogActivity
     {
         new AuthenticateDAO(this).truncate();
 
-        NavigationDrawerFragment.setCurrentSelectedPosition(0);
+        NavigationDrawerFragment.setCurrentSelectedPosition();
 
         switchIntentTo(AuthenticateActivity.class);
     }
@@ -91,18 +89,6 @@ public abstract class OptionsActivity extends ProgressDialogActivity
         }
 
         Log.e(myClass.toString(), clazz.toString());
-
-        if(myClass == PickWordListActivity.class && clazz == AuthenticateActivity.class)
-        {
-            try
-            {
-                throw new Exception();
-            }
-            catch(Exception e)
-            {
-                Log.e("pickword", "authenticate", e);
-            }
-        }
 
         Intent intent = new Intent(getApplicationContext(), clazz);
         startActivity(intent);

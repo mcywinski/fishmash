@@ -7,16 +7,16 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.View;
 
-public class MyActionBarDrawerToggle extends ActionBarDrawerToggle
+class MyActionBarDrawerToggle extends ActionBarDrawerToggle
 {
     private static final String PREF_USER_LEARNED_DRAWER = "navigation_drawer_learned";
 
-    private NavigationDrawerFragment navigationDrawerFragment;
-    private FragmentActivity fragmentActivity;
+    private final NavigationDrawerFragment navigationDrawerFragment;
+    private final FragmentActivity fragmentActivity;
 
-    public MyActionBarDrawerToggle(NavigationDrawerFragment navigationDrawerFragment, DrawerLayout drawerLayout, int openDrawerContentDescRes, int closeDrawerContentDescRes)
+    public MyActionBarDrawerToggle(NavigationDrawerFragment navigationDrawerFragment, DrawerLayout drawerLayout)
     {
-        super(navigationDrawerFragment.getActivity(), drawerLayout, openDrawerContentDescRes, closeDrawerContentDescRes);
+        super(navigationDrawerFragment.getActivity(), drawerLayout, net.elenx.fishmash.R.string.navigation_drawer_open, net.elenx.fishmash.R.string.navigation_drawer_close);
 
         this.navigationDrawerFragment = navigationDrawerFragment;
         this.fragmentActivity = navigationDrawerFragment.getActivity();
@@ -47,7 +47,7 @@ public class MyActionBarDrawerToggle extends ActionBarDrawerToggle
 
         if(!navigationDrawerFragment.hasUserLearnedDrawer())
         {
-            navigationDrawerFragment.setUserLearnedDrawer(true);
+            navigationDrawerFragment.setUserLearnedDrawer();
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(fragmentActivity);
             sharedPreferences.edit().putBoolean(PREF_USER_LEARNED_DRAWER, true).apply();
         }

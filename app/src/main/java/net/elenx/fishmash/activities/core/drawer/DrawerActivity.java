@@ -23,9 +23,9 @@ public abstract class DrawerActivity extends AppCompatActivity implements Naviga
     private ActionBar actionBar;
     private DrawerLayout drawerLayout;
 
-    protected NavigationDrawerFragment navigationDrawerFragment;
-    protected FrameLayout container;
-    protected CharSequence title;
+    private NavigationDrawerFragment navigationDrawerFragment;
+    private FrameLayout container;
+    private CharSequence title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -42,12 +42,11 @@ public abstract class DrawerActivity extends AppCompatActivity implements Naviga
         navigationDrawerFragment = (NavigationDrawerFragment) getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         navigationDrawerFragment.setUp
         (
-            R.id.navigation_drawer,
-            drawerLayout
+                drawerLayout
         );
     }
 
-    public void restoreActionBar()
+    private void restoreActionBar()
     {
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setTitle(title);

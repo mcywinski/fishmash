@@ -101,9 +101,9 @@ public class NavigationDrawerFragment extends Fragment
         return drawerLayout != null && drawerLayout.isDrawerOpen(fragmentContainerView);
     }
 
-    public void setUp(int fragmentId, DrawerLayout drawerLayout)
+    public void setUp(DrawerLayout drawerLayout)
     {
-        fragmentContainerView = getActivity().findViewById(fragmentId);
+        fragmentContainerView = getActivity().findViewById(R.id.navigation_drawer);
 
         this.drawerLayout = drawerLayout;
         this.drawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
@@ -112,7 +112,7 @@ public class NavigationDrawerFragment extends Fragment
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
 
-        actionBarDrawerToggle = new MyActionBarDrawerToggle(this, this.drawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        actionBarDrawerToggle = new MyActionBarDrawerToggle(this, this.drawerLayout);
 
         if( !(userLearnedDrawer || fromSavedInstanceState) )
         {
@@ -198,13 +198,13 @@ public class NavigationDrawerFragment extends Fragment
         return userLearnedDrawer;
     }
 
-    public void setUserLearnedDrawer(boolean userLearnedDrawer)
+    public void setUserLearnedDrawer()
     {
-        NavigationDrawerFragment.userLearnedDrawer = userLearnedDrawer;
+        NavigationDrawerFragment.userLearnedDrawer = true;
     }
 
-    public static void setCurrentSelectedPosition(int currentSelectedPosition)
+    public static void setCurrentSelectedPosition()
     {
-        NavigationDrawerFragment.currentSelectedPosition = currentSelectedPosition;
+        NavigationDrawerFragment.currentSelectedPosition = 0;
     }
 }

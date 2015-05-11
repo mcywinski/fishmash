@@ -36,7 +36,7 @@ public class AuthenticateActivity extends OptionsActivity
     protected void onPostCreate(Bundle savedInstanceState)
     {
         super.onPostCreate(savedInstanceState);
-        injectActivity("Authenticate", R.layout.actvity_authenticate);
+        injectActivity(getString(R.string.authenticate), R.layout.actvity_authenticate);
 
         textViewFailedLogin = (TextView) findViewById(R.id.textViewFailedLogin);
         editTextLogin = (EditText) findViewById(R.id.editTextLogin);

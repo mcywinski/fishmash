@@ -5,4 +5,22 @@
 
     <string name="website">Website</string>
     <string name="action_settings">Settings</string>
+
+    <string name="authenticate">Autentykacja</string>
+    <string name="learning">Nauka</string>
+    <string name="pick_wordlist">Wybierz listę</string>
+    <string name="profile">Profil</string>
+    <string name="logout">Wyloguj</string>
+
+    <string-array name="position_to_resource_name">
+        <item>pick_wordlist</item>
+        <item>profile</item>
+        <item>logout</item>
+    </string-array>
+
+    <string-array name="position_to_resource_value">
+        <item>@string/pick_wordlist</item>
+        <item>@string/profile</item>
+        <item>@string/logout</item>
+    </string-array>
 </resources>
