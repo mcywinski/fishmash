@@ -7,10 +7,9 @@ import android.util.Log;
 
 import net.elenx.fishmash.R;
 import net.elenx.fishmash.activities.AuthenticateActivity;
-import net.elenx.fishmash.activities.MenuActivity;
+import net.elenx.fishmash.activities.PickWordListActivity;
 import net.elenx.fishmash.activities.ProfileActivity;
 import net.elenx.fishmash.daos.AuthenticateDAO;
-import net.elenx.fishmash.updaters.WordListUpdater;
 import net.elenx.fishmash.updaters.WordsUpdater;
 
 public abstract class OptionsActivity extends ProgressDialogActivity
@@ -31,7 +30,7 @@ public abstract class OptionsActivity extends ProgressDialogActivity
     @Override
     public void onBackPressed()
     {
-        onPause();
+        finish();
     }
 
     @Override
@@ -39,12 +38,8 @@ public abstract class OptionsActivity extends ProgressDialogActivity
     {
         switch(resourceIfOfPosition(position))
         {
-            case R.string.main_menu:
-                mainMenu();
-                break;
-
-            case R.string.update_wordlists:
-                new WordListUpdater(this).execute();
+            case R.string.pick_wordlist:
+                pickWordList();
                 break;
 
             case R.string.profile:
@@ -57,9 +52,9 @@ public abstract class OptionsActivity extends ProgressDialogActivity
         }
     }
 
-    protected void mainMenu()
+    protected void pickWordList()
     {
-        switchIntentTo(MenuActivity.class);
+        switchIntentTo(PickWordListActivity.class);
     }
 
     protected void updateWords(long id)

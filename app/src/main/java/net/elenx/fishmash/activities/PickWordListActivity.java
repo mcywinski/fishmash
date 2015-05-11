@@ -11,6 +11,7 @@ import net.elenx.fishmash.R;
 import net.elenx.fishmash.activities.core.OptionsActivity;
 import net.elenx.fishmash.daos.WordListsDAO;
 import net.elenx.fishmash.models.WordList;
+import net.elenx.fishmash.updaters.WordListUpdater;
 
 import java.util.List;
 
@@ -22,6 +23,7 @@ public class PickWordListActivity extends OptionsActivity
         super.onPostCreate(savedInstanceState);
         injectActivity("Pick wordlist", R.layout.activity_pickwordlist);
 
+        new WordListUpdater(this).execute();
         showWordLists();
     }
 

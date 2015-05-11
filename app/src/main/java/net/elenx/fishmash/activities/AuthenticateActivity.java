@@ -28,7 +28,7 @@ public class AuthenticateActivity extends OptionsActivity
 
         if(isAuthenticated())
         {
-            mainMenu();
+            pickWordList();
         }
     }
 
@@ -51,17 +51,17 @@ public class AuthenticateActivity extends OptionsActivity
     private void showBadCredentialsWarning()
     {
         runOnUiThread
-        (
-            new Runnable()
-            {
-                @Override
-                public void run()
-                {
-                    textViewFailedLogin.setVisibility(View.VISIBLE);
-                    textViewFailedLogin.setText(getText(R.string.bad_credentials));
-                }
-            }
-        );
+                (
+                        new Runnable()
+                        {
+                            @Override
+                            public void run()
+                            {
+                                textViewFailedLogin.setVisibility(View.VISIBLE);
+                                textViewFailedLogin.setText(getText(R.string.bad_credentials));
+                            }
+                        }
+                );
     }
 
     private void hideWarning()
@@ -145,7 +145,7 @@ public class AuthenticateActivity extends OptionsActivity
                             @Override
                             public void onSuccess()
                             {
-                                mainMenu();
+                                pickWordList();
                             }
 
                             @Override

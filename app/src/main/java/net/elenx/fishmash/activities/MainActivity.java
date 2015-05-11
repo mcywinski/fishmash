@@ -15,7 +15,7 @@ public class MainActivity extends OptionsActivity
         if(isAuthenticated())
         {
             Log.e("authenticated", "yes");
-            mainMenu();
+            pickWordList();
         }
         else
         {
