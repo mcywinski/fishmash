@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.widget.FrameLayout;
@@ -21,6 +22,7 @@ public abstract class DrawerActivity extends AppCompatActivity implements Naviga
     private NavigationDrawerFragment navigationDrawerFragment;
     private LayoutInflater layoutInflater;
     private ActionBar actionBar;
+    private DrawerLayout drawerLayout;
 
     protected FrameLayout container;
     protected CharSequence title;
@@ -35,12 +37,13 @@ public abstract class DrawerActivity extends AppCompatActivity implements Naviga
 
         layoutInflater = LayoutInflater.from(this);
         container = (FrameLayout) findViewById(R.id.container);
+        drawerLayout = (DrawerLayout) findViewById(R.id.main_drawer_layout);
 
         navigationDrawerFragment = (NavigationDrawerFragment) getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         navigationDrawerFragment.setUp
         (
             R.id.navigation_drawer,
-            (DrawerLayout) findViewById(R.id.main_drawer_layout)
+            drawerLayout
         );
     }
 
@@ -48,6 +51,15 @@ public abstract class DrawerActivity extends AppCompatActivity implements Naviga
     {
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setTitle(title);
+    }
+
+    @Override
+    public boolean onMenuOpened(int featureId, Menu menu)
+    {
+        // instead of traditional menu - show drawer
+        drawerLayout.openDrawer(Gravity.START);
+
+        return true;
     }
 
     @Override
@@ -84,7 +96,7 @@ public abstract class DrawerActivity extends AppCompatActivity implements Naviga
         changeActionBarTitle(title);
     }
 
-    protected int drawerItemPositionToResourceId(int position)
+    protected int resourceIfOfPosition(int position)
     {
         if(drawerItemPositionToResourceName == null)
         {

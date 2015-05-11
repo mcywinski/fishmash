@@ -1,7 +1,9 @@
 package net.elenx.fishmash.activities.core.drawer;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
@@ -17,8 +19,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
+import net.elenx.fishmash.Constant;
 import net.elenx.fishmash.R;
 
 public class NavigationDrawerFragment extends Fragment
@@ -175,9 +177,10 @@ public class NavigationDrawerFragment extends Fragment
             return true;
         }
 
-        if(item.getItemId() == R.id.action_example)
+        if(item.getItemId() == R.id.website)
         {
-            Toast.makeText(getActivity(), "Example action.", Toast.LENGTH_SHORT).show();
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(Constant.SERVER));
+            startActivity(browserIntent);
 
             return true;
         }
@@ -197,6 +200,6 @@ public class NavigationDrawerFragment extends Fragment
 
     public void setUserLearnedDrawer(boolean userLearnedDrawer)
     {
-        this.userLearnedDrawer = userLearnedDrawer;
+        NavigationDrawerFragment.userLearnedDrawer = userLearnedDrawer;
     }
 }

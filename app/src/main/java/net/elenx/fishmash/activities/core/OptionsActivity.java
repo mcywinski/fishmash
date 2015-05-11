@@ -37,7 +37,7 @@ public abstract class OptionsActivity extends ProgressDialogActivity
     @Override
     public void onNavigationDrawerItemSelected(int position)
     {
-        switch(drawerItemPositionToResourceId(position))
+        switch(resourceIfOfPosition(position))
         {
             case R.string.main_menu:
                 mainMenu();

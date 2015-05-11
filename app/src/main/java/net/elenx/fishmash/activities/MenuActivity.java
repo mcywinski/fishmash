@@ -1,6 +1,5 @@
 package net.elenx.fishmash.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -9,12 +8,6 @@ import net.elenx.fishmash.activities.core.OptionsActivity;
 
 public class MenuActivity extends OptionsActivity
 {
-    @Override
-    public void onBackPressed()
-    {
-        finish();
-    }
-
     @Override
     protected void mainMenu()
     {
@@ -34,9 +27,7 @@ public class MenuActivity extends OptionsActivity
                 @Override
                 public void onClick(View v)
                 {
-                    Intent intent = new Intent(getApplicationContext(), PickWordListActivity.class);
-                    startActivity(intent);
-                    finish();
+                    switchIntentTo(PickWordListActivity.class);
                 }
             }
         );
