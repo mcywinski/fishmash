@@ -35,7 +35,7 @@ public class NavigationDrawerFragment extends Fragment
     private View fragmentContainerView;
 
     private boolean fromSavedInstanceState;
-    private boolean userLearnedDrawer;
+    private static boolean userLearnedDrawer;
 
     @Override
     public void onCreate(Bundle savedInstanceState)

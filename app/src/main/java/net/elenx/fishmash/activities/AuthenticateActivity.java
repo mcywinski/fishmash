@@ -20,7 +20,6 @@ public class AuthenticateActivity extends OptionsActivity
     private TextView textViewFailedLogin;
     private EditText editTextLogin;
     private EditText editTextPassword;
-    private Button buttonLogIn;
 
     @Override
     public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState)
@@ -74,6 +73,7 @@ public class AuthenticateActivity extends OptionsActivity
     protected void onPostCreate(Bundle savedInstanceState)
     {
         super.onPostCreate(savedInstanceState);
+        injectActivity("Authenticate", R.layout.actvity_authenticate);
 
         textViewFailedLogin = (TextView) findViewById(R.id.textViewFailedLogin);
         editTextLogin = (EditText) findViewById(R.id.editTextLogin);
@@ -86,6 +86,12 @@ public class AuthenticateActivity extends OptionsActivity
 
         prepareButtonLogInListener();
         prepareButtonRegisterListener();
+    }
+
+    @Override
+    public void onNavigationDrawerItemSelected(int position)
+    {
+        // disable whole drawer
     }
 
     private void prepareButtonRegisterListener()
@@ -101,7 +107,6 @@ public class AuthenticateActivity extends OptionsActivity
                 {
                     Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(Constant.REGISTER));
                     startActivity(browserIntent);
-                    finish();
                 }
             }
         );
@@ -109,7 +114,7 @@ public class AuthenticateActivity extends OptionsActivity
 
     private void prepareButtonLogInListener()
     {
-        buttonLogIn = (Button) findViewById(R.id.buttonLogIn);
+        Button buttonLogIn = (Button) findViewById(R.id.buttonLogIn);
 
         buttonLogIn.setOnClickListener
         (

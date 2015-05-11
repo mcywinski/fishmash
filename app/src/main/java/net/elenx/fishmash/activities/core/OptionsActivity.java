@@ -31,14 +31,12 @@ public abstract class OptionsActivity extends ProgressDialogActivity
     @Override
     public void onBackPressed()
     {
-        mainMenu();
+        onPause();
     }
 
     @Override
     public void onNavigationDrawerItemSelected(int position)
     {
-        Log.e(String.valueOf(position), String.valueOf(drawerItemPositionToResourceId(position)));
-
         switch(drawerItemPositionToResourceId(position))
         {
             case R.string.main_menu:
@@ -46,7 +44,7 @@ public abstract class OptionsActivity extends ProgressDialogActivity
                 break;
 
             case R.string.update_wordlists:
-                updateWordLists();
+                new WordListUpdater(this).execute();
                 break;
 
             case R.string.profile:
@@ -56,21 +54,12 @@ public abstract class OptionsActivity extends ProgressDialogActivity
             case R.string.logout:
                 logout();
                 break;
-
-            case R.string.exit:
-                finish();
-                break;
         }
     }
 
     protected void mainMenu()
     {
         switchIntentTo(MenuActivity.class);
-    }
-
-    private void updateWordLists()
-    {
-        new WordListUpdater(this).execute();
     }
 
     protected void updateWords(long id)
@@ -94,6 +83,15 @@ public abstract class OptionsActivity extends ProgressDialogActivity
 
     protected void switchIntentTo(Class<?> clazz)
     {
+        Log.e(getClass().toString(), clazz.toString());
+
+        Class myClass = getClass();
+
+        if(myClass == clazz || myClass == AuthenticateActivity.class)
+        {
+            return;
+        }
+
         Intent intent = new Intent(getApplicationContext(), clazz);
         startActivity(intent);
         finish();

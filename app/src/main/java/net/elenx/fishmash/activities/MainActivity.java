@@ -1,7 +1,7 @@
 package net.elenx.fishmash.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import net.elenx.fishmash.activities.core.OptionsActivity;
 
@@ -14,20 +14,13 @@ public class MainActivity extends OptionsActivity
 
         if(isAuthenticated())
         {
+            Log.e("authenticated", "yes");
             mainMenu();
         }
         else
         {
-            Intent intent = new Intent(getApplicationContext(), AuthenticateActivity.class);
-            startActivity(intent);
-            finish();
+            Log.e("authenticated", "no");
+            switchIntentTo(AuthenticateActivity.class);
         }
-    }
-
-    @Override
-    public void onBackPressed()
-    {
-        // override default action (go to menu) to forbid login skip
-        onPause();
     }
 }
