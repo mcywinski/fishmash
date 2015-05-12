@@ -7,6 +7,7 @@ import android.os.PersistableBundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import net.elenx.fishmash.Constant;
@@ -59,9 +60,9 @@ public class AuthenticateActivity extends OptionsActivity
 
     private void prepareButtonLogInListener()
     {
-        Button buttonLogIn = (Button) findViewById(R.id.buttonLogIn);
+        ImageView imageViewLogIn = (ImageView) findViewById(R.id.imageViewLogIn);
 
-        buttonLogIn.setOnClickListener
+        imageViewLogIn.setOnClickListener
         (
             new View.OnClickListener()
             {
