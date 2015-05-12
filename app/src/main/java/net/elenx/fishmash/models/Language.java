@@ -30,7 +30,7 @@ public class Language
                 locale =  Locale.FRENCH;
                 break;
             default:
-                locale = null;
+                locale = Locale.US;
         }
     }
 

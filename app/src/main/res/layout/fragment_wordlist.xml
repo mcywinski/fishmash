@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableRow
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tableRowWordList"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_height="match_parent"
+        android:layout_width="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="2">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="nazwa"
+                android:id="@+id/textViewWordListName"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="jeden"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/textViewWordListFirstLanguage"
+                android:layout_below="@+id/textViewWordListName"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/wordlist_separator"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/textViewWordListSeparator"
+                android:layout_below="@+id/textViewWordListName"
+                android:layout_toRightOf="@+id/textViewWordListFirstLanguage"
+                android:layout_toEndOf="@+id/textViewWordListFirstLanguage"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="dwa"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/textViewWordListSecondLanguage"
+                android:layout_alignTop="@+id/textViewWordListSeparator"
+                android:layout_toRightOf="@+id/textViewWordListSeparator"
+                android:layout_toEndOf="@+id/textViewWordListSeparator"/>
+
+        </RelativeLayout>
+
+        <ImageView
+            android:layout_width="0dip"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:id="@+id/imageViewWordListLearn"
+            android:src="@drawable/main_learn_button"
+            android:contentDescription="@string/learning"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"/>
+
+    </LinearLayout>
+</TableRow>

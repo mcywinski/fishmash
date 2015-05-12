@@ -2,7 +2,11 @@ package net.elenx.fishmash.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -29,16 +33,35 @@ public class PickWordListActivity extends OptionsActivity
 
     private void showWordLists()
     {
-        TableLayout wordListsTable = (TableLayout) findViewById(R.id.wordListsTable);
-
         WordListsDAO wordListsDAO = new WordListsDAO(this);
         List<WordList> wordLists = wordListsDAO.selectAll();
 
+        TableLayout tableLayoutWordList = (TableLayout) findViewById(R.id.tableLayoutWordList);
+        TableRow tableRow;
+        TextView wordListName;
+        TextView wordListFirstLanguage;
+        TextView wordListSecondLanguage;
+
+        LayoutInflater layoutInflater = getLayoutInflater();
+
         for(final WordList wordList : wordLists)
         {
-            TextView textView = new TextView(this);
-            textView.setText(wordList.getName());
-            textView.setOnClickListener
+            tableRow = (TableRow) layoutInflater.inflate(R.layout.fragment_wordlist, null);
+
+            LinearLayout linearLayout = (LinearLayout) tableRow.getChildAt(0);
+            RelativeLayout relativeLayout = (RelativeLayout) linearLayout.getChildAt(0);
+
+            wordListName = (TextView) relativeLayout.getChildAt(0);
+            wordListName.setText(wordList.getName());
+
+            wordListFirstLanguage = (TextView) relativeLayout.getChildAt(1);
+            wordListFirstLanguage.setText(wordList.getMainLanguage().getLocale().getDisplayLanguage());
+
+            wordListSecondLanguage = (TextView) relativeLayout.getChildAt(3);
+            wordListSecondLanguage.setText(wordList.getForeignLanguage().getLocale().getDisplayLanguage());
+
+            ImageView imageView = (ImageView) linearLayout.getChildAt(1);
+            imageView.setOnClickListener
             (
                 new View.OnClickListener()
                 {
@@ -53,10 +76,8 @@ public class PickWordListActivity extends OptionsActivity
                 }
             );
 
-            TableRow tableRow = new TableRow(this);
-            tableRow.addView(textView);
 
-            wordListsTable.addView(tableRow);
+            tableLayoutWordList.addView(tableRow);
         }
     }
 }
