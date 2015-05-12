@@ -11,6 +11,24 @@
         android:id="@+id/wordListsTable"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageViewLearning"
+                android:src="@drawable/main_learning_header"
+                android:contentDescription="@string/learning"
+                android:adjustViewBounds="true"
+                android:layout_span="2"
+                android:scaleType="centerInside"/>
+
+            <TextView/>
+        </TableRow>
+
     </TableLayout>
 
 </RelativeLayout>
