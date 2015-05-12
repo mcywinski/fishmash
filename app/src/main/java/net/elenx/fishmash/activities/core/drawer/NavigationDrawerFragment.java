@@ -112,7 +112,7 @@ public class NavigationDrawerFragment extends Fragment
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
 
-        actionBarDrawerToggle = new MyActionBarDrawerToggle(this, this.drawerLayout);
+        actionBarDrawerToggle = new ActionBarDrawerListener(this, this.drawerLayout);
 
         if( !(userLearnedDrawer || fromSavedInstanceState) )
         {

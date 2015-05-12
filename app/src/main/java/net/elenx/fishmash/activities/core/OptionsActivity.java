@@ -88,7 +88,7 @@ public abstract class OptionsActivity extends ProgressDialogActivity
             return;
         }
 
-        Log.e(myClass.toString(), clazz.toString());
+        Log.w(myClass.toString(), clazz.toString());
 
         Intent intent = new Intent(getApplicationContext(), clazz);
         startActivity(intent);

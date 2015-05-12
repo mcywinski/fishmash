@@ -7,14 +7,14 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.View;
 
-class MyActionBarDrawerToggle extends ActionBarDrawerToggle
+class ActionBarDrawerListener extends ActionBarDrawerToggle
 {
     private static final String PREF_USER_LEARNED_DRAWER = "navigation_drawer_learned";
 
     private final NavigationDrawerFragment navigationDrawerFragment;
     private final FragmentActivity fragmentActivity;
 
-    public MyActionBarDrawerToggle(NavigationDrawerFragment navigationDrawerFragment, DrawerLayout drawerLayout)
+    public ActionBarDrawerListener(NavigationDrawerFragment navigationDrawerFragment, DrawerLayout drawerLayout)
     {
         super(navigationDrawerFragment.getActivity(), drawerLayout, net.elenx.fishmash.R.string.navigation_drawer_open, net.elenx.fishmash.R.string.navigation_drawer_close);
 

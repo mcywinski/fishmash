@@ -104,6 +104,7 @@ public abstract class FishmashDAO<Model> implements DAOInterface<Model>
         }
         catch(SQLiteException e)
         {
+            // if table does not exist, then there is nothing to delete - continue
             if(!e.getMessage().contains("no such table"))
             {
                 throw e;
@@ -141,6 +142,7 @@ public abstract class FishmashDAO<Model> implements DAOInterface<Model>
         }
         catch(SQLiteException e)
         {
+            // if table does not exist, then there is nothing to truncate - continue
             if(!e.getMessage().contains("no such table"))
             {
                 throw e;
@@ -149,8 +151,9 @@ public abstract class FishmashDAO<Model> implements DAOInterface<Model>
     }
 
     @Override
-    public void close()
+    protected void finalize() throws Throwable
     {
         sqLiteDatabase.close();
+        super.finalize();
     }
 }

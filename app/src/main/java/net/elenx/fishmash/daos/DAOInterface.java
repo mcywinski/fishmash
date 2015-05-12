@@ -7,8 +7,8 @@ import java.util.List;
 
 interface DAOInterface<Model>
 {
-    List<Model> selectAll();
     Model select(long id);
+    List<Model> selectAll();
 
     void insert(Model model);
     void insert(List<Model> modelList);
@@ -21,7 +21,6 @@ interface DAOInterface<Model>
 
     long count();
     void truncate();
-    void close();
 
     Model cursorToModel(Cursor cursor);
     ContentValues modelToContentValues(Model model);
