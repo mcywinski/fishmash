@@ -39,6 +39,9 @@ public class AuthenticateActivity extends OptionsActivity
         super.onPostCreate(savedInstanceState);
         injectActivity(getString(R.string.authenticate), R.layout.actvity_authenticate);
 
+        ImageView mainTopBar = (ImageView) findViewById(R.id.main_top_bar);
+        mainTopBar.setVisibility(View.GONE);
+
         textViewFailedLogin = (TextView) findViewById(R.id.textViewFailedLogin);
         editTextLogin = (EditText) findViewById(R.id.editTextLogin);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);

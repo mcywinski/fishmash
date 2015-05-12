@@ -1,5 +1,9 @@
 <resources>
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!--<item name="android:headerBackground">#FF0000</item>-->
+        <!--<item name="android:panelBackground">#00FF00</item>-->
+        <!--<item name="android:panelColorBackground">#0000FF</item>-->
+        <!--<item name="android:colorForeground">#FFFFFF</item>-->
     </style>
 
     <style name="splashScreenTheme" parent="Theme.AppCompat.Light.DarkActionBar">

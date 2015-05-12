@@ -31,7 +31,7 @@ public abstract class DrawerActivity extends AppCompatActivity implements Naviga
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_drawer);
 
         actionBar = getSupportActionBar();
 
@@ -40,10 +40,7 @@ public abstract class DrawerActivity extends AppCompatActivity implements Naviga
         drawerLayout = (DrawerLayout) findViewById(R.id.main_drawer_layout);
 
         navigationDrawerFragment = (NavigationDrawerFragment) getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
-        navigationDrawerFragment.setUp
-        (
-                drawerLayout
-        );
+        navigationDrawerFragment.setUp(drawerLayout);
     }
 
     private void restoreActionBar()
