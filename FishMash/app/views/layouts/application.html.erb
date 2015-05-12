@@ -5,8 +5,34 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+
+
+
 </head>
 <body>
+
+<% unless flash[:errors].blank? %>
+  <!-- Errors container -->
+  <div>
+    <%= raw flash[:errors] %>
+  </div>
+<% end %>
+
+
+<div class="col-md-12 fish-nav">
+  <ul>
+    <li>about</li>
+    <li>login</li>
+    <li class="fish-nav-logo">
+      <%= image_tag "logo_fff.svg"%>
+    </li>
+    <li>register</li>
+    <li>contact</li>
+  </ul>
+</div>
+<div class="col-md-12 fish-desc">
+  CODED AND DESIGNED BY: <span style="color: #2b2b2b">TEN GUYS ONE CODE</span>
+</div>
 
 <%= yield %>
 

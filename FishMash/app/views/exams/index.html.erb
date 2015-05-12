@@ -1,0 +1,28 @@
+<h1>Exams</h1>
+<p>
+  <%= link_to "Create a new exam", new_exam_path %>
+</p>
+<p>
+  <table>
+    <tr>
+  	 <th>Exam name</th>
+  	 <th>Description</th>
+  	 <th>Date practice start</th>
+     <th>Date practice finish</th>
+     <th>Date exam start</th>
+     <th>Date exam finish</th>
+  	 <th>Word count</th>
+    </tr>
+    <% @exams.each do |exam| %>
+    	<tr>
+    	  <td><%= exam.name %></td>
+    	  <td><em><%= exam.description %></em></td>
+    	  <td><%= exam.date_practice_start %></em></td>
+        <td><%= exam.date_practice_finish %></em></td>
+    	  <td><%= exam.date_exam_start %></em></td>
+        <td><%= exam.date_exam_finish %></em></td>
+        <td><%= exam.word_count %></em></td>
+    	</tr>
+    <% end %>
+  </table>
+</p>

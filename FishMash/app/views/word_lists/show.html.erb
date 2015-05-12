@@ -1,0 +1,31 @@
+<div class="col-md-3"></div>
+<div class="col-md-6">
+<div>
+  <h1><%= @list.name %></h1>
+  <p><em><%= @list.description %></em></p>
+</div>
+<div id="wordlist-wordview">
+  <div id="wordlist-wordview-main">
+  </div>
+  <div id="wordlist-wordview-foreign">
+  </div>
+</div>
+<div>
+  <p>
+    <br>
+    <em>Use side arrow keys to navigate between the words and top & down arrow keys to switch languages.</em>
+  </p>
+</div>
+
+<div>
+  <%= link_to  'wróć', wordlists_path%>
+</div>
+
+<!-- Data consumed by word_lists.coffee -->
+<script type="text/javascript">
+  var listId = <%= @list.id %>;
+</script>
+
+<%= javascript_include_tag 'wordlist-browse', 'data-turbolinks-track' => true %>
+</div>
+<div class="col-md-3"></div>

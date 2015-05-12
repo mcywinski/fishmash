@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  phrase: MyString
+  meaning: MyString
+  phrase_language_id: 
+  meaning_language_id: 
+
+two:
+  phrase: MyString
+  meaning: MyString
+  phrase_language_id: 
+  meaning_language_id: 
