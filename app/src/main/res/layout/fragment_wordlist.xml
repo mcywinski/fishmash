@@ -17,7 +17,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="nazwa"
                 android:id="@+id/textViewWordListName"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
@@ -26,7 +25,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="jeden"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:id="@+id/textViewWordListFirstLanguage"
                 android:layout_below="@+id/textViewWordListName"
@@ -46,7 +44,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="dwa"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:id="@+id/textViewWordListSecondLanguage"
                 android:layout_alignTop="@+id/textViewWordListSeparator"

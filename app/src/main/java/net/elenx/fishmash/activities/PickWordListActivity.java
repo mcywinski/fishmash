@@ -36,7 +36,7 @@ public class PickWordListActivity extends OptionsActivity
         WordListsDAO wordListsDAO = new WordListsDAO(this);
         List<WordList> wordLists = wordListsDAO.selectAll();
 
-        TableLayout tableLayoutWordList = (TableLayout) findViewById(R.id.tableLayoutWordList);
+        TableLayout tableLayoutWordList = (TableLayout) findViewById(R.id.tableLayoutLearningSection);
         TableRow tableRow;
         TextView wordListName;
         TextView wordListFirstLanguage;
