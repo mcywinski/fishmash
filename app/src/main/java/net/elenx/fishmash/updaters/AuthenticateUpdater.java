@@ -1,5 +1,7 @@
 package net.elenx.fishmash.updaters;
 
+import android.util.Log;
+
 import net.elenx.fishmash.Constant;
 import net.elenx.fishmash.activities.core.OptionsActivity;
 import net.elenx.fishmash.daos.AuthenticateDAO;
@@ -30,20 +32,18 @@ public class AuthenticateUpdater extends FishmashUpdater
     @Override
     public void download()
     {
+        LoginPassword loginPassword = new LoginPassword(login, password);
+        HttpHeaders requestHeaders = new HttpHeaders();
+        requestHeaders.setContentType(new MediaType("application", "json"));
+        HttpEntity<String> httpEntity = new HttpEntity<>(loginPassword.toJson(), requestHeaders);
+
         try
         {
-            LoginPassword loginPassword = new LoginPassword(login, password);
-
-            HttpHeaders requestHeaders = new HttpHeaders();
-            requestHeaders.setContentType(new MediaType("application", "json"));
-
-            HttpEntity<String> httpEntity = new HttpEntity<>(loginPassword.toJson(), requestHeaders);
-
             authenticate = restTemplate.postForObject(Constant.API + Constant.AUTHENTICATE, httpEntity, Authenticate.class);
         }
-        catch(Exception ignored)
+        catch(Exception e)
         {
-
+            Log.e(Constant.API + Constant.AUTHENTICATE, httpEntity.getBody(), e);
         }
     }
 

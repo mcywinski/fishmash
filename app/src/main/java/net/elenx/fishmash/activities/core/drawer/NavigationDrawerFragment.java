@@ -52,15 +52,12 @@ public class NavigationDrawerFragment extends Fragment
             currentSelectedPosition = savedInstanceState.getInt(STATE_SELECTED_POSITION);
             fromSavedInstanceState = true;
         }
-
-        selectItem(currentSelectedPosition);
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState)
     {
         super.onActivityCreated(savedInstanceState);
-
         setHasOptionsMenu(true);
     }
 
@@ -68,6 +65,8 @@ public class NavigationDrawerFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         drawerListView = (ListView) inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
+        drawerListView.setItemChecked(currentSelectedPosition, true);
+
         drawerListView.setOnItemClickListener
         (
             new AdapterView.OnItemClickListener()
@@ -203,7 +202,7 @@ public class NavigationDrawerFragment extends Fragment
         NavigationDrawerFragment.userLearnedDrawer = true;
     }
 
-    public static void setCurrentSelectedPosition()
+    public static void setCurrentSelectedPositionToZero()
     {
         NavigationDrawerFragment.currentSelectedPosition = 0;
     }

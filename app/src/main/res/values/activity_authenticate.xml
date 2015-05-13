@@ -5,7 +5,6 @@
     <string name="log_in">Zaloguj</string>
     <string name="offline">Brak połączenia z internetem</string>
     <string name="bad_credentials">Login lub hasło jest niepoprawne</string>
-    <string name="register">Rejestracja</string>
     <string name="login">Login</string>
     <string name="password">Hasło</string>
     <string name="logo_description">Logo</string>

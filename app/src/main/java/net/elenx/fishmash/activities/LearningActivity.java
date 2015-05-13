@@ -22,6 +22,8 @@ import java.util.Locale;
 
 public class LearningActivity extends SpeakingActivity
 {
+    private static long lastWordList = -1;
+
     private TextView phraseTextView;
     private TextView meaningTextView;
 
@@ -45,14 +47,6 @@ public class LearningActivity extends SpeakingActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        Log.e("learn", "oncre");
-    }
-
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState)
-    {
-        super.onPostCreate(savedInstanceState);
-        Log.e("learn", "post");
         initEverything();
     }
 
@@ -62,11 +56,22 @@ public class LearningActivity extends SpeakingActivity
 
         long wordListId = getIntent().getLongExtra("wordListId", -1);
 
-        Log.e("wordlistid", String.valueOf(wordListId));
+        Log.e("wordListId", String.valueOf(wordListId));
 
         if(wordListId <= 0)
         {
-            return;
+            if(lastWordList > -1)
+            {
+                wordListId = lastWordList;
+            }
+            else
+            {
+                return;
+            }
+        }
+        else
+        {
+            lastWordList = wordListId;
         }
 
         updateWords(wordListId);

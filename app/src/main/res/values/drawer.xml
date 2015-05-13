@@ -9,14 +9,18 @@
     or else descriptions will mislead user!
     -->
     <string-array name="position_to_resource_name">
+        <item>learning</item>
         <item>pick_wordlist</item>
         <item>profile</item>
+        <item>register</item>
         <item>logout</item>
     </string-array>
 
     <string-array name="position_to_resource_value">
+        <item>@string/learning</item>
         <item>@string/pick_wordlist</item>
         <item>@string/profile</item>
+        <item>@string/register</item>
         <item>@string/logout</item>
     </string-array>
 </resources>

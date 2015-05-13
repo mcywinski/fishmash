@@ -14,7 +14,6 @@
         android:src="@drawable/login_logo"
         android:layout_centerHorizontal="true"
         android:contentDescription="@string/logo_description"
-        android:layout_below="@+id/buttonRegister"
         android:layout_above="@+id/editTextLogin"
         android:adjustViewBounds="false"/>
 
@@ -31,7 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="@string/login"
-        android:text="android1"
+        android:text="android2"
         android:id="@+id/editTextLogin"
         android:layout_above="@+id/editTextPassword"
         android:layout_alignParentLeft="true"
@@ -47,7 +46,7 @@
         android:inputType="textPassword"
         android:ems="10"
         android:hint="@string/password"
-        android:text="1android"
+        android:text="2android"
         android:id="@+id/editTextPassword"
         android:layout_above="@+id/imageViewLogIn"
         android:layout_alignParentLeft="true"

@@ -1,5 +1,7 @@
 package net.elenx.fishmash.activities;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.view.View;
@@ -7,6 +9,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import net.elenx.fishmash.Constant;
 import net.elenx.fishmash.R;
 import net.elenx.fishmash.activities.core.OptionsActivity;
 import net.elenx.fishmash.updaters.AuthenticateUpdater;
@@ -53,7 +56,11 @@ public class AuthenticateActivity extends OptionsActivity
     @Override
     public void onNavigationDrawerItemSelected(int position)
     {
-        // disable whole drawer
+        if(resourceIfOfPosition(position) == R.string.register)
+        {
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(Constant.REGISTER));
+            startActivity(browserIntent);
+        }
     }
 
     private void prepareButtonLogInListener()
