@@ -1,13 +1,8 @@
 <resources>
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!--<item name="android:headerBackground">#FF0000</item>-->
-        <!--<item name="android:panelBackground">#00FF00</item>-->
-        <!--<item name="android:panelColorBackground">#0000FF</item>-->
-        <!--<item name="android:colorForeground">#FFFFFF</item>-->
+    <style name="fishmashTheme" parent="Theme.AppCompat.Light.NoActionBar">
     </style>
 
-    <style name="splashScreenTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="splashScreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@mipmap/fishmash_splash</item>
     </style>
-
 </resources>

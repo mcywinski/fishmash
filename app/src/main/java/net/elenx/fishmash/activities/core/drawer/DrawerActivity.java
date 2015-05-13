@@ -30,7 +30,8 @@ public abstract class DrawerActivity extends AppCompatActivity implements Naviga
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drawer);
 
-        getSupportActionBar().hide();
+//        getSupportActionBar().hide();
+//        setSupportActionBar(null);
 
         layoutInflater = LayoutInflater.from(this);
         container = (FrameLayout) findViewById(R.id.container);
@@ -38,13 +39,6 @@ public abstract class DrawerActivity extends AppCompatActivity implements Naviga
 
         navigationDrawerFragment = (NavigationDrawerFragment) getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         navigationDrawerFragment.setUp(drawerLayout);
-    }
-
-    private void restoreActionBar()
-    {
-//        actionBar.setDisplayShowTitleEnabled(true);
-//        actionBar.setTitle(title);
-//        actionBar.hide();
     }
 
     @Override

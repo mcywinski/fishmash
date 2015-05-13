@@ -9,9 +9,7 @@ import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -79,11 +77,13 @@ public class NavigationDrawerFragment extends Fragment
             }
         );
 
+        final NavigationDrawerFragment me = this;
+
         drawerListView.setAdapter
         (
             new ArrayAdapter<>
             (
-                getActionBar().getThemedContext(),
+                me.getActivity(),
                 android.R.layout.simple_list_item_activated_1,
                 android.R.id.text1,
                 getResources().getStringArray(R.array.position_to_resource_value)
@@ -106,10 +106,6 @@ public class NavigationDrawerFragment extends Fragment
 
         this.drawerLayout = drawerLayout;
         this.drawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
-
-        ActionBar actionBar = getActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setHomeButtonEnabled(true);
 
         actionBarDrawerToggle = new ActionBarDrawerListener(this, this.drawerLayout);
 
@@ -185,11 +181,6 @@ public class NavigationDrawerFragment extends Fragment
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    private ActionBar getActionBar()
-    {
-        return ( (AppCompatActivity) getActivity() ).getSupportActionBar();
     }
 
     public boolean hasUserLearnedDrawer()
