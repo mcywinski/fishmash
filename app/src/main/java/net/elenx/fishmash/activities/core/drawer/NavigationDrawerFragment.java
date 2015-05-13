@@ -193,8 +193,8 @@ public class NavigationDrawerFragment extends Fragment
         NavigationDrawerFragment.userLearnedDrawer = true;
     }
 
-    public static void setCurrentSelectedPositionToZero()
+    public static void setCurrentSelectedPosition(int currentSelectedPosition)
     {
-        NavigationDrawerFragment.currentSelectedPosition = 0;
+        NavigationDrawerFragment.currentSelectedPosition = currentSelectedPosition;
     }
 }

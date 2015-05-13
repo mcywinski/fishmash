@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import net.elenx.fishmash.R;
 import net.elenx.fishmash.activities.core.OptionsActivity;
+import net.elenx.fishmash.activities.core.drawer.NavigationDrawerFragment;
 import net.elenx.fishmash.daos.WordListsDAO;
 import net.elenx.fishmash.models.WordList;
 import net.elenx.fishmash.updaters.WordListUpdater;
@@ -68,6 +69,7 @@ public class PickWordListActivity extends OptionsActivity
                     @Override
                     public void onClick(View v)
                     {
+                        NavigationDrawerFragment.setCurrentSelectedPosition(0);
                         Intent intent = new Intent(getApplicationContext(), LearningActivity.class);
                         intent.putExtra("wordListId", wordList.getId());
                         startActivity(intent);

@@ -30,9 +30,6 @@ public abstract class DrawerActivity extends AppCompatActivity implements Naviga
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drawer);
 
-//        getSupportActionBar().hide();
-//        setSupportActionBar(null);
-
         layoutInflater = LayoutInflater.from(this);
         container = (FrameLayout) findViewById(R.id.container);
         drawerLayout = (DrawerLayout) findViewById(R.id.main_drawer_layout);

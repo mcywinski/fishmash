@@ -43,7 +43,7 @@ public abstract class OptionsActivity extends ProgressDialogActivity
         switch(resourceIfOfPosition(position))
         {
             case R.string.learning:
-                switchIntentTo(LearningActivity.class);
+                learning();
                 break;
 
             case R.string.pick_wordlist:
@@ -51,6 +51,7 @@ public abstract class OptionsActivity extends ProgressDialogActivity
                 break;
 
             case R.string.profile:
+                NavigationDrawerFragment.setCurrentSelectedPosition(2);
                 switchIntentTo(ProfileActivity.class);
                 break;
 
@@ -65,8 +66,15 @@ public abstract class OptionsActivity extends ProgressDialogActivity
         }
     }
 
+    protected void learning()
+    {
+        NavigationDrawerFragment.setCurrentSelectedPosition(0);
+        switchIntentTo(LearningActivity.class);
+    }
+
     protected void pickWordList()
     {
+        NavigationDrawerFragment.setCurrentSelectedPosition(1);
         switchIntentTo(PickWordListActivity.class);
     }
 
@@ -84,9 +92,9 @@ public abstract class OptionsActivity extends ProgressDialogActivity
 
     protected void logout()
     {
-        new AuthenticateDAO(this).truncate();
+        NavigationDrawerFragment.setCurrentSelectedPosition(1);
 
-        NavigationDrawerFragment.setCurrentSelectedPositionToZero();
+        new AuthenticateDAO(this).truncate();
 
         switchIntentTo(AuthenticateActivity.class);
     }
@@ -101,15 +109,6 @@ public abstract class OptionsActivity extends ProgressDialogActivity
         }
 
         Log.e(myClass.toString(), clazz.toString());
-
-//        try
-//        {
-//            throw new Exception();
-//        }
-//        catch(Exception e)
-//        {
-//            Log.e(" ", " ", e);
-//        }
 
         Intent intent = new Intent(getApplicationContext(), clazz);
         startActivity(intent);
