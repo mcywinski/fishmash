@@ -66,6 +66,8 @@ public class LearningActivity extends SpeakingActivity
             }
             else
             {
+                Toast.makeText(this, "This wordlist is empty", Toast.LENGTH_LONG).show();
+
                 return;
             }
         }
@@ -80,6 +82,8 @@ public class LearningActivity extends SpeakingActivity
 
         if(words.size() < 1)
         {
+            Toast.makeText(this, "This wordlist is empty", Toast.LENGTH_LONG).show();
+
             return;
         }
 
@@ -89,16 +93,16 @@ public class LearningActivity extends SpeakingActivity
 
         speakNowButton = (Button) findViewById(R.id.speakNowButton);
         speakNowButton.setOnClickListener
-        (
-            new View.OnClickListener()
-            {
-                @Override
-                public void onClick(View v)
-                {
-                    speakPhraseAndMeaning();
-                }
-            }
-        );
+                (
+                        new View.OnClickListener()
+                        {
+                            @Override
+                            public void onClick(View v)
+                            {
+                                speakPhraseAndMeaning();
+                            }
+                        }
+                );
 
         prepareForLearning();
         nextWordButton.performClick();
