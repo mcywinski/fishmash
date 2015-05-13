@@ -2,6 +2,7 @@ package net.elenx.fishmash.activities;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -41,17 +42,27 @@ public class LearningActivity extends SpeakingActivity
     private Button showMeaningButton;
 
     @Override
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        Log.e("learn", "oncre");
+    }
+
+    @Override
     protected void onPostCreate(Bundle savedInstanceState)
     {
         super.onPostCreate(savedInstanceState);
+        Log.e("learn", "post");
         initEverything();
     }
 
     private void initEverything()
     {
-        injectActivity(getString(R.string.learning), R.layout.activity_learning);
+        attach(R.layout.activity_learning);
 
         long wordListId = getIntent().getLongExtra("wordListId", -1);
+
+        Log.e("wordlistid", String.valueOf(wordListId));
 
         if(wordListId <= 0)
         {

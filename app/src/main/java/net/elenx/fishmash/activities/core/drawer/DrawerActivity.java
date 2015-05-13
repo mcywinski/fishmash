@@ -2,7 +2,6 @@ package net.elenx.fishmash.activities.core.drawer;
 
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -20,12 +19,10 @@ public abstract class DrawerActivity extends AppCompatActivity implements Naviga
     private static List<String> drawerItemPositionToResourceName;
 
     private LayoutInflater layoutInflater;
-    private ActionBar actionBar;
     private DrawerLayout drawerLayout;
 
     private NavigationDrawerFragment navigationDrawerFragment;
     private FrameLayout container;
-    private CharSequence title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -33,7 +30,7 @@ public abstract class DrawerActivity extends AppCompatActivity implements Naviga
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drawer);
 
-        actionBar = getSupportActionBar();
+        getSupportActionBar().hide();
 
         layoutInflater = LayoutInflater.from(this);
         container = (FrameLayout) findViewById(R.id.container);
@@ -45,8 +42,9 @@ public abstract class DrawerActivity extends AppCompatActivity implements Naviga
 
     private void restoreActionBar()
     {
-        actionBar.setDisplayShowTitleEnabled(true);
-        actionBar.setTitle(title);
+//        actionBar.setDisplayShowTitleEnabled(true);
+//        actionBar.setTitle(title);
+//        actionBar.hide();
     }
 
     @Override
@@ -64,7 +62,6 @@ public abstract class DrawerActivity extends AppCompatActivity implements Naviga
         if(!navigationDrawerFragment.isDrawerOpen())
         {
             getMenuInflater().inflate(R.menu.toolbar_options, menu);
-            restoreActionBar();
 
             return true;
         }
@@ -72,24 +69,12 @@ public abstract class DrawerActivity extends AppCompatActivity implements Naviga
         return super.onCreateOptionsMenu(menu);
     }
 
-    private void attach(int resourceId)
+    protected void attach(int resourceId)
     {
         RelativeLayout relativeLayout = (RelativeLayout) layoutInflater.inflate(resourceId, null);
 
         container.removeAllViews();
         container.addView(relativeLayout);
-    }
-
-    private void changeActionBarTitle(CharSequence title)
-    {
-        this.title = title;
-        restoreActionBar();
-    }
-
-    protected void injectActivity(CharSequence title, int resourceId)
-    {
-        attach(resourceId);
-        changeActionBarTitle(title);
     }
 
     protected int resourceIfOfPosition(int position)

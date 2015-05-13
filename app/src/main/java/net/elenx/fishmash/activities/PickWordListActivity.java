@@ -25,7 +25,7 @@ public class PickWordListActivity extends OptionsActivity
     protected void onPostCreate(Bundle savedInstanceState)
     {
         super.onPostCreate(savedInstanceState);
-        injectActivity(getString(R.string.pick_wordlist), R.layout.activity_pick_wordlist);
+        attach(R.layout.activity_pick_wordlist);
 
         new WordListUpdater(this).execute();
         showWordLists();
@@ -75,7 +75,6 @@ public class PickWordListActivity extends OptionsActivity
                     }
                 }
             );
-
 
             tableLayoutWordList.addView(tableRow);
         }

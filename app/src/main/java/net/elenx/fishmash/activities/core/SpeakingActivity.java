@@ -15,7 +15,7 @@ abstract public class SpeakingActivity extends OptionsActivity implements TextTo
     protected void onPostCreate(Bundle savedInstanceState)
     {
         super.onPostCreate(savedInstanceState);
-        textToSpeech = new TextToSpeech(this,this);
+        textToSpeech = new TextToSpeech(this, this);
     }
 
     @Override

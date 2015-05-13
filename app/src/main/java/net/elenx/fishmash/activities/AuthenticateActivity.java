@@ -1,16 +1,12 @@
 package net.elenx.fishmash.activities;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import net.elenx.fishmash.Constant;
 import net.elenx.fishmash.R;
 import net.elenx.fishmash.activities.core.OptionsActivity;
 import net.elenx.fishmash.updaters.AuthenticateUpdater;
@@ -37,7 +33,7 @@ public class AuthenticateActivity extends OptionsActivity
     protected void onPostCreate(Bundle savedInstanceState)
     {
         super.onPostCreate(savedInstanceState);
-        injectActivity(getString(R.string.authenticate), R.layout.actvity_authenticate);
+        attach(R.layout.actvity_authenticate);
 
         ImageView mainTopBar = (ImageView) findViewById(R.id.main_top_bar);
         mainTopBar.setVisibility(View.GONE);
@@ -52,7 +48,6 @@ public class AuthenticateActivity extends OptionsActivity
         }
 
         prepareButtonLogInListener();
-        prepareButtonRegisterListener();
     }
 
     @Override
@@ -104,24 +99,6 @@ public class AuthenticateActivity extends OptionsActivity
                             }
                         }
                     ).execute();
-                }
-            }
-        );
-    }
-
-    private void prepareButtonRegisterListener()
-    {
-        Button buttonRegister = (Button) findViewById(R.id.buttonRegister);
-
-        buttonRegister.setOnClickListener
-        (
-            new View.OnClickListener()
-            {
-                @Override
-                public void onClick(View view)
-                {
-                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(Constant.REGISTER));
-                    startActivity(browserIntent);
                 }
             }
         );
