@@ -26,6 +26,7 @@ Rails.application.routes.draw do
 
     post 'set_password'
   end
+  resources 'classes'
   root 'home#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
