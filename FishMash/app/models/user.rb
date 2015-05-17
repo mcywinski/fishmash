@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   has_secure_password
   has_many :api_tokens
+  has_many :student_class_memberships
+  has_many :student_classes, through: :student_class_memberships
 
   validates :password, presence: true, confirmation: true
   validates :email, presence: true, uniqueness: true
