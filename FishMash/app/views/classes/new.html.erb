@@ -1,0 +1,13 @@
+<%= form_for :student_class, url: classes_path do |f| %>
+  <p>
+    <%= f.label :name %>
+    <%= f.text_field :name, placeholder: :name %>
+  </p>
+  <p>
+    <%= f.label :description %>
+    <%= f.text_area :description, placeholder: :description %>
+  </p>
+  <p>
+    <%= f.submit "Create" %>
+  </p>
+<% end %>
