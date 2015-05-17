@@ -33,7 +33,36 @@ class ClassesController < ApplicationController
     end
 
     render 'edit'
+  end
 
+  def add_member
+    @student_class = StudentClass.find params[:class_id]
+
+    login_to_find = params[:member_new][:login]
+    disallow_find = false
+
+    if login_to_find.blank?
+      disallow_find = true
+      flash[:errors] = "You have to type in the login first."
+    end
+
+    student_to_add = User.find_by(login: params[:member_new][:login])
+    if student_to_add.nil?
+      disallow_find = true
+      flash[:errors] = "User with such login does not exist."
+    end
+
+    if disallow_find
+      redirect_to edit_class_path(@student_class)
+    else
+      @student_class.users.push student_to_add if !@student_class.users.include?(student_to_add)
+      if !@student_class.save
+        flash[:errors] = stringify_errors(@student_class)
+        redirect_to edit_class_path(@student_class)
+      else
+        render 'edit'
+      end
+    end
   end
 
   private

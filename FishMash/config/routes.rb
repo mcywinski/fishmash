@@ -26,7 +26,10 @@ Rails.application.routes.draw do
 
     post 'set_password'
   end
-  resources 'classes'
+  resources 'classes' do
+    post 'add_member'
+    post 'remove_member'
+  end
   root 'home#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
