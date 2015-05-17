@@ -1,6 +1,10 @@
 <div class="col-md-12" style="height: 75px;"></div>
 <div class="col-md-3"></div>
 <div class="col-md-6">
+  <div class="fish-button-bar">
+    <%= link_to "Create a new list", new_wordlist_path, :class => 'button-link' %>
+    <%= link_to 'Create an exam', new_exam_path, :class => 'button-link'%>
+  </div>
   <table>
     <tr class="fish-table-header">
   	 <td>List name</td>
@@ -22,13 +26,7 @@
     <% end %>
   </table>
   <br>
-  <%= link_to "Create a new list", new_wordlist_path %>
 </div>
 <div class="col-md-3"></div>
 
-</p>
-<div align="center">
-  <button type="button" id="create-exam">Create an exam</button>
-</div>
-
-<%= javascript_include_tag 'exam', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'exams', 'data-turbolinks-track' => true %>

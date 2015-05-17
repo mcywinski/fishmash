@@ -1,3 +1,12 @@
 // Place all the styles related to the Exams controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.fish-exam-form div {
+  padding: 0px;
+}
+
+.fish-exam-form select {
+  width: 100%;
+  min-height: 200px;
+}
