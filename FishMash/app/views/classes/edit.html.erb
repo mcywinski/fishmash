@@ -28,6 +28,8 @@
     <% end %>
   </div>
   <div>
-
+    <% @student_class.users.each do |m| %>
+      <%= m.login %> - <%= link_to "Remove", class_remove_member_path(class_id: @student_class.id, user_id: m.id), :method => :post %>
+    <% end %>
   </div>
 </div>

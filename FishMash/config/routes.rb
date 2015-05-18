@@ -26,7 +26,7 @@ Rails.application.routes.draw do
 
     post 'set_password'
   end
-  resources 'classes' do
+  resources 'classes', except: [:show] do
     post 'add_member'
     post 'remove_member'
   end

@@ -11,21 +11,6 @@ class ClassesController < ApplicationController
 
   end
 
-  def show
-    @student_class = StudentClass.find params[:id]
-    
-    if @student_class.nil?
-      flash[:errors] = "Class with such ID does not exist."
-    else
-      @students = Array.new
-      class_members = StudentClassMembership.where(student_class: @student_class.id)
-      
-      class_members.each do |student| 
-          @students.push(User.find student.user)
-      end
-    end
-  end
-
   def create
     stud_class = StudentClass.new(class_params)
     if stud_class.save
@@ -89,8 +74,8 @@ class ClassesController < ApplicationController
     else
       student_membership = StudentClassMembership.find_by(user_id: @student_to_remove.id, student_class_id: @student_class.id)
       student_membership.destroy
-      redirect_to class_path(@student_class)
     end
+    redirect_to edit_class_path(@student_class)
   end
 
   private
