@@ -1,0 +1,35 @@
+<div class="col-md-6">
+  <h2>Details</h2>
+  <%= form_for @student_class, url: class_path(@student_class) do |f| %>
+    <p>
+      <%= f.label :name %>
+      <%= f.text_field :name, placeholder: :name %>
+    </p>
+    <p>
+      <%= f.label :description %>
+      <%= f.text_area :description, placeholder: :description %>
+    </p>
+    <p>
+      <%= f.submit "Save changes" %>
+    </p>
+  <% end %>
+</div>
+<div class="col-md-6">
+  <h2>Members</h2>
+  <div>
+    <%= form_for :member_new, url: class_add_member_path(@student_class) do |f| %>
+      <p>
+        <%= f.label :login %>
+        <%= f.text_field :login, placeholder: "Type in a login of user to add to the class" %>
+      </p>
+      <p>
+        <%= f.submit "Add class member" %>
+      </p>
+    <% end %>
+  </div>
+  <div>
+    <% @student_class.users.each do |m| %>
+      <%= m.login %> - <%= link_to "Remove", class_remove_member_path(class_id: @student_class.id, user_id: m.id), :method => :post %>
+    <% end %>
+  </div>
+</div>

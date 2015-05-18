@@ -1,0 +1,19 @@
+<h1>Student classes</h1>
+<table border="1">
+  <thead>
+    <tr>
+      <td>ID</td>
+      <td>Name</td>
+      <td></td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @classes.each do |student_class| %>
+      <tr>
+        <td><%= student_class.id %></td>
+        <td><%= student_class.name %></td>
+        <td><%= link_to "Edit", edit_class_path(student_class) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
