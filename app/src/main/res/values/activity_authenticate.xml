@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="authenticate">Autentykacja</string>
+    <string name="authenticate">Authenticate</string>
 
-    <string name="log_in">Zaloguj</string>
-    <string name="offline">Brak połączenia z internetem</string>
-    <string name="bad_credentials">Login lub hasło jest niepoprawne</string>
+    <string name="log_in">Log in</string>
+    <string name="offline">No internet access</string>
+    <string name="bad_credentials">Login or password is incorrect</string>
     <string name="login">Login</string>
-    <string name="password">Hasło</string>
+    <string name="password">Password</string>
     <string name="logo_description">Logo</string>
 </resources>

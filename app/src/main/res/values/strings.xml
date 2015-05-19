@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Fishmash</string>
-    <string name="register">Rejestracja</string>
+    <string name="app_name">FishMash</string>
+    <string name="register">Register</string>
     <string name="main_top_bar">Main top bar</string>
 </resources>

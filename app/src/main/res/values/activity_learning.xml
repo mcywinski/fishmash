@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="learning">Nauka</string>
+    <string name="learning">Learning</string>
 
-    <string name="next_word">Następne słówko</string>
-    <string name="speak">Odczytuj</string>
-    <string name="speak_now">Odczytaj</string>
-    <string name="show_meaning">Pokaż znaczenie</string>
+    <string name="next_word">Next word</string>
+    <string name="speak">Speak</string>
+    <string name="speak_now">Speak now</string>
+    <!--<string name="show_meaning">Show meaning</string>-->
+    <string name="back">Back</string>
 </resources>

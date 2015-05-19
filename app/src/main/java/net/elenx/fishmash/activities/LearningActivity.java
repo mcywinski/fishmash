@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,8 +41,6 @@ public class LearningActivity extends SpeakingActivity
 
     private Iterator<Word> wordIterator;
     private List<Word> words;
-
-    private Button showMeaningButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -91,6 +90,25 @@ public class LearningActivity extends SpeakingActivity
         phraseLocale = wordList.getForeignLanguage().getLocale();
         meaningLocale = wordList.getMainLanguage().getLocale();
 
+        TextView wordListName = (TextView) findViewById(R.id.textViewWordListName);
+        wordListName.setText(wordList.getName());
+
+        TextView wordListDescription = (TextView) findViewById(R.id.textViewWordListDescription);
+        wordListDescription.setText(wordList.getDescription());
+
+        ImageView imageViewBack = (ImageView) findViewById(R.id.imageViewBack);
+        imageViewBack.setOnClickListener
+        (
+            new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View view)
+                {
+                    pickWordList();
+                }
+            }
+        );
+
         speakNowButton = (Button) findViewById(R.id.speakNowButton);
         speakNowButton.setOnClickListener
         (
@@ -128,8 +146,7 @@ public class LearningActivity extends SpeakingActivity
 
         rewind();
 
-        showMeaningButton = (Button) findViewById(R.id.showMeaningButton);
-        showMeaningButton.setOnClickListener
+        phraseTextView.setOnClickListener
         (
             new View.OnClickListener()
             {
@@ -138,18 +155,6 @@ public class LearningActivity extends SpeakingActivity
                 {
                     meaningTextView.setText(meaning);
                     colorAccordingToSpeakAbility(meaningTextView, meaningLocale);
-                }
-            }
-        );
-
-        phraseTextView.setOnClickListener
-        (
-            new View.OnClickListener()
-            {
-                @Override
-                public void onClick(View view)
-                {
-                    showMeaningButton.performClick();
                 }
             }
         );

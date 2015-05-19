@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="navigation_drawer_open">Pokaż opcje</string>
-    <string name="navigation_drawer_close">Zamknij opcje</string>
+    <string name="navigation_drawer_open">Show options</string>
+    <string name="navigation_drawer_close">Close options</string>
 
     <!--
     WARNING!

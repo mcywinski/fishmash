@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="pick_wordlist">Wybierz listę</string>
+    <string name="pick_wordlist">Pick wordlist</string>
     <string name="wordlist_separator"> - </string>
 </resources>
