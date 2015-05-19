@@ -10,7 +10,7 @@
     <% @students.each do |student| %>
       <tr>
         <td><%= student.login %></td>
-        <td><%= link_to "Remove", class_remove_member_path(class_id: @student_class.id, user_id: student.id), :method => :post %></td>
+        <td><%= link_to 'Remove', class_remove_member_path(class_id: @student_class.id, user_id: student.id), :method => :post %></td>
       </tr>
     <% end %>
   </tbody>

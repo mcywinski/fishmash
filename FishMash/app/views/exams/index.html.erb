@@ -1,32 +1,35 @@
 <div class="col-md-2"></div>
 <div class="col-md-8">
-<h1 class="fish-h1">Exams</h1>
-<div class="fish-button-bar">
-  <%= link_to "Create a new exam", new_exam_path, :class => 'button-link' %>
-</div>
-<p>
+  <h1 class="fish-h1">Exams</h1>
+
+  <div class="fish-button-bar">
+    <%= link_to 'Create a new exam', new_exam_path, :class => 'button-link' %>
+  </div>
+  <p>
   <table>
     <tr class="fish-table-header">
-  	 <td>Exam name</td>
-  	 <td>Description</td>
-  	 <td>Date practice start</td>
-     <td>Date practice finish</td>
-     <td>Date exam start</td>
-     <td>Date exam finish</td>
-  	 <td>Word count</td>
+      <td>Exam name</td>
+      <td>Description</td>
+      <td>Date practice start</td>
+      <td>Date practice finish</td>
+      <td>Date exam start</td>
+      <td>Date exam finish</td>
+      <td>Word count</td>
     </tr>
+
     <% @exams.each do |exam| %>
-    	<tr>
-    	  <td><%= exam.name %></td>
-    	  <td><em><%= exam.description %></em></td>
-    	  <td><%= exam.date_practice_start %></em></td>
-        <td><%= exam.date_practice_finish %></em></td>
-    	  <td><%= exam.date_exam_start %></em></td>
-        <td><%= exam.date_exam_finish %></em></td>
-        <td><%= exam.word_count %></em></td>
-    	</tr>
+        <tr>
+          <td><%= exam.name %></td>
+          <td><em><%= exam.description %></em></td>
+          <td><%= exam.date_practice_start %></td>
+          <td><%= exam.date_practice_finish %></td>
+          <td><%= exam.date_exam_start %></td>
+          <td><%= exam.date_exam_finish %></td>
+          <td><%= exam.word_count %></td>
+        </tr>
     <% end %>
+
   </table>
-</p>
+  </p>
 </div>
 <div class="col-md-2"></div>

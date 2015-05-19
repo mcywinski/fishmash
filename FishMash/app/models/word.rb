@@ -1,6 +1,6 @@
 class Word < ActiveRecord::Base
-  belongs_to :phrase_language, class_name: "Language", foreign_key: "phrase_language_id"
-  belongs_to :meaning_language, class_name: "Language", foreign_key: "meaning_language_id"
+  belongs_to :phrase_language, class_name: 'Language', foreign_key: 'phrase_language_id'
+  belongs_to :meaning_language, class_name: 'Language', foreign_key: 'meaning_language_id'
 
   has_many :word_list_memberships
   has_many :word_lists, through: :word_list_memberships
@@ -15,11 +15,7 @@ class Word < ActiveRecord::Base
   # Checks if a duplicate of a pair phrase - meaning already exists in the database.
   # If so, false is returned and true otherwise.
   def ensure_unique
-    if Word.exists?(phrase: self.phrase, meaning: self.meaning, phrase_language_id: self.phrase_language_id, meaning_language_id: self.meaning_language_id)
-      return false
-    else
-      return true
-    end
+    !Word.exists?(phrase: self.phrase, meaning: self.meaning, phrase_language_id: self.phrase_language_id, meaning_language_id: self.meaning_language_id)
   end
 
   # Returns an array of words hashes belonging to the list of given ID.
@@ -42,6 +38,7 @@ class Word < ActiveRecord::Base
     word_dto[:id] = self.id
     word_dto[:phrase] = self.phrase
     word_dto[:meaning] = self.meaning
-    return word_dto
+
+    word_dto
   end
 end

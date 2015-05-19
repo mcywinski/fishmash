@@ -78,7 +78,7 @@ $ ->
   $.ajax
     type: 'GET'
     url: '/api/lists/' + listId
-    success: (data, status) ->
+    success: (data) ->
       words = data.words
       initBrowsing()
     error: ->

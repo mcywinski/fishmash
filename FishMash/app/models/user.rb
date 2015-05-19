@@ -16,6 +16,6 @@ class User < ActiveRecord::Base
     user_dto[:updated_at] = self.updated_at
     user_dto[:user_type] = self.user_type
 
-    return user_dto
+    user_dto
   end
 end

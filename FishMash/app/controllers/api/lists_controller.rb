@@ -5,8 +5,8 @@ class Api::ListsController < ApplicationController
 
   def index
     lists = WordList.all
-
     lists_dto = Array.new
+
     lists.each do |list|
       lists_dto.push(list.to_dto(false))
     end
@@ -38,6 +38,4 @@ class Api::ListsController < ApplicationController
 
     respond_with nil, location: ''
   end
-
-  private
 end

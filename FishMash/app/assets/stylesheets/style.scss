@@ -31,10 +31,9 @@ body, html {
 }
 
 .fish-index-2 {
-  background: #2b2b2b;
   color: #fff;
   min-height: 500px;
-  background-image: image_url('shark.svg');
+  background: #2b2b2b image_url('shark.svg');
   background-size: 100% 100%;
   padding: 50px;
 }
@@ -55,7 +54,7 @@ body, html {
 
 .fish-index-2 .fish-tab {
   min-height: 300px;
-  margin: 50px 0px;
+  margin: 50px 0;
 }
 
 .fish-index-2 .fish-tab div {
@@ -73,7 +72,7 @@ body, html {
 
 .fish-index-3 img {
   width: 100%; 
-  margin: 25px 0px;
+  margin: 25px 0;
 }
 
 .fish-index-3 h1 {
@@ -110,7 +109,7 @@ body, html {
 }
 
 .fish-user-info div {
-  padding: 0px;  
+  padding: 0;
 }
 
 .fish-user-info p {

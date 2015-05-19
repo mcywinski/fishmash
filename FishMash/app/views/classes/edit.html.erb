@@ -10,7 +10,7 @@
       <%= f.text_area :description, placeholder: :description %>
     </p>
     <p>
-      <%= f.submit "Save changes" %>
+      <%= f.submit 'Save changes' %>
     </p>
   <% end %>
 </div>
@@ -20,16 +20,16 @@
     <%= form_for :member_new, url: class_add_member_path(@student_class) do |f| %>
       <p>
         <%= f.label :login %>
-        <%= f.text_field :login, placeholder: "Type in a login of user to add to the class" %>
+        <%= f.text_field :login, placeholder: 'Type in a login of user to add to the class' %>
       </p>
       <p>
-        <%= f.submit "Add class member" %>
+        <%= f.submit 'Add class member' %>
       </p>
     <% end %>
   </div>
   <div>
     <% @student_class.users.each do |m| %>
-      <%= m.login %> - <%= link_to "Remove", class_remove_member_path(class_id: @student_class.id, user_id: m.id), :method => :post %>
+      <%= m.login %> - <%= link_to 'Remove', class_remove_member_path(class_id: @student_class.id, user_id: m.id), :method => :post %>
     <% end %>
   </div>
 </div>

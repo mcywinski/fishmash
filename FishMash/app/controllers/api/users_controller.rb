@@ -5,13 +5,13 @@ class Api::UsersController < ApplicationController
 
   def authenticate
     user = User.find_by(login: user_authentication_params[:login]).try(:authenticate, user_authentication_params[:password])
-    if !user
-      render_status :unauthorized
-    else
+    if user
       token = ApiToken.new
       puts token.inspect
       user.api_tokens.push token
       respond_with token, location: ''
+    else
+      render_status :unauthorized
     end
   end
 

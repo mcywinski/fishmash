@@ -14,104 +14,104 @@
 ActiveRecord::Schema.define(version: 20150517172610) do
 
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension 'plpgsql'
 
-  create_table "api_tokens", force: :cascade do |t|
-    t.string   "token"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'api_tokens', force: :cascade do |t|
+    t.string 'token'
+    t.integer 'user_id'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  add_index "api_tokens", ["user_id"], name: "index_api_tokens_on_user_id", using: :btree
+  add_index 'api_tokens', ['user_id'], name: 'index_api_tokens_on_user_id', using: :btree
 
-  create_table "exams", force: :cascade do |t|
-    t.string   "name"
-    t.text     "description"
-    t.date     "date_practice_start"
-    t.date     "date_practice_finish"
-    t.date     "date_exam_start"
-    t.date     "date_exam_finish"
-    t.integer  "word_count"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+  create_table 'exams', force: :cascade do |t|
+    t.string 'name'
+    t.text 'description'
+    t.date 'date_practice_start'
+    t.date 'date_practice_finish'
+    t.date 'date_exam_start'
+    t.date 'date_exam_finish'
+    t.integer 'word_count'
+    t.datetime 'created_at',           null: false
+    t.datetime 'updated_at',           null: false
   end
 
-  create_table "languages", force: :cascade do |t|
-    t.string   "name"
-    t.text     "description"
-    t.string   "flag_bitmap_filename"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+  create_table 'languages', force: :cascade do |t|
+    t.string 'name'
+    t.text 'description'
+    t.string 'flag_bitmap_filename'
+    t.datetime 'created_at',           null: false
+    t.datetime 'updated_at',           null: false
   end
 
-  create_table "student_class_memberships", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "student_class_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+  create_table 'student_class_memberships', force: :cascade do |t|
+    t.integer 'user_id'
+    t.integer 'student_class_id'
+    t.datetime 'created_at',       null: false
+    t.datetime 'updated_at',       null: false
   end
 
-  add_index "student_class_memberships", ["student_class_id"], name: "index_student_class_memberships_on_student_class_id", using: :btree
-  add_index "student_class_memberships", ["user_id"], name: "index_student_class_memberships_on_user_id", using: :btree
+  add_index 'student_class_memberships', ['student_class_id'], name: 'index_student_class_memberships_on_student_class_id', using: :btree
+  add_index 'student_class_memberships', ['user_id'], name: 'index_student_class_memberships_on_user_id', using: :btree
 
-  create_table "student_classes", force: :cascade do |t|
-    t.string   "name"
-    t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+  create_table 'student_classes', force: :cascade do |t|
+    t.string 'name'
+    t.text 'description'
+    t.datetime 'created_at',  null: false
+    t.datetime 'updated_at',  null: false
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string   "login"
-    t.string   "email"
-    t.string   "password_digest"
-    t.integer  "user_type"
-    t.boolean  "active"
-    t.string   "activation_token"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+  create_table 'users', force: :cascade do |t|
+    t.string 'login'
+    t.string 'email'
+    t.string 'password_digest'
+    t.integer 'user_type'
+    t.boolean 'active'
+    t.string 'activation_token'
+    t.datetime 'created_at',       null: false
+    t.datetime 'updated_at',       null: false
   end
 
-  create_table "word_list_exams", force: :cascade do |t|
-    t.integer  "wordlist_id"
-    t.integer  "exam_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table 'word_list_exams', force: :cascade do |t|
+    t.integer 'wordlist_id'
+    t.integer 'exam_id'
+    t.datetime 'created_at'
+    t.datetime 'updated_at'
   end
 
-  create_table "word_list_memberships", force: :cascade do |t|
-    t.integer  "word_id"
-    t.integer  "word_list_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+  create_table 'word_list_memberships', force: :cascade do |t|
+    t.integer 'word_id'
+    t.integer 'word_list_id'
+    t.datetime 'created_at',   null: false
+    t.datetime 'updated_at',   null: false
   end
 
-  add_index "word_list_memberships", ["word_id"], name: "index_word_list_memberships_on_word_id", using: :btree
-  add_index "word_list_memberships", ["word_list_id"], name: "index_word_list_memberships_on_word_list_id", using: :btree
+  add_index 'word_list_memberships', ['word_id'], name: 'index_word_list_memberships_on_word_id', using: :btree
+  add_index 'word_list_memberships', ['word_list_id'], name: 'index_word_list_memberships_on_word_list_id', using: :btree
 
-  create_table "word_lists", force: :cascade do |t|
-    t.string   "name"
-    t.text     "description"
-    t.integer  "main_language_id"
-    t.integer  "foreign_language_id"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+  create_table 'word_lists', force: :cascade do |t|
+    t.string 'name'
+    t.text 'description'
+    t.integer 'main_language_id'
+    t.integer 'foreign_language_id'
+    t.datetime 'created_at',          null: false
+    t.datetime 'updated_at',          null: false
   end
 
-  add_index "word_lists", ["foreign_language_id"], name: "index_word_lists_on_foreign_language_id", using: :btree
-  add_index "word_lists", ["main_language_id"], name: "index_word_lists_on_main_language_id", using: :btree
+  add_index 'word_lists', ['foreign_language_id'], name: 'index_word_lists_on_foreign_language_id', using: :btree
+  add_index 'word_lists', ['main_language_id'], name: 'index_word_lists_on_main_language_id', using: :btree
 
-  create_table "words", force: :cascade do |t|
-    t.string   "phrase"
-    t.string   "meaning"
-    t.integer  "phrase_language_id"
-    t.integer  "meaning_language_id"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+  create_table 'words', force: :cascade do |t|
+    t.string 'phrase'
+    t.string 'meaning'
+    t.integer 'phrase_language_id'
+    t.integer 'meaning_language_id'
+    t.datetime 'created_at',          null: false
+    t.datetime 'updated_at',          null: false
   end
 
-  add_index "words", ["meaning_language_id"], name: "index_words_on_meaning_language_id", using: :btree
-  add_index "words", ["phrase_language_id"], name: "index_words_on_phrase_language_id", using: :btree
+  add_index 'words', ['meaning_language_id'], name: 'index_words_on_meaning_language_id', using: :btree
+  add_index 'words', ['phrase_language_id'], name: 'index_words_on_phrase_language_id', using: :btree
 
 end

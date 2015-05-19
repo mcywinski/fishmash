@@ -27,11 +27,11 @@ class ApplicationController < ActionController::Base
   end
 
   def stringify_errors(model)
-  	errors = ""
+  	errors = ''
   	model.errors.full_messages.each do |msg|
-  		errors += "<p>" + msg + "</p>"
+  		errors += '<p>' + msg + '</p>'
   	end
-  	return errors
+    errors
   end
 
   def render_status(status_code)
@@ -40,12 +40,12 @@ class ApplicationController < ActionController::Base
 
   def api_authorize
     token = ApiToken.find_by(token: api_token)
-    render_status :unauthorized if !token
+    render_status :unauthorized unless token
   end
 
   def api_get_user
     token = ApiToken.find_by(token: api_token)
-    return token.user
+    token.user
   end
 
   def api_token

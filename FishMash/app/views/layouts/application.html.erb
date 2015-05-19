@@ -42,7 +42,7 @@
       <li><%= link_to 'exams', exams_path %></li>
     <% end %>
     <li class="fish-nav-logo">
-      <%= link_to raw(image_tag "logo_fff.svg"), root_url %>
+      <%= link_to raw(image_tag 'logo_fff.svg'), root_url %>
     </li>
     <% if !is_user_logged_in? %>
       <li><%= link_to 'register', register_users_path %></li>

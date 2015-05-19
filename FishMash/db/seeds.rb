@@ -2,7 +2,7 @@ language_list = [
        ['Polski', 'Język polski'],
        ['English', 'English language'],
        ['Deutsch', 'Deutsch sprache'],
-       ['Francais', 'Francais']
+       %w(Francais Francais)
 ]
 
 language_list.each do |name, description|

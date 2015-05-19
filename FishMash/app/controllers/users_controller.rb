@@ -8,13 +8,13 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new user_create_params
-    result = @user.save
-    if !@user.save
+
+    if @user.save
+      flash[:success] = 'Account has been successfully created.'
+      redirect_to root_path
+    else
       @errors = stringify_errors(@user)
       render 'register'
-    else
-      flash[:success] = 'Account has been successfuly created.'
-      redirect_to root_path
     end
   end
 
@@ -23,19 +23,19 @@ class UsersController < ApplicationController
 
   def authenticate
     user = User.find_by(login: user_login_params[:login]).try(:authenticate, user_login_params[:password])
-    if !user
+    if user
+      set_logged_user_id(user.id)
+      flash[:success] = "You've successfully signed in."
+      redirect_to wordlists_path
+    else
       @errors = 'Invalid login or password provided'
       render 'login'
-    else
-      set_logged_user_id(user.id)
-      flash[:success] = "You've successfuly signed in."
-      redirect_to wordlists_path
     end
   end
 
   def logout
     session.destroy
-    flash[:success] = 'You are successfuly logged out.'
+    flash[:success] = 'You are successfully logged out.'
     redirect_to root_path
   end
 
@@ -46,21 +46,21 @@ class UsersController < ApplicationController
   def set_password
     #Routing check
     if params[:user_id].to_i != get_logged_user_id
-      flash[:errors] = "Invalid user profile!"
+      flash[:errors] = 'Invalid user profile!'
       redirect_to root_path and return
     end
 
     #Old password check
     user = User.find(get_logged_user_id).try(:authenticate, set_password_params[:password_old])
-    if !user
-      flash[:errors] = "You have provided incorrect old password."
+    unless user
+      flash[:errors] = 'You have provided incorrect old password.'
       redirect_to profile_users_path and return
     end
 
     #Change
     password_params = { password: set_password_params[:password], password_confirmation: set_password_params[:password_confirmation] }
     if user.update(password_params)
-      flash[:success] = "Password has been successfuly changed."
+      flash[:success] = 'Password has been successfully changed.'
     else
       flash[:errors] = stringify_errors(user)
     end

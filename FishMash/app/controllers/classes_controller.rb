@@ -17,7 +17,7 @@ class ClassesController < ApplicationController
       redirect_to classes_path
     else
       flash[:errors] = stringify_errors(stud_class)
-      redirect_to new_class_path and return
+      redirect_to new_class_path
     end
   end
 
@@ -27,7 +27,7 @@ class ClassesController < ApplicationController
 
   def update
     @student_class = StudentClass.find(params[:id])
-    if !@student_class.update(class_params)
+    unless @student_class.update(class_params)
       flash[:errors] = stringify_errors(@student_class)
       redirect_to edit_class_path(@student_class) and return
     end
@@ -43,19 +43,19 @@ class ClassesController < ApplicationController
 
     if login_to_find.blank?
       disallow_find = true
-      flash[:errors] = "You have to type in the login first."
+      flash[:errors] = 'You have to type in the login first.'
     end
 
     student_to_add = User.find_by(login: params[:member_new][:login])
     if student_to_add.nil?
       disallow_find = true
-      flash[:errors] = "User with such login does not exist."
+      flash[:errors] = 'User with such login does not exist.'
     end
 
     if disallow_find
       redirect_to edit_class_path(@student_class)
     else
-      @student_class.users.push student_to_add if !@student_class.users.include?(student_to_add)
+      @student_class.users.push student_to_add unless @student_class.users.include?(student_to_add)
       if !@student_class.save
         flash[:errors] = stringify_errors(@student_class)
         redirect_to edit_class_path(@student_class)
@@ -70,7 +70,7 @@ class ClassesController < ApplicationController
     @student_to_remove = User.find params[:user_id]
 
     if @student_to_remove.nil? or @student_class.nil?
-      flash[:errors] = "User or class with such ID does not exist."
+      flash[:errors] = 'User or class with such ID does not exist.'
     else
       student_membership = StudentClassMembership.find_by(user_id: @student_to_remove.id, student_class_id: @student_class.id)
       student_membership.destroy
