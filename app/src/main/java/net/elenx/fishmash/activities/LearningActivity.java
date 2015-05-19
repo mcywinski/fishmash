@@ -93,16 +93,16 @@ public class LearningActivity extends SpeakingActivity
 
         speakNowButton = (Button) findViewById(R.id.speakNowButton);
         speakNowButton.setOnClickListener
-                (
-                        new View.OnClickListener()
-                        {
-                            @Override
-                            public void onClick(View v)
-                            {
-                                speakPhraseAndMeaning();
-                            }
-                        }
-                );
+        (
+            new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+                    speakPhraseAndMeaning();
+                }
+            }
+        );
 
         prepareForLearning();
         nextWordButton.performClick();

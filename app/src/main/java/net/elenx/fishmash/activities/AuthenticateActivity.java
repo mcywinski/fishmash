@@ -7,7 +7,7 @@ import android.os.PersistableBundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import net.elenx.fishmash.Constant;
 import net.elenx.fishmash.R;
@@ -17,7 +17,6 @@ import net.elenx.fishmash.updaters.UpdaterListener;
 
 public class AuthenticateActivity extends OptionsActivity
 {
-    private TextView textViewFailedLogin;
     private EditText editTextLogin;
     private EditText editTextPassword;
 
@@ -41,7 +40,6 @@ public class AuthenticateActivity extends OptionsActivity
         ImageView mainTopBar = (ImageView) findViewById(R.id.main_top_bar);
         mainTopBar.setVisibility(View.GONE);
 
-        textViewFailedLogin = (TextView) findViewById(R.id.textViewFailedLogin);
         editTextLogin = (EditText) findViewById(R.id.editTextLogin);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
 
@@ -81,8 +79,6 @@ public class AuthenticateActivity extends OptionsActivity
                         return;
                     }
 
-                    hideWarning();
-
                     String login = editTextLogin.getText().toString();
                     String password = editTextPassword.getText().toString();
 
@@ -120,7 +116,7 @@ public class AuthenticateActivity extends OptionsActivity
                 @Override
                 public void run()
                 {
-                    textViewFailedLogin.setText(getText(R.string.offline));
+                    Toast.makeText(me, getText(R.string.offline), Toast.LENGTH_LONG).show();
                 }
             }
         );
@@ -135,14 +131,9 @@ public class AuthenticateActivity extends OptionsActivity
                 @Override
                 public void run()
                 {
-                    textViewFailedLogin.setText(getText(R.string.bad_credentials));
+                    Toast.makeText(me, getText(R.string.bad_credentials), Toast.LENGTH_LONG).show();
                 }
             }
         );
-    }
-
-    private void hideWarning()
-    {
-        textViewFailedLogin.setText("");
     }
 }

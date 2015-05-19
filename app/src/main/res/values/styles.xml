@@ -1,5 +1,6 @@
 <resources>
     <style name="fishmashTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:colorBackground">#FFFFFF</item>
     </style>
 
     <style name="splashScreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
