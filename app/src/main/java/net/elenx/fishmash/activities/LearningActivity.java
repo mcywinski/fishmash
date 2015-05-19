@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import net.elenx.fishmash.Cycle;
 import net.elenx.fishmash.R;
 import net.elenx.fishmash.activities.core.SpeakingActivity;
 import net.elenx.fishmash.daos.WordListsDAO;
@@ -16,7 +17,6 @@ import net.elenx.fishmash.models.Word;
 import net.elenx.fishmash.models.WordList;
 
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Locale;
 
 public class LearningActivity extends SpeakingActivity
@@ -32,8 +32,7 @@ public class LearningActivity extends SpeakingActivity
     private String mainLanguageName;
     private String foreignLanguageName;
 
-    private List<Word> words;
-    private ListIterator<Word> wordListIterator;
+    private Cycle<Word> cycle;
 
     private Word word;
     private boolean isMainLanguageActive;
@@ -68,7 +67,8 @@ public class LearningActivity extends SpeakingActivity
 
         updateWords(wordListId);
 
-        words = new WordsDAO(this).selectAll();
+        List<Word> words = new WordsDAO(this).selectAll();
+        cycle = new Cycle<>(words);
 
         if(words.size() < 1)
         {
@@ -107,8 +107,6 @@ public class LearningActivity extends SpeakingActivity
         phraseXorMeaning = (TextView) findViewById(R.id.TextViewPhraseXorMeaning);
         mainXorForeignLanguage = (TextView) findViewById(R.id.TextViewMainXorForeignLanguage);
 
-        rewind();
-
         phraseXorMeaning.setOnClickListener
         (
             new View.OnClickListener()
@@ -130,15 +128,7 @@ public class LearningActivity extends SpeakingActivity
                 @Override
                 public void onClick(View v)
                 {
-                    if(wordListIterator.hasNext())
-                    {
-                        display(wordListIterator.next());
-                    }
-                    else
-                    {
-                        Toast.makeText(me, "Od początku", Toast.LENGTH_SHORT).show();
-                        rewind();
-                    }
+                    display(cycle.next());
                 }
             }
         );
@@ -151,14 +141,7 @@ public class LearningActivity extends SpeakingActivity
                 @Override
                 public void onClick(View view)
                 {
-                    if(wordListIterator.hasPrevious())
-                    {
-                        display(wordListIterator.previous());
-                    }
-                    else
-                    {
-                        Toast.makeText(me, "There is no previous word", Toast.LENGTH_LONG).show();
-                    }
+                    display(cycle.previous());
                 }
             }
         );
@@ -200,10 +183,5 @@ public class LearningActivity extends SpeakingActivity
         }
 
         phraseXorMeaning.setText(buffer);
-    }
-
-    private void rewind()
-    {
-        wordListIterator = words.listIterator();
     }
 }

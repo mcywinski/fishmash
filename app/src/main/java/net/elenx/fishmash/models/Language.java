@@ -20,9 +20,6 @@ public class Language
     {
         switch((int) id)
         {
-            case 2:
-                locale = Locale.US;
-                break;
             case 3:
                 locale = Locale.GERMANY;
                 break;
