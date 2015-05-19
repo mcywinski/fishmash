@@ -65,7 +65,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="35sp"
-        android:id="@+id/phraseTextView"
+        android:id="@+id/TextViewPhraseXorMeaning"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"/>
 
@@ -73,8 +73,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:id="@+id/meaningTextView"
-        android:layout_below="@+id/phraseTextView"
+        android:id="@+id/TextViewMainXorForeignLanguage"
+        android:layout_below="@+id/TextViewPhraseXorMeaning"
         android:layout_centerHorizontal="true"/>
 
     <TableLayout

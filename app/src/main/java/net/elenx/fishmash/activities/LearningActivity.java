@@ -15,38 +15,33 @@ import net.elenx.fishmash.daos.WordsDAO;
 import net.elenx.fishmash.models.Word;
 import net.elenx.fishmash.models.WordList;
 
-import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Locale;
 
 public class LearningActivity extends SpeakingActivity
 {
     private static long lastWordList = -1;
 
-    private TextView phraseTextView;
-    private TextView meaningTextView;
+    private TextView phraseXorMeaning;
+    private TextView mainXorForeignLanguage;
 
-    private Locale phraseLocale;
-    private Locale meaningLocale;
+    private Locale mainLanguageLocale;
+    private Locale foreignLanguageLocale;
 
-    private String phrase;
-    private String meaning;
+    private String mainLanguageName;
+    private String foreignLanguageName;
 
-    private ImageView imageViewPreviousWord;
-    private ImageView imageViewNextWord;
-
-    private Iterator<Word> wordIterator;
     private List<Word> words;
+    private ListIterator<Word> wordListIterator;
+
+    private Word word;
+    private boolean isMainLanguageActive;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        initEverything();
-    }
-
-    private void initEverything()
-    {
         attach(R.layout.activity_learning);
 
         long wordListId = getIntent().getLongExtra("wordListId", -1);
@@ -83,8 +78,12 @@ public class LearningActivity extends SpeakingActivity
         }
 
         WordList wordList = new WordListsDAO(this).select(wordListId);
-        phraseLocale = wordList.getForeignLanguage().getLocale();
-        meaningLocale = wordList.getMainLanguage().getLocale();
+
+        mainLanguageLocale = wordList.getMainLanguage().getLocale();
+        foreignLanguageLocale = wordList.getForeignLanguage().getLocale();
+
+        mainLanguageName = mainLanguageLocale.getDisplayLanguage();
+        foreignLanguageName = foreignLanguageLocale.getDisplayLanguage();
 
         TextView wordListName = (TextView) findViewById(R.id.textViewWordListName);
         wordListName.setText(wordList.getName());
@@ -105,31 +104,25 @@ public class LearningActivity extends SpeakingActivity
             }
         );
 
-        prepareForLearning();
-        imageViewNextWord.performClick();
-    }
-
-    private void prepareForLearning()
-    {
-        phraseTextView = (TextView) findViewById(R.id.phraseTextView);
-        meaningTextView = (TextView) findViewById(R.id.meaningTextView);
+        phraseXorMeaning = (TextView) findViewById(R.id.TextViewPhraseXorMeaning);
+        mainXorForeignLanguage = (TextView) findViewById(R.id.TextViewMainXorForeignLanguage);
 
         rewind();
 
-        phraseTextView.setOnClickListener
-                (
-                        new View.OnClickListener()
-                        {
-                            @Override
-                            public void onClick(View view)
-                            {
-                                meaningTextView.setText(meaning);
-                                colorAccordingToSpeakAbility(meaningTextView, meaningLocale);
-                            }
-                        }
-                );
+        phraseXorMeaning.setOnClickListener
+        (
+            new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View view)
+                {
+                    isMainLanguageActive = !isMainLanguageActive;
+                    flip();
+                }
+            }
+        );
 
-        imageViewNextWord = (ImageView) findViewById(R.id.imageViewNextWord);
+        ImageView imageViewNextWord = (ImageView) findViewById(R.id.imageViewNextWord);
         imageViewNextWord.setOnClickListener
         (
             new View.OnClickListener()
@@ -137,51 +130,80 @@ public class LearningActivity extends SpeakingActivity
                 @Override
                 public void onClick(View v)
                 {
-                    if(wordIterator.hasNext())
+                    if(wordListIterator.hasNext())
                     {
-                        Word word = wordIterator.next();
-
-                        phrase = word.getPhrase();
-                        meaning = word.getMeaning();
-
-                        phraseTextView.setText(phrase);
-                        colorAccordingToSpeakAbility(phraseTextView, phraseLocale);
-
-                        meaningTextView.setText("");
-
-                        speakPhraseAndMeaning();
+                        display(wordListIterator.next());
                     }
                     else
                     {
                         Toast.makeText(me, "Od początku", Toast.LENGTH_SHORT).show();
                         rewind();
-                        imageViewNextWord.performClick();
                     }
                 }
             }
         );
+
+        ImageView imageViewPreviousWord = (ImageView) findViewById(R.id.imageViewPreviousWord);
+        imageViewPreviousWord.setOnClickListener
+        (
+            new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View view)
+                {
+                    if(wordListIterator.hasPrevious())
+                    {
+                        display(wordListIterator.previous());
+                    }
+                    else
+                    {
+                        Toast.makeText(me, "There is no previous word", Toast.LENGTH_LONG).show();
+                    }
+                }
+            }
+        );
+
+        imageViewNextWord.performClick();
     }
 
-    private void speakPhraseAndMeaning()
+    private void display(Word word)
     {
-        say(phrase, phraseLocale);
-        say(meaning, meaningLocale);
+        this.word = word;
+        isMainLanguageActive = true;
+
+        flip();
     }
 
-    private void colorAccordingToSpeakAbility(TextView textView, Locale locale)
+    private void flip()
     {
-        if(locale == null)
+        String buffer;
+
+        if(isMainLanguageActive)
         {
-            textView.setTextColor(Color.RED);
+            buffer = word.getPhrase();
+            say(buffer, mainLanguageLocale);
+
+            phraseXorMeaning.setTextColor(Color.GREEN);
+
+            mainXorForeignLanguage.setText(mainLanguageName);
+            mainXorForeignLanguage.setTextColor(Color.GREEN);
         }
         else
         {
-            textView.setTextColor(Color.GREEN);
+            buffer = word.getMeaning();
+            say(buffer, foreignLanguageLocale);
+
+            phraseXorMeaning.setTextColor(Color.RED);
+
+            mainXorForeignLanguage.setText(foreignLanguageName);
+            mainXorForeignLanguage.setTextColor(Color.RED);
         }
+
+        phraseXorMeaning.setText(buffer);
     }
 
     private void rewind()
     {
-        wordIterator = words.iterator();
+        wordListIterator = words.listIterator();
     }
 }
