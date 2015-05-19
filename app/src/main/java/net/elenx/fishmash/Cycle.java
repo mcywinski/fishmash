@@ -4,9 +4,9 @@ import java.util.List;
 
 public class Cycle<Type>
 {
-    private Type[] array;
+    private final Type[] array;
     private int index = 0;
-    private int lastIndex;
+    private final int lastIndex;
 
     public Cycle(List<Type> list)
     {

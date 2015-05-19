@@ -1,5 +1,6 @@
 package net.elenx.fishmash.activities;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -32,6 +33,7 @@ public class PickWordListActivity extends OptionsActivity
         showWordLists();
     }
 
+    @SuppressLint("InflateParams")
     private void showWordLists()
     {
         WordListsDAO wordListsDAO = new WordListsDAO(this);

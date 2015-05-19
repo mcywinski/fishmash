@@ -66,7 +66,7 @@ public abstract class OptionsActivity extends ProgressDialogActivity
         }
     }
 
-    protected void learning()
+    private void learning()
     {
         NavigationDrawerFragment.setCurrentSelectedPosition(0);
         switchIntentTo(LearningActivity.class);

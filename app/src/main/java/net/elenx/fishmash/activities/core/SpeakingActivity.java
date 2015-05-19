@@ -9,7 +9,7 @@ import java.util.Locale;
 abstract public class SpeakingActivity extends OptionsActivity implements TextToSpeech.OnInitListener
 {
     private TextToSpeech textToSpeech;
-    protected boolean isReadyToSpeak = false;
+    private boolean isReadyToSpeak = false;
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState)
