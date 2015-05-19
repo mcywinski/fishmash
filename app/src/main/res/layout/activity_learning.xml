@@ -80,7 +80,8 @@
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:id="@+id/tableLayout">
 
         <TableRow>
             <ImageView
@@ -109,5 +110,14 @@
         </TableRow>
 
     </TableLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/textViewTapToFlip"
+        android:layout_above="@+id/tableLayout"
+        android:layout_centerHorizontal="true"
+        android:paddingBottom="20dp"/>
 
 </RelativeLayout>

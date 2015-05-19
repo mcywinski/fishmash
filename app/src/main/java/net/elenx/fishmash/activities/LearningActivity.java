@@ -25,6 +25,7 @@ public class LearningActivity extends SpeakingActivity
 
     private TextView phraseXorMeaning;
     private TextView mainXorForeignLanguage;
+    private TextView tapToFlip;
 
     private Locale mainLanguageLocale;
     private Locale foreignLanguageLocale;
@@ -106,6 +107,7 @@ public class LearningActivity extends SpeakingActivity
 
         phraseXorMeaning = (TextView) findViewById(R.id.TextViewPhraseXorMeaning);
         mainXorForeignLanguage = (TextView) findViewById(R.id.TextViewMainXorForeignLanguage);
+        tapToFlip = (TextView) findViewById(R.id.textViewTapToFlip);
 
         phraseXorMeaning.setOnClickListener
         (
@@ -170,6 +172,8 @@ public class LearningActivity extends SpeakingActivity
 
             mainXorForeignLanguage.setText(mainLanguageName);
             mainXorForeignLanguage.setTextColor(Color.GREEN);
+
+            tapToFlip.setText(getString(R.string.tap_to_show_meaning));
         }
         else
         {
@@ -180,6 +184,8 @@ public class LearningActivity extends SpeakingActivity
 
             mainXorForeignLanguage.setText(foreignLanguageName);
             mainXorForeignLanguage.setTextColor(Color.RED);
+
+            tapToFlip.setText(getString(R.string.tap_to_show_phrase));
         }
 
         phraseXorMeaning.setText(buffer);

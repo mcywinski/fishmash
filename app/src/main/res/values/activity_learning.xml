@@ -8,4 +8,7 @@
     <string name="speak_now">Speak now</string>
     <string name="show_meaning">Show meaning</string>
     <string name="back">Back</string>
+    
+    <string name="tap_to_show_meaning">Tap to show meaning</string>
+    <string name="tap_to_show_phrase">Tap to show phrase</string>
 </resources>
