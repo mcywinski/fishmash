@@ -4,8 +4,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,10 +32,8 @@ public class LearningActivity extends SpeakingActivity
     private String phrase;
     private String meaning;
 
-    private Button nextWordButton;
-
-    private CheckBox speakCheckBox;
-    private Button speakNowButton;
+    private ImageView imageViewPreviousWord;
+    private ImageView imageViewNextWord;
 
     private Iterator<Word> wordIterator;
     private List<Word> words;
@@ -109,58 +105,32 @@ public class LearningActivity extends SpeakingActivity
             }
         );
 
-        speakNowButton = (Button) findViewById(R.id.speakNowButton);
-        speakNowButton.setOnClickListener
-        (
-            new View.OnClickListener()
-            {
-                @Override
-                public void onClick(View v)
-                {
-                    speakPhraseAndMeaning();
-                }
-            }
-        );
-
         prepareForLearning();
-        nextWordButton.performClick();
-    }
-
-    @Override
-    public void onInit(int i)
-    {
-        super.onInit(i);
-
-        if(isReadyToSpeak && speakCheckBox != null && speakNowButton != null)
-        {
-            speakCheckBox.setVisibility(View.VISIBLE);
-            speakNowButton.setVisibility(View.VISIBLE);
-        }
+        imageViewNextWord.performClick();
     }
 
     private void prepareForLearning()
     {
         phraseTextView = (TextView) findViewById(R.id.phraseTextView);
         meaningTextView = (TextView) findViewById(R.id.meaningTextView);
-        speakCheckBox = (CheckBox) findViewById(R.id.speakCheckBox);
 
         rewind();
 
         phraseTextView.setOnClickListener
-        (
-            new View.OnClickListener()
-            {
-                @Override
-                public void onClick(View view)
-                {
-                    meaningTextView.setText(meaning);
-                    colorAccordingToSpeakAbility(meaningTextView, meaningLocale);
-                }
-            }
-        );
+                (
+                        new View.OnClickListener()
+                        {
+                            @Override
+                            public void onClick(View view)
+                            {
+                                meaningTextView.setText(meaning);
+                                colorAccordingToSpeakAbility(meaningTextView, meaningLocale);
+                            }
+                        }
+                );
 
-        nextWordButton = (Button) findViewById(R.id.nextWordButton);
-        nextWordButton.setOnClickListener
+        imageViewNextWord = (ImageView) findViewById(R.id.imageViewNextWord);
+        imageViewNextWord.setOnClickListener
         (
             new View.OnClickListener()
             {
@@ -179,22 +149,13 @@ public class LearningActivity extends SpeakingActivity
 
                         meaningTextView.setText("");
 
-                        if(speakCheckBox.isChecked())
-                        {
-                            speakPhraseAndMeaning();
-                        }
+                        speakPhraseAndMeaning();
                     }
                     else
                     {
                         Toast.makeText(me, "Od początku", Toast.LENGTH_SHORT).show();
                         rewind();
-                        nextWordButton.performClick();
-                    }
-
-                    if(isReadyToSpeak)
-                    {
-                        speakCheckBox.setVisibility(View.VISIBLE);
-                        speakNowButton.setVisibility(View.VISIBLE);
+                        imageViewNextWord.performClick();
                     }
                 }
             }
