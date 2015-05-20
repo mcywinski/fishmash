@@ -14,7 +14,10 @@ Rails.application.routes.draw do
   end
 
   resources :wordlists, controller: 'word_lists'
-  resources :exams, only: [:index, :new, :create]
+  resources :exams, only: [:index, :new, :create] do
+    get 'begin'
+    post 'start'
+  end
   resources :users, only: [:show, :create] do
     collection do
       get 'login'

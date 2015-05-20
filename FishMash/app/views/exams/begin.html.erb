@@ -1,0 +1,7 @@
+<p class="text-center">You are about to begin exam<p>
+<h1 class="text-center"><%= @exam.name %></h1>
+<p class="text-center">
+	<%= link_to "Go back", exams_path %><br />
+	or
+	<%= link_to "Start now", exam_start_path(@exam), method: :post %>
+</p>
