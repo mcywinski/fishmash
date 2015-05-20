@@ -1,6 +1,7 @@
 table {
   width: 100%;
   border: 1px solid #fb6400;
+  font-family: 'Source Sans Pro';
 }
 
 table td {
@@ -40,6 +41,11 @@ button, .button-link {
   color: #fff;
   padding: 10px 25px;
   transition: all 0.2s;
+  font-family: 'Source Sans Pro';
+}
+
+.link {
+  color: #fb6400;
 }
 
 button:hover, .button-link:hover {
@@ -57,6 +63,7 @@ input, textarea {
   border: 1px solid #fb6400;
   color: #fb6400;
   padding: 10px 25px;
+  font-family: 'Source Sans Pro';
 }
 
 textarea {

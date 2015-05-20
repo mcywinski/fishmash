@@ -8,7 +8,7 @@ wordListContainer = '#wordlist-list'
 # Logic
 
 renderWord = (word) ->
-  $(wordListContainer).append('<span>' + word.phrase + '</span> - <span>' + word.meaning + '</span> - <a class="removeWordLink" word-id="' + word.id + '" href="#">Remove</a><br />')
+  $(wordListContainer).append('<div class="col-md-12" style="margin: 0px; padding: 0px;"><div class="col-md-10" style="margin: 0px; padding: 0px;">' + word.phrase + ' - ' + word.meaning + '</div> <div class="col-md-2"><a class="removeWordLink link" word-id="' + word.id + '" href="#">Remove</a></div></div>')
 
 getWords = () ->
   $.ajax

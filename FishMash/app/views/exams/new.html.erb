@@ -33,6 +33,7 @@
       </div>
       <div class="col-md-12">
         <%= f.submit "Create an exam", :class => 'button-link' %>
+        <%= link_to  'Return', exams_path, :class => 'button-link'%>
       </div>
     <% end %>
     <%= javascript_include_tag 'exams', 'data-turbolinks-track' => true %>

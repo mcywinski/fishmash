@@ -19,7 +19,18 @@
 }
 
 .fish-register-box {
-  width: 700px;  
+  width: 700px; 
+  background-image: image-url('dolphins_background.svg');
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+.fish-register-box a {
+  color: #FF6600;
+}
+
+.back-link {
+  margin-top: 5px;  
 }
 
 .blank-layout-body img {
