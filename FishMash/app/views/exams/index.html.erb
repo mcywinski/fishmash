@@ -14,6 +14,7 @@
      <td>Date exam start</td>
      <td>Date exam finish</td>
   	 <td>Word count</td>
+     <td></td>
     </tr>
     <% @exams.each do |exam| %>
     	<tr>
@@ -24,6 +25,7 @@
     	  <td><%= exam.date_exam_start %></em></td>
         <td><%= exam.date_exam_finish %></em></td>
         <td><%= exam.word_count %></em></td>
+        <td><%= link_to 'Start exam', exam_begin_path(exam) %></td>
     	</tr>
     <% end %>
   </table>

@@ -25,11 +25,15 @@ class ExamsController < ApplicationController
 				wordlists_exam.save
 				redirect_to exams_path
 			end
-			else
-				flash[:errors] = stringify_errors(exam)
-				redirect_to new_exam_path
-			end
+		else
+			flash[:errors] = stringify_errors(exam)
+			redirect_to new_exam_path
 		end
+	end
+
+	def begin
+		@exam = Exam.find params[:exam_id]
+	end
 
 	private
 
