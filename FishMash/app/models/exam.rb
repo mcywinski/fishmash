@@ -1,6 +1,7 @@
 class Exam < ActiveRecord::Base
 	has_many :word_list_exams
 	has_many :word_lists, through: :word_list_exams
+	has_many :assesments
 
 	validates :name, presence: true, length: { minimum: 1}
 	validates :word_count, presence: true

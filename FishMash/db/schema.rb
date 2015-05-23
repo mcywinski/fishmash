@@ -11,10 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150523201943) do
+ActiveRecord::Schema.define(version: 20150523210937) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "answers", force: :cascade do |t|
+    t.integer  "word_id"
+    t.integer  "user_id"
+    t.integer  "assesment_id"
+    t.string   "answer"
+    t.boolean  "passed"
+    t.boolean  "finished"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "answers", ["assesment_id"], name: "index_answers_on_assesment_id", using: :btree
+  add_index "answers", ["user_id"], name: "index_answers_on_user_id", using: :btree
+  add_index "answers", ["word_id"], name: "index_answers_on_word_id", using: :btree
 
   create_table "api_tokens", force: :cascade do |t|
     t.string   "token"
