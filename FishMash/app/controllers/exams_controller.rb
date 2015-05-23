@@ -38,8 +38,7 @@ class ExamsController < ApplicationController
 	def start
 		exam = Exam.find params[:exam_id]
 		if exam.start_assesment(get_logged_user_id)
-			#code
-			throw 'Not implemented'
+			render 'Whee!'
 		else
 			flash[:errors] = 'This assesment has already been taken.'
 			redirect_to exams_path
