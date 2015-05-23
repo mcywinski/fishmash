@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150517172610) do
+ActiveRecord::Schema.define(version: 20150523201943) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,27 @@ ActiveRecord::Schema.define(version: 20150517172610) do
   end
 
   add_index "api_tokens", ["user_id"], name: "index_api_tokens_on_user_id", using: :btree
+
+  create_table "assesments", force: :cascade do |t|
+    t.integer  "exam_id"
+    t.integer  "user_id"
+    t.datetime "time_started"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "assesments", ["exam_id"], name: "index_assesments_on_exam_id", using: :btree
+  add_index "assesments", ["user_id"], name: "index_assesments_on_user_id", using: :btree
+
+  create_table "class_memberships", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "student_class_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "class_memberships", ["student_class_id"], name: "index_class_memberships_on_student_class_id", using: :btree
+  add_index "class_memberships", ["user_id"], name: "index_class_memberships_on_user_id", using: :btree
 
   create_table "exams", force: :cascade do |t|
     t.string   "name"
@@ -114,4 +135,6 @@ ActiveRecord::Schema.define(version: 20150517172610) do
   add_index "words", ["meaning_language_id"], name: "index_words_on_meaning_language_id", using: :btree
   add_index "words", ["phrase_language_id"], name: "index_words_on_phrase_language_id", using: :btree
 
+  add_foreign_key "assesments", "exams"
+  add_foreign_key "assesments", "users"
 end

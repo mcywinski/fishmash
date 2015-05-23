@@ -35,6 +35,17 @@ class ExamsController < ApplicationController
 		@exam = Exam.find params[:exam_id]
 	end
 
+	def start
+		exam = Exam.find params[:exam_id]
+		if exam.start_assesment(get_logged_user_id)
+			#code
+			throw 'Not implemented'
+		else
+			flash[:errors] = 'This assesment has already been taken.'
+			redirect_to exams_path
+		end
+	end
+
 	private
 
 	def new_exam_params
