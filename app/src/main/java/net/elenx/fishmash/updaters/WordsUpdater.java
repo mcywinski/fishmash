@@ -1,7 +1,7 @@
 package net.elenx.fishmash.updaters;
 
 import net.elenx.fishmash.Constant;
-import net.elenx.fishmash.activities.OptionsActivity;
+import net.elenx.fishmash.activities.core.OptionsActivity;
 import net.elenx.fishmash.daos.WordsDAO;
 import net.elenx.fishmash.models.Word;
 
@@ -20,7 +20,7 @@ public class WordsUpdater extends FishmashUpdater
 
     public WordsUpdater(OptionsActivity optionsActivity, long wordListId)
     {
-        this.optionsActivity = optionsActivity;
+        super(optionsActivity);
         this.wordListId = wordListId;
     }
 
@@ -33,8 +33,6 @@ public class WordsUpdater extends FishmashUpdater
         }
         catch(JSONException e)
         {
-            e.printStackTrace();
-
             // avoid null pointer
             jsonWordList = new JSONObject();
         }
@@ -67,7 +65,7 @@ public class WordsUpdater extends FishmashUpdater
     @Override
     public void save()
     {
-        if(words.size() < 1)
+        if(words.size() == 0)
         {
             return;
         }

@@ -1,12 +1,18 @@
 package net.elenx.fishmash.models;
 
+import android.annotation.SuppressLint;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 
 public class FishmashCalendar extends GregorianCalendar
 {
-    private final static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss.SSS'Z'");
+    @SuppressLint({"SimpleDateFormat"})
+    private final static SimpleDateFormat inputDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss.SSS'Z'");
+
+    @SuppressLint({"SimpleDateFormat"})
+    private final static SimpleDateFormat outputDateFormat = new SimpleDateFormat("hh:mm:ss dd-MM-yyyy");
 
     public FishmashCalendar(String sqlDate)
     {
@@ -17,16 +23,15 @@ public class FishmashCalendar extends GregorianCalendar
     {
         try
         {
-            setTime(dateFormat.parse(sqlDate));
+            setTime(inputDateFormat.parse(sqlDate));
         }
-        catch(ParseException e)
+        catch(ParseException ignored)
         {
-            e.printStackTrace();
         }
     }
 
     public String getAsSqlString()
     {
-        return dateFormat.format(getTime());
+        return outputDateFormat.format(getTime());
     }
 }
