@@ -8,12 +8,23 @@ class Exam < ActiveRecord::Base
 	validates :date_exam_start, presence: true
 	validates :date_exam_finish, presence: true
 
+	def is_finished?(user_id)
+		assesment = self.get_assesment(user_id)
+		puts assesment.inspect
+		if assesment.nil?
+			return false
+		else
+			return assesment.finished?
+		end
+	end
+
 	def start_assesment(user_id)
 		existing_assesment = Assesment.where(exam_id: self.id, user_id: user_id).first
 		return false unless existing_assesment.nil?
 
 		assesment = Assesment.new(user_id: user_id, exam_id: self.id, time_started: Time.now)
 		if assesment.save
+			return false if self.word_lists.length.eql? 0 # TODO: Return statuses instead of true or false
 			gen_count = self.word_count / self.word_lists.length
 			randomizer = Random.new(Time.now.to_i)
 			# Generate answer for every word list
@@ -34,6 +45,9 @@ class Exam < ActiveRecord::Base
 		else
 			return false
 		end
+	end
 
+	def get_assesment(user_id)
+		existing_assesment = Assesment.where(exam_id: self.id, user_id: user_id).first
 	end
 end
