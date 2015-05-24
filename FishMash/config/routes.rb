@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   get 'api' => 'application#api'
   namespace :api, defaults: {format: :json} do
-    resources :exams, except: [:create, :delete, :update]
+    resources :exams, except: [:create, :delete, :update] do
+      post 'start'
+      post 'get_question'
+      post 'answer'
+    end
     resources :lists, only: [:index, :show] do
       post 'add'
       post 'remove'

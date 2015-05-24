@@ -48,7 +48,7 @@ class ExamsController < ApplicationController
 
 	def answer
 		assesment = @exam.get_assesment(get_logged_user_id)
-		@answer = assesment.answers.where("finished = false or finished = NULL").first
+		@answer = assesment.get_answer
 
 		if @answer.nil? # No more questions to answer -> exam's finished.
 			assesment.finished = true
@@ -59,12 +59,8 @@ class ExamsController < ApplicationController
 
 	def save_answer
 		# TODO: Validate if this is user's question.
-		assesment = @exam.get_assesment(get_logged_user_id)
 		answer = Answer.find(params[:answer][:answer_id])
-		answer.answer = params[:answer][:answer]
-		answer.finished = true
-		answer.passed = (answer.answer.downcase.eql? answer.word.phrase.downcase)
-		answer.save
+		answer.provide_answer(params[:answer][:answer])
 
 		redirect_to exam_answer_path(@exam)
 	end
