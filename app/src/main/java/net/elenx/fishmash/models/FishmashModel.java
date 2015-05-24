@@ -5,9 +5,14 @@ import android.database.Cursor;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public abstract class FishmashModel implements ModelInterface
+public abstract class FishmashModel
 {
     private long id;
+
+    FishmashModel()
+    {
+
+    }
 
     FishmashModel(Cursor cursor)
     {
@@ -19,7 +24,6 @@ public abstract class FishmashModel implements ModelInterface
         this.id = json.getLong("id");
     }
 
-    @Override
     public final long getId()
     {
         return this.id;

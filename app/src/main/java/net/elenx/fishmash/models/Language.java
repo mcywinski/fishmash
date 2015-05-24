@@ -20,9 +20,6 @@ public class Language
     {
         switch((int) id)
         {
-            case 2:
-                locale = Locale.US;
-                break;
             case 3:
                 locale = Locale.GERMANY;
                 break;
@@ -30,23 +27,13 @@ public class Language
                 locale =  Locale.FRENCH;
                 break;
             default:
-                locale = null;
+                locale = Locale.US;
         }
     }
 
     public long getId()
     {
         return id;
-    }
-
-    public String getName()
-    {
-        return name;
-    }
-
-    public void setName(String name)
-    {
-        this.name = name;
     }
 
     public Locale getLocale()

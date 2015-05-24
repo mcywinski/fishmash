@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="navigation_drawer_open">Show options</string>
+    <string name="navigation_drawer_close">Close options</string>
+
+    <!--
+    WARNING!
+    Two arrays below must have exactly same order,
+    or else descriptions will mislead user!
+    -->
+    <string-array name="position_to_resource_name">
+        <item>learning</item>
+        <item>pick_wordlist</item>
+        <item>profile</item>
+        <item>register</item>
+        <item>logout</item>
+    </string-array>
+
+    <string-array name="position_to_resource_value">
+        <item>@string/learning</item>
+        <item>@string/pick_wordlist</item>
+        <item>@string/profile</item>
+        <item>@string/register</item>
+        <item>@string/logout</item>
+    </string-array>
+</resources>
