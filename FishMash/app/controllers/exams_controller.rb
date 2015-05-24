@@ -1,4 +1,5 @@
 class ExamsController < ApplicationController
+	before_action :validate_assesment, only: [:answer, :save_answer]
 
 	def index
 		@exams = Exam.all
@@ -45,7 +46,32 @@ class ExamsController < ApplicationController
 		end
 	end
 
+	def answer
+		assesment = Assesment.find_by(exam_id: @exam.id)
+		@answer = assesment.answers.where("finished = false or finished = NULL").first
+	end
+
+	def save_answer
+		assesment = Assesment.find_by(exam_id: @exam.id)
+		answer = Answer.find(params[:answer][:answer_id])
+		answer.answer = params[:answer][:answer]
+		answer.finished = true
+		answer.passed = (answer.answer.downcase.eql? answer.word.phrase.downcase)
+		answer.save
+
+		redirect_to exam_answer_path(@exam)
+	end
+
 	private
+
+	def validate_assesment
+		@exam = Exam.find params[:exam_id]
+		assesment = Assesment.find_by(exam_id: @exam.id)
+		if assesment.nil?
+			flash[:errors] = 'You haven\'t started this assesment yet.'
+			redirect_to exams_path and return
+		end
+	end
 
 	def new_exam_params
 		params.require(:exam).permit(:name, :description, :date_practice_start, :date_practice_finish, :date_exam_start, :date_exam_finish, :word_count)
