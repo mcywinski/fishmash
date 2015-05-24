@@ -27,7 +27,6 @@ class Exam < ActiveRecord::Base
 
 	def is_finished?(user_id)
 		assesment = self.get_assesment(user_id)
-		puts assesment.inspect
 		if assesment.nil?
 			return false
 		else

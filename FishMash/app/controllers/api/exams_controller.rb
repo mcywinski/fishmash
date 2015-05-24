@@ -11,4 +11,8 @@ class Api::ExamsController < ApplicationController
 
     respond_with exams_dto
   end
+
+  def show
+    respond_with Exam.find(params[:id]).to_dto(user_id: api_get_user.id)
+  end
 end
