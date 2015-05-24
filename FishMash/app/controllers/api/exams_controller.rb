@@ -27,8 +27,15 @@ class Api::ExamsController < ApplicationController
 
   # Gets the next question to answer
   def get_question
-    answer = Exam.find(params[:exam_id]).get_assesment(api_get_user.id).get_answer
-    respond_with answer.to_dto, location: ''
+    assesment = Exam.find(params[:exam_id]).get_assesment(api_get_user.id)
+    answer = assesment.get_answer
+    if answer.nil? # No more questions to answer -> exam's finished.
+      assesment.finished = true
+      assesment.save
+      respond_with Answer.exam_finished_dto, location: '' and return
+    end
+
+    respond_with Answer.to_simple_dto(answer), location: ''
   end
 
   # Saves the answer in db
@@ -45,5 +52,17 @@ class Api::ExamsController < ApplicationController
     answer_result[:messsage] = answer_result[:saved] ? 'Answer saved' : 'An error occured while saving the answer'
 
     respond_with answer_result, location: ''
+  end
+
+  def summary
+    assesment = Exam.find(params[:exam_id]).get_assesment(api_get_user.id)
+    respond_with nil, status: :bad_request and return unless assesment.finished?
+    answers = Array.new
+    assesment.answers.each do |answer|
+      answers.push Answer.to_full_dto(answer)
+      answers.last[:exam_finished] = true
+    end
+
+    respond_with answers, location: ''
   end
 end
