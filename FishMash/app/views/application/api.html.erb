@@ -157,5 +157,154 @@
         created_at: "2015-04-19T16:32:39.645Z", email: "test@domain.com", login: "foo", updated_at: "2015-04-19T20:54:59.080Z", user_type: null
       </td>
     </tr>
+
+    <tr>
+      <td class="code">/api/exams</td>
+      <td>GET</td>
+      <td>
+        <div>
+          <h5>Parameters</h5>
+          <ul>
+            <li>api_token - passed in request body</li>
+          </ul>
+        </div>
+        <div>
+          <h5>Example data</h5>
+          <p class="code code-json">
+            token: '4062c2081a205da7c1a48f713c8b5d16'
+          </p>
+        </div>
+      </td>
+      <td>
+        Returns list of all exams in form of array.<br />
+        Params of single element are:<br />
+        <ul>
+          <li>id - ID of an exam</li>
+          <li>name - name of an exam</li>
+          <li>Set of dates which are selfexplanatory</li>
+          <li>Word count - maximum number of words in the test (if wordlists include less words, the exam will be shorter. It is quite buggy for now)</li>
+          <li>is_finished - Indicates whether this exam is finished by current user. If so, only summary of it can be displayed.</li>
+        </ul>
+      </td>
+      <td class="code code-json">
+        "[{"id":1,"name":"Test 1 - Animals","date_exam_start":"2016-01-09","date_exam_finish":"2016-01-16","date_practice_start":"2016-01-01","date_practice_finish":"2016-01-08","word_count":4,"is_finished":true},{"id":2,"name":"Test 1 - die Tiere","date_exam_start":"2016-01-09","date_exam_finish":"2016-01-16","date_practice_start":"2016-01-01","date_practice_finish":"2016-01-08","word_count":4,"is_finished":false},{"id":3,"name":"Test 1 - Animaux","date_exam_start":"2016-01-09","date_exam_finish":"2016-01-16","date_practice_start":"2016-01-01","date_practice_finish":"2016-01-08","word_count":4,"is_finished":false}]"
+      </td>
+    </tr>
+
+    <tr>
+      <td class="code">/api/exams/:exam_id</td>
+      <td>GET</td>
+      <td>
+        <div>
+          <h5>Parameters</h5>
+          <ul>
+            <li>api_token - passed in request body</li>
+          </ul>
+        </div>
+        <div>
+          <h5>Example data</h5>
+          <p class="code code-json">
+            token: '4062c2081a205da7c1a48f713c8b5d16'
+          </p>
+        </div>
+      </td>
+      <td>
+        Returns a single instance of exam and information regarding it.
+        <ul>
+          <li>id - ID of an exam</li>
+          <li>name - name of an exam</li>
+          <li>Set of dates which are selfexplanatory</li>
+          <li>Word count - maximum number of words in the test (if wordlists include less words, the exam will be shorter. It is quite buggy for now)</li>
+          <li>is_finished - Indicates whether this exam is finished by current user. If so, only summary of it can be displayed.</li>
+        </ul>
+      </td>
+      <td class="code code-json">
+        { id: 1, name: "Test 1 - Animals", date_exam_start: "2016-01-09", date_exam_finish: "2016-01-16", date_practice_start: "2016-01-01", date_practice_finish: "2016-01-08", word_count: 4, is_finished: true }
+      </td>
+    </tr>
+
+    <tr>
+      <td class="code">/api/exams/:exam_id/get_question</td>
+      <td>POST</td>
+      <td>
+        <div>
+          <h5>Parameters</h5>
+          <ul>
+            <li>api_token - passed in request body</li>
+          </ul>
+        </div>
+        <div>
+          <h5>Example data</h5>
+          <p class="code code-json">
+            token: '4062c2081a205da7c1a48f713c8b5d16'
+          </p>
+        </div>
+      </td>
+      <td>
+        Gets a question to answer in the exam.
+        Id is an ID of a question that would be passed back to the server while posting the answer.<br />
+        Meaning is the question.<br /><br />
+        <strong>If Id is set to 0 and exam_finished as true, the exam is over.</strong>
+      </td>
+      <td class="code code-json">
+        "{"id":37,"answer":null,"finished":null,"passed":null,"meaning":"Pies","exam_finished":false}"
+      </td>
+    </tr>
+
+    <tr>
+      <td class="code">/api/exams/:exam_id/answer</td>
+      <td>POST</td>
+      <td>
+        <div>
+          <h5>Parameters</h5>
+          <ul>
+            <li>api_token - passed in request body</li>
+            <li>answer_id - id received while getting the question.</li>
+            <li>answer_text - answer text that will be checked by the server.</li>
+          </ul>
+        </div>
+        <div>
+          <h5>Example data</h5>
+          <p class="code code-json">
+            token: '4062c2081a205da7c1a48f713c8b5d16'
+
+            { answer_id: 37, answer_text: 'pies' }
+          </p>
+        </div>
+      </td>
+      <td>
+        Saves the answer in the exam.<br />
+        If an error occurs during server side operations (such as DB failure), saved param will be set to false.
+      </td>
+      <td class="code code-json">
+        "{"saved":true,"messsage":"Answer saved"}"
+      </td>
+    </tr>
+
+    <tr>
+      <td class="code">/api/exams/:exam_id/summary</td>
+      <td>GET</td>
+      <td>
+        <div>
+          <h5>Parameters</h5>
+          <ul>
+            <li>api_token - passed in request body</li>
+          </ul>
+        </div>
+        <div>
+          <h5>Example data</h5>
+          <p class="code code-json">
+            token: '4062c2081a205da7c1a48f713c8b5d16'
+          </p>
+        </div>
+      </td>
+      <td>
+        Gets information about answers provided during the exam.
+      </td>
+      <td class="code code-json">
+        "[{"id":37,"answer":"pies","finished":true,"passed":false,"meaning":"Pies","exam_finished":true,"phrase":"Dog"},{"id":38,"answer":"swfdg","finished":true,"passed":false,"meaning":"Żyrafa","exam_finished":true,"phrase":"Giraffe"},{"id":39,"answer":"sdfg","finished":true,"passed":false,"meaning":"Motyl","exam_finished":true,"phrase":"Schmetterling"},{"id":40,"answer":"dog","finished":true,"passed":false,"meaning":"Pies","exam_finished":true,"phrase":"Hund"}]"
+      </td>
+    </tr>
+
   </tbody>
 </table>

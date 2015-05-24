@@ -1,0 +1,49 @@
+<div class="col-md-12" style="height: 75px;"></div>
+<div class="col-md-2"></div>
+<div class="col-md-8">
+  <div class="col-md-8">
+    <h2 class="fish-h2">Details</h2>
+    <%= form_for @student_class, url: class_path(@student_class) do |f| %>
+      <p>
+        <%= f.label :name %><br>
+        <%= f.text_field :name, placeholder: :name %>
+      </p>
+      <p>
+        <%= f.label :description %>
+        <%= f.text_area :description, placeholder: :description %>
+      </p>
+      <p>
+        <%= f.submit "Save changes", :class => 'button-link' %>
+        <%= link_to  'Return', classes_path, :class => 'button-link'%>
+      </p>
+    <% end %>
+  </div>
+  <div class="col-md-4">
+    <h2 class="fish-h2">Members</h2>
+    <div>
+      <%= form_for :member_new, url: class_add_member_path(@student_class) do |f| %>
+        <p>
+          <%= f.text_field :login, placeholder: "User login" %>
+        </p>
+        <p>
+          <%= f.submit "Add class member", :class => 'button-link' %>
+        </p>
+      <% end %>
+    </div>
+    <div class="col-md-12" style="height: 25px;"></div>
+    <div>
+      <h3 class="fish-h3">Users currently on the list:</h3>
+      <% @student_class.users.each do |m| %>
+        <div class="col-md-12">
+          <div class="col-md-6">
+            <%= m.login %>
+          </div>
+          <div class="col-md-6">
+            <%= link_to "Remove", class_remove_member_path(class_id: @student_class.id, user_id: m.id), :method => :post, :class => 'link' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="col-md-2"></div>

@@ -1,0 +1,17 @@
+<h1>Class: <% @student_class.name %></h1>
+<table border="1">
+  <thead>
+    <tr>
+      <td>Name</td>
+      <td>Options</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @students.each do |student| %>
+      <tr>
+        <td><%= student.login %></td>
+        <td><%= link_to "Remove", class_remove_member_path(class_id: @student_class.id, user_id: student.id), :method => :post %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

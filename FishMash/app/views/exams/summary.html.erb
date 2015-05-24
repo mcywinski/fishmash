@@ -1,0 +1,14 @@
+<h1>Summary for exam: <%= @exam.name %></h1>
+<h3>Answers</h3>
+<ul>
+    <% @assesment.answers.each do |answer| %>
+        <li>
+          <strong>Q: </strong> <%= answer.word.meaning %>, <strong>A: </strong> <%= answer.word.phrase %>, <strong>Provided Answer: </strong> <%= answer.answer %>
+          <% if answer.passed %>
+            <span style="color: green">PASSED</span>
+          <% else %>
+            <span style="color: red">FAILED</span>
+          <% end %>
+        </li>
+    <% end %>
+</ul>

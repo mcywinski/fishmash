@@ -1,6 +1,7 @@
 <div class="fish-register-box">
 <div class="col-md-6">
-<h1>Sign up</h1>
+<h1 class="fish-h1">Sign up</h1>
+<h3 class="fish-h3 back-link"><%= link_to 'or go back', root_path%></h3>
 <br>
 <%= form_for @user, url: users_path, method: :post do |f| %>
   <div class="form-group">
@@ -23,16 +24,15 @@
 <% end %>
 </div>
 
-<div class="col-md-6">
-  <h1>Simple rules:</h1>
-  <p>FishMash is free and it always will be free.</p>
+<div class="col-md-6 desktop">
   <p>
-    TUTAJ BĘDZIE GRAFIKA REKLAMOWA
-  </p>
-  <p>
-    Lorem ipsum dolor sit amet enim. Etiam ullamcorper. Suspendisse a pellentesque dui, non felis. Maecenas malesuada elit lectus felis, malesuada ultricies. Curabitur et ligula. Ut molestie a, ultricies porta urna. Vestibulum commodo volutpat a, convallis ac, laoreet enim. Phasellus fermentum in, dolor. Pellentesque facilisis. 
+    <%= image_tag 'mobile_add.svg', :style => 'width: 100%; margin-bottom: 0px;'%>
   </p>
 
+</div>
+
+<div class="col-md-12" style="text-align: center">
+  <h2 class="fish-h2 fish-font-amatic">Check our mobile phone apps!<br>Avaible on Android and Windows Phone</h2>
 </div>
 
 </div>

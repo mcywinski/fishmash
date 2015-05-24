@@ -8,9 +8,22 @@
   src: font_url('AmaticSC-Regular.ttf');
 }
 
+@font-face {
+  font-family: 'Source Sans Pro';
+  src: font_url('SourceSansPro-Regular.otf'); 
+}
+
 body, html {
   margin: 0;
   padding: 0;
+}
+
+.fish-font-lobster {
+  font-family: 'Lobster 1.4';
+}
+
+.fish-font-amatic {
+  font-family: 'Amatic SC';
 }
 
 .fish-index-1 {
@@ -115,4 +128,20 @@ body, html {
 
 .fish-user-info p {
   padding: 25px;  
+}
+
+@media screen and (min-width: 991px) {
+  
+  .mobile {
+    display: none;
+  }
+
+}
+
+@media screen and (max-width: 991px) {
+
+  .desktop {
+    display: none;
+  }
+  
 }

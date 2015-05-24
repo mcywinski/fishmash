@@ -11,10 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150517170334) do
+ActiveRecord::Schema.define(version: 20150524005711) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "answers", force: :cascade do |t|
+    t.integer  "word_id"
+    t.integer  "user_id"
+    t.integer  "assesment_id"
+    t.string   "answer"
+    t.boolean  "passed"
+    t.boolean  "finished"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "answers", ["assesment_id"], name: "index_answers_on_assesment_id", using: :btree
+  add_index "answers", ["user_id"], name: "index_answers_on_user_id", using: :btree
+  add_index "answers", ["word_id"], name: "index_answers_on_word_id", using: :btree
 
   create_table "api_tokens", force: :cascade do |t|
     t.string   "token"
@@ -24,6 +39,18 @@ ActiveRecord::Schema.define(version: 20150517170334) do
   end
 
   add_index "api_tokens", ["user_id"], name: "index_api_tokens_on_user_id", using: :btree
+
+  create_table "assesments", force: :cascade do |t|
+    t.integer  "exam_id"
+    t.integer  "user_id"
+    t.datetime "time_started"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.boolean  "finished"
+  end
+
+  add_index "assesments", ["exam_id"], name: "index_assesments_on_exam_id", using: :btree
+  add_index "assesments", ["user_id"], name: "index_assesments_on_user_id", using: :btree
 
   create_table "class_memberships", force: :cascade do |t|
     t.integer  "user_id"
@@ -55,6 +82,16 @@ ActiveRecord::Schema.define(version: 20150517170334) do
     t.datetime "updated_at",           null: false
   end
 
+  create_table "student_class_memberships", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "student_class_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "student_class_memberships", ["student_class_id"], name: "index_student_class_memberships_on_student_class_id", using: :btree
+  add_index "student_class_memberships", ["user_id"], name: "index_student_class_memberships_on_user_id", using: :btree
+
   create_table "student_classes", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
@@ -74,10 +111,10 @@ ActiveRecord::Schema.define(version: 20150517170334) do
   end
 
   create_table "word_list_exams", force: :cascade do |t|
-    t.integer  "wordlist_id"
     t.integer  "exam_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "word_list_id"
   end
 
   create_table "word_list_memberships", force: :cascade do |t|
@@ -114,4 +151,6 @@ ActiveRecord::Schema.define(version: 20150517170334) do
   add_index "words", ["meaning_language_id"], name: "index_words_on_meaning_language_id", using: :btree
   add_index "words", ["phrase_language_id"], name: "index_words_on_phrase_language_id", using: :btree
 
+  add_foreign_key "assesments", "exams"
+  add_foreign_key "assesments", "users"
 end
