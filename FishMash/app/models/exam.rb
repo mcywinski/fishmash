@@ -8,6 +8,23 @@ class Exam < ActiveRecord::Base
 	validates :date_exam_start, presence: true
 	validates :date_exam_finish, presence: true
 
+	def to_dto(options)
+		exam_dto = Hash.new
+		exam_dto[:id] = self.id
+		exam_dto[:name] = self.name
+		exam_dto[:date_exam_start] = self.date_exam_start
+		exam_dto[:date_exam_finish] = self.date_exam_finish
+		exam_dto[:date_practice_start] = self.date_practice_start
+		exam_dto[:date_practice_finish] = self.date_practice_finish
+		exam_dto[:word_count] = self.word_count
+
+		if options[:user_id]
+			exam_dto[:is_finished] = self.is_finished?(options[:user_id])
+		end
+
+		exam_dto
+	end
+
 	def is_finished?(user_id)
 		assesment = self.get_assesment(user_id)
 		puts assesment.inspect
