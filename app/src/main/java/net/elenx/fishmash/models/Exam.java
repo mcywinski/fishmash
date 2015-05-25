@@ -1,5 +1,7 @@
 package net.elenx.fishmash.models;
 
+import android.database.Cursor;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -26,8 +28,48 @@ public class Exam extends FishmashModel
     private int wordCount;
     private boolean isFinished;
 
-    Exam(JSONObject json) throws JSONException
+    public Exam(Cursor cursor)
+    {
+        super(cursor);
+    }
+
+    public Exam(JSONObject json) throws JSONException
     {
         super(json);
+    }
+
+    public String getName()
+    {
+        return name;
+    }
+
+    public FishmashCalendar getDateExamStart()
+    {
+        return dateExamStart;
+    }
+
+    public FishmashCalendar getDateExamFinish()
+    {
+        return dateExamFinish;
+    }
+
+    public FishmashCalendar getDatePracticeStart()
+    {
+        return datePracticeStart;
+    }
+
+    public FishmashCalendar getDatePracticeFinish()
+    {
+        return datePracticeFinish;
+    }
+
+    public int getWordCount()
+    {
+        return wordCount;
+    }
+
+    public boolean isFinished()
+    {
+        return isFinished;
     }
 }

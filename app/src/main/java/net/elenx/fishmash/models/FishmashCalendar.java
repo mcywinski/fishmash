@@ -9,10 +9,10 @@ import java.util.GregorianCalendar;
 public class FishmashCalendar extends GregorianCalendar
 {
     @SuppressLint({"SimpleDateFormat"})
-    private final static SimpleDateFormat inputDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss.SSS'Z'");
+    private final static SimpleDateFormat sqlDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss.SSS'Z'");
 
     @SuppressLint({"SimpleDateFormat"})
-    private final static SimpleDateFormat outputDateFormat = new SimpleDateFormat("hh:mm:ss dd-MM-yyyy");
+    private final static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm:ss dd-MM-yyyy");
 
     public FishmashCalendar(String sqlDate)
     {
@@ -23,7 +23,18 @@ public class FishmashCalendar extends GregorianCalendar
     {
         try
         {
-            setTime(inputDateFormat.parse(sqlDate));
+            setTime(sqlDateFormat.parse(sqlDate));
+        }
+        catch(ParseException ignored)
+        {
+        }
+    }
+
+    private void setFromSimpleString(String sqlDate)
+    {
+        try
+        {
+            setTime(simpleDateFormat.parse(sqlDate));
         }
         catch(ParseException ignored)
         {
@@ -32,6 +43,11 @@ public class FishmashCalendar extends GregorianCalendar
 
     public String getAsSqlString()
     {
-        return outputDateFormat.format(getTime());
+        return sqlDateFormat.format(getTime());
+    }
+
+    public String getAsSimpleString()
+    {
+        return simpleDateFormat.format(getTime());
     }
 }

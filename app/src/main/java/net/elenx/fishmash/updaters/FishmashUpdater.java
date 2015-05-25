@@ -22,6 +22,7 @@ import java.util.Scanner;
 abstract class FishmashUpdater extends AsyncTask<Void, Integer, Void>
 {
     private static final int TIMEOUT = 5 * 1000;
+
     static final RestTemplate restTemplate = new RestTemplate()
     {
         {
@@ -52,6 +53,17 @@ abstract class FishmashUpdater extends AsyncTask<Void, Integer, Void>
             }
 
             return super.getForObject(url, responseType, urlVariables);
+        }
+
+        @Override
+        public <T> T postForObject(String url, Object request, Class<T> responseType, Map<String, ?> uriVariables) throws RestClientException
+        {
+            for(String key : uriVariables.keySet())
+            {
+                Log.e(key, uriVariables.get(key).toString());
+            }
+
+            return super.postForObject(url, request, responseType, uriVariables);
         }
     };
 

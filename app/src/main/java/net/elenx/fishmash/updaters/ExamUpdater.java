@@ -27,10 +27,4 @@ public class ExamUpdater extends FishmashUpdater
             Log.e("exam", String.valueOf(exam.getId()));
         }
     }
-
-    @Override
-    protected void save()
-    {
-
-    }
 }

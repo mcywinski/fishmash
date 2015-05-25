@@ -42,7 +42,7 @@ public class LearningActivity extends SpeakingActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        attach(R.layout.activity_learning);
+        attach(R.layout.learning);
 
         long wordListId = getIntent().getLongExtra("wordListId", -1);
 

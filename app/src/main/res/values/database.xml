@@ -45,4 +45,18 @@
         );
     </string>
 
+    <string name="create_exams">
+        CREATE TABLE exams
+        (
+            id INTEGER PRIMARY KEY,
+            name TEXT,
+            date_exam_start TEXT,
+            date_exam_finish TEXT,
+            date_practice_start TEXT,
+            date_practice_finish TEXT,
+            word_count INTEGER,
+            is_finished INTEGER
+        );
+    </string>
+
 </resources>

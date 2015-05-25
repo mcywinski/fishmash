@@ -22,7 +22,7 @@ public class Profile extends FishmashModel
 
     public String getCreatedAt()
     {
-        return createdAt.getAsSqlString();
+        return createdAt.getAsSimpleString();
     }
 
     public String getEmail()
@@ -37,7 +37,7 @@ public class Profile extends FishmashModel
 
     public String getUpdatedAt()
     {
-        return updatedAt.getAsSqlString();
+        return updatedAt.getAsSimpleString();
     }
 
     public String getUserType()
