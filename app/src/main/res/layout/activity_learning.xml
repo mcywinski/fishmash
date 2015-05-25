@@ -1,5 +1,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -15,11 +16,10 @@
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/tableRowWordList"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
 
-            <LinearLayout
-                android:layout_height="match_parent"
-                android:layout_width="wrap_content">
+            tools:ignore="UselessParent">
+            <!--I will add more rows programmatically, so it is not useless-->
 
                 <RelativeLayout
                     android:layout_width="0dip"
@@ -55,7 +55,6 @@
                     android:adjustViewBounds="true"
                     android:scaleType="centerInside"/>
 
-            </LinearLayout>
         </TableRow>
 
     </TableLayout>
@@ -83,7 +82,10 @@
         android:layout_alignParentBottom="true"
         android:id="@+id/tableLayout">
 
-        <TableRow>
+        <TableRow
+            tools:ignore="UselessParent">
+            <!-- I will add more tablerows programmatically, so it's not useless -->
+
             <ImageView
                 android:layout_width="0dip"
                 android:layout_weight="1"

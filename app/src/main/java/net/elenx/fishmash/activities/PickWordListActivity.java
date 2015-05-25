@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -51,8 +50,7 @@ public class PickWordListActivity extends OptionsActivity
         {
             tableRow = (TableRow) layoutInflater.inflate(R.layout.fragment_wordlist, null);
 
-            LinearLayout linearLayout = (LinearLayout) tableRow.getChildAt(0);
-            RelativeLayout relativeLayout = (RelativeLayout) linearLayout.getChildAt(0);
+            RelativeLayout relativeLayout = (RelativeLayout) tableRow.getChildAt(0);
 
             wordListName = (TextView) relativeLayout.getChildAt(0);
             wordListName.setText(wordList.getName());
@@ -63,7 +61,7 @@ public class PickWordListActivity extends OptionsActivity
             wordListSecondLanguage = (TextView) relativeLayout.getChildAt(3);
             wordListSecondLanguage.setText(wordList.getForeignLanguage().getLocale().getDisplayLanguage());
 
-            ImageView imageView = (ImageView) linearLayout.getChildAt(1);
+            ImageView imageView = (ImageView) tableRow.getChildAt(1);
             imageView.setOnClickListener
             (
                 new View.OnClickListener()
