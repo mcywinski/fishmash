@@ -70,8 +70,8 @@ public class ProfileActivity extends OptionsActivity
                 {
                     loginData.setText(profile.getLogin());
                     emailData.setText(profile.getEmail());
-                    createdAtData.setText(profile.getCreated_at());
-                    updatedAtData.setText(profile.getUpdated_at());
+                    createdAtData.setText(profile.getCreatedAt());
+                    updatedAtData.setText(profile.getUpdatedAt());
                 }
             }
         );

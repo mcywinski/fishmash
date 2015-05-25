@@ -4,30 +4,25 @@ import android.database.Cursor;
 
 public class Profile extends FishmashModel
 {
-    private FishmashCalendar created_at;
+    private FishmashCalendar createdAt;
     private String email;
     private String login;
-    private FishmashCalendar updated_at;
-    private String user_type;
-
-    public Profile()
-    {
-
-    }
+    private FishmashCalendar updatedAt;
+    private String userType;
 
     public Profile(Cursor cursor)
     {
         super(cursor);
-        this.created_at = new FishmashCalendar(cursor.getString(1));
+        this.createdAt = new FishmashCalendar(cursor.getString(1));
         this.email = cursor.getString(2);
         this.login = cursor.getString(3);
-        this.updated_at = new FishmashCalendar(cursor.getString(4));
-        this.user_type = cursor.getString(5);
+        this.updatedAt = new FishmashCalendar(cursor.getString(4));
+        this.userType = cursor.getString(5);
     }
 
-    public String getCreated_at()
+    public String getCreatedAt()
     {
-        return created_at.getAsSqlString();
+        return createdAt.getAsSqlString();
     }
 
     public String getEmail()
@@ -40,13 +35,13 @@ public class Profile extends FishmashModel
         return login;
     }
 
-    public String getUpdated_at()
+    public String getUpdatedAt()
     {
-        return updated_at.getAsSqlString();
+        return updatedAt.getAsSqlString();
     }
 
-    public String getUser_type()
+    public String getUserType()
     {
-        return user_type;
+        return userType;
     }
 }
