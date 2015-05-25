@@ -9,11 +9,6 @@ public abstract class FishmashModel
 {
     private long id;
 
-    FishmashModel()
-    {
-
-    }
-
     FishmashModel(Cursor cursor)
     {
         this.id = cursor.getLong(0);

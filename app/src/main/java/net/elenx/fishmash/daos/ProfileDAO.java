@@ -44,10 +44,4 @@ public class ProfileDAO extends FishmashDAO<Profile>
 
         return contentValues;
     }
-
-    @Override
-    public long getIdOf(Profile profile)
-    {
-        return 1;
-    }
 }

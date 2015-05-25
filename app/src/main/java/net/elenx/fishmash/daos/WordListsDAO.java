@@ -45,9 +45,4 @@ public class WordListsDAO extends FishmashDAO<WordList>
         return contentValues;
     }
 
-    @Override
-    public long getIdOf(WordList wordList)
-    {
-        return wordList.getId();
-    }
 }

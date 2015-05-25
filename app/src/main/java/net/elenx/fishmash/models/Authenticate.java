@@ -1,26 +1,22 @@
 package net.elenx.fishmash.models;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 
 public class Authenticate extends FishmashModel
 {
     private String token;
-    private long user_id;
-    private String created_at;
-    private String updated_at;
-
-    public Authenticate()
-    {
-
-    }
+    private long userId;
+    private String createdAt;
+    private String updatedAt;
 
     public Authenticate(Cursor cursor)
     {
         super(cursor);
         this.token = cursor.getString(1);
-        this.user_id = cursor.getLong(2);
-        this.created_at = cursor.getString(3);
-        this.updated_at = cursor.getString(4);
+        this.userId = cursor.getLong(2);
+        this.createdAt = cursor.getString(3);
+        this.updatedAt = cursor.getString(4);
     }
 
     public String getToken()
@@ -28,18 +24,18 @@ public class Authenticate extends FishmashModel
         return token;
     }
 
-    public long getUser_id()
+    public long getUserId()
     {
-        return user_id;
+        return userId;
     }
 
-    public String getCreated_at()
+    public String getCreatedAt()
     {
-        return created_at;
+        return createdAt;
     }
 
-    public String getUpdated_at()
+    public String getUpdatedAt()
     {
-        return updated_at;
+        return updatedAt;
     }
 }

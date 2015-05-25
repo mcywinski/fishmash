@@ -11,7 +11,7 @@ import net.elenx.fishmash.models.FishmashModel;
 import java.util.LinkedList;
 import java.util.List;
 
-public abstract class FishmashDAO<Model>
+public abstract class FishmashDAO<Model extends FishmashModel>
 {
     private final String table;
     final String[] columns;
@@ -20,7 +20,6 @@ public abstract class FishmashDAO<Model>
 
     protected abstract Model cursorToModel(Cursor cursor);
     protected abstract ContentValues modelToContentValues(Model model);
-    protected abstract long getIdOf(Model model);
 
     FishmashDAO(Context context, String table, String[] columns)
     {
@@ -72,7 +71,7 @@ public abstract class FishmashDAO<Model>
     public void insert(Model model)
     {
         ContentValues contentValues = modelToContentValues(model);
-        contentValues.put(columns[0], getIdOf(model));
+        contentValues.put(columns[0], model.getId());
 
         sqLiteDatabase.insert(table, null, contentValues);
     }
@@ -88,7 +87,7 @@ public abstract class FishmashDAO<Model>
     public void update(Model model)
     {
         ContentValues contentValues = modelToContentValues(model);
-        String[] updateId = new String[]{String.valueOf(getIdOf(model))};
+        String[] updateId = new String[]{String.valueOf(model.getId())};
 
         sqLiteDatabase.update(table, contentValues, "id=?", updateId);
     }
