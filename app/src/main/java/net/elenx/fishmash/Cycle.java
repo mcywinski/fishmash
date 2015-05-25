@@ -10,7 +10,10 @@ public class Cycle<Type>
 
     public Cycle(List<Type> list)
     {
+        // I can always cast this Object[] to Type[], because I accept only lists of class Type
+        //noinspection unchecked
         array = (Type[]) list.toArray();
+
         lastIndex = list.size() - 1;
     }
 

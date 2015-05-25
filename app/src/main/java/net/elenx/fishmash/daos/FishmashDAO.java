@@ -84,6 +84,7 @@ public abstract class FishmashDAO<Model extends FishmashModel>
         }
     }
 
+    @SuppressWarnings("WeakerAccess")
     public void update(Model model)
     {
         ContentValues contentValues = modelToContentValues(model);
@@ -92,6 +93,7 @@ public abstract class FishmashDAO<Model extends FishmashModel>
         sqLiteDatabase.update(table, contentValues, "id=?", updateId);
     }
 
+    @SuppressWarnings("WeakerAccess")
     public void delete(long id)
     {
         try
@@ -110,9 +112,8 @@ public abstract class FishmashDAO<Model extends FishmashModel>
 
     public void delete(Model model)
     {
-        FishmashModel fishmashModel = (FishmashModel) model;
 
-        delete(fishmashModel.getId());
+        delete(model.getId());
     }
 
     public long count()

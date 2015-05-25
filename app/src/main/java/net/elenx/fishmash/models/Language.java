@@ -5,8 +5,6 @@ import java.util.Locale;
 public class Language
 {
     private final long id;
-    private String name;
-
     private Locale locale;
 
     public Language(long id)

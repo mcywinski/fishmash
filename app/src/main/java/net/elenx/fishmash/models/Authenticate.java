@@ -1,14 +1,13 @@
 package net.elenx.fishmash.models;
 
-import android.content.ContentValues;
 import android.database.Cursor;
 
 public class Authenticate extends FishmashModel
 {
-    private String token;
-    private long userId;
-    private String createdAt;
-    private String updatedAt;
+    private final String token;
+    private final long userId;
+    private final String createdAt;
+    private final String updatedAt;
 
     public Authenticate(Cursor cursor)
     {

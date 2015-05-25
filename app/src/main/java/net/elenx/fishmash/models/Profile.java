@@ -4,11 +4,11 @@ import android.database.Cursor;
 
 public class Profile extends FishmashModel
 {
-    private FishmashCalendar createdAt;
-    private String email;
-    private String login;
-    private FishmashCalendar updatedAt;
-    private String userType;
+    private final FishmashCalendar createdAt;
+    private final String email;
+    private final String login;
+    private final FishmashCalendar updatedAt;
+    private final String userType;
 
     public Profile(Cursor cursor)
     {
