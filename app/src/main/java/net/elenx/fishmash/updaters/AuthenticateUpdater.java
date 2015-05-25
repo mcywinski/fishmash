@@ -30,7 +30,7 @@ public class AuthenticateUpdater extends FishmashUpdater
     }
 
     @Override
-    public void download()
+    protected void download()
     {
         LoginPassword loginPassword = new LoginPassword(login, password);
         HttpHeaders requestHeaders = new HttpHeaders();
@@ -48,13 +48,13 @@ public class AuthenticateUpdater extends FishmashUpdater
     }
 
     @Override
-    public void convert()
+    protected void convert()
     {
 
     }
 
     @Override
-    public void save()
+    protected void save()
     {
         if(authenticate == null)
         {

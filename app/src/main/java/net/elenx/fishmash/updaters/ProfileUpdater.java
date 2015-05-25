@@ -20,7 +20,7 @@ public class ProfileUpdater extends FishmashUpdater
     }
 
     @Override
-    public void download()
+    protected void download()
     {
         AuthenticateDAO authenticateDAO = new AuthenticateDAO(optionsActivity);
 
@@ -37,13 +37,13 @@ public class ProfileUpdater extends FishmashUpdater
     }
 
     @Override
-    public void convert()
+    protected void convert()
     {
 
     }
 
     @Override
-    public void save()
+    protected void save()
     {
         if(profile == null)
         {

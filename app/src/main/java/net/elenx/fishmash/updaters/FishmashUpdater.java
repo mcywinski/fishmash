@@ -12,9 +12,14 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Scanner;
 
-abstract class FishmashUpdater extends AsyncTask<Void, Integer, Void> implements UpdaterInterface
+abstract class FishmashUpdater extends AsyncTask<Void, Integer, Void>
 {
     static final RestTemplate restTemplate = new RestTemplate();
+
+    private static final int CONNECTING = 0;
+    private static final int DOWNLOADING = 1;
+    private static final int CONVERTING = 2;
+    private static final int SAVING = 3;
 
     final OptionsActivity optionsActivity;
 
@@ -56,14 +61,19 @@ abstract class FishmashUpdater extends AsyncTask<Void, Integer, Void> implements
             publishProgress(SAVING);
             save();
         }
-        catch(Exception e)
+        catch(Exception ignored)
         {
             // permit to continue - we will use cache, and take actions in onFailure()
-            e.printStackTrace();
         }
 
         return null;
     }
+
+    protected abstract void download();
+
+    protected abstract void convert();
+
+    protected abstract void save();
 
     @Override
     protected void onProgressUpdate(Integer... state)

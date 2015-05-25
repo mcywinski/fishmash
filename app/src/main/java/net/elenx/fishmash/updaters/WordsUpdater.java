@@ -25,7 +25,7 @@ public class WordsUpdater extends FishmashUpdater
     }
 
     @Override
-    public void download()
+    protected void download()
     {
         try
         {
@@ -39,7 +39,7 @@ public class WordsUpdater extends FishmashUpdater
     }
 
     @Override
-    public void convert()
+    protected void convert()
     {
         words = new LinkedList<>();
 
@@ -63,7 +63,7 @@ public class WordsUpdater extends FishmashUpdater
     }
 
     @Override
-    public void save()
+    protected void save()
     {
         if(words.size() == 0)
         {
