@@ -4,23 +4,14 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
+import net.elenx.fishmash.R;
 import net.elenx.fishmash.models.Word;
 
 public class WordsDAO extends FishmashDAO<Word>
 {
     public WordsDAO(Context context)
     {
-        super
-        (
-            context,
-            "words",
-            new String[]
-            {
-                "id",
-                "phrase",
-                "meaning"
-            }
-        );
+        super(context, R.string.words_table_name, R.array.words_columns);
     }
 
     @Override

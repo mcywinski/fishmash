@@ -4,26 +4,14 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
+import net.elenx.fishmash.R;
 import net.elenx.fishmash.models.Profile;
 
 public class ProfileDAO extends FishmashDAO<Profile>
 {
     public ProfileDAO(Context context)
     {
-        super
-        (
-            context,
-            "profile",
-            new String[]
-            {
-                "id",
-                "created_at",
-                "email",
-                "login",
-                "updated_at",
-                "user_type"
-            }
-        );
+        super(context, R.string.profiles_table_name, R.array.profiles_columns);
     }
 
     @Override

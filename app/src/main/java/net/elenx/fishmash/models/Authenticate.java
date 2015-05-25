@@ -4,18 +4,23 @@ import android.database.Cursor;
 
 public class Authenticate extends FishmashModel
 {
-    private final String token;
-    private final long userId;
-    private final String createdAt;
-    private final String updatedAt;
+    private String token;
+    private long user_id;
+    private String created_at;
+    private String updated_at;
+
+    public Authenticate()
+    {
+
+    }
 
     public Authenticate(Cursor cursor)
     {
         super(cursor);
         this.token = cursor.getString(1);
-        this.userId = cursor.getLong(2);
-        this.createdAt = cursor.getString(3);
-        this.updatedAt = cursor.getString(4);
+        this.user_id = cursor.getLong(2);
+        this.created_at = cursor.getString(3);
+        this.updated_at = cursor.getString(4);
     }
 
     public String getToken()
@@ -23,18 +28,18 @@ public class Authenticate extends FishmashModel
         return token;
     }
 
-    public long getUserId()
+    public long getUser_id()
     {
-        return userId;
+        return user_id;
     }
 
-    public String getCreatedAt()
+    public String getCreated_at()
     {
-        return createdAt;
+        return created_at;
     }
 
-    public String getUpdatedAt()
+    public String getUpdated_at()
     {
-        return updatedAt;
+        return updated_at;
     }
 }

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="exams_table_name">exams</string>
+
+    <string name="exams_id">id</string>
+    <string name="exams_name">name</string>
+    <string name="exams_dateExamStart">date_exam_start</string>
+    <string name="exams_dateExamFinish">date_exam_finish</string>
+    <string name="exams_datePracticeStart">date_practice_start</string>
+    <string name="exams_datePracticeFinish">date_practice_finish</string>
+    <string name="exams_wordCount">word_count</string>
+    <string name="examsIsFinished">is_finished</string>
+
+    <string-array name="exams_columns">
+        <item>@string/exams_id</item>
+        <item>@string/exams_name</item>
+        <item>@string/exams_dateExamStart</item>
+        <item>@string/exams_dateExamFinish</item>
+        <item>@string/exams_datePracticeStart</item>
+        <item>@string/exams_datePracticeFinish</item>
+        <item>@string/exams_wordCount</item>
+        <item>@string/examsIsFinished</item>
+    </string-array>
+
+    <string name="exams_create">
+        CREATE TABLE exams
+        (
+            id                      INTEGER PRIMARY KEY,
+            name                    TEXT,
+            date_exam_start         TEXT,
+            date_exam_finish        TEXT,
+            date_practice_start     TEXT,
+            date_practice_finish    TEXT,
+            word_count              INTEGER,
+            is_finished             INTEGER
+        );
+    </string>
+</resources>

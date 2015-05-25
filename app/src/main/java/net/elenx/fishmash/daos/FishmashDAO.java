@@ -21,10 +21,10 @@ public abstract class FishmashDAO<Model extends FishmashModel>
     protected abstract Model cursorToModel(Cursor cursor);
     protected abstract ContentValues modelToContentValues(Model model);
 
-    FishmashDAO(Context context, String table, String[] columns)
+    FishmashDAO(Context context, int tableNameResourceId, int columnsResourceId)
     {
-        this.table = table;
-        this.columns = columns;
+        this.table = context.getString(tableNameResourceId);
+        this.columns = context.getResources().getStringArray(columnsResourceId);
 
         sqLiteDatabase = new FishmashOpener(context).getWritableDatabase();
     }

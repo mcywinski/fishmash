@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="words_table_name">words</string>
+
+    <string name="words_id">id</string>
+    <string name="words_phrase">phrase</string>
+    <string name="words_meaning">meaning</string>
+
+    <string-array name="words_columns">
+        <item>@string/words_id</item>
+        <item>@string/words_phrase</item>
+        <item>@string/words_meaning</item>
+    </string-array>
+
+    <string name="words_create">
+        CREATE TABLE words
+        (
+            id      INTEGER PRIMARY KEY,
+            phrase  TEXT,
+            meaning TEXT
+        );
+    </string>
+</resources>

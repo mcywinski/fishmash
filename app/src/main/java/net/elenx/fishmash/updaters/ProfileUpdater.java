@@ -33,7 +33,7 @@ public class ProfileUpdater extends FishmashUpdater
 
         Authenticate authenticate = authenticateDAO.selectAll().get(0);
 
-        String address = Constant.PROFILE + authenticate.getUserId();
+        String address = Constant.PROFILE + authenticate.getUser_id();
         profile = restTemplate.getForObject(address, Profile.class, buildParameters());
 
     }

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="authenticate_table_name">authenticate</string>
+
+    <string name="authenticate_id">id</string>
+    <string name="authenticate_token">token</string>
+    <string name="authenticate_userId">user_id</string>
+    <string name="authenticate_createdAt">created_at</string>
+    <string name="authenticate_updatedAt">updated_at</string>
+
+    <string-array name="authenticate_columns">
+        <item>@string/authenticate_id</item>
+        <item>@string/authenticate_token</item>
+        <item>@string/authenticate_userId</item>
+        <item>@string/authenticate_createdAt</item>
+        <item>@string/authenticate_updatedAt</item>
+    </string-array>
+
+    <string name="authenticate_create">
+        CREATE TABLE authenticate
+        (
+            id          INTEGER PRIMARY KEY,
+            token       TEXT,
+            user_id     INTEGER,
+            created_at  TEXT,
+            updated_at  TEXT
+        );
+    </string>
+</resources>

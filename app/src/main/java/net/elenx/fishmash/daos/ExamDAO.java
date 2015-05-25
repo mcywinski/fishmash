@@ -4,28 +4,14 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
+import net.elenx.fishmash.R;
 import net.elenx.fishmash.models.Exam;
 
 public class ExamDAO extends FishmashDAO<Exam>
 {
     public ExamDAO(Context context)
     {
-        super
-        (
-            context,
-            "exams",
-            new String[]
-            {
-                "id",
-                "name",
-                "date_exam_start",
-                "date_exam_finish",
-                "date_practice_start",
-                "date_practice_finish",
-                "word_count",
-                "is_finished"
-            }
-        );
+        super(context, R.string.exams_table_name, R.array.exams_columns);
     }
 
     @Override
@@ -45,7 +31,7 @@ public class ExamDAO extends FishmashDAO<Exam>
         contentValues.put(columns[5], exam.getDatePracticeStart().getAsSimpleString());
         contentValues.put(columns[6], exam.getDatePracticeFinish().getAsSimpleString());
         contentValues.put(columns[7], exam.getWordCount());
-        contentValues.put(columns[7], exam.isFinished() ? 1 : 0);
+        contentValues.put(columns[8], exam.isFinished() ? 1 : 0);
 
         return contentValues;
     }
