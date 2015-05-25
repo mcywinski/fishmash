@@ -8,7 +8,7 @@ class Api::ListsController < ApplicationController
 
     lists_dto = Array.new
     lists.each do |list|
-      lists_dto.push(list.to_simple_dto(false))
+      lists_dto.push(list.to_dto(false))
     end
 
     respond_with lists_dto

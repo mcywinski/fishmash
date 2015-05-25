@@ -29,7 +29,7 @@ class Word < ActiveRecord::Base
 
   	# Converting dependent words to hashes
   	word_list.words.each do |word|
-  		word_dto = word.to_simple_dto
+  		word_dto = word.to_dto
   		list.push(word_dto)
   	end
 

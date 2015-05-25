@@ -73,6 +73,6 @@ wordlist_exams_list = [
        [3,3]
 ]
 
-wordlist_exams_list.each do |wordlist_id, exam_id|
-       WordListExam.create(wordlist_id: wordlist_id, exam_id: exam_id)
+wordlist_exams_list.each do |word_list_id, exam_id|
+       WordListExam.create(word_list_id: word_list_id, exam_id: exam_id)
 end
