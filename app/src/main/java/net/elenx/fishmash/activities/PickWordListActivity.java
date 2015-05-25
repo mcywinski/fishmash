@@ -30,6 +30,8 @@ public class PickWordListActivity extends OptionsActivity
 
         new WordListUpdater(this).execute();
         showWordLists();
+
+//        new ExamUpdater(this).execute();
     }
 
     @SuppressLint("InflateParams")

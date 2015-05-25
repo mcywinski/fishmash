@@ -39,18 +39,12 @@ public class AuthenticateUpdater extends FishmashUpdater
 
         try
         {
-            authenticate = restTemplate.postForObject(Constant.API + Constant.AUTHENTICATE, httpEntity, Authenticate.class);
+            authenticate = restTemplate.postForObject(Constant.AUTHENTICATE, httpEntity, Authenticate.class);
         }
         catch(Exception e)
         {
-            Log.e(Constant.API + Constant.AUTHENTICATE, httpEntity.getBody(), e);
+            Log.e(Constant.AUTHENTICATE, httpEntity.getBody(), e);
         }
-    }
-
-    @Override
-    protected void convert()
-    {
-
     }
 
     @Override

@@ -27,18 +27,14 @@ public class ProfileUpdater extends FishmashUpdater
         if(authenticateDAO.count() <= 0)
         {
             // profile remains null, so we will take actions in save() with onFailure()
+
             return;
         }
 
         Authenticate authenticate = authenticateDAO.selectAll().get(0);
 
-        String address = Constant.API + Constant.PROFILE + authenticate.getUserId() + "?api_token=" + authenticate.getToken();
-        profile = restTemplate.getForObject(address, Profile.class);
-    }
-
-    @Override
-    protected void convert()
-    {
+        String address = Constant.PROFILE + authenticate.getUserId();
+        profile = restTemplate.getForObject(address, Profile.class, buildParameters());
 
     }
 
