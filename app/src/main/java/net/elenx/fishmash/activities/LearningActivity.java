@@ -56,7 +56,7 @@ public class LearningActivity extends SpeakingActivity
             }
             else
             {
-                Toast.makeText(this, "This wordlist is empty", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "This word list is empty", Toast.LENGTH_LONG).show();
 
                 return;
             }
@@ -73,7 +73,7 @@ public class LearningActivity extends SpeakingActivity
 
         if(words.size() < 1)
         {
-            Toast.makeText(this, "This wordlist is empty", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "This word list is empty", Toast.LENGTH_LONG).show();
 
             return;
         }
@@ -105,7 +105,7 @@ public class LearningActivity extends SpeakingActivity
             }
         );
 
-        phraseXorMeaning = (TextView) findViewById(R.id.TextViewPhraseXorMeaning);
+        phraseXorMeaning = (TextView) findViewById(R.id.textViewQuestion);
         mainXorForeignLanguage = (TextView) findViewById(R.id.TextViewMainXorForeignLanguage);
         tapToFlip = (TextView) findViewById(R.id.textViewTapToFlip);
 

@@ -15,7 +15,7 @@
 
         <TableRow
             xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/tableRowWordList"
+            android:id="@+id/tableRowExam"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
 
@@ -30,7 +30,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/textViewWordListName"
+                        android:id="@+id/textViewExamName"
                         android:layout_alignParentTop="true"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"/>
@@ -39,8 +39,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:id="@+id/textViewWordListDescription"
-                        android:layout_below="@+id/textViewWordListName"
+                        android:id="@+id/textViewExamDescription"
+                        android:layout_below="@+id/textViewExamName"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"/>
 
@@ -69,58 +69,27 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"/>
 
-    <TextView
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:id="@+id/TextViewMainXorForeignLanguage"
-        android:layout_below="@+id/textViewQuestion"
-        android:layout_centerHorizontal="true"/>
+        android:inputType="textVisiblePassword"
+        android:ems="10"
+        android:id="@+id/editTextAnswer"
+        android:layout_above="@+id/imageViewNextWord"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"/>
 
-    <TableLayout
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/imageViewNextWord"
+        android:src="@drawable/next"
+        android:contentDescription="@string/next_word"
+        android:adjustViewBounds="true"
         android:layout_alignParentBottom="true"
-        android:id="@+id/tableLayout">
-
-        <TableRow
-            tools:ignore="UselessParent">
-            <!-- I will add more table rows programmatically, so it's not useless -->
-
-            <ImageView
-                android:layout_width="0dip"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:id="@+id/imageViewPreviousWord"
-                android:src="@drawable/previous"
-                android:contentDescription="@string/previous_word"
-                android:adjustViewBounds="true"
-                android:paddingRight="20dp"
-                android:paddingEnd="20dp"
-                android:paddingLeft="20dp"/>
-
-            <ImageView
-                android:layout_width="0dip"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:id="@+id/imageViewNextWord"
-                android:src="@drawable/next"
-                android:contentDescription="@string/next_word"
-                android:adjustViewBounds="true"
-                android:paddingLeft="20dp"
-                android:paddingStart="20dp"
-                android:paddingRight="20dp"/>
-        </TableRow>
-
-    </TableLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:id="@+id/textViewTapToFlip"
-        android:layout_above="@+id/tableLayout"
-        android:layout_centerHorizontal="true"
-        android:paddingBottom="20dp"/>
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
 
 </RelativeLayout>

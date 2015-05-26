@@ -15,9 +15,9 @@ import java.util.Map;
 public class Examiner extends FishmashUpdater
 {
     private long examId;
-    private ExamQuestion examQuestion;
     private String answer;
     private boolean isOver = false;
+    private ExamQuestionListener examQuestionListener;
 
     public Examiner(OptionsActivity optionsActivity, long examId)
     {
@@ -42,11 +42,20 @@ public class Examiner extends FishmashUpdater
 
     private void fetchQuestion(Map<String, String> parameters)
     {
-        examQuestion = fishmashRest.postForObject(Constant.QUESTION_EXAMID_TOKEN, null, ExamQuestion.class, parameters);
+        ExamQuestion examQuestion = fishmashRest.postForObject(Constant.QUESTION_EXAMID_TOKEN, null, ExamQuestion.class, parameters);
 
         Log.e("meaning", examQuestion.getMeaning());
 
         isOver |= examQuestion.getId() == 0 && examQuestion.isExam_finished();
+
+        if(isOver)
+        {
+            examQuestionListener.examFinished();
+        }
+        else
+        {
+            examQuestionListener.prepareQuestion(examQuestion.getMeaning());
+        }
     }
 
     private void sendAnswerAndGetResponse() throws Exception
@@ -68,18 +77,13 @@ public class Examiner extends FishmashUpdater
         }
     }
 
-    public ExamQuestion getExamQuestion()
-    {
-        return examQuestion;
-    }
-
-    public boolean isOver()
-    {
-        return isOver;
-    }
-
     public void setAnswer(String answer)
     {
         this.answer = answer;
+    }
+
+    public void setExamQuestionListener(ExamQuestionListener examQuestionListener)
+    {
+        this.examQuestionListener = examQuestionListener;
     }
 }
