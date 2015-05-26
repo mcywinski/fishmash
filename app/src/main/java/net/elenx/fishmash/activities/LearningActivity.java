@@ -100,7 +100,7 @@ public class LearningActivity extends SpeakingActivity
                 @Override
                 public void onClick(View view)
                 {
-                    pickWordList();
+                    learningAndExams();
                 }
             }
         );

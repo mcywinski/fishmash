@@ -27,7 +27,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="net.elenx.fishmash.activities.PickWordListActivity"/>
+        <activity android:name=".activities.LearningAndExamsActivity"/>
         <activity android:name="net.elenx.fishmash.activities.ProfileActivity"/>
 
     </application>

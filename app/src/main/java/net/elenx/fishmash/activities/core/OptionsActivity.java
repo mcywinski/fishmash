@@ -10,7 +10,7 @@ import net.elenx.fishmash.Constant;
 import net.elenx.fishmash.R;
 import net.elenx.fishmash.activities.AuthenticateActivity;
 import net.elenx.fishmash.activities.LearningActivity;
-import net.elenx.fishmash.activities.PickWordListActivity;
+import net.elenx.fishmash.activities.LearningAndExamsActivity;
 import net.elenx.fishmash.activities.ProfileActivity;
 import net.elenx.fishmash.activities.core.drawer.NavigationDrawerFragment;
 import net.elenx.fishmash.daos.AuthenticateDAO;
@@ -47,7 +47,7 @@ public abstract class OptionsActivity extends ProgressDialogActivity
                 break;
 
             case R.string.pick_wordlist:
-                pickWordList();
+                learningAndExams();
                 break;
 
             case R.string.profile:
@@ -72,10 +72,10 @@ public abstract class OptionsActivity extends ProgressDialogActivity
         switchIntentTo(LearningActivity.class);
     }
 
-    protected void pickWordList()
+    protected void learningAndExams()
     {
         NavigationDrawerFragment.setCurrentSelectedPosition(1);
-        switchIntentTo(PickWordListActivity.class);
+        switchIntentTo(LearningAndExamsActivity.class);
     }
 
     protected void updateWords(long id)

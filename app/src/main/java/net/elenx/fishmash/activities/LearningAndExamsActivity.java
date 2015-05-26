@@ -23,7 +23,7 @@ import net.elenx.fishmash.updaters.WordListUpdater;
 
 import java.util.List;
 
-public class PickWordListActivity extends OptionsActivity
+public class LearningAndExamsActivity extends OptionsActivity
 {
     @Override
     protected void onPostCreate(Bundle savedInstanceState)

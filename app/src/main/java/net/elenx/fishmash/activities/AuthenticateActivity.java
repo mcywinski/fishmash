@@ -27,7 +27,7 @@ public class AuthenticateActivity extends OptionsActivity
 
         if(isAuthenticated())
         {
-            pickWordList();
+            learningAndExams();
         }
     }
 
@@ -90,7 +90,7 @@ public class AuthenticateActivity extends OptionsActivity
                             @Override
                             public void onSuccess()
                             {
-                                pickWordList();
+                                learningAndExams();
                             }
 
                             @Override
