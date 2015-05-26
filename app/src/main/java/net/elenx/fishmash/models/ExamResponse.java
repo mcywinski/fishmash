@@ -10,4 +10,14 @@ public class ExamResponse extends FishmashModel
     {
         // default constructor is used by spring-android
     }
+
+    public boolean isSaved()
+    {
+        return saved;
+    }
+
+    public String getMesssage()
+    {
+        return messsage;
+    }
 }

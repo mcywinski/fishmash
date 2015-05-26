@@ -1,13 +1,24 @@
 package net.elenx.fishmash.models;
 
+/**
+{
+  answerId: 37,
+  answerText: 'pies'
+}
+ */
 public class ExamAnswer extends FishmashModel
 {
-    private int answer_id;
-    private String answer_text;
+    private long answerId;
+    private String answerText;
 
-    @SuppressWarnings("unused")
-    ExamAnswer()
+    public ExamAnswer(long answerId, String answerText)
     {
-        // default constructor is used by spring-android
+        this.answerId = answerId;
+        this.answerText = answerText;
+    }
+
+    public String toJson()
+    {
+        return "{ answer_id: " + answerId + ", answer_text: '" + answerText + "' }";
     }
 }
