@@ -9,7 +9,9 @@ public class Authenticate extends FishmashModel
     private String created_at;
     private String updated_at;
 
-    public Authenticate()
+    // default constructor is used by spring-android
+    @SuppressWarnings("unused")
+    Authenticate()
     {
 
     }

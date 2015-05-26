@@ -11,7 +11,7 @@ public abstract class FishmashModel
 
     FishmashModel()
     {
-
+        // default constructor is used by spring-android
     }
 
     FishmashModel(Cursor cursor)
