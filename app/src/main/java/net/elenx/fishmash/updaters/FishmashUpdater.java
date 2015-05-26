@@ -8,10 +8,6 @@ import net.elenx.fishmash.activities.core.OptionsActivity;
 
 import org.json.JSONException;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.Scanner;
-
 abstract class FishmashUpdater extends AsyncTask<Void, Integer, Void>
 {
     static final FishmashRest fishmashRest = new FishmashRest(5);
@@ -117,22 +113,6 @@ abstract class FishmashUpdater extends AsyncTask<Void, Integer, Void>
                 optionsActivity.signal(optionsActivity.getString(R.string.saving));
                 break;
         }
-    }
-
-    final String getStringFrom(String address) throws IOException
-    {
-        URL url = new URL(address);
-        Scanner scanner = new Scanner(url.openStream());
-
-        StringBuilder stringBuilder = new StringBuilder();
-        scanner.useDelimiter("\\Z");
-
-        while(scanner.hasNext())
-        {
-            stringBuilder.append(scanner.nextLine());
-        }
-
-        return stringBuilder.toString();
     }
 
     private Runnable success()

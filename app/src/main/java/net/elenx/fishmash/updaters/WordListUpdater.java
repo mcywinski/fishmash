@@ -26,7 +26,8 @@ public class WordListUpdater extends FishmashUpdater
     @Override
     protected void download() throws JSONException, IOException
     {
-        jsonArray = new JSONArray(getStringFrom(Constant.LISTS));
+        String json = fishmashRest.getForObject(Constant.LISTS, String.class);
+        jsonArray = new JSONArray(json);
     }
 
     @Override
