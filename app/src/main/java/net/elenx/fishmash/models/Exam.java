@@ -12,11 +12,10 @@ public class Exam extends FishmashModel
     private int word_count;
     private boolean is_finished;
 
-    // default constructor is used by spring-android
     @SuppressWarnings("unused")
     Exam()
     {
-
+        // default constructor is used by spring-android
     }
 
     public Exam(Cursor cursor)

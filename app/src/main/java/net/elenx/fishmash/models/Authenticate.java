@@ -9,11 +9,10 @@ public class Authenticate extends FishmashModel
     private String created_at;
     private String updated_at;
 
-    // default constructor is used by spring-android
     @SuppressWarnings("unused")
     Authenticate()
     {
-
+        // default constructor is used by spring-android
     }
 
     public Authenticate(Cursor cursor)
