@@ -1,5 +1,7 @@
 package net.elenx.fishmash.updaters;
 
+import android.util.Log;
+
 import net.elenx.fishmash.Constant;
 import net.elenx.fishmash.activities.core.OptionsActivity;
 import net.elenx.fishmash.daos.AuthenticateDAO;
@@ -33,9 +35,9 @@ public class ProfileUpdater extends FishmashUpdater
 
         Authenticate authenticate = authenticateDAO.selectAll().get(0);
 
-        String address = Constant.PROFILE + authenticate.getUser_id();
-        profile = restTemplate.getForObject(address, Profile.class, buildParameters());
-
+        String address = Constant.PROFILE + authenticate.getUser_id() + "?api_token=" + authenticate.getToken();
+        Log.e("url", address);
+        profile = fishmashRest.getForObject(address, Profile.class);
     }
 
     @Override

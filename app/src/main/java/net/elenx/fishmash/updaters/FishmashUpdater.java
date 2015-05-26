@@ -7,12 +7,6 @@ import net.elenx.fishmash.R;
 import net.elenx.fishmash.activities.core.OptionsActivity;
 import net.elenx.fishmash.daos.AuthenticateDAO;
 
-import org.springframework.http.client.ClientHttpRequestFactory;
-import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
-import org.springframework.http.client.SimpleClientHttpRequestFactory;
-import org.springframework.web.client.RestClientException;
-import org.springframework.web.client.RestTemplate;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
@@ -21,51 +15,7 @@ import java.util.Scanner;
 
 abstract class FishmashUpdater extends AsyncTask<Void, Integer, Void>
 {
-    private static final int TIMEOUT = 5 * 1000;
-
-    static final RestTemplate restTemplate = new RestTemplate()
-    {
-        {
-            ClientHttpRequestFactory clientHttpRequestFactory = getRequestFactory();
-
-            if(clientHttpRequestFactory instanceof SimpleClientHttpRequestFactory)
-            {
-                SimpleClientHttpRequestFactory simpleClientHttpRequestFactory = (SimpleClientHttpRequestFactory) clientHttpRequestFactory;
-
-                simpleClientHttpRequestFactory.setConnectTimeout(TIMEOUT);
-                simpleClientHttpRequestFactory.setReadTimeout(TIMEOUT);
-            }
-            else if (clientHttpRequestFactory instanceof HttpComponentsClientHttpRequestFactory)
-            {
-                HttpComponentsClientHttpRequestFactory httpComponentsClientHttpRequestFactory = (HttpComponentsClientHttpRequestFactory) clientHttpRequestFactory;
-
-                httpComponentsClientHttpRequestFactory.setReadTimeout(TIMEOUT);
-                httpComponentsClientHttpRequestFactory.setConnectTimeout(TIMEOUT);
-            }
-        }
-
-        @Override
-        public <T> T getForObject(String url, Class<T> responseType, Map<String, ?> urlVariables) throws RestClientException
-        {
-            for(String key : urlVariables.keySet())
-            {
-                Log.e(key, urlVariables.get(key).toString());
-            }
-
-            return super.getForObject(url, responseType, urlVariables);
-        }
-
-        @Override
-        public <T> T postForObject(String url, Object request, Class<T> responseType, Map<String, ?> uriVariables) throws RestClientException
-        {
-            for(String key : uriVariables.keySet())
-            {
-                Log.e(key, uriVariables.get(key).toString());
-            }
-
-            return super.postForObject(url, request, responseType, uriVariables);
-        }
-    };
+    static final FishmashRest fishmashRest = new FishmashRest(5);
 
     private static final int CONNECTING = 0;
     private static final int DOWNLOADING = 1;
@@ -112,8 +62,9 @@ abstract class FishmashUpdater extends AsyncTask<Void, Integer, Void>
             publishProgress(SAVING);
             save();
         }
-        catch(Exception ignored)
+        catch(Exception e)
         {
+            Log.e("FishmashUpdater", "", e);
             // permit to continue - we will use cache, and take actions in onFailure()
         }
 

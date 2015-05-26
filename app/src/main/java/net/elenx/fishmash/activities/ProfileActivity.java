@@ -1,6 +1,7 @@
 package net.elenx.fishmash.activities;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import net.elenx.fishmash.R;
@@ -60,6 +61,8 @@ public class ProfileActivity extends OptionsActivity
         }
 
         final Profile profile = profileDAO.selectAll().get(0);
+
+        Log.e("profile", profile.getLogin());
 
         runOnUiThread
         (

@@ -18,7 +18,7 @@ public class ExamUpdater extends FishmashUpdater
     {
         Log.e("before", "before");
 
-        Exam[] exams = restTemplate.getForObject(Constant.EXAMS, Exam[].class, buildParameters());
+        Exam[] exams = fishmashRest.getForObject(Constant.EXAMS, Exam[].class, buildParameters());
 
         Log.e("after", "after");
 
