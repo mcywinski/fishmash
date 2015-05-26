@@ -29,9 +29,9 @@ public class ProfileActivity extends OptionsActivity
         createdAtData = (TextView) findViewById(R.id.textViewCreatedAtData);
         updatedAtData = (TextView) findViewById(R.id.textViewUpdatedAtData);
 
-        new ProfileUpdater
+        ProfileUpdater profileUpdater = new ProfileUpdater(this);
+        profileUpdater.setUpdaterListener
         (
-            this,
             new UpdaterListener()
             {
                 @Override
@@ -46,7 +46,9 @@ public class ProfileActivity extends OptionsActivity
                     logout();
                 }
             }
-        ).execute();
+        );
+
+        profileUpdater.execute();
     }
 
     private void showProfile()

@@ -11,14 +11,11 @@ import net.elenx.fishmash.models.Profile;
 
 public class ProfileUpdater extends FishmashUpdater
 {
-    private final UpdaterListener updaterListener;
     private Profile profile;
 
-    public ProfileUpdater(OptionsActivity optionsActivity, UpdaterListener updaterListener)
+    public ProfileUpdater(OptionsActivity optionsActivity)
     {
         super(optionsActivity);
-
-        this.updaterListener = updaterListener;
     }
 
     @Override
@@ -41,19 +38,15 @@ public class ProfileUpdater extends FishmashUpdater
     }
 
     @Override
-    protected void save()
+    protected void save() throws Exception
     {
         if(profile == null)
         {
-            updaterListener.onFailure();
-
-            return;
+            throw new Exception("profile is null");
         }
 
         ProfileDAO profileDAO = new ProfileDAO(optionsActivity);
         profileDAO.truncate();
         profileDAO.insert(profile);
-
-        updaterListener.onSuccess();
     }
 }

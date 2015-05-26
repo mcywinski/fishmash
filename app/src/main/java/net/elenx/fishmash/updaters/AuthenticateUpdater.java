@@ -1,7 +1,5 @@
 package net.elenx.fishmash.updaters;
 
-import android.util.Log;
-
 import net.elenx.fishmash.Constant;
 import net.elenx.fishmash.activities.core.OptionsActivity;
 import net.elenx.fishmash.daos.AuthenticateDAO;
@@ -16,51 +14,40 @@ public class AuthenticateUpdater extends FishmashUpdater
 {
     private final String login;
     private final String password;
-    private final UpdaterListener updaterListener;
 
     private Authenticate authenticate;
 
-    public AuthenticateUpdater(OptionsActivity optionsActivity, String login, String password, UpdaterListener updaterListener)
+    public AuthenticateUpdater(OptionsActivity optionsActivity, String login, String password)
     {
         super(optionsActivity);
 
         this.login = login;
         this.password = password;
-        this.updaterListener = updaterListener;
     }
 
     @Override
     protected void download()
     {
-        LoginPassword loginPassword = new LoginPassword(login, password);
         HttpHeaders requestHeaders = new HttpHeaders();
         requestHeaders.setContentType(new MediaType("application", "json"));
+
+        LoginPassword loginPassword = new LoginPassword(login, password);
+
         HttpEntity<String> httpEntity = new HttpEntity<>(loginPassword.toJson(), requestHeaders);
 
-        try
-        {
-            authenticate = fishmashRest.postForObject(Constant.AUTHENTICATE, httpEntity, Authenticate.class);
-        }
-        catch(Exception e)
-        {
-            Log.e(Constant.AUTHENTICATE, httpEntity.getBody(), e);
-        }
+        authenticate = fishmashRest.postForObject(Constant.AUTHENTICATE, httpEntity, Authenticate.class);
     }
 
     @Override
-    protected void save()
+    protected void save() throws Exception
     {
         if(authenticate == null)
         {
-            updaterListener.onFailure();
-
-            return;
+            throw new Exception("authenticate is null");
         }
 
         AuthenticateDAO authenticateDAO = new AuthenticateDAO(optionsActivity);
         authenticateDAO.truncate();
         authenticateDAO.insert(authenticate);
-
-        updaterListener.onSuccess();
     }
 }

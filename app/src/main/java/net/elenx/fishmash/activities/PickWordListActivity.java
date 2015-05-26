@@ -10,12 +10,15 @@ import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import net.elenx.fishmash.R;
 import net.elenx.fishmash.activities.core.OptionsActivity;
 import net.elenx.fishmash.activities.core.drawer.NavigationDrawerFragment;
 import net.elenx.fishmash.daos.WordListsDAO;
 import net.elenx.fishmash.models.WordList;
+import net.elenx.fishmash.updaters.ExamUpdater;
+import net.elenx.fishmash.updaters.UpdaterListener;
 import net.elenx.fishmash.updaters.WordListUpdater;
 
 import java.util.List;
@@ -28,12 +31,61 @@ public class PickWordListActivity extends OptionsActivity
         super.onPostCreate(savedInstanceState);
         attach(R.layout.pick_wordlist);
 
-        new WordListUpdater(this).execute();
-        showWordLists();
-
-//        new ExamUpdater(this).execute();
+        updateWordLists();
     }
 
+    private void updateWordLists()
+    {
+        WordListUpdater wordListUpdater = new WordListUpdater(this);
+        wordListUpdater.setUpdaterListener
+        (
+            new UpdaterListener()
+            {
+                @Override
+                public void onSuccess()
+                {
+                    showWordLists();
+                    updateExams();
+                }
+
+                @Override
+                public void onFailure()
+                {
+                    Toast.makeText(me, "There are no word lists", Toast.LENGTH_LONG).show();
+                }
+            }
+        );
+
+        wordListUpdater.execute();
+    }
+
+    private void updateExams()
+    {
+        ExamUpdater examUpdater = new ExamUpdater(this);
+        examUpdater.setUpdaterListener
+        (
+            new UpdaterListener()
+            {
+                @Override
+                public void onSuccess()
+                {
+
+                }
+
+                @Override
+                public void onFailure()
+                {
+                    Toast.makeText(me, "There are no exams", Toast.LENGTH_LONG).show();
+                }
+            }
+        );
+
+        examUpdater.execute();
+    }
+
+    // I am passing null as root - it's optional and I do not want to use it
+    // inflated view should be attached as child to passed argument=root
+    // and I have it's future parent (TableLayout), but it tries to cast TableRow to TableLayout
     @SuppressLint("InflateParams")
     private void showWordLists()
     {

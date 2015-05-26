@@ -23,49 +23,34 @@ public class WordListUpdater extends FishmashUpdater
     }
 
     @Override
-    protected void download()
+    protected void download() throws JSONException
     {
-        try
-        {
-            jsonArray = new JSONArray(getStringFrom(Constant.LISTS));
-        }
-        catch(JSONException e)
-        {
-            // avoid null pointer
-            jsonArray = new JSONArray();
-        }
+        jsonArray = new JSONArray(getStringFrom(Constant.LISTS));
     }
 
     @Override
-    protected void convert()
+    protected void convert() throws JSONException
     {
         wordLists = new LinkedList<>();
 
         JSONObject jsonObject;
         int size = jsonArray.length();
 
-        try
+        for(int i = 0; i < size; i++)
         {
-            for(int i = 0; i < size; i++)
-            {
-                jsonObject = jsonArray.getJSONObject(i).getJSONObject("details");
+            jsonObject = jsonArray.getJSONObject(i).getJSONObject("details");
 
-                WordList wordList = new WordList(jsonObject);
-                wordLists.add(wordList);
-            }
-        }
-        catch(JSONException e)
-        {
-            e.printStackTrace();
+            WordList wordList = new WordList(jsonObject);
+            wordLists.add(wordList);
         }
     }
 
     @Override
-    protected void save()
+    protected void save() throws Exception
     {
         if(wordLists.size() == 0)
         {
-            return;
+            throw new Exception("wordList is empty");
         }
 
         WordListsDAO wordListsDAO = new WordListsDAO(optionsActivity);

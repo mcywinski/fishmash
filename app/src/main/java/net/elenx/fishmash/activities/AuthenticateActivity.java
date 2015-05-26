@@ -82,11 +82,9 @@ public class AuthenticateActivity extends OptionsActivity
                     String login = editTextLogin.getText().toString();
                     String password = editTextPassword.getText().toString();
 
-                    new AuthenticateUpdater
+                    AuthenticateUpdater authenticateUpdater = new AuthenticateUpdater(me, login, password);
+                    authenticateUpdater.setUpdaterListener
                     (
-                        me,
-                        login,
-                        password,
                         new UpdaterListener()
                         {
                             @Override
@@ -101,7 +99,9 @@ public class AuthenticateActivity extends OptionsActivity
                                 showBadCredentialsWarning();
                             }
                         }
-                    ).execute();
+                    );
+
+                    authenticateUpdater.execute();
                 }
             }
         );

@@ -7,6 +7,8 @@ import net.elenx.fishmash.R;
 import net.elenx.fishmash.activities.core.OptionsActivity;
 import net.elenx.fishmash.daos.AuthenticateDAO;
 
+import org.json.JSONException;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
@@ -21,6 +23,9 @@ abstract class FishmashUpdater extends AsyncTask<Void, Integer, Void>
     private static final int DOWNLOADING = 1;
     private static final int CONVERTING = 2;
     private static final int SAVING = 3;
+
+    private UpdaterListener updaterListener;
+    private Runnable finisher;
 
     final OptionsActivity optionsActivity;
 
@@ -39,6 +44,7 @@ abstract class FishmashUpdater extends AsyncTask<Void, Integer, Void>
     protected void onPostExecute(Void aVoid)
     {
         optionsActivity.dismissProgressDialog();
+        finisher.run();
     }
 
     @Override
@@ -61,27 +67,31 @@ abstract class FishmashUpdater extends AsyncTask<Void, Integer, Void>
 
             publishProgress(SAVING);
             save();
+
+            finisher = success();
         }
         catch(Exception e)
         {
-            Log.e("FishmashUpdater", "", e);
+            Log.e("FishmashUpdater", e.getMessage(), e);
             // permit to continue - we will use cache, and take actions in onFailure()
+
+            finisher = failure();
         }
 
         return null;
     }
 
-    protected void download()
+    protected void download() throws JSONException
     {
         // allow overriding, but do not force it
     }
 
-    protected void convert()
+    protected void convert() throws JSONException
     {
         // allow overriding, but do not force it
     }
 
-    protected void save()
+    protected void save() throws Exception
     {
         // allow overriding, but do not force it
     }
@@ -128,7 +138,7 @@ abstract class FishmashUpdater extends AsyncTask<Void, Integer, Void>
         }
         catch(IOException e)
         {
-            Log.e("FishmashUpdater", "", e);
+            Log.e("FishmashUpdater", e.getMessage(), e);
 
             return "";
         }
@@ -145,5 +155,40 @@ abstract class FishmashUpdater extends AsyncTask<Void, Integer, Void>
         }
 
         return parameters;
+    }
+
+    public void setUpdaterListener(UpdaterListener updaterListener)
+    {
+        this.updaterListener = updaterListener;
+    }
+
+    private Runnable success()
+    {
+        return new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                if(updaterListener != null)
+                {
+                    updaterListener.onSuccess();
+                }
+            }
+        };
+    }
+
+    private Runnable failure()
+    {
+        return new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                if(updaterListener != null)
+                {
+                    updaterListener.onFailure();
+                }
+            }
+        };
     }
 }

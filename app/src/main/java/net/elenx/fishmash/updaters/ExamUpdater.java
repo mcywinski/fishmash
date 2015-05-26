@@ -6,6 +6,8 @@ import net.elenx.fishmash.Constant;
 import net.elenx.fishmash.activities.core.OptionsActivity;
 import net.elenx.fishmash.models.Exam;
 
+import org.springframework.web.client.HttpClientErrorException;
+
 public class ExamUpdater extends FishmashUpdater
 {
     public ExamUpdater(OptionsActivity optionsActivity)
@@ -14,7 +16,7 @@ public class ExamUpdater extends FishmashUpdater
     }
 
     @Override
-    protected void download()
+    protected void download() throws HttpClientErrorException
     {
         Log.e("before", "before");
 
