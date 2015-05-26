@@ -9,7 +9,7 @@
     <string name="exams_datePracticeStart">date_practice_start</string>
     <string name="exams_datePracticeFinish">date_practice_finish</string>
     <string name="exams_wordCount">word_count</string>
-    <string name="examsIsFinished">is_finished</string>
+    <string name="exams_IsFinished">is_finished</string>
 
     <string-array name="exams_columns">
         <item>@string/exams_id</item>
@@ -19,7 +19,7 @@
         <item>@string/exams_datePracticeStart</item>
         <item>@string/exams_datePracticeFinish</item>
         <item>@string/exams_wordCount</item>
-        <item>@string/examsIsFinished</item>
+        <item>@string/exams_IsFinished</item>
     </string-array>
 
     <string name="exams_create">

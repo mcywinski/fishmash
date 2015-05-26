@@ -5,12 +5,12 @@ import android.database.Cursor;
 public class Exam extends FishmashModel
 {
     private String name;
-    private FishmashCalendar dateExamStart;
-    private FishmashCalendar dateExamFinish;
-    private FishmashCalendar datePracticeStart;
-    private FishmashCalendar datePracticeFinish;
-    private int wordCount;
-    private boolean isFinished;
+    private FishmashCalendar date_exam_start;
+    private FishmashCalendar date_exam_finish;
+    private FishmashCalendar date_practice_start;
+    private FishmashCalendar date_practice_finish;
+    private int word_count;
+    private boolean is_finished;
 
     // default constructor is used by spring-android
     @SuppressWarnings("unused")
@@ -29,33 +29,33 @@ public class Exam extends FishmashModel
         return name;
     }
 
-    public FishmashCalendar getDateExamStart()
+    public FishmashCalendar getDate_exam_start()
     {
-        return dateExamStart;
+        return date_exam_start;
     }
 
-    public FishmashCalendar getDateExamFinish()
+    public FishmashCalendar getDate_exam_finish()
     {
-        return dateExamFinish;
+        return date_exam_finish;
     }
 
-    public FishmashCalendar getDatePracticeStart()
+    public FishmashCalendar getDate_practice_start()
     {
-        return datePracticeStart;
+        return date_practice_start;
     }
 
-    public FishmashCalendar getDatePracticeFinish()
+    public FishmashCalendar getDate_practice_finish()
     {
-        return datePracticeFinish;
+        return date_practice_finish;
     }
 
-    public int getWordCount()
+    public int getWord_count()
     {
-        return wordCount;
+        return word_count;
     }
 
-    public boolean isFinished()
+    public boolean getIs_finished()
     {
-        return isFinished;
+        return is_finished;
     }
 }

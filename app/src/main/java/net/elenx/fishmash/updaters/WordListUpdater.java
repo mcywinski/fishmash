@@ -2,7 +2,7 @@ package net.elenx.fishmash.updaters;
 
 import net.elenx.fishmash.Constant;
 import net.elenx.fishmash.activities.core.OptionsActivity;
-import net.elenx.fishmash.daos.WordListsDAO;
+import net.elenx.fishmash.daos.WordListDAO;
 import net.elenx.fishmash.models.WordList;
 
 import org.json.JSONArray;
@@ -53,8 +53,8 @@ public class WordListUpdater extends FishmashUpdater
             throw new Exception("wordList is empty");
         }
 
-        WordListsDAO wordListsDAO = new WordListsDAO(optionsActivity);
-        wordListsDAO.truncate();
-        wordListsDAO.insert(wordLists);
+        WordListDAO wordListDAO = new WordListDAO(optionsActivity);
+        wordListDAO.truncate();
+        wordListDAO.insert(wordLists);
     }
 }

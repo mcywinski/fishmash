@@ -81,7 +81,7 @@ abstract class FishmashUpdater extends AsyncTask<Void, Integer, Void>
         return null;
     }
 
-    protected void download() throws JSONException
+    protected void download() throws Exception
     {
         // allow overriding, but do not force it
     }

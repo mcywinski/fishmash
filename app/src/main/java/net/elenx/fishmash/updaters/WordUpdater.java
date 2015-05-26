@@ -2,7 +2,7 @@ package net.elenx.fishmash.updaters;
 
 import net.elenx.fishmash.Constant;
 import net.elenx.fishmash.activities.core.OptionsActivity;
-import net.elenx.fishmash.daos.WordsDAO;
+import net.elenx.fishmash.daos.WordDAO;
 import net.elenx.fishmash.models.Word;
 
 import org.json.JSONArray;
@@ -12,13 +12,13 @@ import org.json.JSONObject;
 import java.util.LinkedList;
 import java.util.List;
 
-public class WordsUpdater extends FishmashUpdater
+public class WordUpdater extends FishmashUpdater
 {
     private final long wordListId;
     private JSONObject jsonWordList;
     private List<Word> words;
 
-    public WordsUpdater(OptionsActivity optionsActivity, long wordListId)
+    public WordUpdater(OptionsActivity optionsActivity, long wordListId)
     {
         super(optionsActivity);
         this.wordListId = wordListId;
@@ -55,8 +55,8 @@ public class WordsUpdater extends FishmashUpdater
             throw new Exception("there are no words");
         }
 
-        WordsDAO wordsDAO = new WordsDAO(optionsActivity);
-        wordsDAO.truncate();
-        wordsDAO.insert(words);
+        WordDAO wordDAO = new WordDAO(optionsActivity);
+        wordDAO.truncate();
+        wordDAO.insert(words);
     }
 }

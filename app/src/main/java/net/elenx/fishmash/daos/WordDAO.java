@@ -7,9 +7,9 @@ import android.database.Cursor;
 import net.elenx.fishmash.R;
 import net.elenx.fishmash.models.Word;
 
-public class WordsDAO extends FishmashDAO<Word>
+public class WordDAO extends FishmashDAO<Word>
 {
-    public WordsDAO(Context context)
+    public WordDAO(Context context)
     {
         super(context, R.string.words_table_name, R.array.words_columns);
     }

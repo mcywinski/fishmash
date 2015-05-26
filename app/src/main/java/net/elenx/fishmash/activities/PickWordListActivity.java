@@ -15,7 +15,7 @@ import android.widget.Toast;
 import net.elenx.fishmash.R;
 import net.elenx.fishmash.activities.core.OptionsActivity;
 import net.elenx.fishmash.activities.core.drawer.NavigationDrawerFragment;
-import net.elenx.fishmash.daos.WordListsDAO;
+import net.elenx.fishmash.daos.WordListDAO;
 import net.elenx.fishmash.models.WordList;
 import net.elenx.fishmash.updaters.ExamUpdater;
 import net.elenx.fishmash.updaters.UpdaterListener;
@@ -89,8 +89,8 @@ public class PickWordListActivity extends OptionsActivity
     @SuppressLint("InflateParams")
     private void showWordLists()
     {
-        WordListsDAO wordListsDAO = new WordListsDAO(this);
-        List<WordList> wordLists = wordListsDAO.selectAll();
+        WordListDAO wordListDAO = new WordListDAO(this);
+        List<WordList> wordLists = wordListDAO.selectAll();
 
         TableLayout tableLayoutWordList = (TableLayout) findViewById(R.id.tableLayoutLearningSection);
         TableRow tableRow;

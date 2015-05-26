@@ -11,8 +11,8 @@ import android.widget.Toast;
 import net.elenx.fishmash.Cycle;
 import net.elenx.fishmash.R;
 import net.elenx.fishmash.activities.core.SpeakingActivity;
-import net.elenx.fishmash.daos.WordListsDAO;
-import net.elenx.fishmash.daos.WordsDAO;
+import net.elenx.fishmash.daos.WordListDAO;
+import net.elenx.fishmash.daos.WordDAO;
 import net.elenx.fishmash.models.Word;
 import net.elenx.fishmash.models.WordList;
 
@@ -68,7 +68,7 @@ public class LearningActivity extends SpeakingActivity
 
         updateWords(wordListId);
 
-        List<Word> words = new WordsDAO(this).selectAll();
+        List<Word> words = new WordDAO(this).selectAll();
         cycle = new Cycle<>(words);
 
         if(words.size() < 1)
@@ -78,7 +78,7 @@ public class LearningActivity extends SpeakingActivity
             return;
         }
 
-        WordList wordList = new WordListsDAO(this).select(wordListId);
+        WordList wordList = new WordListDAO(this).select(wordListId);
 
         mainLanguageLocale = wordList.getMainLanguage().getLocale();
         foreignLanguageLocale = wordList.getForeignLanguage().getLocale();

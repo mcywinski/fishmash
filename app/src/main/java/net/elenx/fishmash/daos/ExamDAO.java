@@ -24,14 +24,14 @@ public class ExamDAO extends FishmashDAO<Exam>
     protected ContentValues modelToContentValues(Exam exam)
     {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(columns[1], exam.getId());
-        contentValues.put(columns[2], exam.getName());
-        contentValues.put(columns[3], exam.getDateExamStart().getAsSimpleString());
-        contentValues.put(columns[4], exam.getDateExamFinish().getAsSimpleString());
-        contentValues.put(columns[5], exam.getDatePracticeStart().getAsSimpleString());
-        contentValues.put(columns[6], exam.getDatePracticeFinish().getAsSimpleString());
-        contentValues.put(columns[7], exam.getWordCount());
-        contentValues.put(columns[8], exam.isFinished() ? 1 : 0);
+        contentValues.put(columns[0], exam.getId());
+        contentValues.put(columns[1], exam.getName());
+        contentValues.put(columns[2], exam.getDate_exam_start().getAsSimpleString());
+        contentValues.put(columns[3], exam.getDate_exam_finish().getAsSimpleString());
+        contentValues.put(columns[4], exam.getDate_practice_start().getAsSimpleString());
+        contentValues.put(columns[5], exam.getDate_practice_finish().getAsSimpleString());
+        contentValues.put(columns[6], exam.getWord_count());
+        contentValues.put(columns[7], exam.getIs_finished() ? 1 : 0);
 
         return contentValues;
     }

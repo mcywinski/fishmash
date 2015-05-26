@@ -14,7 +14,7 @@ import net.elenx.fishmash.activities.PickWordListActivity;
 import net.elenx.fishmash.activities.ProfileActivity;
 import net.elenx.fishmash.activities.core.drawer.NavigationDrawerFragment;
 import net.elenx.fishmash.daos.AuthenticateDAO;
-import net.elenx.fishmash.updaters.WordsUpdater;
+import net.elenx.fishmash.updaters.WordUpdater;
 
 public abstract class OptionsActivity extends ProgressDialogActivity
 {
@@ -80,7 +80,7 @@ public abstract class OptionsActivity extends ProgressDialogActivity
 
     protected void updateWords(long id)
     {
-        new WordsUpdater(this, id).execute();
+        new WordUpdater(this, id).execute();
     }
 
     protected boolean isAuthenticated()
