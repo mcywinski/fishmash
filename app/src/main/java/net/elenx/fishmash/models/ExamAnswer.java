@@ -6,7 +6,7 @@ package net.elenx.fishmash.models;
   answerText: 'pies'
 }
  */
-public class ExamAnswer extends FishmashModel
+public class ExamAnswer extends FishmashModel implements JSON
 {
     private long answerId;
     private String answerText;

@@ -7,15 +7,19 @@ import net.elenx.fishmash.R;
 import net.elenx.fishmash.activities.core.OptionsActivity;
 import net.elenx.fishmash.daos.AuthenticateDAO;
 import net.elenx.fishmash.models.Authenticate;
+import net.elenx.fishmash.models.JSON;
 
 import org.json.JSONException;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 
 import java.util.HashMap;
 import java.util.Map;
 
 abstract class FishmashUpdater extends AsyncTask<Void, Integer, Void>
 {
-    static final FishmashRest fishmashRest = new FishmashRest(5);
+    static final FishmashRest fishmashRest = new FishmashRest(50);
 
     private static final int CONNECTING = 0;
     private static final int DOWNLOADING = 1;
@@ -136,6 +140,14 @@ abstract class FishmashUpdater extends AsyncTask<Void, Integer, Void>
         map.put("api_token", authenticate.getToken());
 
         return map;
+    }
+
+    protected HttpEntity<String> buildEntityWith(JSON json)
+    {
+        HttpHeaders requestHeaders = new HttpHeaders();
+        requestHeaders.setContentType(new MediaType("application", "json"));
+
+        return new HttpEntity<>(json.toJson(), requestHeaders);
     }
 
     private Runnable success()

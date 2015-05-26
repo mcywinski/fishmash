@@ -6,6 +6,8 @@ import android.widget.Toast;
 
 import net.elenx.fishmash.R;
 import net.elenx.fishmash.activities.core.OptionsActivity;
+import net.elenx.fishmash.updaters.Examiner;
+import net.elenx.fishmash.updaters.UpdaterListener;
 
 public class ExamActivity extends OptionsActivity
 {
@@ -25,5 +27,26 @@ public class ExamActivity extends OptionsActivity
 
             return;
         }
+
+        final Examiner examiner = new Examiner(this, examId);
+        examiner.setUpdaterListener
+        (
+            new UpdaterListener()
+            {
+                @Override
+                public void onSuccess()
+                {
+                    Log.e("success", examiner.getExamQuestion().getMeaning());
+                }
+
+                @Override
+                public void onFailure()
+                {
+                    Log.e("fail", examiner.getExamQuestion().getMeaning());
+                }
+            }
+        );
+
+        examiner.execute();
     }
 }

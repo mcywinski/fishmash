@@ -1,6 +1,6 @@
 package net.elenx.fishmash.models;
 
-public class LoginPassword
+public class LoginPassword implements JSON
 {
     private final String login;
     private final String password;

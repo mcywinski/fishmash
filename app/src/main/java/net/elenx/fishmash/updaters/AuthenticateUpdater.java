@@ -7,8 +7,6 @@ import net.elenx.fishmash.models.Authenticate;
 import net.elenx.fishmash.models.LoginPassword;
 
 import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 
 public class AuthenticateUpdater extends FishmashUpdater
 {
@@ -28,7 +26,8 @@ public class AuthenticateUpdater extends FishmashUpdater
     @Override
     protected void download()
     {
-        authenticate = fishmashRest.postForObject(Constant.AUTHENTICATE, buildHttpEntityWithCredentials(), Authenticate.class);
+        HttpEntity<String> httpEntity = buildEntityWith(new LoginPassword(login, password));
+        authenticate = fishmashRest.postForObject(Constant.AUTHENTICATE, httpEntity, Authenticate.class);
     }
 
     @Override
@@ -42,15 +41,5 @@ public class AuthenticateUpdater extends FishmashUpdater
         AuthenticateDAO authenticateDAO = new AuthenticateDAO(optionsActivity);
         authenticateDAO.truncate();
         authenticateDAO.insert(authenticate);
-    }
-
-    private HttpEntity<String> buildHttpEntityWithCredentials()
-    {
-        HttpHeaders requestHeaders = new HttpHeaders();
-        requestHeaders.setContentType(new MediaType("application", "json"));
-
-        LoginPassword loginPassword = new LoginPassword(login, password);
-
-        return new HttpEntity<>(loginPassword.toJson(), requestHeaders);
     }
 }
