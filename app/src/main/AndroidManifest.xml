@@ -15,6 +15,7 @@
         tools:ignore="UnusedAttribute">
 
         <activity android:name="net.elenx.fishmash.activities.AuthenticateActivity"/>
+        <activity android:name="net.elenx.fishmash.activities.ExamActivity"/>
         <activity android:name="net.elenx.fishmash.activities.LearningActivity"/>
 
         <activity

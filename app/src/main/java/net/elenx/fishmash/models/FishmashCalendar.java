@@ -21,7 +21,7 @@ public class FishmashCalendar extends GregorianCalendar
         shortDateFormat     // Kamil Galek's format from layouts
     };
 
-    public FishmashCalendar(String sqlDate)
+    public FishmashCalendar(String date)
     {
         boolean failed = true;
 
@@ -29,7 +29,7 @@ public class FishmashCalendar extends GregorianCalendar
         {
             try
             {
-                setTime(simpleDateFormat.parse(sqlDate));
+                setTime(simpleDateFormat.parse(date));
                 failed = false;
                 break;
             }
@@ -41,7 +41,7 @@ public class FishmashCalendar extends GregorianCalendar
         if(failed)
         {
             setTimeInMillis(Long.MAX_VALUE);
-            Log.e("FishmashCalendar fail - setting time to max", sqlDate);
+            Log.e("FishmashCalendar fail - setting time to max", date);
         }
     }
 
