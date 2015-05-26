@@ -15,14 +15,14 @@ class ExamsController < ApplicationController
 
 	def create
 		@wordlists = Array.new
-		# Removing first, empty element from wordlist_id array
-		wordlist_id_helper = params[:exam][:wordlist_id].drop(1)
+		# Removing first, empty element from word_list_id array
+		wordlist_id_helper = params[:exam][:word_list_id].drop(1)
 		wordlists = WordList.find(wordlist_id_helper)
 		exam = Exam.new(new_exam_params)	
 
 		if exam.save
 			wordlists.each do |wordlist|
-				wordlists_exam = WordListExam.new(wordlist_id: wordlist.id, exam_id: exam.id)
+				wordlists_exam = WordListExam.new(word_list_id: wordlist.id, exam_id: exam.id)
 				wordlists_exam.save
 				redirect_to exams_path
 			end
