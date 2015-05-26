@@ -18,14 +18,14 @@ class ExamsController < ApplicationController
 		# Removing first, empty element from word_list_id array
 		wordlist_id_helper = params[:exam][:word_list_id].drop(1)
 		wordlists = WordList.find(wordlist_id_helper)
-		exam = Exam.new(new_exam_params)	
+		exam = Exam.new(new_exam_params)
+		wordlists.each do |wordlist|
+			exam.word_lists.push wordlist
+		end
 
 		if exam.save
-			wordlists.each do |wordlist|
-				wordlists_exam = WordListExam.new(word_list_id: wordlist.id, exam_id: exam.id)
-				wordlists_exam.save
-				redirect_to exams_path
-			end
+			flash[:success] = 'Exam has been successfuly created'
+			redirect_to exams_path
 		else
 			flash[:errors] = stringify_errors(exam)
 			redirect_to new_exam_path
