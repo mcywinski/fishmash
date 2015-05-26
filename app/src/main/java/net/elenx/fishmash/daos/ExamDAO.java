@@ -26,10 +26,10 @@ public class ExamDAO extends FishmashDAO<Exam>
         ContentValues contentValues = new ContentValues();
         contentValues.put(columns[0], exam.getId());
         contentValues.put(columns[1], exam.getName());
-        contentValues.put(columns[2], exam.getDate_exam_start().getAsSimpleString());
-        contentValues.put(columns[3], exam.getDate_exam_finish().getAsSimpleString());
-        contentValues.put(columns[4], exam.getDate_practice_start().getAsSimpleString());
-        contentValues.put(columns[5], exam.getDate_practice_finish().getAsSimpleString());
+        contentValues.put(columns[2], exam.getDate_exam_start().inSimpleFormat());
+        contentValues.put(columns[3], exam.getDate_exam_finish().inSimpleFormat());
+        contentValues.put(columns[4], exam.getDate_practice_start().inSimpleFormat());
+        contentValues.put(columns[5], exam.getDate_practice_finish().inSimpleFormat());
         contentValues.put(columns[6], exam.getWord_count());
         contentValues.put(columns[7], exam.getIs_finished() ? 1 : 0);
 

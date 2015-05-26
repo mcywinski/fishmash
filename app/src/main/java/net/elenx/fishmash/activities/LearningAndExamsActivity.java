@@ -3,7 +3,6 @@ package net.elenx.fishmash.activities;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -146,23 +145,7 @@ public class LearningAndExamsActivity extends OptionsActivity
     private void showExams()
     {
         ExamDAO examDAO = new ExamDAO(this);
-
-        Log.e("count", String.valueOf(examDAO.count()));
-
         List<Exam> examList = examDAO.selectAll();
-
-        Log.e("size", String.valueOf(examList.size()));
-
-        for(Exam exam : examList)
-        {
-            Log.e("", "");
-            Log.e("id", String.valueOf(exam.getId()));
-            Log.e("name", exam.getName());
-            Log.e("date_exam_finish", exam.getDate_exam_finish().getAsSimpleString());
-            Log.e("word_count", String.valueOf(exam.getWord_count()));
-            Log.e("is_finished", exam.getIs_finished() ? "tak" : "nie");
-            Log.e("", "");
-        }
 
         TableLayout tableLayoutExams = (TableLayout) findViewById(R.id.tableLayoutExamSection);
         TableRow tableRow;
@@ -181,7 +164,7 @@ public class LearningAndExamsActivity extends OptionsActivity
             examName.setText(exam.getName());
 
             examDescription = (TextView) relativeLayout.getChildAt(1);
-            examDescription.setText("to " + exam.getDate_exam_finish().getAsSimpleString());
+            examDescription.setText("to " + exam.getDate_exam_finish().inSimpleFormat());
 
             ImageView imageView = (ImageView) tableRow.getChildAt(1);
             imageView.setOnClickListener

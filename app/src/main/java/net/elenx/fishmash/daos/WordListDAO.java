@@ -28,7 +28,7 @@ public class WordListDAO extends FishmashDAO<WordList>
         contentValues.put(columns[2], wordList.getDescription());
         contentValues.put(columns[3], wordList.getMainLanguage().getId());
         contentValues.put(columns[4], wordList.getForeignLanguage().getId());
-        contentValues.put(columns[5], wordList.getUpdatedAt().getAsSimpleString());
+        contentValues.put(columns[5], wordList.getUpdatedAt().inSimpleFormat());
 
         return contentValues;
     }

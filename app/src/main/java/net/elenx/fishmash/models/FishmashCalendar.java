@@ -1,53 +1,57 @@
 package net.elenx.fishmash.models;
 
-import android.annotation.SuppressLint;
+import android.util.Log;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
+import java.util.Locale;
 
 public class FishmashCalendar extends GregorianCalendar
 {
-    @SuppressLint({"SimpleDateFormat"})
-    private final static SimpleDateFormat sqlDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss.SSS'Z'");
+    // there is no Locale.POLAND nor Locale.POLISH, and closest one is GERMAN/Y
+    private final static SimpleDateFormat sqlDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss.SSS'Z'", Locale.GERMAN);
+    private final static SimpleDateFormat dominikDateFormat = new SimpleDateFormat("hh:mm:ss dd-MM-yyyy", Locale.GERMAN);
+    private final static SimpleDateFormat shortDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.GERMAN);
 
-    @SuppressLint({"SimpleDateFormat"})
-    private final static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm:ss dd-MM-yyyy");
+    private final static SimpleDateFormat[] simpleDataFormats = new SimpleDateFormat[]
+    {
+        sqlDateFormat,
+        dominikDateFormat,
+        shortDateFormat
+    };
 
     public FishmashCalendar(String sqlDate)
     {
-        setFromSqlString(sqlDate);
-    }
+        boolean success = false;
 
-    private void setFromSqlString(String sqlDate)
-    {
-        try
+        for(SimpleDateFormat simpleDateFormat : simpleDataFormats)
         {
-            setTime(sqlDateFormat.parse(sqlDate));
+            try
+            {
+                setTime(simpleDateFormat.parse(sqlDate));
+                success = true;
+                break;
+            }
+            catch(ParseException ignored)
+            {
+            }
         }
-        catch(ParseException ignored)
-        {
-        }
-    }
 
-    private void setFromSimpleString(String sqlDate)
-    {
-        try
+        if(!success)
         {
-            setTime(simpleDateFormat.parse(sqlDate));
-        }
-        catch(ParseException ignored)
-        {
+            setTimeInMillis(Long.MAX_VALUE);
+            Log.e("FishmashCalendar fail-safe - setting time to max", sqlDate);
         }
     }
 
-    public String getAsSqlString()
+    public String inSqlFormat()
     {
         return sqlDateFormat.format(getTime());
     }
 
-    public String getAsSimpleString()
+    public String inSimpleFormat()
     {
-        return simpleDateFormat.format(getTime());
+        return dominikDateFormat.format(getTime());
     }
 }

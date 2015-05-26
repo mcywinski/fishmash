@@ -19,7 +19,7 @@ public class ProfileUpdater extends FishmashUpdater
     @Override
     protected void download() throws Exception
     {
-        String url = Constant.PROFILE + buildParameters();
+        String url = Constant.USERS + buildParameters();
         profile = fishmashRest.getForObject(url, Profile.class);
     }
 
