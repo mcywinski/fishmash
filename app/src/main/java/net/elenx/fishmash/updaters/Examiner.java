@@ -16,8 +16,8 @@ public class Examiner extends FishmashUpdater
 {
     private long examId;
     private ExamQuestion examQuestion;
-    private ExamResponse examResponse;
     private String answer;
+    private boolean isOver = false;
 
     public Examiner(OptionsActivity optionsActivity, long examId)
     {
@@ -28,33 +28,44 @@ public class Examiner extends FishmashUpdater
     @Override
     protected void download() throws Exception
     {
+        if(isOver)
+        {
+            throw new Exception("exam is over");
+        }
+
         Map<String, String> parameters = buildParameters();
         parameters.put("exam_id", String.valueOf(examId));
 
+        sendAnswerAndGetResponse();
+        fetchQuestion(parameters);
+    }
+
+    private void fetchQuestion(Map<String, String> parameters)
+    {
         examQuestion = fishmashRest.postForObject(Constant.QUESTION_EXAMID_TOKEN, null, ExamQuestion.class, parameters);
 
         Log.e("meaning", examQuestion.getMeaning());
 
-        if(examQuestion.getId() == 0 && examQuestion.isExam_finished())
-        {
-
-        }
+        isOver |= examQuestion.getId() == 0 && examQuestion.isExam_finished();
     }
 
-    public boolean sendAnswer()
+    private void sendAnswerAndGetResponse() throws Exception
     {
         if(answer == null)
         {
             // answer is null only one time - on the start - so just skip it
-            return true;
+            return;
         }
 
         ExamAnswer examAnswer = new ExamAnswer(examId, answer);
         HttpEntity<String> httpEntity = buildEntityWith(examAnswer);
 
-        examResponse = fishmashRest.postForObject(Constant.ANSWER_EXAMID_TOKEN, httpEntity, ExamResponse.class);
+        ExamResponse examResponse = fishmashRest.postForObject(Constant.ANSWER_EXAMID_TOKEN, httpEntity, ExamResponse.class);
 
-        return true;
+        if(!examResponse.isSaved())
+        {
+            throw new Exception("answer has been not saved");
+        }
     }
 
     public ExamQuestion getExamQuestion()
@@ -62,9 +73,9 @@ public class Examiner extends FishmashUpdater
         return examQuestion;
     }
 
-    public ExamResponse getExamResponse()
+    public boolean isOver()
     {
-        return examResponse;
+        return isOver;
     }
 
     public void setAnswer(String answer)
