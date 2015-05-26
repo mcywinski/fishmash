@@ -3,6 +3,7 @@ package net.elenx.fishmash.activities;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -15,7 +16,9 @@ import android.widget.Toast;
 import net.elenx.fishmash.R;
 import net.elenx.fishmash.activities.core.OptionsActivity;
 import net.elenx.fishmash.activities.core.drawer.NavigationDrawerFragment;
+import net.elenx.fishmash.daos.ExamDAO;
 import net.elenx.fishmash.daos.WordListDAO;
+import net.elenx.fishmash.models.Exam;
 import net.elenx.fishmash.models.WordList;
 import net.elenx.fishmash.updaters.ExamUpdater;
 import net.elenx.fishmash.updaters.UpdaterListener;
@@ -38,23 +41,23 @@ public class LearningAndExamsActivity extends OptionsActivity
     {
         WordListUpdater wordListUpdater = new WordListUpdater(this);
         wordListUpdater.setUpdaterListener
-        (
-            new UpdaterListener()
-            {
-                @Override
-                public void onSuccess()
-                {
-                    showWordLists();
-                    updateExams();
-                }
+                (
+                        new UpdaterListener()
+                        {
+                            @Override
+                            public void onSuccess()
+                            {
+                                updateExams();
+                                showWordLists();
+                            }
 
-                @Override
-                public void onFailure()
-                {
-                    Toast.makeText(me, "There are no word lists", Toast.LENGTH_LONG).show();
-                }
-            }
-        );
+                            @Override
+                            public void onFailure()
+                            {
+                                Toast.makeText(me, "There are no word lists", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                );
 
         wordListUpdater.execute();
     }
@@ -69,7 +72,7 @@ public class LearningAndExamsActivity extends OptionsActivity
                 @Override
                 public void onSuccess()
                 {
-
+                    showExams();
                 }
 
                 @Override
@@ -85,7 +88,7 @@ public class LearningAndExamsActivity extends OptionsActivity
 
     // I am passing null as root - it's optional and I do not want to use it
     // inflated view should be attached as child to passed argument=root
-    // and I have it's future parent (TableLayout), but it tries to cast TableRow to TableLayout
+    // and I have it's future parent (TableLayout) - but it tries to cast TableRow to TableLayout
     @SuppressLint("InflateParams")
     private void showWordLists()
     {
@@ -133,6 +136,71 @@ public class LearningAndExamsActivity extends OptionsActivity
             );
 
             tableLayoutWordList.addView(tableRow);
+        }
+    }
+
+    // I am passing null as root - it's optional and I do not want to use it
+    // inflated view should be attached as child to passed argument=root
+    // and I have it's future parent (TableLayout) - but it tries to cast TableRow to TableLayout
+    @SuppressLint("InflateParams")
+    private void showExams()
+    {
+        ExamDAO examDAO = new ExamDAO(this);
+
+        Log.e("count", String.valueOf(examDAO.count()));
+
+        List<Exam> examList = examDAO.selectAll();
+
+        Log.e("size", String.valueOf(examList.size()));
+
+        for(Exam exam : examList)
+        {
+            Log.e("", "");
+            Log.e("id", String.valueOf(exam.getId()));
+            Log.e("name", exam.getName());
+            Log.e("date_exam_finish", exam.getDate_exam_finish().getAsSimpleString());
+            Log.e("word_count", String.valueOf(exam.getWord_count()));
+            Log.e("is_finished", exam.getIs_finished() ? "tak" : "nie");
+            Log.e("", "");
+        }
+
+        TableLayout tableLayoutExams = (TableLayout) findViewById(R.id.tableLayoutExamSection);
+        TableRow tableRow;
+        TextView examName;
+        TextView examDescription;
+
+        LayoutInflater layoutInflater = getLayoutInflater();
+
+        for(final Exam exam : examList)
+        {
+            tableRow = (TableRow) layoutInflater.inflate(R.layout.fragment_exam, null);
+
+            RelativeLayout relativeLayout = (RelativeLayout) tableRow.getChildAt(0);
+
+            examName = (TextView) relativeLayout.getChildAt(0);
+            examName.setText(exam.getName());
+
+            examDescription = (TextView) relativeLayout.getChildAt(1);
+            examDescription.setText("to " + exam.getDate_exam_finish().getAsSimpleString());
+
+            ImageView imageView = (ImageView) tableRow.getChildAt(1);
+            imageView.setOnClickListener
+            (
+                new View.OnClickListener()
+                {
+                    @Override
+                    public void onClick(View v)
+                    {
+                        NavigationDrawerFragment.setCurrentSelectedPosition(0);
+                        Intent intent = new Intent(getApplicationContext(), ExamActivity.class);
+                        intent.putExtra("examId", exam.getId());
+                        startActivity(intent);
+                        finish();
+                    }
+                }
+            );
+
+            tableLayoutExams.addView(tableRow);
         }
     }
 }

@@ -9,6 +9,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class WordListUpdater extends FishmashUpdater
     }
 
     @Override
-    protected void download() throws JSONException
+    protected void download() throws JSONException, IOException
     {
         jsonArray = new JSONArray(getStringFrom(Constant.LISTS));
     }

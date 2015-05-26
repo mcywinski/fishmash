@@ -46,7 +46,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:id="@+id/wordlist_separator"
+        android:id="@+id/learning_and_exams_separator"
         android:layout_below="@+id/tableLayoutLearningSection"/>
 
     <!-- ###-->
@@ -54,7 +54,7 @@
     <!-- START exam header-->
     <LinearLayout
         android:id="@+id/linearLayoutExamHeader"
-        android:layout_below="@+id/wordlist_separator"
+        android:layout_below="@+id/learning_and_exams_separator"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 

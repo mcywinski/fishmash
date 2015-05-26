@@ -13,11 +13,11 @@ public class Profile extends FishmashModel
     public Profile(Cursor cursor)
     {
         super(cursor);
-        this.createdAt = new FishmashCalendar(cursor.getString(1));
-        this.email = cursor.getString(2);
-        this.login = cursor.getString(3);
-        this.updatedAt = new FishmashCalendar(cursor.getString(4));
-        this.userType = cursor.getString(5);
+        createdAt = new FishmashCalendar(cursor.getString(1));
+        email = cursor.getString(2);
+        login = cursor.getString(3);
+        updatedAt = new FishmashCalendar(cursor.getString(4));
+        userType = cursor.getString(5);
     }
 
     public String getCreatedAt()

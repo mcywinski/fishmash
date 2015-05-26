@@ -16,21 +16,21 @@ public class WordList extends FishmashModel
     public WordList(Cursor cursor)
     {
         super(cursor);
-        this.name = cursor.getString(1);
-        this.description = cursor.getString(2);
-        this.mainLanguage = new Language(cursor.getInt(3));
-        this.foreignLanguage = new Language(cursor.getInt(4));
-        this.updatedAt = new FishmashCalendar(cursor.getString(5));
+        name = cursor.getString(1);
+        description = cursor.getString(2);
+        mainLanguage = new Language(cursor.getInt(3));
+        foreignLanguage = new Language(cursor.getInt(4));
+        updatedAt = new FishmashCalendar(cursor.getString(5));
     }
 
     public WordList(JSONObject json) throws JSONException
     {
         super(json);
-        this.name = json.getString("name");
-        this.description = json.getString("description");
-        this.mainLanguage = new Language(json.getInt("main_language_id"));
-        this.foreignLanguage = new Language(json.getInt("foreign_language_id"));
-        this.updatedAt = new FishmashCalendar(json.getString("updated_at"));
+        name = json.getString("name");
+        description = json.getString("description");
+        mainLanguage = new Language(json.getInt("main_language_id"));
+        foreignLanguage = new Language(json.getInt("foreign_language_id"));
+        updatedAt = new FishmashCalendar(json.getString("updated_at"));
     }
 
     public String getName()

@@ -1,7 +1,5 @@
 package net.elenx.fishmash.updaters;
 
-import android.util.Log;
-
 import net.elenx.fishmash.Constant;
 import net.elenx.fishmash.activities.core.OptionsActivity;
 import net.elenx.fishmash.daos.AuthenticateDAO;
@@ -19,22 +17,10 @@ public class ProfileUpdater extends FishmashUpdater
     }
 
     @Override
-    protected void download()
+    protected void download() throws Exception
     {
-        AuthenticateDAO authenticateDAO = new AuthenticateDAO(optionsActivity);
-
-        if(authenticateDAO.count() <= 0)
-        {
-            // profile remains null, so we will take actions in save() with onFailure()
-
-            return;
-        }
-
-        Authenticate authenticate = authenticateDAO.selectAll().get(0);
-
-        String address = Constant.PROFILE + authenticate.getUser_id() + "?api_token=" + authenticate.getToken();
-        Log.e("url", address);
-        profile = fishmashRest.getForObject(address, Profile.class);
+        String url = Constant.PROFILE + buildParameters();
+        profile = fishmashRest.getForObject(url, Profile.class);
     }
 
     @Override
@@ -48,5 +34,19 @@ public class ProfileUpdater extends FishmashUpdater
         ProfileDAO profileDAO = new ProfileDAO(optionsActivity);
         profileDAO.truncate();
         profileDAO.insert(profile);
+    }
+
+    private String buildParameters() throws Exception
+    {
+        AuthenticateDAO authenticateDAO = new AuthenticateDAO(optionsActivity);
+
+        if(authenticateDAO.count() <= 0)
+        {
+            throw new Exception("user is not logged in");
+        }
+
+        Authenticate authenticate = authenticateDAO.selectAll().get(0);
+
+        return authenticate.getUser_id() + "?api_token=" + authenticate.getToken();
     }
 }

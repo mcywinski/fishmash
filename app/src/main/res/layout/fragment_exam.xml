@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableRow
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tableRowExam"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="2">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewExamName"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/textViewExamDescription"
+                android:layout_below="@+id/textViewExamName"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"/>
+
+        </RelativeLayout>
+
+        <ImageView
+            android:layout_width="0dip"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:id="@+id/imageViewBack"
+            android:src="@drawable/main_exams_button"
+            android:contentDescription="@string/exam"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"/>
+
+</TableRow>

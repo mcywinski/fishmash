@@ -13,15 +13,15 @@ public class Word extends FishmashModel
     public Word(Cursor cursor)
     {
         super(cursor);
-        this.phrase = cursor.getString(1);
-        this.meaning = cursor.getString(2);
+        phrase = cursor.getString(1);
+        meaning = cursor.getString(2);
     }
 
     public Word(JSONObject json) throws JSONException
     {
         super(json);
-        this.phrase = json.getString("phrase");
-        this.meaning = json.getString("meaning");
+        phrase = json.getString("phrase");
+        meaning = json.getString("meaning");
     }
 
     public String getPhrase()

@@ -5,14 +5,11 @@ import android.util.Log;
 
 import net.elenx.fishmash.R;
 import net.elenx.fishmash.activities.core.OptionsActivity;
-import net.elenx.fishmash.daos.AuthenticateDAO;
 
 import org.json.JSONException;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 abstract class FishmashUpdater extends AsyncTask<Void, Integer, Void>
@@ -44,6 +41,12 @@ abstract class FishmashUpdater extends AsyncTask<Void, Integer, Void>
     protected void onPostExecute(Void aVoid)
     {
         optionsActivity.dismissProgressDialog();
+
+        if(finisher == null)
+        {
+            finisher = failure();
+        }
+
         finisher.run();
     }
 
@@ -56,7 +59,7 @@ abstract class FishmashUpdater extends AsyncTask<Void, Integer, Void>
 
             if(optionsActivity.isOffline())
             {
-                return null;
+                throw new Exception("we are offline");
             }
 
             publishProgress(DOWNLOADING);
@@ -73,9 +76,6 @@ abstract class FishmashUpdater extends AsyncTask<Void, Integer, Void>
         catch(Exception e)
         {
             Log.e("FishmashUpdater", e.getMessage(), e);
-            // permit to continue - we will use cache, and take actions in onFailure()
-
-            finisher = failure();
         }
 
         return null;
@@ -119,47 +119,20 @@ abstract class FishmashUpdater extends AsyncTask<Void, Integer, Void>
         }
     }
 
-    final String getStringFrom(String address)
+    final String getStringFrom(String address) throws IOException
     {
-        try
+        URL url = new URL(address);
+        Scanner scanner = new Scanner(url.openStream());
+
+        StringBuilder stringBuilder = new StringBuilder();
+        scanner.useDelimiter("\\Z");
+
+        while(scanner.hasNext())
         {
-            URL url = new URL(address);
-            Scanner scanner = new Scanner(url.openStream());
-
-            StringBuilder stringBuilder = new StringBuilder();
-            scanner.useDelimiter("\\Z");
-
-            while(scanner.hasNext())
-            {
-                stringBuilder.append(scanner.nextLine());
-            }
-
-            return stringBuilder.toString();
-        }
-        catch(IOException e)
-        {
-            Log.e("FishmashUpdater", e.getMessage(), e);
-
-            return "";
-        }
-    }
-
-    protected Map<String, String> buildParameters()
-    {
-        Map<String, String> parameters = new HashMap<>();
-        AuthenticateDAO authenticateDAO = new AuthenticateDAO(optionsActivity);
-
-        if(authenticateDAO.count() > 0)
-        {
-            parameters.put("api_token", authenticateDAO.selectAll().get(0).getToken());
+            stringBuilder.append(scanner.nextLine());
         }
 
-        return parameters;
-    }
-
-    public void setUpdaterListener(UpdaterListener updaterListener)
-    {
-        this.updaterListener = updaterListener;
+        return stringBuilder.toString();
     }
 
     private Runnable success()
@@ -190,5 +163,10 @@ abstract class FishmashUpdater extends AsyncTask<Void, Integer, Void>
                 }
             }
         };
+    }
+
+    public void setUpdaterListener(UpdaterListener updaterListener)
+    {
+        this.updaterListener = updaterListener;
     }
 }

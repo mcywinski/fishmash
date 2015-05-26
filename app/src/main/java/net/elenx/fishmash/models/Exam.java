@@ -22,6 +22,13 @@ public class Exam extends FishmashModel
     public Exam(Cursor cursor)
     {
         super(cursor);
+        name = cursor.getColumnName(1);
+        date_exam_start = new FishmashCalendar(cursor.getString(2));
+        date_exam_finish = new FishmashCalendar(cursor.getString(3));
+        date_practice_start = new FishmashCalendar(cursor.getString(4));
+        date_practice_finish = new FishmashCalendar(cursor.getString(5));
+        word_count = cursor.getInt(6);
+        is_finished = cursor.getInt(7) == 1;
     }
 
     public String getName()

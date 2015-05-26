@@ -22,6 +22,27 @@ public class ExamUpdater extends FishmashUpdater
     @Override
     protected void download() throws Exception
     {
+        String url = Constant.EXAMS + buildApiToken();
+        Exam[] exams = fishmashRest.getForObject(url, Exam[].class);
+
+        examList = Arrays.asList(exams);
+    }
+
+    @Override
+    protected void save() throws Exception
+    {
+        if(examList == null)
+        {
+            throw new Exception("there is no exam list");
+        }
+
+        ExamDAO examDAO = new ExamDAO(optionsActivity);
+        examDAO.truncate();
+        examDAO.insert(examList);
+    }
+
+    private String buildApiToken() throws Exception
+    {
         AuthenticateDAO authenticateDAO = new AuthenticateDAO(optionsActivity);
 
         if(authenticateDAO.count() <= 0)
@@ -31,22 +52,6 @@ public class ExamUpdater extends FishmashUpdater
 
         Authenticate authenticate = authenticateDAO.selectAll().get(0);
 
-        String address = Constant.EXAMS + "?api_token=" + authenticate.getToken();
-        Exam[] exams = fishmashRest.getForObject(address, Exam[].class);
-
-        examList = Arrays.asList(exams);
-    }
-
-    @Override
-    protected void save() throws Exception
-    {
-        if(examList == null || examList.size() <= 0)
-        {
-            throw new Exception("exam list is empty");
-        }
-
-        ExamDAO examDAO = new ExamDAO(optionsActivity);
-        examDAO.truncate();
-        examDAO.insert(examList);
+        return "?api_token=" + authenticate.getToken();
     }
 }

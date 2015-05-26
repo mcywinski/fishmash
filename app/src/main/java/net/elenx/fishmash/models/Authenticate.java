@@ -19,10 +19,10 @@ public class Authenticate extends FishmashModel
     public Authenticate(Cursor cursor)
     {
         super(cursor);
-        this.token = cursor.getString(1);
-        this.user_id = cursor.getLong(2);
-        this.created_at = cursor.getString(3);
-        this.updated_at = cursor.getString(4);
+        token = cursor.getString(1);
+        user_id = cursor.getLong(2);
+        created_at = cursor.getString(3);
+        updated_at = cursor.getString(4);
     }
 
     public String getToken()
