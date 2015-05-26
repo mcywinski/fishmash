@@ -164,7 +164,7 @@ public class LearningAndExamsActivity extends OptionsActivity
             examName.setText(exam.getName());
 
             examDescription = (TextView) relativeLayout.getChildAt(1);
-            examDescription.setText("to " + exam.getDate_exam_finish().inSimpleFormat());
+            examDescription.setText("to " + exam.getDate_exam_finish().inShortFormat());
 
             ImageView imageView = (ImageView) tableRow.getChildAt(1);
             imageView.setOnClickListener

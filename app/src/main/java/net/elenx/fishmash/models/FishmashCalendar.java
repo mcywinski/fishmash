@@ -11,26 +11,26 @@ public class FishmashCalendar extends GregorianCalendar
 {
     // there is no Locale.POLAND nor Locale.POLISH, and closest one is GERMAN/Y
     private final static SimpleDateFormat sqlDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss.SSS'Z'", Locale.GERMAN);
-    private final static SimpleDateFormat dominikDateFormat = new SimpleDateFormat("hh:mm:ss dd-MM-yyyy", Locale.GERMAN);
+    private final static SimpleDateFormat standardDateFormat = new SimpleDateFormat("hh:mm:ss dd-MM-yyyy", Locale.GERMAN);
     private final static SimpleDateFormat shortDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.GERMAN);
 
     private final static SimpleDateFormat[] simpleDataFormats = new SimpleDateFormat[]
     {
-        sqlDateFormat,
-        dominikDateFormat,
-        shortDateFormat
+        sqlDateFormat,      // Michal's format from API
+        standardDateFormat, // Dominik's format from tests and user experience
+        shortDateFormat     // Kamil Galek's format from layouts
     };
 
     public FishmashCalendar(String sqlDate)
     {
-        boolean success = false;
+        boolean failed = true;
 
         for(SimpleDateFormat simpleDateFormat : simpleDataFormats)
         {
             try
             {
                 setTime(simpleDateFormat.parse(sqlDate));
-                success = true;
+                failed = false;
                 break;
             }
             catch(ParseException ignored)
@@ -38,10 +38,10 @@ public class FishmashCalendar extends GregorianCalendar
             }
         }
 
-        if(!success)
+        if(failed)
         {
             setTimeInMillis(Long.MAX_VALUE);
-            Log.e("FishmashCalendar fail-safe - setting time to max", sqlDate);
+            Log.e("FishmashCalendar fail - setting time to max", sqlDate);
         }
     }
 
@@ -50,8 +50,13 @@ public class FishmashCalendar extends GregorianCalendar
         return sqlDateFormat.format(getTime());
     }
 
-    public String inSimpleFormat()
+    public String inStandardFormat()
     {
-        return dominikDateFormat.format(getTime());
+        return standardDateFormat.format(getTime());
+    }
+
+    public String inShortFormat()
+    {
+        return shortDateFormat.format(getTime());
     }
 }
