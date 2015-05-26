@@ -5,8 +5,13 @@ import android.util.Log;
 
 import net.elenx.fishmash.R;
 import net.elenx.fishmash.activities.core.OptionsActivity;
+import net.elenx.fishmash.daos.AuthenticateDAO;
+import net.elenx.fishmash.models.Authenticate;
 
 import org.json.JSONException;
+
+import java.util.HashMap;
+import java.util.Map;
 
 abstract class FishmashUpdater extends AsyncTask<Void, Integer, Void>
 {
@@ -113,6 +118,24 @@ abstract class FishmashUpdater extends AsyncTask<Void, Integer, Void>
                 optionsActivity.signal(optionsActivity.getString(R.string.saving));
                 break;
         }
+    }
+
+    protected Map<String, String> buildParameters() throws Exception
+    {
+        AuthenticateDAO authenticateDAO = new AuthenticateDAO(optionsActivity);
+
+        if(authenticateDAO.count() <= 0)
+        {
+            throw new Exception("user is not logged in");
+        }
+
+        Authenticate authenticate = authenticateDAO.selectAll().get(0);
+
+        Map<String, String> map = new HashMap<>();
+        map.put("id", String.valueOf(authenticate.getUser_id()));
+        map.put("token", authenticate.getToken());
+
+        return map;
     }
 
     private Runnable success()

@@ -28,14 +28,7 @@ public class AuthenticateUpdater extends FishmashUpdater
     @Override
     protected void download()
     {
-        HttpHeaders requestHeaders = new HttpHeaders();
-        requestHeaders.setContentType(new MediaType("application", "json"));
-
-        LoginPassword loginPassword = new LoginPassword(login, password);
-
-        HttpEntity<String> httpEntity = new HttpEntity<>(loginPassword.toJson(), requestHeaders);
-
-        authenticate = fishmashRest.postForObject(Constant.AUTHENTICATE, httpEntity, Authenticate.class);
+        authenticate = fishmashRest.postForObject(Constant.AUTHENTICATE, buildHttpEntityWithCredentials(), Authenticate.class);
     }
 
     @Override
@@ -49,5 +42,15 @@ public class AuthenticateUpdater extends FishmashUpdater
         AuthenticateDAO authenticateDAO = new AuthenticateDAO(optionsActivity);
         authenticateDAO.truncate();
         authenticateDAO.insert(authenticate);
+    }
+
+    private HttpEntity<String> buildHttpEntityWithCredentials()
+    {
+        HttpHeaders requestHeaders = new HttpHeaders();
+        requestHeaders.setContentType(new MediaType("application", "json"));
+
+        LoginPassword loginPassword = new LoginPassword(login, password);
+
+        return new HttpEntity<>(loginPassword.toJson(), requestHeaders);
     }
 }
