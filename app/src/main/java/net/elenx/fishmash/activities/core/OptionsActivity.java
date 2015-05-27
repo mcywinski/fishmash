@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.util.Log;
+import android.view.View;
 
 import net.elenx.fishmash.Constant;
 import net.elenx.fishmash.R;
@@ -70,6 +71,12 @@ public abstract class OptionsActivity extends ProgressDialogActivity
     {
         NavigationDrawerFragment.setCurrentSelectedPosition(0);
         switchIntentTo(LearningActivity.class);
+    }
+
+    // this is public only because XML onClick requires it
+    public void learningAndExams(View view)
+    {
+        learningAndExams();
     }
 
     protected void learningAndExams()

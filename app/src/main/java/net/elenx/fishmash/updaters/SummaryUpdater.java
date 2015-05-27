@@ -8,7 +8,8 @@ import java.util.Map;
 
 public class SummaryUpdater extends FishmashUpdater
 {
-    private long examId;
+    private final long examId;
+    private SummaryListener summaryListener;
 
     public SummaryUpdater(OptionsActivity optionsActivity, long examId)
     {
@@ -23,5 +24,15 @@ public class SummaryUpdater extends FishmashUpdater
         parameters.put("exam_id", String.valueOf(examId));
 
         ExamSummary[] examSummaries = fishmashRest.getForObject(Constant.SUMMARY_EXAMID_TOKEN, ExamSummary[].class, parameters);
+
+        if(summaryListener != null)
+        {
+            summaryListener.showSummary(examSummaries);
+        }
+    }
+
+    public void setSummaryListener(SummaryListener summaryListener)
+    {
+        this.summaryListener = summaryListener;
     }
 }

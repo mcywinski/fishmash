@@ -22,7 +22,6 @@ public class ExamActivity extends OptionsActivity
 
     private TextView examName;
     private TextView examDescription;
-    private ImageView back;
     private TextView question;
     private EditText answer;
     private ImageView next;
@@ -33,7 +32,20 @@ public class ExamActivity extends OptionsActivity
         super.onCreate(savedInstanceState);
         attach(R.layout.exam);
 
-        long examId = getIntent().getLongExtra("examId", -1);
+        ImageView back = (ImageView) findViewById(R.id.imageViewBack);
+        back.setOnClickListener
+        (
+            new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View view)
+                {
+                    learningAndExams();
+                }
+            }
+        );
+
+        final long examId = getIntent().getLongExtra("examId", -1);
 
         Log.e("examId", String.valueOf(examId));
 
@@ -63,6 +75,7 @@ public class ExamActivity extends OptionsActivity
                 public void examFinished()
                 {
                     Toast.makeText(me, "Exam is over", Toast.LENGTH_LONG).show();
+                    switchIntentTo(SummaryActivity.class, "examId", examId);
                 }
             }
         );
@@ -74,7 +87,6 @@ public class ExamActivity extends OptionsActivity
     {
         examName = (TextView) findViewById(R.id.textViewExamName);
         examDescription = (TextView) findViewById(R.id.textViewExamDescription);
-        back = (ImageView) findViewById(R.id.imageViewBack);
         question = (TextView) findViewById(R.id.textViewQuestion);
         answer = (EditText) findViewById(R.id.editTextAnswer);
         next = (ImageView) findViewById(R.id.imageViewNextWord);
@@ -86,18 +98,6 @@ public class ExamActivity extends OptionsActivity
 
         examName.setText(exam.getName());
         examDescription.setText("to " + exam.getDate_exam_finish().inShortFormat());
-
-        back.setOnClickListener
-        (
-            new View.OnClickListener()
-            {
-                @Override
-                public void onClick(View view)
-                {
-                    learningAndExams();
-                }
-            }
-        );
 
         next.setOnClickListener
         (
