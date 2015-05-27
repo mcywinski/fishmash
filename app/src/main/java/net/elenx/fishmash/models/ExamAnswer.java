@@ -1,5 +1,7 @@
 package net.elenx.fishmash.models;
 
+import net.elenx.fishmash.models.secondary.JSON;
+
 /**
 {
   answerId: 37,

@@ -11,7 +11,7 @@ import android.widget.Toast;
 import net.elenx.fishmash.R;
 import net.elenx.fishmash.activities.core.OptionsActivity;
 import net.elenx.fishmash.models.ExamSummary;
-import net.elenx.fishmash.updaters.SummaryListener;
+import net.elenx.fishmash.updaters.listeners.SummaryListener;
 import net.elenx.fishmash.updaters.SummaryUpdater;
 
 public class SummaryActivity extends OptionsActivity

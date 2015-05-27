@@ -1,4 +1,4 @@
-package net.elenx.fishmash.updaters;
+package net.elenx.fishmash.updaters.listeners;
 
 import net.elenx.fishmash.models.ExamSummary;
 

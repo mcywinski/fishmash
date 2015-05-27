@@ -3,6 +3,7 @@ package net.elenx.fishmash.updaters;
 import net.elenx.fishmash.Constant;
 import net.elenx.fishmash.activities.core.OptionsActivity;
 import net.elenx.fishmash.models.ExamSummary;
+import net.elenx.fishmash.updaters.listeners.SummaryListener;
 
 import java.util.Map;
 

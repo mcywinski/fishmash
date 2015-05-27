@@ -4,25 +4,31 @@ import android.database.Cursor;
 
 public class Profile extends FishmashModel
 {
-    private final FishmashCalendar createdAt;
-    private final String email;
-    private final String login;
-    private final FishmashCalendar updatedAt;
-    private final String userType;
+    private FishmashCalendar created_at;
+    private String email;
+    private String login;
+    private FishmashCalendar updated_at;
+    private String user_type;
+
+    @SuppressWarnings("unused")
+    Profile()
+    {
+        // default constructor is used by spring-android
+    }
 
     public Profile(Cursor cursor)
     {
         super(cursor);
-        createdAt = new FishmashCalendar(cursor.getString(1));
+        created_at = new FishmashCalendar(cursor.getString(1));
         email = cursor.getString(2);
         login = cursor.getString(3);
-        updatedAt = new FishmashCalendar(cursor.getString(4));
-        userType = cursor.getString(5);
+        updated_at = new FishmashCalendar(cursor.getString(4));
+        user_type = cursor.getString(5);
     }
 
-    public String getCreatedAt()
+    public String getCreated_at()
     {
-        return createdAt.inStandardFormat();
+        return created_at.inStandardFormat();
     }
 
     public String getEmail()
@@ -35,13 +41,13 @@ public class Profile extends FishmashModel
         return login;
     }
 
-    public String getUpdatedAt()
+    public String getUpdated_at()
     {
-        return updatedAt.inStandardFormat();
+        return updated_at.inStandardFormat();
     }
 
-    public String getUserType()
+    public String getUser_type()
     {
-        return userType;
+        return user_type;
     }
 }

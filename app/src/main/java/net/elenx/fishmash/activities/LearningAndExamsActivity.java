@@ -19,7 +19,7 @@ import net.elenx.fishmash.daos.WordListDAO;
 import net.elenx.fishmash.models.Exam;
 import net.elenx.fishmash.models.WordList;
 import net.elenx.fishmash.updaters.ExamUpdater;
-import net.elenx.fishmash.updaters.UpdaterListener;
+import net.elenx.fishmash.updaters.listeners.UpdaterListener;
 import net.elenx.fishmash.updaters.WordListUpdater;
 
 import java.util.List;

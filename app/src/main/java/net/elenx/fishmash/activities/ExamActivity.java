@@ -12,7 +12,7 @@ import net.elenx.fishmash.R;
 import net.elenx.fishmash.activities.core.OptionsActivity;
 import net.elenx.fishmash.daos.ExamDAO;
 import net.elenx.fishmash.models.Exam;
-import net.elenx.fishmash.updaters.ExaminerListener;
+import net.elenx.fishmash.updaters.listeners.ExaminerListener;
 import net.elenx.fishmash.updaters.Examiner;
 
 public class ExamActivity extends OptionsActivity

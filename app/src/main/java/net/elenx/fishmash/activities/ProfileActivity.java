@@ -9,7 +9,7 @@ import net.elenx.fishmash.activities.core.OptionsActivity;
 import net.elenx.fishmash.daos.ProfileDAO;
 import net.elenx.fishmash.models.Profile;
 import net.elenx.fishmash.updaters.ProfileUpdater;
-import net.elenx.fishmash.updaters.UpdaterListener;
+import net.elenx.fishmash.updaters.listeners.UpdaterListener;
 
 public class ProfileActivity extends OptionsActivity
 {
@@ -75,8 +75,8 @@ public class ProfileActivity extends OptionsActivity
                 {
                     loginData.setText(profile.getLogin());
                     emailData.setText(profile.getEmail());
-                    createdAtData.setText(profile.getCreatedAt());
-                    updatedAtData.setText(profile.getUpdatedAt());
+                    createdAtData.setText(profile.getCreated_at());
+                    updatedAtData.setText(profile.getUpdated_at());
                 }
             }
         );

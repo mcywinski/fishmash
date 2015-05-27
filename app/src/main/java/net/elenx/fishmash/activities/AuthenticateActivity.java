@@ -10,7 +10,7 @@ import android.widget.Toast;
 import net.elenx.fishmash.R;
 import net.elenx.fishmash.activities.core.OptionsActivity;
 import net.elenx.fishmash.updaters.AuthenticateUpdater;
-import net.elenx.fishmash.updaters.UpdaterListener;
+import net.elenx.fishmash.updaters.listeners.UpdaterListener;
 
 public class AuthenticateActivity extends OptionsActivity
 {
