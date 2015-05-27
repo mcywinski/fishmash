@@ -12,7 +12,7 @@ import net.elenx.fishmash.R;
 import net.elenx.fishmash.activities.core.OptionsActivity;
 import net.elenx.fishmash.daos.ExamDAO;
 import net.elenx.fishmash.models.Exam;
-import net.elenx.fishmash.updaters.ExamQuestionListener;
+import net.elenx.fishmash.updaters.ExaminerListener;
 import net.elenx.fishmash.updaters.Examiner;
 
 public class ExamActivity extends OptionsActivity
@@ -50,9 +50,9 @@ public class ExamActivity extends OptionsActivity
         prepareViews();
 
         examiner = new Examiner(this, examId);
-        examiner.setExamQuestionListener
+        examiner.setExaminerListener
         (
-            new ExamQuestionListener()
+            new ExaminerListener()
             {
                 @Override
                 public void prepareQuestion(String nextQuestion)
@@ -63,7 +63,7 @@ public class ExamActivity extends OptionsActivity
                 @Override
                 public void examFinished()
                 {
-
+                    Toast.makeText(me, "Exam is over", Toast.LENGTH_LONG).show();
                 }
             }
         );

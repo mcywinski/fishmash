@@ -19,7 +19,7 @@ import java.util.Map;
 
 abstract class FishmashUpdater extends AsyncTask<Void, Integer, Void>
 {
-    static final FishmashRest fishmashRest = new FishmashRest(50);
+    static final FishmashRest fishmashRest = new FishmashRest();
 
     private static final int CONNECTING = 0;
     private static final int DOWNLOADING = 1;
@@ -80,23 +80,23 @@ abstract class FishmashUpdater extends AsyncTask<Void, Integer, Void>
         }
         catch(Exception e)
         {
-            Log.e("FishmashUpdater", e.getMessage(), e);
+            Log.e("FishmashUpdater", e.getCause().getMessage(), e);
         }
 
         return null;
     }
 
-    protected void download() throws Exception
+    void download() throws Exception
     {
         // allow overriding, but do not force it
     }
 
-    protected void convert() throws JSONException
+    void convert() throws JSONException
     {
         // allow overriding, but do not force it
     }
 
-    protected void save() throws Exception
+    void save() throws Exception
     {
         // allow overriding, but do not force it
     }
@@ -124,7 +124,7 @@ abstract class FishmashUpdater extends AsyncTask<Void, Integer, Void>
         }
     }
 
-    protected Map<String, String> buildParameters() throws Exception
+    Map<String, String> buildParameters() throws Exception
     {
         AuthenticateDAO authenticateDAO = new AuthenticateDAO(optionsActivity);
 
@@ -142,7 +142,7 @@ abstract class FishmashUpdater extends AsyncTask<Void, Integer, Void>
         return map;
     }
 
-    protected HttpEntity<String> buildEntityWith(JSON json)
+    HttpEntity<String> buildEntityWith(JSON json)
     {
         HttpHeaders requestHeaders = new HttpHeaders();
         requestHeaders.setContentType(new MediaType("application", "json"));

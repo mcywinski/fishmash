@@ -8,8 +8,8 @@ package net.elenx.fishmash.models;
  */
 public class ExamAnswer extends FishmashModel implements JSON
 {
-    private long answerId;
-    private String answerText;
+    private final long answerId;
+    private final String answerText;
 
     public ExamAnswer(long answerId, String answerText)
     {

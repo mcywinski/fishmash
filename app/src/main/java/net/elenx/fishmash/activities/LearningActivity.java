@@ -44,6 +44,19 @@ public class LearningActivity extends SpeakingActivity
         super.onCreate(savedInstanceState);
         attach(R.layout.learning);
 
+        ImageView imageViewBack = (ImageView) findViewById(R.id.imageViewBack);
+        imageViewBack.setOnClickListener
+        (
+            new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View view)
+                {
+                    learningAndExams();
+                }
+            }
+        );
+
         long wordListId = getIntent().getLongExtra("wordListId", -1);
 
         Log.e("wordListId", String.valueOf(wordListId));
@@ -91,19 +104,6 @@ public class LearningActivity extends SpeakingActivity
 
         TextView wordListDescription = (TextView) findViewById(R.id.textViewWordListDescription);
         wordListDescription.setText(wordList.getDescription());
-
-        ImageView imageViewBack = (ImageView) findViewById(R.id.imageViewBack);
-        imageViewBack.setOnClickListener
-        (
-            new View.OnClickListener()
-            {
-                @Override
-                public void onClick(View view)
-                {
-                    learningAndExams();
-                }
-            }
-        );
 
         phraseXorMeaning = (TextView) findViewById(R.id.textViewQuestion);
         mainXorForeignLanguage = (TextView) findViewById(R.id.TextViewMainXorForeignLanguage);

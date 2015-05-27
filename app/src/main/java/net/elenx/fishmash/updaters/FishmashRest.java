@@ -2,6 +2,8 @@ package net.elenx.fishmash.updaters;
 
 import android.util.Log;
 
+import net.elenx.fishmash.Constant;
+
 import org.springframework.http.client.ClientHttpRequestFactory;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
@@ -11,11 +13,11 @@ import org.springframework.web.client.RestTemplate;
 import java.net.URI;
 import java.util.Map;
 
-public class FishmashRest extends RestTemplate
+class FishmashRest extends RestTemplate
 {
-    FishmashRest(int timeoutInSeconds)
+    FishmashRest()
     {
-        int timeoutInMilliseconds = timeoutInSeconds * 1000;
+        int timeoutInMilliseconds = Constant.TIMEOUT_IN_SECONDS * 1000;
 
         ClientHttpRequestFactory clientHttpRequestFactory = getRequestFactory();
 

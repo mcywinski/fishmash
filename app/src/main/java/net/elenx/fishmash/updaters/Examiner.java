@@ -14,10 +14,10 @@ import java.util.Map;
 
 public class Examiner extends FishmashUpdater
 {
-    private long examId;
+    private final long examId;
     private String answer;
     private boolean isOver = false;
-    private ExamQuestionListener examQuestionListener;
+    private ExaminerListener examinerListener;
 
     public Examiner(OptionsActivity optionsActivity, long examId)
     {
@@ -50,11 +50,11 @@ public class Examiner extends FishmashUpdater
 
         if(isOver)
         {
-            examQuestionListener.examFinished();
+            examinerListener.examFinished();
         }
         else
         {
-            examQuestionListener.prepareQuestion(examQuestion.getMeaning());
+            examinerListener.prepareQuestion(examQuestion.getMeaning());
         }
     }
 
@@ -82,8 +82,8 @@ public class Examiner extends FishmashUpdater
         this.answer = answer;
     }
 
-    public void setExamQuestionListener(ExamQuestionListener examQuestionListener)
+    public void setExaminerListener(ExaminerListener examinerListener)
     {
-        this.examQuestionListener = examQuestionListener;
+        this.examinerListener = examinerListener;
     }
 }
