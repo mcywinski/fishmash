@@ -10,12 +10,14 @@ package net.elenx.fishmash.models;
   "exam_finished": false
 }
  */
+
+// all fields and constructor is used by spring-android
+@SuppressWarnings("unused")
 public class ExamQuestion extends FishmashModel
 {
     private String meaning;
     private boolean exam_finished;
 
-    @SuppressWarnings("unused")
     ExamQuestion()
     {
         // default constructor is used by spring-android

@@ -11,6 +11,9 @@ package net.elenx.fishmash.models;
     "phrase": "Dog"
 }
 **/
+
+// all fields and constructor are used by spring-android
+@SuppressWarnings("unused")
 public class ExamSummary extends FishmashModel
 {
     private String answer;
@@ -20,7 +23,6 @@ public class ExamSummary extends FishmashModel
     private boolean exam_finished;
     private String phrase;
 
-    @SuppressWarnings("unused")
     ExamSummary()
     {
         // default constructor is used by spring-android

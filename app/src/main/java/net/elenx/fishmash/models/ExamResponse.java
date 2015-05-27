@@ -1,11 +1,12 @@
 package net.elenx.fishmash.models;
 
+// all fields and constructor is used by spring-android
+@SuppressWarnings("unused")
 public class ExamResponse extends FishmashModel
 {
     private boolean saved;
-    private String messsage;
+    private String messsage; // there is a typo in API
 
-    @SuppressWarnings("unused")
     ExamResponse()
     {
         // default constructor is used by spring-android

@@ -74,6 +74,8 @@ public abstract class OptionsActivity extends ProgressDialogActivity
     }
 
     // this is public only because XML onClick requires it
+    // this parameter is useless - but is required to be called from XML
+    @SuppressWarnings({"UnusedParameters", "unused"})
     public void learningAndExams(View view)
     {
         learningAndExams();

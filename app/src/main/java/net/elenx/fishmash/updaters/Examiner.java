@@ -71,7 +71,8 @@ public class Examiner extends FishmashUpdater
 
         ExamResponse examResponse = fishmashRest.postForObject(Constant.ANSWER_EXAMID_TOKEN, httpEntity, ExamResponse.class);
 
-        if(!examResponse.isSaved())
+        // if(!examResponse.isSaved() || !examResponse.getMesssage().equals("Answer saved") )
+        if(! (examResponse.isSaved() && examResponse.getMesssage().equals("Answer saved") ) )
         {
             throw new Exception("answer has been not saved");
         }
