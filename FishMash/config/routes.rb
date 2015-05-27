@@ -6,7 +6,6 @@ Rails.application.routes.draw do
       post 'get_question'
       post 'answer'
       get 'summary'
-      get 'learn'
     end
     resources :lists, only: [:index, :show] do
       post 'add'
@@ -27,6 +26,7 @@ Rails.application.routes.draw do
     get 'answer'
     post 'answer', to: 'exams#save_answer'
     get 'summary'
+    get 'learn'
   end
   resources :users, only: [:show, :create] do
     collection do

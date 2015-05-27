@@ -15,6 +15,7 @@ class ExamsController < ApplicationController
 
 	def learn
 		@exam = Exam.find(params[:exam_id])
+
 	end
 
 	def create
