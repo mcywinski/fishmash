@@ -1,0 +1,59 @@
+﻿<Page
+    x:Class="FishMashNew.Views.LoginView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:FishMashNew.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="White"
+    xmlns:layout="using:FishMashNew.Views.LoginAndRegistration"
+    >
+    <Grid>
+
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <Image Source="ms-appx:///Assets/layout/login_logo.png"
+            		        Margin="60,10,60,30" HorizontalAlignment="Center"
+            		        VerticalAlignment="Top" />
+                <TextBox 
+                             Background="#FFDDC6"
+                             x:Name="UserName"
+                             PlaceholderText="login"
+                             Text="{Binding User, Mode=TwoWay}"
+                             Margin="20,0" />
+
+                <PasswordBox PasswordChar="*" 
+                             Background="#FFDDC6"
+                             PlaceholderText="password"
+                             x:Name="Password" 
+                             Password="{Binding Password, Mode=TwoWay}"
+                             Margin="20,0"
+                             />
+                <Button
+                                VerticalAlignment="Center" 
+                                HorizontalAlignment="Stretch" 
+                                Background="#FF6600"
+                                Margin="20"
+                                Content="log in"
+                                FontFamily="Lopster"
+                                FontSize="30"
+                                Command="{Binding LogInClick}" UseLayoutRounding="True"/>
+
+
+                <ProgressBar
+            Visibility="{Binding ProgressBarVisibility}"
+            IsIndeterminate="True" 
+            HorizontalAlignment="Stretch"
+            x:Name="ProgressBar"
+            />
+
+            </StackPanel>
+        </ScrollViewer>
+        <layout:IncorrectPasswordUserControl
+            x:Name="IncorrectPassword"
+            Visibility="{Binding IncorrectPasswordUserControlVisibility}"
+            VerticalAlignment="Center" Height="200"/>
+    </Grid>
+</Page>
+
