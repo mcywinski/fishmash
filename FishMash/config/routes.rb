@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       post 'get_question'
       post 'answer'
       get 'summary'
+      get 'learn'
     end
     resources :lists, only: [:index, :show] do
       post 'add'

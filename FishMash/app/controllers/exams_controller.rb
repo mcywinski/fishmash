@@ -13,6 +13,10 @@ class ExamsController < ApplicationController
 		@lists = WordList.all
 	end
 
+	def learn
+		@exam = Exam.find(params[:exam_id])
+	end
+
 	def create
 		@wordlists = Array.new
 		# Removing first, empty element from word_list_id array
