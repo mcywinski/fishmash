@@ -1,12 +1,10 @@
 package net.elenx.fishmash.updaters;
 
-import net.elenx.fishmash.utilities.Fishmash;
 import net.elenx.fishmash.activities.core.OptionsActivity;
 import net.elenx.fishmash.daos.AuthenticateDAO;
 import net.elenx.fishmash.models.Authenticate;
-import net.elenx.fishmash.models.adapters.LoginPassword;
-
-import org.springframework.http.HttpEntity;
+import net.elenx.fishmash.models.adapters.Credentials;
+import net.elenx.fishmash.utilities.Fishmash;
 
 public class AuthenticateUpdater extends FishmashUpdater
 {
@@ -26,8 +24,7 @@ public class AuthenticateUpdater extends FishmashUpdater
     @Override
     protected void download()
     {
-        HttpEntity<String> httpEntity = buildEntityWith(new LoginPassword(login, password));
-        authenticate = fishmashRest.postForObject(Fishmash.AUTHENTICATE, httpEntity, Authenticate.class);
+        authenticate = fishmashRest.postForObject(Fishmash.AUTHENTICATE, new Credentials(login, password), Authenticate.class);
     }
 
     @Override

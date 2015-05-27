@@ -3,18 +3,14 @@ package net.elenx.fishmash.updaters;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import net.elenx.fishmash.utilities.Fishmash;
 import net.elenx.fishmash.R;
 import net.elenx.fishmash.activities.core.OptionsActivity;
 import net.elenx.fishmash.daos.AuthenticateDAO;
 import net.elenx.fishmash.models.Authenticate;
-import net.elenx.fishmash.models.adapters.JSON;
 import net.elenx.fishmash.updaters.listeners.UpdaterListener;
+import net.elenx.fishmash.utilities.Fishmash;
 
 import org.json.JSONException;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -142,14 +138,6 @@ abstract class FishmashUpdater extends AsyncTask<Void, Integer, Void>
         map.put(Fishmash.API_TOKEN, authenticate.getToken());
 
         return map;
-    }
-
-    HttpEntity<String> buildEntityWith(JSON json)
-    {
-        HttpHeaders requestHeaders = new HttpHeaders();
-        requestHeaders.setContentType(new MediaType("application", "json"));
-
-        return new HttpEntity<>(json.toJson(), requestHeaders);
     }
 
     private Runnable success()

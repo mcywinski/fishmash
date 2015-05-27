@@ -84,7 +84,7 @@ public class SummaryActivity extends OptionsActivity
             finished.setChecked(examSummary.isFinished());
             passed.setChecked(examSummary.isPassed());
             meaning.setText(examSummary.getMeaning());
-            examFinished.setChecked(examSummary.isExam_finished());
+            examFinished.setChecked(examSummary.isExamFinished());
             phrase.setText(examSummary.getPhrase());
 
             tableLayoutSummary.addView(tableLayout);

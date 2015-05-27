@@ -2,14 +2,12 @@ package net.elenx.fishmash.updaters;
 
 import android.util.Log;
 
-import net.elenx.fishmash.utilities.Fishmash;
 import net.elenx.fishmash.activities.core.OptionsActivity;
-import net.elenx.fishmash.models.adapters.ExamAnswer;
 import net.elenx.fishmash.models.ExamQuestion;
 import net.elenx.fishmash.models.ExamResponse;
+import net.elenx.fishmash.models.adapters.ExamAnswer;
 import net.elenx.fishmash.updaters.listeners.ExaminerListener;
-
-import org.springframework.http.HttpEntity;
+import net.elenx.fishmash.utilities.Fishmash;
 
 import java.util.Map;
 
@@ -47,7 +45,7 @@ public class Examiner extends FishmashUpdater
 
         Log.e("meaning", examQuestion.getMeaning());
 
-        isOver |= examQuestion.getId() == 0 && examQuestion.isExam_finished();
+        isOver |= examQuestion.getId() == 0 && examQuestion.isExamFinished();
 
         if(isOver)
         {
@@ -68,12 +66,11 @@ public class Examiner extends FishmashUpdater
         }
 
         ExamAnswer examAnswer = new ExamAnswer(examId, answer);
-        HttpEntity<String> httpEntity = buildEntityWith(examAnswer);
 
         Map<String, String> parameters = buildParameters();
         parameters.put("exam_id", String.valueOf(examId));
 
-        ExamResponse examResponse = fishmashRest.postForObject(Fishmash.ANSWER_EXAMID_TOKEN, httpEntity, ExamResponse.class, parameters);
+        ExamResponse examResponse = fishmashRest.postForObject(Fishmash.ANSWER_EXAMID_TOKEN, examAnswer, ExamResponse.class, parameters);
 
         // if(!examResponse.isSaved() || !examResponse.getMesssage().equals("Answer saved") )
         if(! (examResponse.isSaved() && examResponse.getMesssage().equals("Answer saved") ) )

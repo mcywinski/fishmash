@@ -98,7 +98,7 @@ public class ExamActivity extends OptionsActivity
         bindViews();
 
         examName.setText(exam.getName());
-        examDescription.setText(Fishmash.TO + exam.getDate_exam_finish().inShortFormat());
+        examDescription.setText(Fishmash.TO + exam.getDateExamFinish().inShortFormat());
 
         next.setOnClickListener
         (

@@ -2,17 +2,31 @@ package net.elenx.fishmash.models;
 
 import android.database.Cursor;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import net.elenx.fishmash.models.adapters.FishmashCalendar;
 
 public class Exam extends FishmashModel
 {
     private String name;
-    private FishmashCalendar date_exam_start;
-    private FishmashCalendar date_exam_finish;
-    private FishmashCalendar date_practice_start;
-    private FishmashCalendar date_practice_finish;
-    private int word_count;
-    private boolean is_finished;
+
+    @JsonProperty("date_exam_start")
+    private FishmashCalendar dateExamStart;
+
+    @JsonProperty("date_exam_finish")
+    private FishmashCalendar dateExamFinish;
+
+    @JsonProperty("date_practise_start")
+    private FishmashCalendar datePracticeStart;
+
+    @JsonProperty("date_practise_finish")
+    private FishmashCalendar datePracticeFinish;
+
+    @JsonProperty("word_count")
+    private int wordCount;
+
+    @JsonProperty("is_finished")
+    private boolean isFinished;
 
     @SuppressWarnings("unused")
     Exam()
@@ -24,12 +38,12 @@ public class Exam extends FishmashModel
     {
         super(cursor);
         name = cursor.getColumnName(1);
-        date_exam_start = new FishmashCalendar(cursor.getString(2));
-        date_exam_finish = new FishmashCalendar(cursor.getString(3));
-        date_practice_start = new FishmashCalendar(cursor.getString(4));
-        date_practice_finish = new FishmashCalendar(cursor.getString(5));
-        word_count = cursor.getInt(6);
-        is_finished = cursor.getInt(7) == 1;
+        dateExamStart = new FishmashCalendar(cursor.getString(2));
+        dateExamFinish = new FishmashCalendar(cursor.getString(3));
+        datePracticeStart = new FishmashCalendar(cursor.getString(4));
+        datePracticeFinish = new FishmashCalendar(cursor.getString(5));
+        wordCount = cursor.getInt(6);
+        isFinished = cursor.getInt(7) == 1;
     }
 
     public String getName()
@@ -37,33 +51,33 @@ public class Exam extends FishmashModel
         return name;
     }
 
-    public FishmashCalendar getDate_exam_start()
+    public FishmashCalendar getDateExamStart()
     {
-        return date_exam_start;
+        return dateExamStart;
     }
 
-    public FishmashCalendar getDate_exam_finish()
+    public FishmashCalendar getDateExamFinish()
     {
-        return date_exam_finish;
+        return dateExamFinish;
     }
 
-    public FishmashCalendar getDate_practice_start()
+    public FishmashCalendar getDatePracticeStart()
     {
-        return date_practice_start;
+        return datePracticeStart;
     }
 
-    public FishmashCalendar getDate_practice_finish()
+    public FishmashCalendar getDatePracticeFinish()
     {
-        return date_practice_finish;
+        return datePracticeFinish;
     }
 
-    public int getWord_count()
+    public int getWordCount()
     {
-        return word_count;
+        return wordCount;
     }
 
-    public boolean getIs_finished()
+    public boolean isFinished()
     {
-        return is_finished;
+        return isFinished;
     }
 }

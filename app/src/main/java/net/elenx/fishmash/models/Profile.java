@@ -2,15 +2,22 @@ package net.elenx.fishmash.models;
 
 import android.database.Cursor;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import net.elenx.fishmash.models.adapters.FishmashCalendar;
 
 public class Profile extends FishmashModel
 {
-    private FishmashCalendar created_at;
+    @JsonProperty("created_at")
+    private FishmashCalendar createdAt;
     private String email;
     private String login;
-    private FishmashCalendar updated_at;
-    private String user_type;
+
+    @JsonProperty("updated_at")
+    private FishmashCalendar updatedAt;
+
+    @JsonProperty("user_type")
+    private String userType;
 
     @SuppressWarnings("unused")
     Profile()
@@ -21,16 +28,16 @@ public class Profile extends FishmashModel
     public Profile(Cursor cursor)
     {
         super(cursor);
-        created_at = new FishmashCalendar(cursor.getString(1));
+        createdAt = new FishmashCalendar(cursor.getString(1));
         email = cursor.getString(2);
         login = cursor.getString(3);
-        updated_at = new FishmashCalendar(cursor.getString(4));
-        user_type = cursor.getString(5);
+        updatedAt = new FishmashCalendar(cursor.getString(4));
+        userType = cursor.getString(5);
     }
 
-    public String getCreated_at()
+    public String getCreatedAt()
     {
-        return created_at.inStandardFormat();
+        return createdAt.inStandardFormat();
     }
 
     public String getEmail()
@@ -43,13 +50,13 @@ public class Profile extends FishmashModel
         return login;
     }
 
-    public String getUpdated_at()
+    public String getUpdatedAt()
     {
-        return updated_at.inStandardFormat();
+        return updatedAt.inStandardFormat();
     }
 
-    public String getUser_type()
+    public String getUserType()
     {
-        return user_type;
+        return userType;
     }
 }
