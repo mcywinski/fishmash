@@ -21,6 +21,6 @@ public class ExamAnswer extends FishmashModel implements JSON
 
     public String toJson()
     {
-        return "{ answer_id: " + answerId + ", answer_text: '" + answerText + "' }";
+        return "{ \"answer_id\": \"" + answerId + "\", \"answer_text\": \"" + answerText + "\" }";
     }
 }

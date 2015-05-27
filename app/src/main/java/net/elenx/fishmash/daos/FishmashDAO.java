@@ -56,7 +56,7 @@ public abstract class FishmashDAO<Model extends FishmashModel>
     {
         String[] idToSelect = new String[]{String.valueOf(id)};
 
-        Cursor cursor = sqLiteDatabase.query(table, columns, "id = ?", idToSelect, null, null, null);
+        Cursor cursor = sqLiteDatabase.query(table, columns, "id=?", idToSelect, null, null, null);
 
         cursor.moveToFirst();
 
@@ -115,7 +115,6 @@ public abstract class FishmashDAO<Model extends FishmashModel>
 
     public void delete(Model model)
     {
-
         delete(model.getId());
     }
 

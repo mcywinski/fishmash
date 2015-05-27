@@ -3,29 +3,35 @@ package net.elenx.fishmash;
 public abstract class Constant
 {
     // start layer 0
-    private static final String SERVER = "http://shrouded-fjord-4731.herokuapp.com/";
-    private static final String TOKEN = "?api_token={api_token}";
     public static final String DATABASE_NAME = "fishmash";
     public static final int TIMEOUT_IN_SECONDS = 50;
+    public static final String EXAM_ID = "exam_id";
+    public static final String USER_ID = "user_id";
+    public static final String API_TOKEN = "api_token";
+    public static final String TO = "to ";
+    public static final String WORD_LIST_ID = "wordListId";
+    private static final String LIST_ID = "list_id";
+    private static final String SERVER = "http://shrouded-fjord-4731.herokuapp.com/";
     // end layer 0
 
     // start layer 1
-    private static final String API = SERVER + "api/";
     public static final String REGISTER = SERVER + "users/register";
+    private static final String TOKEN = "?api_token={" + API_TOKEN + "}";
+    private static final String API = SERVER + "api/";
     // end layer 1
 
     // start layer 2
-    private static final String USERS = API + "users/";
-    private static final String EXAMS = API + "exams/";
     public static final String AUTHENTICATE = API + "users/authenticate";
     public static final String LISTS = API + "lists/";
+    private static final String USERS = API + "users/";
+    private static final String EXAMS = API + "exams/";
     // end layer 2
 
     // start layer 3
-    private static final String EXAMS_EXAMID = EXAMS + "{exam_id}";
-    public static final String LISTS_LISTID = LISTS + "{list_id}";
+    public static final String LISTS_LISTID = LISTS + "{" + LIST_ID + "}";
     public static final String EXAMS_TOKEN = EXAMS + TOKEN;
-    public static final String USERS_USERID_TOKEN = USERS + "{user_id}" + TOKEN;
+    public static final String USERS_USERID_TOKEN = USERS + "{" + USER_ID + "}" + TOKEN;
+    private static final String EXAMS_EXAMID = EXAMS + "{" + EXAM_ID +"}";
     // end layer 3
 
     // start layer 4

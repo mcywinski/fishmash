@@ -6,13 +6,13 @@ import android.widget.CheckBox;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import net.elenx.fishmash.Constant;
 import net.elenx.fishmash.R;
 import net.elenx.fishmash.activities.core.OptionsActivity;
 import net.elenx.fishmash.models.ExamSummary;
-import net.elenx.fishmash.updaters.listeners.SummaryListener;
 import net.elenx.fishmash.updaters.SummaryUpdater;
+import net.elenx.fishmash.updaters.listeners.SummaryListener;
 
 public class SummaryActivity extends OptionsActivity
 {
@@ -21,13 +21,11 @@ public class SummaryActivity extends OptionsActivity
     {
         attach(R.layout.summary);
 
-        long examId = getIntent().getLongExtra("examID", -1);
+        long examId = getIntent().getLongExtra(Constant.EXAM_ID, -1);
 
         if(examId <= 0)
         {
-            Toast.makeText(this, "This exam has finished or have never existed", Toast.LENGTH_LONG).show();
-
-            return;
+            learningAndExams();
         }
 
         SummaryUpdater summaryUpdater = new SummaryUpdater(this, examId);
@@ -40,7 +38,6 @@ public class SummaryActivity extends OptionsActivity
                 {
                     if(examSummaries == null || examSummaries.length == 0)
                     {
-                        Toast.makeText(me, "There is no any summary!", Toast.LENGTH_LONG).show();
                         learningAndExams();
                     }
                     else
@@ -90,7 +87,7 @@ public class SummaryActivity extends OptionsActivity
             examFinished.setChecked(examSummary.isExam_finished());
             phrase.setText(examSummary.getPhrase());
 
-//            tableLayoutSummary.addView(tableLayout);
+            tableLayoutSummary.addView(tableLayout);
         }
     }
 }

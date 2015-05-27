@@ -52,7 +52,7 @@ public class WordListUpdater extends FishmashUpdater
     {
         if(wordLists.size() == 0)
         {
-            throw new Exception("wordList is empty");
+            throw new Exception("word list is empty");
         }
 
         WordListDAO wordListDAO = new WordListDAO(optionsActivity);

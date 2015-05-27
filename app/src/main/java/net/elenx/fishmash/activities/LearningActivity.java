@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import net.elenx.fishmash.Constant;
 import net.elenx.fishmash.Cycle;
 import net.elenx.fishmash.R;
 import net.elenx.fishmash.activities.core.SpeakingActivity;
@@ -45,7 +46,7 @@ public class LearningActivity extends SpeakingActivity
         super.onCreate(savedInstanceState);
         attach(R.layout.learning);
 
-        long wordListId = getIntent().getLongExtra("wordListId", -1);
+        long wordListId = getIntent().getLongExtra(Constant.WORD_LIST_ID, -1);
 
         if(wordListId <= 0 && lastWordList <= 0)
         {

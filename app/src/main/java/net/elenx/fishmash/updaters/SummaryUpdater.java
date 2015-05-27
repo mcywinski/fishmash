@@ -22,7 +22,7 @@ public class SummaryUpdater extends FishmashUpdater
     void download() throws Exception
     {
         Map<String, String> parameters = buildParameters();
-        parameters.put("exam_id", String.valueOf(examId));
+        parameters.put(Constant.EXAM_ID, String.valueOf(examId));
 
         ExamSummary[] examSummaries = fishmashRest.getForObject(Constant.SUMMARY_EXAMID_TOKEN, ExamSummary[].class, parameters);
 

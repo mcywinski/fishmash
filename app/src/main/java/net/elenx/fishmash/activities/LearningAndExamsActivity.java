@@ -9,8 +9,8 @@ import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import net.elenx.fishmash.Constant;
 import net.elenx.fishmash.R;
 import net.elenx.fishmash.activities.core.OptionsActivity;
 import net.elenx.fishmash.activities.core.drawer.NavigationDrawerFragment;
@@ -19,8 +19,8 @@ import net.elenx.fishmash.daos.WordListDAO;
 import net.elenx.fishmash.models.Exam;
 import net.elenx.fishmash.models.WordList;
 import net.elenx.fishmash.updaters.ExamUpdater;
-import net.elenx.fishmash.updaters.listeners.UpdaterListener;
 import net.elenx.fishmash.updaters.WordListUpdater;
+import net.elenx.fishmash.updaters.listeners.UpdaterListener;
 
 import java.util.List;
 
@@ -52,7 +52,7 @@ public class LearningAndExamsActivity extends OptionsActivity
                 @Override
                 public void onFailure()
                 {
-                    Toast.makeText(me, "There are no word lists", Toast.LENGTH_LONG).show();
+                    logout();
                 }
             }
         );
@@ -76,7 +76,7 @@ public class LearningAndExamsActivity extends OptionsActivity
                 @Override
                 public void onFailure()
                 {
-                    Toast.makeText(me, "There are no exams", Toast.LENGTH_LONG).show();
+                    logout();
                 }
             }
         );
@@ -125,7 +125,7 @@ public class LearningAndExamsActivity extends OptionsActivity
                     public void onClick(View v)
                     {
                         NavigationDrawerFragment.setCurrentSelectedPosition(0);
-                        switchIntentTo(LearningActivity.class, "wordListId", wordList.getId());
+                        switchIntentTo(LearningActivity.class, Constant.WORD_LIST_ID, wordList.getId());
                     }
                 }
             );
@@ -171,7 +171,7 @@ public class LearningAndExamsActivity extends OptionsActivity
                     public void onClick(View v)
                     {
                         NavigationDrawerFragment.setCurrentSelectedPosition(0);
-                        switchIntentTo(ExamActivity.class, "examId", exam.getId());
+                        switchIntentTo(ExamActivity.class, Constant.EXAM_ID, exam.getId());
                     }
                 }
             );
