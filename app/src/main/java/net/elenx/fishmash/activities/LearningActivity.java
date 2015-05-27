@@ -6,10 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import net.elenx.fishmash.utilities.Fishmash;
-import net.elenx.fishmash.utilities.Cycle;
 import net.elenx.fishmash.R;
 import net.elenx.fishmash.activities.core.SpeakingActivity;
 import net.elenx.fishmash.daos.WordDAO;
@@ -18,6 +15,8 @@ import net.elenx.fishmash.models.Word;
 import net.elenx.fishmash.models.WordList;
 import net.elenx.fishmash.updaters.WordUpdater;
 import net.elenx.fishmash.updaters.listeners.UpdaterListener;
+import net.elenx.fishmash.utilities.Cycle;
+import net.elenx.fishmash.utilities.Fishmash;
 
 import java.util.List;
 import java.util.Locale;
@@ -47,20 +46,17 @@ public class LearningActivity extends SpeakingActivity
         super.onCreate(savedInstanceState);
         attach(R.layout.learning);
 
-        long wordListId = getIntent().getLongExtra(Fishmash.WORD_LIST_ID, -1);
+        concludeWordListId();
 
-        if(wordListId <= 0 && lastWordList <= 0)
+        // sanity check - no matter how did I get here - it needs to be > 0 to continue
+        if(lastWordList <= 0)
         {
-            Toast.makeText(this, getString(R.string.emptyWordList), Toast.LENGTH_LONG).show();
             learningAndExams();
         }
 
         Log.e("lastWordList", String.valueOf(lastWordList));
-        Log.e("wordListId", String.valueOf(wordListId));
 
-        lastWordList = Math.max(lastWordList, wordListId);
-
-        WordUpdater wordUpdater = new WordUpdater(this, wordListId);
+        WordUpdater wordUpdater = new WordUpdater(this, lastWordList);
         wordUpdater.setUpdaterListener
         (
             new UpdaterListener()
@@ -82,15 +78,25 @@ public class LearningActivity extends SpeakingActivity
         wordUpdater.execute();
     }
 
+    private void concludeWordListId()
+    {
+        long wordListId = getIntent().getLongExtra(Fishmash.WORD_LIST_ID, -1);
+
+        // if I have manually selected word list == if I have not came from drawer
+        if(wordListId > 0)
+        {
+            // do not show me last one (unless explicitly asked)
+            lastWordList = wordListId;
+        }
+    }
+
     private void prepareToLearning()
     {
         List<Word> words = new WordDAO(this).selectAll();
 
         if(words.size() < 1)
         {
-            Toast.makeText(this, getString(R.string.emptyWordList), Toast.LENGTH_LONG).show();
-
-            return;
+            learningAndExams();
         }
 
         cycle = new Cycle<>(words);

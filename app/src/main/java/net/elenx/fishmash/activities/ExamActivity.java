@@ -52,9 +52,7 @@ public class ExamActivity extends OptionsActivity
 
         if(examId <= 0)
         {
-            Toast.makeText(this, getString(R.string.badExam), Toast.LENGTH_LONG).show();
-
-            return;
+            learningAndExams();
         }
 
         exam = new ExamDAO(this).select(examId);
