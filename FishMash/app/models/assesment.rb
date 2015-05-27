@@ -5,6 +5,6 @@ class Assesment < ActiveRecord::Base
   has_many :answers
 
   def get_answer
-    self.answers.where("finished = false or finished IS NULL").first
+    self.answers.where("finished = 0 or finished IS NULL").first
   end
 end

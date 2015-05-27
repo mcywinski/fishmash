@@ -1,12 +1,18 @@
-<h1>Exam: <%= @exam.name %></h1>
-<h2>Provide translation for <%= @answer.word.meaning %></h2>
-<%= form_for :answer, url: exam_answer_path, method: :post do |f| %>
+<div class="col-md-12" style="height: 75px"></div>
+<div class="col-md-3"></div>
+<div class="col-md-6 answer">
+  <h1 class="fish-h1"><%= @exam.name %></h1>
+  <h2 class="fish-h2">Provide translation for 
+    <p class="answer-word"><%= @answer.word.meaning %></p>
+  </h2>
+  <%= form_for :answer, url: exam_answer_path, method: :post do |f| %>
     <p>
-      <%= f.label 'Type in a foreign meaning' %>
       <%= f.text_field :answer, placeholder: 'Type in a foreign meaning' %>
     </p>
     <%= f.hidden_field :answer_id, value: @answer.id %>
     <p>
       <%= f.submit %>
     </p>
-<% end %>
+  <% end %>
+</div>
+<div class="col-md-3"></div>
