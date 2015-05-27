@@ -1,6 +1,4 @@
-package net.elenx.fishmash.models;
-
-import net.elenx.fishmash.models.secondary.JSON;
+package net.elenx.fishmash.models.secondary;
 
 /**
 {
@@ -8,7 +6,7 @@ import net.elenx.fishmash.models.secondary.JSON;
   answerText: 'pies'
 }
  */
-public class ExamAnswer extends FishmashModel implements JSON
+public class ExamAnswer implements JSON
 {
     private final long answerId;
     private final String answerText;

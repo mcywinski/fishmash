@@ -2,6 +2,8 @@ package net.elenx.fishmash.models;
 
 import android.database.Cursor;
 
+import net.elenx.fishmash.models.secondary.FishmashCalendar;
+
 public class Exam extends FishmashModel
 {
     private String name;
