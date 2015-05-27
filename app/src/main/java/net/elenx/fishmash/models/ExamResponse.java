@@ -1,11 +1,15 @@
 package net.elenx.fishmash.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 // all fields and constructor is used by spring-android
 @SuppressWarnings("unused")
 public class ExamResponse extends FishmashModel
 {
     private boolean saved;
-    private String messsage; // there is a typo in API
+
+    @JsonProperty("messsage") // there is a typo in API
+    private String message;
 
     ExamResponse()
     {
@@ -17,8 +21,8 @@ public class ExamResponse extends FishmashModel
         return saved;
     }
 
-    public String getMesssage()
+    public String getMessage()
     {
-        return messsage;
+        return message;
     }
 }
