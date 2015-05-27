@@ -2,8 +2,8 @@ package net.elenx.fishmash.models;
 
 import android.database.Cursor;
 
-import net.elenx.fishmash.models.secondary.FishmashCalendar;
-import net.elenx.fishmash.models.secondary.Language;
+import net.elenx.fishmash.models.adapters.FishmashCalendar;
+import net.elenx.fishmash.models.adapters.Language;
 
 import org.json.JSONException;
 import org.json.JSONObject;

@@ -1,4 +1,4 @@
-package net.elenx.fishmash.models.secondary;
+package net.elenx.fishmash.models.adapters;
 
 public class LoginPassword implements JSON
 {
@@ -13,6 +13,6 @@ public class LoginPassword implements JSON
 
     public String toJson()
     {
-        return "{\"user\": {\"login\": \"" + login + "\", \"password\": \"" + password + "\"}}";
+        return "{\"user\":{\"login\":\"" + login + "\",\"password\":\"" + password + "\"}}";
     }
 }

@@ -2,7 +2,7 @@ package net.elenx.fishmash.models;
 
 import android.database.Cursor;
 
-import net.elenx.fishmash.models.secondary.FishmashCalendar;
+import net.elenx.fishmash.models.adapters.FishmashCalendar;
 
 public class Profile extends FishmashModel
 {

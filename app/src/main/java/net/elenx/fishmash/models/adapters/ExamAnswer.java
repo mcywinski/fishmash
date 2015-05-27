@@ -1,4 +1,4 @@
-package net.elenx.fishmash.models.secondary;
+package net.elenx.fishmash.models.adapters;
 
 /**
 {
@@ -19,6 +19,6 @@ public class ExamAnswer implements JSON
 
     public String toJson()
     {
-        return "{ \"answer_id\": \"" + answerId + "\", \"answer_text\": \"" + answerText + "\" }";
+        return "{\"answer_id\":\"" + answerId + "\",\"answer_text\":\"" + answerText + "\"}";
     }
 }

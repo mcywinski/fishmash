@@ -8,7 +8,7 @@ import net.elenx.fishmash.R;
 import net.elenx.fishmash.activities.core.OptionsActivity;
 import net.elenx.fishmash.daos.AuthenticateDAO;
 import net.elenx.fishmash.models.Authenticate;
-import net.elenx.fishmash.models.secondary.JSON;
+import net.elenx.fishmash.models.adapters.JSON;
 import net.elenx.fishmash.updaters.listeners.UpdaterListener;
 
 import org.json.JSONException;

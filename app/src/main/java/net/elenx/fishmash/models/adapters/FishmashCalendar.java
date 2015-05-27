@@ -1,4 +1,4 @@
-package net.elenx.fishmash.models.secondary;
+package net.elenx.fishmash.models.adapters;
 
 import android.util.Log;
 

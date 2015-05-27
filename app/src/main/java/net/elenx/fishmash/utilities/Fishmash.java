@@ -5,11 +5,11 @@ public abstract class Fishmash
     // start layer 0
     public static final String DATABASE_NAME = "fishmash";
     public static final int TIMEOUT_IN_SECONDS = 50;
+    public static final String TO = "to ";
     public static final String EXAM_ID = "exam_id";
     public static final String USER_ID = "user_id";
     public static final String API_TOKEN = "api_token";
-    public static final String TO = "to ";
-    public static final String WORD_LIST_ID = "wordListId";
+    public static final String WORD_LIST_ID = "word_list_id";
     private static final String LIST_ID = "list_id";
     private static final String SERVER = "http://shrouded-fjord-4731.herokuapp.com/";
     // end layer 0

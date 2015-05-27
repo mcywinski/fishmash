@@ -4,7 +4,7 @@ import net.elenx.fishmash.utilities.Fishmash;
 import net.elenx.fishmash.activities.core.OptionsActivity;
 import net.elenx.fishmash.daos.AuthenticateDAO;
 import net.elenx.fishmash.models.Authenticate;
-import net.elenx.fishmash.models.secondary.LoginPassword;
+import net.elenx.fishmash.models.adapters.LoginPassword;
 
 import org.springframework.http.HttpEntity;
 

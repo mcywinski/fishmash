@@ -1,4 +1,4 @@
-package net.elenx.fishmash.models.secondary;
+package net.elenx.fishmash.models.adapters;
 
 public interface JSON
 {

@@ -4,7 +4,7 @@ import android.util.Log;
 
 import net.elenx.fishmash.utilities.Fishmash;
 import net.elenx.fishmash.activities.core.OptionsActivity;
-import net.elenx.fishmash.models.secondary.ExamAnswer;
+import net.elenx.fishmash.models.adapters.ExamAnswer;
 import net.elenx.fishmash.models.ExamQuestion;
 import net.elenx.fishmash.models.ExamResponse;
 import net.elenx.fishmash.updaters.listeners.ExaminerListener;
