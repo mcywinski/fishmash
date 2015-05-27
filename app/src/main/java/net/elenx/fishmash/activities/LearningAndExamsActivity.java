@@ -39,23 +39,23 @@ public class LearningAndExamsActivity extends OptionsActivity
     {
         WordListUpdater wordListUpdater = new WordListUpdater(this);
         wordListUpdater.setUpdaterListener
-                (
-                        new UpdaterListener()
-                        {
-                            @Override
-                            public void onSuccess()
-                            {
-                                updateExams();
-                                showWordLists();
-                            }
+        (
+            new UpdaterListener()
+            {
+                @Override
+                public void onSuccess()
+                {
+                    updateExams();
+                    showWordLists();
+                }
 
-                            @Override
-                            public void onFailure()
-                            {
-                                Toast.makeText(me, "There are no word lists", Toast.LENGTH_LONG).show();
-                            }
-                        }
-                );
+                @Override
+                public void onFailure()
+                {
+                    Toast.makeText(me, "There are no word lists", Toast.LENGTH_LONG).show();
+                }
+            }
+        );
 
         wordListUpdater.execute();
     }

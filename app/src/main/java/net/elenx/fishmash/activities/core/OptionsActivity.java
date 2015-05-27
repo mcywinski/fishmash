@@ -15,7 +15,6 @@ import net.elenx.fishmash.activities.LearningAndExamsActivity;
 import net.elenx.fishmash.activities.ProfileActivity;
 import net.elenx.fishmash.activities.core.drawer.NavigationDrawerFragment;
 import net.elenx.fishmash.daos.AuthenticateDAO;
-import net.elenx.fishmash.updaters.WordUpdater;
 
 public abstract class OptionsActivity extends ProgressDialogActivity
 {
@@ -85,11 +84,6 @@ public abstract class OptionsActivity extends ProgressDialogActivity
     {
         NavigationDrawerFragment.setCurrentSelectedPosition(1);
         switchIntentTo(LearningAndExamsActivity.class);
-    }
-
-    protected void updateWords(long id)
-    {
-        new WordUpdater(this, id).execute();
     }
 
     protected boolean isAuthenticated()

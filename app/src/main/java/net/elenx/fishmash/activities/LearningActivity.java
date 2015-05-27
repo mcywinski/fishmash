@@ -2,7 +2,6 @@ package net.elenx.fishmash.activities;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -11,10 +10,12 @@ import android.widget.Toast;
 import net.elenx.fishmash.Cycle;
 import net.elenx.fishmash.R;
 import net.elenx.fishmash.activities.core.SpeakingActivity;
-import net.elenx.fishmash.daos.WordListDAO;
 import net.elenx.fishmash.daos.WordDAO;
+import net.elenx.fishmash.daos.WordListDAO;
 import net.elenx.fishmash.models.Word;
 import net.elenx.fishmash.models.WordList;
+import net.elenx.fishmash.updaters.WordUpdater;
+import net.elenx.fishmash.updaters.listeners.UpdaterListener;
 
 import java.util.List;
 import java.util.Locale;
@@ -44,54 +45,50 @@ public class LearningActivity extends SpeakingActivity
         super.onCreate(savedInstanceState);
         attach(R.layout.learning);
 
-        ImageView imageViewBack = (ImageView) findViewById(R.id.imageViewBack);
-        imageViewBack.setOnClickListener
+        long wordListId = getIntent().getLongExtra("wordListId", -1);
+
+        if(wordListId <= 0 && lastWordList <= 0)
+        {
+            Toast.makeText(this, getString(R.string.emptyWordList), Toast.LENGTH_LONG).show();
+            learningAndExams();
+        }
+
+        lastWordList = wordListId;
+
+        WordUpdater wordUpdater = new WordUpdater(this, wordListId);
+        wordUpdater.setUpdaterListener
         (
-            new View.OnClickListener()
+            new UpdaterListener()
             {
                 @Override
-                public void onClick(View view)
+                public void onSuccess()
+                {
+                    prepareToLearning();
+                }
+
+                @Override
+                public void onFailure()
                 {
                     learningAndExams();
                 }
             }
         );
+    }
 
-        long wordListId = getIntent().getLongExtra("wordListId", -1);
-
-        Log.e("wordListId", String.valueOf(wordListId));
-
-        if(wordListId <= 0)
-        {
-            if(lastWordList > -1)
-            {
-                wordListId = lastWordList;
-            }
-            else
-            {
-                Toast.makeText(this, "This word list is empty", Toast.LENGTH_LONG).show();
-
-                return;
-            }
-        }
-        else
-        {
-            lastWordList = wordListId;
-        }
-
-        updateWords(wordListId);
-
+    private void prepareToLearning()
+    {
         List<Word> words = new WordDAO(this).selectAll();
-        cycle = new Cycle<>(words);
 
         if(words.size() < 1)
         {
-            Toast.makeText(this, "This word list is empty", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getString(R.string.emptyWordList), Toast.LENGTH_LONG).show();
 
             return;
         }
 
-        WordList wordList = new WordListDAO(this).select(wordListId);
+        cycle = new Cycle<>(words);
+
+        WordList wordList = new WordListDAO(this).select(lastWordList);
 
         mainLanguageLocale = wordList.getMainLanguage().getLocale();
         foreignLanguageLocale = wordList.getForeignLanguage().getLocale();
@@ -144,6 +141,19 @@ public class LearningActivity extends SpeakingActivity
                 public void onClick(View view)
                 {
                     display(cycle.previous());
+                }
+            }
+        );
+
+        ImageView imageViewBack = (ImageView) findViewById(R.id.imageViewBack);
+        imageViewBack.setOnClickListener
+        (
+            new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View view)
+                {
+                    learningAndExams();
                 }
             }
         );

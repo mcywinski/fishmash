@@ -51,7 +51,7 @@ public class ExamActivity extends OptionsActivity
 
         if(examId <= 0)
         {
-            Toast.makeText(this, "This exam has finished or have never existed", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getString(R.string.badExam), Toast.LENGTH_LONG).show();
 
             return;
         }
@@ -74,7 +74,7 @@ public class ExamActivity extends OptionsActivity
                 @Override
                 public void examFinished()
                 {
-                    Toast.makeText(me, "Exam is over", Toast.LENGTH_LONG).show();
+                    Toast.makeText(me, getString(R.string.examIsOver), Toast.LENGTH_LONG).show();
                     switchIntentTo(SummaryActivity.class, "examId", examId);
                 }
             }
