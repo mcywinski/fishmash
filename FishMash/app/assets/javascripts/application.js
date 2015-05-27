@@ -16,4 +16,5 @@
 //= require turbolinks
 //= stub wordlist-browse
 //= stub wordlist-edit
+//= stub exam-learn
 //= require_tree .

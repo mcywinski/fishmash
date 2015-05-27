@@ -15,7 +15,15 @@ class ExamsController < ApplicationController
 
 	def learn
 		@exam = Exam.find(params[:exam_id])
-
+		@words = Array.new
+		@exam.word_lists.each do |wordlist|
+			wordlist.words.each do |word|
+				word_json = Hash.new
+				word_json[:phrase] = word.phrase
+				word_json[:meaning] = word.meaning
+				@words.push word_json
+			end
+		end
 	end
 
 	def create
