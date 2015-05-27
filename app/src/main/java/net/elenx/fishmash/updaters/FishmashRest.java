@@ -7,10 +7,14 @@ import net.elenx.fishmash.utilities.Fishmash;
 import org.springframework.http.client.ClientHttpRequestFactory;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.json.GsonHttpMessageConverter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
+import java.util.List;
 import java.util.Map;
 
 class FishmashRest extends RestTemplate
@@ -35,6 +39,11 @@ class FishmashRest extends RestTemplate
             httpComponentsClientHttpRequestFactory.setReadTimeout(timeoutInMilliseconds);
             httpComponentsClientHttpRequestFactory.setConnectTimeout(timeoutInMilliseconds);
         }
+
+        List<HttpMessageConverter<?>> httpMessageConverterList = getMessageConverters();
+        httpMessageConverterList.add(new MappingJackson2HttpMessageConverter());
+        httpMessageConverterList.add(new GsonHttpMessageConverter());
+        setMessageConverters(httpMessageConverterList);
     }
 
     @Override

@@ -78,7 +78,7 @@ abstract class FishmashUpdater extends AsyncTask<Void, Integer, Void>
         }
         catch(Exception e)
         {
-            Log.e("FishmashUpdater", e.getCause().getMessage(), e);
+            Log.e("FishmashUpdater", e.getMessage(), e);
         }
 
         return null;
