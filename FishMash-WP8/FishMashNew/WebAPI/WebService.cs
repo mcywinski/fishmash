@@ -16,6 +16,7 @@ using FishMashNew.Models.LoginModels;
 using System.Net;
 using FishMashNew.Models.GetUserInfoModels;
 using FishMashApp.Models;
+using FishMashApp.Models.Exams;
 
 
 namespace FishMashNew.WebAPI
@@ -259,7 +260,7 @@ namespace FishMashNew.WebAPI
             List<ExamEntity> Exams = new List<ExamEntity>();
             try
             {
-                string url = "https://shrouded-fjord-4731.herokuapp.com/api/users" +
+                string url = "https://shrouded-fjord-4731.herokuapp.com/api/exams" +
                     string.Format("?api_token={0}", userToken);
                 var u = new Uri(url);
 

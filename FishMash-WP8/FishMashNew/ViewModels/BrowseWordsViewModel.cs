@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using FishMashNew.WebAPI;
+using FishMashApp.Models;
+using FishMashApp.Models.Exams;
 
 namespace FishMashNew.ViewModels
 {
@@ -17,6 +19,12 @@ namespace FishMashNew.ViewModels
     #region Properties
         #region Binding
         public ObservableCollection<ListOfLists> ListOfList
+        {
+            get;
+            set;
+        }
+
+        public ObservableCollection<ExamEntity> ListOfExams
         {
             get;
             set;
@@ -36,23 +44,13 @@ namespace FishMashNew.ViewModels
 	
         #endregion
 
-        //public ICommand Click
-        //{
-        //    get
-        //    {
-        //        return null ??
-        //            new RelayCommand(o =>
-        //            {
-        //                this.navigationService.Naviagte(typeof(WordView));
-        //            });
-        //    }
-        //}
     #endregion
 
         public BrowseWordsViewModel(INavigationService navigationService)
         {
             this.navigationService = navigationService;
             ListOfList = new ObservableCollection<ListOfLists>();
+            ListOfExams = new ObservableCollection<ExamEntity>();
             ProgressBarVisibility = SetVisibility(true);
             FillList(); //only for temp
             
@@ -60,12 +58,17 @@ namespace FishMashNew.ViewModels
 
         public async void FillList()
         {
-            List<ListOfLists> x = await WebService.GetListOfListAsync();
+            List<ListOfLists> learnLists = await WebService.GetListOfListAsync();
+            List<ExamEntity> exams = await WebService.GetAllExams(Settings.Instance.Cache.GetToken());
             OnUIThread(() =>
             {
-                foreach (ListOfLists t in x)
+                foreach (ListOfLists t in learnLists)
                 {
                     ListOfList.Add(t);
+                }
+                foreach (ExamEntity t in exams)
+                {
+                    ListOfExams.Add(t);
                 }
             });
             ProgressBarVisibility = SetVisibility(false);
