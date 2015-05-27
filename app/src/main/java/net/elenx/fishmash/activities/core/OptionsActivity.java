@@ -16,13 +16,9 @@ import net.elenx.fishmash.activities.core.drawer.NavigationDrawerFragment;
 import net.elenx.fishmash.daos.AuthenticateDAO;
 import net.elenx.fishmash.updaters.WordUpdater;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public abstract class OptionsActivity extends ProgressDialogActivity
 {
     protected final OptionsActivity me = this;
-    private static final Map<String, Long> EMPTY_MAP_STRING_LONG = new HashMap<String, Long>();
 
     @Override
     public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState)

@@ -11,6 +11,9 @@ import net.elenx.fishmash.models.FishmashModel;
 import java.util.LinkedList;
 import java.util.List;
 
+// that's true, that some methods are unused, but I want to keep them here,
+// so that I will have good example in my future projects
+@SuppressWarnings("unused")
 public abstract class FishmashDAO<Model extends FishmashModel>
 {
     private final String table;
