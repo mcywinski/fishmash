@@ -30,7 +30,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/wordlist_separator"
+                android:text="@string/word_list_separator"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:id="@+id/textViewWordListSeparator"
                 android:layout_below="@+id/textViewWordListName"
@@ -54,7 +54,7 @@
             android:layout_height="match_parent"
             android:id="@+id/imageViewBack"
             android:src="@drawable/main_learn_button"
-            android:contentDescription="@string/learning"
+            android:contentDescription="@string/last_word_list"
             android:adjustViewBounds="true"
             android:scaleType="centerInside"/>
 

@@ -43,11 +43,11 @@ public abstract class OptionsActivity extends ProgressDialogActivity
     {
         switch(resourceIfOfPosition(position))
         {
-            case R.string.learning:
+            case R.string.last_word_list:
                 learning();
                 break;
 
-            case R.string.pick_wordlist:
+            case R.string.learning_and_exams:
                 learningAndExams();
                 break;
 

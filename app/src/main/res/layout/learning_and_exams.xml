@@ -19,7 +19,7 @@
             android:layout_weight="1"
             android:src="@drawable/main_learning_header"
             android:adjustViewBounds="true"
-            android:contentDescription="@string/learning"/>
+            android:contentDescription="@string/last_word_list"/>
 
         <TextView
             android:layout_weight="1"
@@ -64,7 +64,7 @@
             android:layout_weight="1"
             android:src="@drawable/main_exams_header"
             android:adjustViewBounds="true"
-            android:contentDescription="@string/learning"/>
+            android:contentDescription="@string/last_word_list"/>
 
         <TextView
             android:layout_weight="1"

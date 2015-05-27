@@ -50,14 +50,7 @@ public abstract class DrawerActivity extends AppCompatActivity implements Naviga
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
-        if(!navigationDrawerFragment.isDrawerOpen())
-        {
-            getMenuInflater().inflate(R.menu.toolbar_options, menu);
-
-            return true;
-        }
-
-        return super.onCreateOptionsMenu(menu);
+        return !navigationDrawerFragment.isDrawerOpen() || super.onCreateOptionsMenu(menu);
     }
 
     protected void attach(int resourceId)
