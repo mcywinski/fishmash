@@ -21,13 +21,13 @@ public abstract class Fishmash
     // end layer 1
 
     // start layer 2
-    public static final String AUTHENTICATE = API + "users/authenticate";
     public static final String LISTS = API + "lists/";
     private static final String USERS = API + "users/";
     private static final String EXAMS = API + "exams/";
     // end layer 2
 
     // start layer 3
+    public static final String AUTHENTICATE = USERS + "authenticate";
     public static final String LISTS_LISTID = LISTS + "{" + LIST_ID + "}";
     public static final String EXAMS_TOKEN = EXAMS + TOKEN;
     public static final String USERS_USERID_TOKEN = USERS + "{" + USER_ID + "}" + TOKEN;

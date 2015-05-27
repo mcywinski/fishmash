@@ -13,4 +13,9 @@ public class Credentials
         this.login = login;
         this.password = password;
     }
+
+    public String toJson()
+    {
+        return "{\"user\":{\"login\":\"" + login + "\",\"password\":\"" + password + "\"}}";
+    }
 }

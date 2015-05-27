@@ -2,6 +2,7 @@ package net.elenx.fishmash.activities;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -54,7 +55,10 @@ public class LearningActivity extends SpeakingActivity
             learningAndExams();
         }
 
-        lastWordList = wordListId;
+        Log.e("lastWordList", String.valueOf(lastWordList));
+        Log.e("wordListId", String.valueOf(wordListId));
+
+        lastWordList = Math.max(lastWordList, wordListId);
 
         WordUpdater wordUpdater = new WordUpdater(this, wordListId);
         wordUpdater.setUpdaterListener
@@ -74,6 +78,8 @@ public class LearningActivity extends SpeakingActivity
                 }
             }
         );
+
+        wordUpdater.execute();
     }
 
     private void prepareToLearning()

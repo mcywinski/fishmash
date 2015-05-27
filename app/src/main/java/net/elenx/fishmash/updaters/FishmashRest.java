@@ -8,6 +8,7 @@ import org.springframework.http.client.ClientHttpRequestFactory;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.GsonHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestClientException;
@@ -41,9 +42,9 @@ class FishmashRest extends RestTemplate
         }
 
         List<HttpMessageConverter<?>> httpMessageConverterList = getMessageConverters();
+        httpMessageConverterList.add(new StringHttpMessageConverter());
         httpMessageConverterList.add(new MappingJackson2HttpMessageConverter());
         httpMessageConverterList.add(new GsonHttpMessageConverter());
-        setMessageConverters(httpMessageConverterList);
     }
 
     @Override
@@ -85,6 +86,11 @@ class FishmashRest extends RestTemplate
     {
         Log.e("postForObject-map", url);
 
+        if(request != null)
+        {
+            Log.e("request", request.toString());
+        }
+
         for(String key : uriVariables.keySet())
         {
             Log.e(key, uriVariables.get(key).toString());
@@ -98,6 +104,11 @@ class FishmashRest extends RestTemplate
     {
         Log.e("postForObject-simple", url.toString());
 
+        if(request != null)
+        {
+            Log.e("request", request.toString());
+        }
+
         return super.postForObject(url, request, responseType);
     }
 
@@ -105,6 +116,11 @@ class FishmashRest extends RestTemplate
     public <T> T postForObject(String url, Object request, Class<T> responseType, Object... uriVariables) throws RestClientException
     {
         Log.e("postForObject-many", url);
+
+        if(request != null)
+        {
+            Log.e("request", request.toString());
+        }
 
         for(Object object : uriVariables)
         {

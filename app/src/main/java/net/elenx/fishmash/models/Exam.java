@@ -16,10 +16,10 @@ public class Exam extends FishmashModel
     @JsonProperty("date_exam_finish")
     private FishmashCalendar dateExamFinish;
 
-    @JsonProperty("date_practise_start")
+    @JsonProperty("date_practice_start")
     private FishmashCalendar datePracticeStart;
 
-    @JsonProperty("date_practise_finish")
+    @JsonProperty("date_practice_finish")
     private FishmashCalendar datePracticeFinish;
 
     @JsonProperty("word_count")

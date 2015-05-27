@@ -15,8 +15,8 @@ public class Examiner extends FishmashUpdater
 {
     private final long examId;
     private String answer;
-    private boolean isOver = false;
     private ExaminerListener examinerListener;
+    private boolean isOver = false;
 
     public Examiner(OptionsActivity optionsActivity, long examId)
     {
