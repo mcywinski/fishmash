@@ -70,7 +70,10 @@ public class Examiner extends FishmashUpdater
         ExamAnswer examAnswer = new ExamAnswer(examId, answer);
         HttpEntity<String> httpEntity = buildEntityWith(examAnswer);
 
-        ExamResponse examResponse = fishmashRest.postForObject(Constant.ANSWER_EXAMID_TOKEN, httpEntity, ExamResponse.class);
+        Map<String, String> parameters = buildParameters();
+        parameters.put("exam_id", String.valueOf(examId));
+
+        ExamResponse examResponse = fishmashRest.postForObject(Constant.ANSWER_EXAMID_TOKEN, httpEntity, ExamResponse.class, parameters);
 
         // if(!examResponse.isSaved() || !examResponse.getMesssage().equals("Answer saved") )
         if(! (examResponse.isSaved() && examResponse.getMesssage().equals("Answer saved") ) )
