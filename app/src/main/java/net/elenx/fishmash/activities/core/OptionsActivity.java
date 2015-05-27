@@ -16,9 +16,13 @@ import net.elenx.fishmash.activities.core.drawer.NavigationDrawerFragment;
 import net.elenx.fishmash.daos.AuthenticateDAO;
 import net.elenx.fishmash.updaters.WordUpdater;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public abstract class OptionsActivity extends ProgressDialogActivity
 {
     protected final OptionsActivity me = this;
+    private static final Map<String, Long> EMPTY_MAP_STRING_LONG = new HashMap<String, Long>();
 
     @Override
     public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState)
@@ -101,6 +105,11 @@ public abstract class OptionsActivity extends ProgressDialogActivity
 
     protected void switchIntentTo(Class<?> clazz)
     {
+        switchIntentTo(clazz, null, -1);
+    }
+
+    protected void switchIntentTo(Class<?> clazz, String extraKey, long extraValue)
+    {
         Class myClass = getClass();
 
         if(myClass == clazz)
@@ -108,9 +117,13 @@ public abstract class OptionsActivity extends ProgressDialogActivity
             return;
         }
 
-        Log.e(myClass.getSimpleName(), clazz.getSimpleName());
+        Log.e(myClass.getSimpleName() + " is switching to", clazz.getSimpleName());
 
         Intent intent = new Intent(getApplicationContext(), clazz);
+
+        intent.putExtra(extraKey, extraValue);
+        Log.e(extraKey, String.valueOf(extraValue));
+
         startActivity(intent);
         finish();
     }

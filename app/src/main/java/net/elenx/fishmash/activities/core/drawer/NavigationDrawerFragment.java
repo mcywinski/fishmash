@@ -1,9 +1,7 @@
 package net.elenx.fishmash.activities.core.drawer;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
@@ -18,7 +16,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import net.elenx.fishmash.Constant;
 import net.elenx.fishmash.R;
 
 public class NavigationDrawerFragment extends Fragment
@@ -167,20 +164,7 @@ public class NavigationDrawerFragment extends Fragment
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
-        if(actionBarDrawerToggle.onOptionsItemSelected(item))
-        {
-            return true;
-        }
-
-        if(item.getItemId() == R.id.website)
-        {
-            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(Constant.SERVER));
-            startActivity(browserIntent);
-
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+        return actionBarDrawerToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
     }
 
     public boolean hasUserLearnedDrawer()

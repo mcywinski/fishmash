@@ -19,7 +19,7 @@
         <activity android:name="net.elenx.fishmash.activities.LearningActivity"/>
 
         <activity
-            android:name=".activities.MainActivity"
+            android:name="net.elenx.fishmash.activities.MainActivity"
             android:theme="@style/splashScreenTheme">
 
             <intent-filter>
@@ -28,8 +28,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activities.LearningAndExamsActivity"/>
+        <activity android:name="net.elenx.fishmash.activities.LearningAndExamsActivity"/>
         <activity android:name="net.elenx.fishmash.activities.ProfileActivity"/>
+        <activity android:name="net.elenx.fishmash.activities.SummaryActivity"/>
 
     </application>
 </manifest>

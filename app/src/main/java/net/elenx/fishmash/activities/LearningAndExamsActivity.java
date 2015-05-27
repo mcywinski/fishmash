@@ -1,7 +1,6 @@
 package net.elenx.fishmash.activities;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -126,10 +125,7 @@ public class LearningAndExamsActivity extends OptionsActivity
                     public void onClick(View v)
                     {
                         NavigationDrawerFragment.setCurrentSelectedPosition(0);
-                        Intent intent = new Intent(getApplicationContext(), LearningActivity.class);
-                        intent.putExtra("wordListId", wordList.getId());
-                        startActivity(intent);
-                        finish();
+                        switchIntentTo(LearningActivity.class, "wordListId", wordList.getId());
                     }
                 }
             );
@@ -175,10 +171,7 @@ public class LearningAndExamsActivity extends OptionsActivity
                     public void onClick(View v)
                     {
                         NavigationDrawerFragment.setCurrentSelectedPosition(0);
-                        Intent intent = new Intent(getApplicationContext(), ExamActivity.class);
-                        intent.putExtra("examId", exam.getId());
-                        startActivity(intent);
-                        finish();
+                        switchIntentTo(ExamActivity.class, "examId", exam.getId());
                     }
                 }
             );

@@ -46,7 +46,6 @@ public class ExamActivity extends OptionsActivity
 
         exam = new ExamDAO(this).select(examId);
 
-        bindViews();
         prepareViews();
 
         examiner = new Examiner(this, examId);
@@ -83,6 +82,8 @@ public class ExamActivity extends OptionsActivity
 
     private void prepareViews()
     {
+        bindViews();
+
         examName.setText(exam.getName());
         examDescription.setText("to " + exam.getDate_exam_finish().inShortFormat());
 
