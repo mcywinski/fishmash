@@ -1,4 +1,4 @@
-package net.elenx.fishmash;
+package net.elenx.fishmash.utilities;
 
 import java.util.List;
 

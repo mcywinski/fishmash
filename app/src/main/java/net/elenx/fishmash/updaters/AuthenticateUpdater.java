@@ -1,6 +1,6 @@
 package net.elenx.fishmash.updaters;
 
-import net.elenx.fishmash.Constant;
+import net.elenx.fishmash.utilities.Fishmash;
 import net.elenx.fishmash.activities.core.OptionsActivity;
 import net.elenx.fishmash.daos.AuthenticateDAO;
 import net.elenx.fishmash.models.Authenticate;
@@ -27,7 +27,7 @@ public class AuthenticateUpdater extends FishmashUpdater
     protected void download()
     {
         HttpEntity<String> httpEntity = buildEntityWith(new LoginPassword(login, password));
-        authenticate = fishmashRest.postForObject(Constant.AUTHENTICATE, httpEntity, Authenticate.class);
+        authenticate = fishmashRest.postForObject(Fishmash.AUTHENTICATE, httpEntity, Authenticate.class);
     }
 
     @Override

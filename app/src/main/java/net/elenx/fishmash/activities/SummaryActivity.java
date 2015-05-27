@@ -7,7 +7,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import net.elenx.fishmash.Constant;
+import net.elenx.fishmash.utilities.Fishmash;
 import net.elenx.fishmash.R;
 import net.elenx.fishmash.activities.core.OptionsActivity;
 import net.elenx.fishmash.models.ExamSummary;
@@ -21,7 +21,7 @@ public class SummaryActivity extends OptionsActivity
     {
         attach(R.layout.summary);
 
-        long examId = getIntent().getLongExtra(Constant.EXAM_ID, -1);
+        long examId = getIntent().getLongExtra(Fishmash.EXAM_ID, -1);
 
         if(examId <= 0)
         {

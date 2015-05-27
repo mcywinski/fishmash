@@ -1,6 +1,6 @@
 package net.elenx.fishmash.updaters;
 
-import net.elenx.fishmash.Constant;
+import net.elenx.fishmash.utilities.Fishmash;
 import net.elenx.fishmash.activities.core.OptionsActivity;
 import net.elenx.fishmash.daos.ProfileDAO;
 import net.elenx.fishmash.models.Profile;
@@ -17,7 +17,7 @@ public class ProfileUpdater extends FishmashUpdater
     @Override
     protected void download() throws Exception
     {
-        profile = fishmashRest.getForObject(Constant.USERS_USERID_TOKEN, Profile.class, buildParameters());
+        profile = fishmashRest.getForObject(Fishmash.USERS_USERID_TOKEN, Profile.class, buildParameters());
     }
 
     @Override

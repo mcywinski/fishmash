@@ -10,7 +10,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import net.elenx.fishmash.Constant;
+import net.elenx.fishmash.utilities.Fishmash;
 import net.elenx.fishmash.R;
 import net.elenx.fishmash.activities.core.OptionsActivity;
 import net.elenx.fishmash.activities.core.drawer.NavigationDrawerFragment;
@@ -125,7 +125,7 @@ public class LearningAndExamsActivity extends OptionsActivity
                     public void onClick(View v)
                     {
                         NavigationDrawerFragment.setCurrentSelectedPosition(0);
-                        switchIntentTo(LearningActivity.class, Constant.WORD_LIST_ID, wordList.getId());
+                        switchIntentTo(LearningActivity.class, Fishmash.WORD_LIST_ID, wordList.getId());
                     }
                 }
             );
@@ -171,7 +171,7 @@ public class LearningAndExamsActivity extends OptionsActivity
                     public void onClick(View v)
                     {
                         NavigationDrawerFragment.setCurrentSelectedPosition(0);
-                        switchIntentTo(ExamActivity.class, Constant.EXAM_ID, exam.getId());
+                        switchIntentTo(ExamActivity.class, Fishmash.EXAM_ID, exam.getId());
                     }
                 }
             );

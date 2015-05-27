@@ -1,6 +1,6 @@
 package net.elenx.fishmash.updaters;
 
-import net.elenx.fishmash.Constant;
+import net.elenx.fishmash.utilities.Fishmash;
 import net.elenx.fishmash.activities.core.OptionsActivity;
 import net.elenx.fishmash.daos.WordListDAO;
 import net.elenx.fishmash.models.WordList;
@@ -26,7 +26,7 @@ public class WordListUpdater extends FishmashUpdater
     @Override
     protected void download() throws JSONException, IOException
     {
-        String json = fishmashRest.getForObject(Constant.LISTS, String.class);
+        String json = fishmashRest.getForObject(Fishmash.LISTS, String.class);
         jsonArray = new JSONArray(json);
     }
 

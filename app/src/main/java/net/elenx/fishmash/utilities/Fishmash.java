@@ -1,6 +1,6 @@
-package net.elenx.fishmash;
+package net.elenx.fishmash.utilities;
 
-public abstract class Constant
+public abstract class Fishmash
 {
     // start layer 0
     public static final String DATABASE_NAME = "fishmash";

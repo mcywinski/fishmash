@@ -1,6 +1,6 @@
 package net.elenx.fishmash.updaters;
 
-import net.elenx.fishmash.Constant;
+import net.elenx.fishmash.utilities.Fishmash;
 import net.elenx.fishmash.activities.core.OptionsActivity;
 import net.elenx.fishmash.daos.ExamDAO;
 import net.elenx.fishmash.models.Exam;
@@ -20,7 +20,7 @@ public class ExamUpdater extends FishmashUpdater
     @Override
     protected void download() throws Exception
     {
-        Exam[] exams = fishmashRest.getForObject(Constant.EXAMS_TOKEN, Exam[].class, buildParameters());
+        Exam[] exams = fishmashRest.getForObject(Fishmash.EXAMS_TOKEN, Exam[].class, buildParameters());
 
         examList = Arrays.asList(exams);
     }

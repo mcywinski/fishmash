@@ -7,7 +7,7 @@ import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.View;
 
-import net.elenx.fishmash.Constant;
+import net.elenx.fishmash.utilities.Fishmash;
 import net.elenx.fishmash.R;
 import net.elenx.fishmash.activities.AuthenticateActivity;
 import net.elenx.fishmash.activities.LearningActivity;
@@ -56,7 +56,7 @@ public abstract class OptionsActivity extends ProgressDialogActivity
                 break;
 
             case R.string.register:
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(Constant.REGISTER));
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(Fishmash.REGISTER));
                 startActivity(browserIntent);
                 break;
 

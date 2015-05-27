@@ -4,7 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import net.elenx.fishmash.Constant;
+import net.elenx.fishmash.utilities.Fishmash;
 import net.elenx.fishmash.R;
 
 import java.util.LinkedList;
@@ -16,7 +16,7 @@ class FishmashOpener extends SQLiteOpenHelper
 
     public FishmashOpener(Context context)
     {
-        super(context, Constant.DATABASE_NAME, null, 1);
+        super(context, Fishmash.DATABASE_NAME, null, 1);
 
         createTableQueries.add(context.getString(R.string.wordList_create));
         createTableQueries.add(context.getString(R.string.words_create));

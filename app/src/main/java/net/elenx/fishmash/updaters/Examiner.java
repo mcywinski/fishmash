@@ -2,7 +2,7 @@ package net.elenx.fishmash.updaters;
 
 import android.util.Log;
 
-import net.elenx.fishmash.Constant;
+import net.elenx.fishmash.utilities.Fishmash;
 import net.elenx.fishmash.activities.core.OptionsActivity;
 import net.elenx.fishmash.models.secondary.ExamAnswer;
 import net.elenx.fishmash.models.ExamQuestion;
@@ -43,7 +43,7 @@ public class Examiner extends FishmashUpdater
 
     private void fetchQuestion(Map<String, String> parameters)
     {
-        ExamQuestion examQuestion = fishmashRest.postForObject(Constant.QUESTION_EXAMID_TOKEN, null, ExamQuestion.class, parameters);
+        ExamQuestion examQuestion = fishmashRest.postForObject(Fishmash.QUESTION_EXAMID_TOKEN, null, ExamQuestion.class, parameters);
 
         Log.e("meaning", examQuestion.getMeaning());
 
@@ -73,7 +73,7 @@ public class Examiner extends FishmashUpdater
         Map<String, String> parameters = buildParameters();
         parameters.put("exam_id", String.valueOf(examId));
 
-        ExamResponse examResponse = fishmashRest.postForObject(Constant.ANSWER_EXAMID_TOKEN, httpEntity, ExamResponse.class, parameters);
+        ExamResponse examResponse = fishmashRest.postForObject(Fishmash.ANSWER_EXAMID_TOKEN, httpEntity, ExamResponse.class, parameters);
 
         // if(!examResponse.isSaved() || !examResponse.getMesssage().equals("Answer saved") )
         if(! (examResponse.isSaved() && examResponse.getMesssage().equals("Answer saved") ) )

@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import net.elenx.fishmash.Constant;
+import net.elenx.fishmash.utilities.Fishmash;
 import net.elenx.fishmash.R;
 import net.elenx.fishmash.activities.core.OptionsActivity;
 import net.elenx.fishmash.daos.ExamDAO;
@@ -46,9 +46,9 @@ public class ExamActivity extends OptionsActivity
             }
         );
 
-        final long examId = getIntent().getLongExtra(Constant.EXAM_ID, -1);
+        final long examId = getIntent().getLongExtra(Fishmash.EXAM_ID, -1);
 
-        Log.e(Constant.EXAM_ID, String.valueOf(examId));
+        Log.e(Fishmash.EXAM_ID, String.valueOf(examId));
 
         if(examId <= 0)
         {
@@ -76,7 +76,7 @@ public class ExamActivity extends OptionsActivity
                 public void examFinished()
                 {
                     Toast.makeText(me, getString(R.string.examIsOver), Toast.LENGTH_LONG).show();
-                    switchIntentTo(SummaryActivity.class, Constant.EXAM_ID, examId);
+                    switchIntentTo(SummaryActivity.class, Fishmash.EXAM_ID, examId);
                 }
             }
         );
@@ -98,7 +98,7 @@ public class ExamActivity extends OptionsActivity
         bindViews();
 
         examName.setText(exam.getName());
-        examDescription.setText(Constant.TO + exam.getDate_exam_finish().inShortFormat());
+        examDescription.setText(Fishmash.TO + exam.getDate_exam_finish().inShortFormat());
 
         next.setOnClickListener
         (

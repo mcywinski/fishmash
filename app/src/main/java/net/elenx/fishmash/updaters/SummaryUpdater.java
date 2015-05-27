@@ -1,6 +1,6 @@
 package net.elenx.fishmash.updaters;
 
-import net.elenx.fishmash.Constant;
+import net.elenx.fishmash.utilities.Fishmash;
 import net.elenx.fishmash.activities.core.OptionsActivity;
 import net.elenx.fishmash.models.ExamSummary;
 import net.elenx.fishmash.updaters.listeners.SummaryListener;
@@ -22,9 +22,9 @@ public class SummaryUpdater extends FishmashUpdater
     void download() throws Exception
     {
         Map<String, String> parameters = buildParameters();
-        parameters.put(Constant.EXAM_ID, String.valueOf(examId));
+        parameters.put(Fishmash.EXAM_ID, String.valueOf(examId));
 
-        ExamSummary[] examSummaries = fishmashRest.getForObject(Constant.SUMMARY_EXAMID_TOKEN, ExamSummary[].class, parameters);
+        ExamSummary[] examSummaries = fishmashRest.getForObject(Fishmash.SUMMARY_EXAMID_TOKEN, ExamSummary[].class, parameters);
 
         if(summaryListener != null)
         {
