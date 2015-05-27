@@ -48,8 +48,6 @@ public class ExamActivity extends OptionsActivity
 
         final long examId = getIntent().getLongExtra(Fishmash.EXAM_ID, -1);
 
-        Log.e(Fishmash.EXAM_ID, String.valueOf(examId));
-
         if(examId <= 0)
         {
             learningAndExams();

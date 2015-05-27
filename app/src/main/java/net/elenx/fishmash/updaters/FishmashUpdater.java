@@ -134,7 +134,7 @@ abstract class FishmashUpdater extends AsyncTask<Void, Integer, Void>
         Authenticate authenticate = authenticateDAO.selectAll().get(0);
 
         Map<String, String> map = new HashMap<>();
-        map.put(Fishmash.USER_ID, String.valueOf(authenticate.getUser_id()));
+        map.put(Fishmash.USER_ID, String.valueOf(authenticate.getUserId()));
         map.put(Fishmash.API_TOKEN, authenticate.getToken());
 
         return map;

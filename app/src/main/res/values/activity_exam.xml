@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="exam">Exam</string>
-    <string name="badExam">This exam has finished or have never existed</string>
     <string name="examIsOver">Exam is over</string>
 </resources>

@@ -1,7 +1,5 @@
 package net.elenx.fishmash.updaters;
 
-import android.util.Log;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import net.elenx.fishmash.activities.core.OptionsActivity;
@@ -24,7 +22,6 @@ public class AuthenticateUpdater extends FishmashUpdater
     public AuthenticateUpdater(OptionsActivity optionsActivity, String login, String password)
     {
         super(optionsActivity);
-
         this.login = login;
         this.password = password;
     }
@@ -33,7 +30,6 @@ public class AuthenticateUpdater extends FishmashUpdater
     protected void download() throws JsonProcessingException
     {
         Credentials credentials = new Credentials(login, password);
-
         authenticate = fishmashRest.postForObject(Fishmash.AUTHENTICATE, buildEntityWith(credentials), Authenticate.class);
     }
 

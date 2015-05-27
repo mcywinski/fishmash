@@ -79,15 +79,16 @@ public class SummaryActivity extends OptionsActivity
             phrase = (TextView) bottomRow.getChildAt(2);
 
             //
+            tableLayoutSummary.addView(tableLayout);
+            //
 
             answer.setText(examSummary.getAnswer());
             finished.setChecked(examSummary.isFinished());
             passed.setChecked(examSummary.isPassed());
+
             meaning.setText(examSummary.getMeaning());
             examFinished.setChecked(examSummary.isExamFinished());
             phrase.setText(examSummary.getPhrase());
-
-            tableLayoutSummary.addView(tableLayout);
         }
     }
 }

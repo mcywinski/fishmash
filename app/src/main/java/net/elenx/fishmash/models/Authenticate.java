@@ -2,12 +2,20 @@ package net.elenx.fishmash.models;
 
 import android.database.Cursor;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Authenticate extends FishmashModel
 {
     private String token;
-    private long user_id;
-    private String created_at;
-    private String updated_at;
+
+    @JsonProperty("user_id")
+    private long userId;
+
+    @JsonProperty("created_at")
+    private String createdAt;
+
+    @JsonProperty("updated_at")
+    private String updatedAt;
 
     @SuppressWarnings("unused")
     Authenticate()
@@ -19,9 +27,9 @@ public class Authenticate extends FishmashModel
     {
         super(cursor);
         token = cursor.getString(1);
-        user_id = cursor.getLong(2);
-        created_at = cursor.getString(3);
-        updated_at = cursor.getString(4);
+        userId = cursor.getLong(2);
+        createdAt = cursor.getString(3);
+        updatedAt = cursor.getString(4);
     }
 
     public String getToken()
@@ -29,18 +37,18 @@ public class Authenticate extends FishmashModel
         return token;
     }
 
-    public long getUser_id()
+    public long getUserId()
     {
-        return user_id;
+        return userId;
     }
 
-    public String getCreated_at()
+    public String getCreatedAt()
     {
-        return created_at;
+        return createdAt;
     }
 
-    public String getUpdated_at()
+    public String getUpdatedAt()
     {
-        return updated_at;
+        return updatedAt;
     }
 }

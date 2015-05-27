@@ -25,9 +25,9 @@ public class AuthenticateDAO extends FishmashDAO<Authenticate>
     {
         ContentValues contentValues = new ContentValues();
         contentValues.put(columns[1], authenticate.getToken());
-        contentValues.put(columns[2], authenticate.getUser_id());
-        contentValues.put(columns[3], authenticate.getCreated_at());
-        contentValues.put(columns[4], authenticate.getUpdated_at());
+        contentValues.put(columns[2], authenticate.getUserId());
+        contentValues.put(columns[3], authenticate.getCreatedAt());
+        contentValues.put(columns[4], authenticate.getUpdatedAt());
 
         return contentValues;
     }

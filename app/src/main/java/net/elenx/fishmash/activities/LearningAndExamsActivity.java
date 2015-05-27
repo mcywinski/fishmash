@@ -106,17 +106,16 @@ public class LearningAndExamsActivity extends OptionsActivity
             tableRow = (TableRow) layoutInflater.inflate(R.layout.fragment_wordlist, null);
 
             RelativeLayout relativeLayout = (RelativeLayout) tableRow.getChildAt(0);
-
             wordListName = (TextView) relativeLayout.getChildAt(0);
-            wordListName.setText(wordList.getName());
-
             wordListFirstLanguage = (TextView) relativeLayout.getChildAt(1);
-            wordListFirstLanguage.setText(wordList.getMainLanguage().getLocale().getDisplayLanguage());
-
             wordListSecondLanguage = (TextView) relativeLayout.getChildAt(3);
-            wordListSecondLanguage.setText(wordList.getForeignLanguage().getLocale().getDisplayLanguage());
-
             ImageView imageView = (ImageView) tableRow.getChildAt(1);
+
+            tableLayoutWordList.addView(tableRow);
+
+            wordListName.setText(wordList.getName());
+            wordListFirstLanguage.setText(wordList.getMainLanguage().getLocale().getDisplayLanguage());
+            wordListSecondLanguage.setText(wordList.getForeignLanguage().getLocale().getDisplayLanguage());
             imageView.setOnClickListener
             (
                 new View.OnClickListener()
@@ -129,8 +128,6 @@ public class LearningAndExamsActivity extends OptionsActivity
                     }
                 }
             );
-
-            tableLayoutWordList.addView(tableRow);
         }
     }
 
@@ -155,14 +152,14 @@ public class LearningAndExamsActivity extends OptionsActivity
             tableRow = (TableRow) layoutInflater.inflate(R.layout.fragment_exam, null);
 
             RelativeLayout relativeLayout = (RelativeLayout) tableRow.getChildAt(0);
-
             examName = (TextView) relativeLayout.getChildAt(0);
-            examName.setText(exam.getName());
-
             examDescription = (TextView) relativeLayout.getChildAt(1);
-            examDescription.setText("to " + exam.getDateExamFinish().inShortFormat());
-
             ImageView imageView = (ImageView) tableRow.getChildAt(1);
+
+            tableLayoutExams.addView(tableRow);
+
+            examName.setText(exam.getName());
+            examDescription.setText(Fishmash.TO + exam.getDateExamFinish().inShortFormat());
             imageView.setOnClickListener
             (
                 new View.OnClickListener()
@@ -175,8 +172,6 @@ public class LearningAndExamsActivity extends OptionsActivity
                     }
                 }
             );
-
-            tableLayoutExams.addView(tableRow);
         }
     }
 }
