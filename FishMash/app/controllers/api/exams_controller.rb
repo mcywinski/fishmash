@@ -30,8 +30,7 @@ class Api::ExamsController < ApplicationController
     assesment = Exam.find(params[:exam_id]).get_assesment(api_get_user.id)
     answer = assesment.get_answer
     if answer.nil? # No more questions to answer -> exam's finished.
-      assesment.finished = true
-      assesment.save
+      finish_exam(assesment)
       respond_with Answer.exam_finished_dto, location: '' and return
     end
 
@@ -64,5 +63,11 @@ class Api::ExamsController < ApplicationController
     end
 
     respond_with answers, location: ''
+  end
+
+  private
+  def finish_exam(assesment)
+    assesment.finished = true
+    assesment.save
   end
 end
