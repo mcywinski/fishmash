@@ -94,7 +94,7 @@ class ExamsController < ApplicationController
 	end
 
 	def new_exam_params
-		params.require(:exam).permit(:name, :description, :date_practice_start, :date_practice_finish, :date_exam_start, :date_exam_finish, :word_count)
+		params.require(:exam).permit(:name, :description, :date_practice_start, :date_practice_finish, :date_exam_start, :date_exam_finish, :word_count, :time_limit)
 	end
 
 end

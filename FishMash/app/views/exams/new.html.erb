@@ -7,7 +7,7 @@
         <%= f.text_field :name, placeholder: "Enter the exam name" %>
       </p>
       <p>
-        <%= f.text_area :description, placeholder: "Shortly descrive the content of this exam..." %>
+        <%= f.text_area :description, placeholder: "Shortly describe the content of this exam..." %>
       </p>
       <div class="col-md-6">
       <p>
@@ -24,6 +24,9 @@
       </p>
       <p>
         <%= f.text_field :word_count, placeholder: "Word count", id: 'word-count' %>
+      </p>
+      <p>
+        <%= f.text_field :time_limit, placeholder: 'Time limit (in minutes)', id: 'time-imit' %>
       </p>
       </div>
       <div class="col-md-6">
