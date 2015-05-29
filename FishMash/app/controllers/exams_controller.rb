@@ -1,6 +1,8 @@
 class ExamsController < ApplicationController
 	before_action :validate_assesment, only: [:answer, :save_answer, :summary]
 
+	MSG_EXAM_TIME_FINISHED = 'Time\'s up. Exam is finished'
+
 	def index
 		@exams = Exam.all
 	end
@@ -63,14 +65,23 @@ class ExamsController < ApplicationController
 		assesment = @exam.get_assesment(get_logged_user_id)
 		@answer = assesment.get_answer
 
+		unless assesment.is_time_exceeded?
+			flash[:errors] = MSG_EXAM_TIME_FINISHED
+			finish_exam(assesment) and return
+		end
+
 		if @answer.nil? # No more questions to answer -> exam's finished.
-			assesment.finished = true
-			assesment.save
-			redirect_to exam_summary_path(@exam)
+			finish_exam(assesment)
 		end
 	end
 
 	def save_answer
+		@assesment = @exam.get_assesment(get_logged_user_id)
+		unless @assesment.is_time_exceeded?
+			flash[:errors] = MSG_EXAM_TIME_FINISHED
+			finish_exam(@assesment) and return
+		end
+
 		# TODO: Validate if this is user's question.
 		answer = Answer.find(params[:answer][:answer_id])
 		answer.provide_answer(params[:answer][:answer])
@@ -95,6 +106,12 @@ class ExamsController < ApplicationController
 
 	def new_exam_params
 		params.require(:exam).permit(:name, :description, :date_practice_start, :date_practice_finish, :date_exam_start, :date_exam_finish, :word_count, :time_limit)
+	end
+
+	def finish_exam(assesment)
+		assesment.finished = true
+		assesment.save
+		redirect_to exam_summary_path(@exam)
 	end
 
 end
