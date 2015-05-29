@@ -1,5 +1,15 @@
 class ExamsController < ApplicationController
 	before_action :validate_assesment, only: [:answer, :save_answer, :summary]
+	before_action only: [:start, :begin] do
+		if ExamCommon.is_start_overdue? params[:exam_id]
+			redirect_to exams_path
+		end
+	end
+	before_action only: [:learn, :begin] do
+		if ExamCommon.is_practice_overdue? params[:exam_id]
+			redirect_to exams_path
+		end
+	end
 
 	MSG_EXAM_TIME_FINISHED = 'Time\'s up. Exam is finished'
 
