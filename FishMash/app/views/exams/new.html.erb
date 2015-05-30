@@ -33,6 +33,9 @@
       <p>
         <%= f.select :word_list_id, @lists.collect { |wordlist| [wordlist.name, wordlist.id] }, {}, multiple: true %>
       </p>
+      <p>
+        <%= f.select :student_class_id, @student_classes.collect { |student_class| [student_class.name, student_class.id] }, {}, multiple: true %>
+      </p>
       </div>
       <div class="col-md-12">
         <%= f.submit "Create an exam", :class => 'button-link' %>

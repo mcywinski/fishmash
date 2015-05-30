@@ -1,5 +1,6 @@
 class ExamsController < ApplicationController
 	before_action :require_login
+	before_action :require_teacher, only: [:new, :create]
 	before_action :validate_assesment, only: [:answer, :save_answer, :summary]
 	before_action only: [:start, :begin] do # Checks validity of dates for exams
 		if ExamCommon.is_start_overdue? params[:exam_id]
@@ -28,7 +29,9 @@ class ExamsController < ApplicationController
 	end
 
 	def new
-		@lists = WordList.all
+		user = get_logged_user
+		@lists = user.owned_wordlists
+		@student_classes = user.owned_student_classes
 	end
 
 	def learn
