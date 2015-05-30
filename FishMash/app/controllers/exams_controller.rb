@@ -51,10 +51,15 @@ class ExamsController < ApplicationController
 		@wordlists = Array.new
 		# Removing first, empty element from word_list_id array
 		wordlist_id_helper = params[:exam][:word_list_id].drop(1)
+		class_list_id_helper = params[:exam][:student_class_id].drop(1)
 		wordlists = WordList.find(wordlist_id_helper)
+		student_classes = StudentClass.find(class_list_id_helper)
 		exam = Exam.new(new_exam_params)
 		wordlists.each do |wordlist|
 			exam.word_lists.push wordlist
+		end
+		student_classes.each do |studclass|
+			exam.student_classes.push studclass
 		end
 		exam.owner = get_logged_user
 		if exam.save
