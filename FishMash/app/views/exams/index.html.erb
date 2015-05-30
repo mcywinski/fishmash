@@ -30,7 +30,11 @@
           <% unless exam.is_finished?(get_logged_user_id) or ExamCommon.is_start_overdue?(exam.id) %>
             <%= link_to 'Start exam', exam_begin_path(exam) %>
           <% else %>
-            <%= link_to 'Show summary', exam_summary_path(exam) %>
+            <% if exam.date_exam_start > Date.today %>
+              Exam can be started after <%= exam.date_exam_start %>
+            <% else %>
+              <%= link_to 'Show summary', exam_summary_path(exam) %>
+            <% end %>
           <% end %>
         </td>
         <td>
