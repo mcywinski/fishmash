@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :is_user_logged_in?
   helper_method :get_logged_user_id
+  helper_method :get_logged_user
 
   def api
   end
