@@ -1,8 +1,14 @@
 class WordListsController < ApplicationController
+	before_action :require_login
 
 	# Displaying all lists
 	def index
-		@lists = WordList.all
+		user = get_logged_user
+		if user.is_teacher?
+			@lists = user.owned_wordlists
+		elsif user.is_student?
+			@lists = WordList.all
+		end
 	end
 
 	# Displaying specific wordlist
