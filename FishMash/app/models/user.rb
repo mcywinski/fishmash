@@ -10,6 +10,14 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: true
   validates :login, presence: true, uniqueness: true
 
+  def is_student?
+    return self.user_type == 1
+  end
+
+  def is_teacher?
+    return self.user_type == 2
+  end
+
   def to_dto
     user_dto = Hash.new
     user_dto[:login] = self.login

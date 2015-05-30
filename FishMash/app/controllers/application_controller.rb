@@ -27,6 +27,12 @@ class ApplicationController < ActionController::Base
     session[:logged_user_id]
   end
 
+  def get_logged_user
+    if is_user_logged_in?
+      return User.find(get_logged_user_id)
+    end
+  end
+
   def stringify_errors(model)
   	errors = ""
   	model.errors.full_messages.each do |msg|

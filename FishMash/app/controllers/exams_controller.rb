@@ -1,11 +1,12 @@
 class ExamsController < ApplicationController
+	before_action :require_login
 	before_action :validate_assesment, only: [:answer, :save_answer, :summary]
-	before_action only: [:start, :begin] do
+	before_action only: [:start, :begin] do # Validates validity of dates for exams
 		if ExamCommon.is_start_overdue? params[:exam_id]
 			redirect_to exams_path
 		end
 	end
-	before_action only: [:learn, :begin] do
+	before_action only: [:learn] do # Validates validity of dates for learning
 		if ExamCommon.is_practice_overdue? params[:exam_id]
 			redirect_to exams_path
 		end
@@ -14,7 +15,12 @@ class ExamsController < ApplicationController
 	MSG_EXAM_TIME_FINISHED = 'Time\'s up. Exam is finished'
 
 	def index
-		@exams = Exam.all
+		user = get_logged_user
+		if user.is_teacher?
+			@exams = user.owned_exams
+		else
+			@exams = Exam.all
+		end
 	end
 
 	def show
@@ -47,7 +53,7 @@ class ExamsController < ApplicationController
 		wordlists.each do |wordlist|
 			exam.word_lists.push wordlist
 		end
-
+		exam.owner = get_logged_user
 		if exam.save
 			flash[:success] = 'Exam has been successfuly created'
 			redirect_to exams_path
