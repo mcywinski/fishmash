@@ -12,6 +12,24 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: true
   validates :login, presence: true, uniqueness: true
 
+  def get_available_exams
+    exams = Array.new
+    self.student_classes.each do |student_class|
+      exams = exams | student_class.exams
+    end
+    return exams
+  end
+
+  def get_available_wordlists
+    wordlists = Array.new
+    self.get_available_exams.each do |exam|
+      if exam.date_practice_start <= Date.today and exam.date_practice_finish >= Date.today
+        wordlists = wordlists | exam.word_lists
+      end
+    end
+    return wordlists
+  end
+
   def is_student?
     return self.user_type == 1
   end

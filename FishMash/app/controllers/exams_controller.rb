@@ -20,7 +20,7 @@ class ExamsController < ApplicationController
 		if user.is_teacher?
 			@exams = user.owned_exams
 		elsif user.is_student?
-			@exams = Exam.all
+			@exams = user.get_available_exams
 		end
 	end
 

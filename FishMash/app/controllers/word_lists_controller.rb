@@ -7,7 +7,7 @@ class WordListsController < ApplicationController
 		if user.is_teacher?
 			@lists = user.owned_wordlists
 		elsif user.is_student?
-			@lists = WordList.all
+			@lists = user.get_available_wordlists
 		end
 	end
 
