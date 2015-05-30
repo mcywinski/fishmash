@@ -34,6 +34,16 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def require_teacher
+    user = get_logged_user
+    if user.nil?
+      redirect_to root_path and return
+    end
+    if !user.is_teacher?
+      redirect_to root_path and return
+    end
+  end
+
   def stringify_errors(model)
   	errors = ""
   	model.errors.full_messages.each do |msg|

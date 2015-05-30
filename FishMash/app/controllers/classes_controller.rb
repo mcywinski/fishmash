@@ -1,8 +1,8 @@
 class ClassesController < ApplicationController
   before_action :require_login
+  before_action :require_teacher
 
   # Displays all classes in the system
-  # TODO: Display only classes belonging to a user
   def index
     @classes = StudentClass.all
   end

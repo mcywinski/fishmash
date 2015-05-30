@@ -39,6 +39,9 @@
       <li><%= link_to 'login', login_users_path %></li>
     <% else %>
       <li><%= link_to 'logout', logout_users_path %></li>
+      <% if get_logged_user.is_teacher? %>
+        <li><%= link_to 'classes', classes_path %></li>
+      <% end %>
       <li><%= link_to 'exams', exams_path %></li>
     <% end %>
     <li class="fish-nav-logo">
