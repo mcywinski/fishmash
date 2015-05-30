@@ -1,12 +1,12 @@
 class ExamsController < ApplicationController
 	before_action :require_login
 	before_action :validate_assesment, only: [:answer, :save_answer, :summary]
-	before_action only: [:start, :begin] do # Validates validity of dates for exams
+	before_action only: [:start, :begin] do # Checks validity of dates for exams
 		if ExamCommon.is_start_overdue? params[:exam_id]
 			redirect_to exams_path
 		end
 	end
-	before_action only: [:learn] do # Validates validity of dates for learning
+	before_action only: [:learn] do # Checks validity of dates for learning
 		if ExamCommon.is_practice_overdue? params[:exam_id]
 			redirect_to exams_path
 		end
@@ -18,7 +18,7 @@ class ExamsController < ApplicationController
 		user = get_logged_user
 		if user.is_teacher?
 			@exams = user.owned_exams
-		else
+		elsif user.is_student?
 			@exams = Exam.all
 		end
 	end
