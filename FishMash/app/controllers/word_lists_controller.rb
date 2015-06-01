@@ -24,6 +24,7 @@ class WordListsController < ApplicationController
 	# Creates a new instance of WordList
 	def create
 		word_list = WordList.new(word_list_create_params)
+		word_list.owner = get_logged_user
 		if word_list.save
 			redirect_to edit_wordlist_path(word_list)
 		else
