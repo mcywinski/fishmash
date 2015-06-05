@@ -5,12 +5,12 @@ class Api::ExamsController < ApplicationController
   before_action :validate_assesment, only: [:get_question, :answer, :summary]
   before_action only: [:start, :begin] do # Checks validity of dates for exams
     if ExamCommon.is_start_overdue? params[:exam_id]
-      respond_with nil, status: :bad_request
+      respond_with nil, status: :bad_request, location: ''
     end
   end
   before_action only: [:learn] do # Checks validity of dates for learning
     if ExamCommon.is_practice_overdue? params[:exam_id]
-      respond_with nil, status: :bad_request
+      respond_with nil, status: :bad_request, location: ''
     end
   end
 
@@ -46,6 +46,11 @@ class Api::ExamsController < ApplicationController
   # Gets the next question to answer
   def get_question
     assesment = Exam.find(params[:exam_id]).get_assesment(api_get_user.id)
+    unless assesment.is_time_exceeded?
+      finish_exam(assesment)
+      respond_with Answer.exam_finished_dto, location: '' and return
+    end
+
     answer = assesment.get_answer
     if answer.nil? # No more questions to answer -> exam's finished.
       finish_exam(assesment)
@@ -57,6 +62,12 @@ class Api::ExamsController < ApplicationController
 
   # Saves the answer in db
   def answer
+    assesment = Exam.find(params[:exam_id]).get_assesment(api_get_user.id)
+    unless assesment.is_time_exceeded?
+      finish_exam(assesment)
+      respond_with Answer.exam_finished_dto, location: '' and return
+    end
+
     # TODO: Validate if this is user's question
     answer = Answer.find(params[:answer_id])
 
@@ -93,7 +104,7 @@ class Api::ExamsController < ApplicationController
   		@exam = Exam.find params[:exam_id]
   		assesment = @exam.get_assesment(api_get_user.id)
   		if assesment.nil?
-  			respond_with nil, status: :bad_request
+  			respond_with nil, status: :bad_request, location: ''
   		end
   	end
 end

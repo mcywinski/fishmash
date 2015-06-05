@@ -1,6 +1,5 @@
 class Api::ListsController < ApplicationController
   protect_from_forgery with: :null_session
-  before_action :api_authorize
 
   respond_to :json, :xml
 
