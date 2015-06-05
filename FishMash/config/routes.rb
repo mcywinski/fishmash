@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :api do
+  get 'languages/index'
+  end
+
   get 'api' => 'application#api'
   namespace :api, defaults: {format: :json} do
     resources :exams, except: [:create, :delete, :update] do
@@ -12,6 +16,7 @@ Rails.application.routes.draw do
       post 'remove'
     end
     resources :words, only: [:create]
+    resources :languages, only: [:index]
     resources :users do
       collection do
         post 'authenticate'
