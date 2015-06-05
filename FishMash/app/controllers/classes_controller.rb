@@ -4,7 +4,7 @@ class ClassesController < ApplicationController
 
   # Displays all classes in the system
   def index
-    @classes = StudentClass.all
+    @classes = StudentClass.where(owner_id: get_logged_user.id)
   end
 
   def new
@@ -13,6 +13,7 @@ class ClassesController < ApplicationController
 
   def create
     stud_class = StudentClass.new(class_params)
+    stud_class.owner = get_logged_user
     if stud_class.save
       redirect_to classes_path
     else
