@@ -1,10 +1,16 @@
 class Api::ListsController < ApplicationController
   protect_from_forgery with: :null_session
+  before_action :api_authorize
 
   respond_to :json, :xml
 
   def index
-    lists = WordList.all
+    user = api_get_user
+    if user.is_teacher?
+			lists = user.owned_wordlists
+		elsif user.is_student?
+			lists = user.get_available_wordlists
+		end
 
     lists_dto = Array.new
     lists.each do |list|
