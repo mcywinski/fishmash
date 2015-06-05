@@ -16,7 +16,7 @@ class Api::UsersController < ApplicationController
   end
 
   def show
-    respond_with api_get_user.to_simple_dto, location: ''
+    respond_with api_get_user.to_dto, location: ''
   end
 
   private
