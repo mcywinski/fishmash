@@ -1,0 +1,10 @@
+<div>
+  <p>Choose class to show statistics for:</p>
+  <p>
+    <% @exam.student_classes.each do |stud_class| %>
+      <a href="#" class="btn btn-sm btn-primary studclass-choose" class-id="<%= stud_class.id %>"><%= stud_class.name %></a>
+    <% end %>
+  </p>
+</div>
+
+<%= javascript_include_tag 'exam-stats', 'data-turbolinks-track' => true %>

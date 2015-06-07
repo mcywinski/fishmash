@@ -32,6 +32,7 @@ Rails.application.routes.draw do
     post 'answer', to: 'exams#save_answer'
     get 'summary'
     get 'learn'
+    get 'stats'
   end
   resources :users, only: [:show, :create] do
     collection do

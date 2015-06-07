@@ -1,6 +1,6 @@
 class ExamsController < ApplicationController
 	before_action :require_login
-	before_action :require_teacher, only: [:new, :create]
+	before_action :require_teacher, only: [:new, :create, :stats]
 	before_action :validate_assesment, only: [:answer, :save_answer, :summary]
 	before_action only: [:start, :begin] do # Checks validity of dates for exams
 		if ExamCommon.is_start_overdue? params[:exam_id]
@@ -9,6 +9,11 @@ class ExamsController < ApplicationController
 	end
 	before_action only: [:learn] do # Checks validity of dates for learning
 		if ExamCommon.is_practice_overdue? params[:exam_id]
+			redirect_to exams_path
+		end
+	end
+	before_action only: [:stats] do
+		unless ExamCommon.is_owned_by(params[:exam_id], get_logged_user_id)
 			redirect_to exams_path
 		end
 	end
@@ -115,6 +120,10 @@ class ExamsController < ApplicationController
 
 	def summary
 		@assesment = @exam.get_assesment(get_logged_user_id)
+	end
+
+	def stats
+		@exam = Exam.find params[:exam_id]
 	end
 
 	private

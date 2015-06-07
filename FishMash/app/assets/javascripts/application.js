@@ -17,4 +17,5 @@
 //= stub wordlist-browse
 //= stub wordlist-edit
 //= stub exam-learn
+//= stub exam-stats
 //= require_tree .
