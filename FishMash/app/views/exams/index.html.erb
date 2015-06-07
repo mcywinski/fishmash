@@ -18,7 +18,10 @@
        <td>Date exam finish</td>
     	 <td>Word count</td>
        <td></td>
+       <td></td>
+       <% if get_logged_user.is_teacher? %>
         <td></td>
+       <% end %>
       </tr>
       <% @exams.each do |exam| %>
       	<tr>
@@ -45,6 +48,9 @@
               <%= link_to 'Practice', exam_learn_path(exam) %>
             <% end %>
           </td>
+          <% if get_logged_user.is_teacher? %>
+           <td><%= link_to "Stats", exam_stats_path(exam) %></td>
+          <% end %>
       	</tr>
       <% end %>
     </table>
