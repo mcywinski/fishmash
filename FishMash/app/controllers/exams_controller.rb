@@ -95,7 +95,7 @@ class ExamsController < ApplicationController
 	def answer
 		assesment = @exam.get_assesment(get_logged_user_id)
 		@answer = assesment.get_answer
-
+		@finish_time = (assesment.time_started + @exam.time_limit.minutes)
 		unless assesment.is_time_exceeded?
 			flash[:errors] = MSG_EXAM_TIME_FINISHED
 			finish_exam(assesment) and return

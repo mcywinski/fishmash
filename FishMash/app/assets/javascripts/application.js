@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require turbolinks
+//= require moment
 //= stub wordlist-browse
 //= stub wordlist-edit
 //= stub exam-learn
