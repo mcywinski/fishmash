@@ -5,12 +5,12 @@ class Api::ExamsController < ApplicationController
   before_action :validate_assesment, only: [:get_question, :answer, :summary]
   before_action only: [:start, :begin] do # Checks validity of dates for exams
     if ExamCommon.is_start_overdue? params[:exam_id]
-      respond_with nil, status: :bad_request, location: ''
+      respond_with nil, location: ''
     end
   end
   before_action only: [:learn] do # Checks validity of dates for learning
     if ExamCommon.is_practice_overdue? params[:exam_id]
-      respond_with nil, status: :bad_request, location: ''
+      respond_with nil, location: ''
     end
   end
 
@@ -104,7 +104,7 @@ class Api::ExamsController < ApplicationController
   		@exam = Exam.find params[:exam_id]
   		assesment = @exam.get_assesment(api_get_user.id)
   		if assesment.nil?
-  			respond_with nil, status: :bad_request, location: ''
+  			respond_with nil, location: ''
   		end
   	end
 end
