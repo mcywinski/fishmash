@@ -43,6 +43,8 @@ GEM
     builder (3.2.2)
     byebug (4.0.2)
       columnize (= 0.9.0)
+    chartist_js (0.0.2)
+      rails (>= 3.2)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -160,6 +162,7 @@ PLATFORMS
 DEPENDENCIES
   bcrypt (~> 3.1.7)
   byebug
+  chartist_js
   coffee-rails (~> 4.1.0)
   jbuilder (~> 2.0)
   jquery-rails
@@ -174,3 +177,6 @@ DEPENDENCIES
   twitter-bootstrap-rails
   uglifier (>= 1.3.0)
   web-console (~> 2.0)
+
+BUNDLED WITH
+   1.10.3
