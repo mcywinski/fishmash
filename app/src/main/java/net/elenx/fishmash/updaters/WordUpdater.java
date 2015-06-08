@@ -1,11 +1,9 @@
 package net.elenx.fishmash.updaters;
 
-import android.util.Log;
-
-import net.elenx.fishmash.utilities.Fishmash;
 import net.elenx.fishmash.activities.core.OptionsActivity;
 import net.elenx.fishmash.daos.WordDAO;
 import net.elenx.fishmash.models.Word;
+import net.elenx.fishmash.utilities.Fishmash;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -31,7 +29,6 @@ public class WordUpdater extends FishmashUpdater
     protected void download() throws JSONException, IOException
     {
         String json = fishmashRest.getForObject(Fishmash.LISTS_LISTID, String.class, wordListId);
-        Log.e("otrzymany json to", json);
         jsonWordList = new JSONObject(json);
     }
 
@@ -42,8 +39,8 @@ public class WordUpdater extends FishmashUpdater
 
         JSONArray jsonWords = jsonWordList.getJSONArray("words");
 
+        int size = jsonWords.length();
         JSONObject jsonWord;
-        int size = jsonWordList.length();
 
         for(int i = 0; i < size; i++)
         {
