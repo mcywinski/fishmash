@@ -18,6 +18,8 @@ class ExamsController < ApplicationController
 		end
 	end
 
+	respond_to :json, :xml, only: [:get_stats] #Helper action for obtaining stats information for stats view.
+
 	MSG_EXAM_TIME_FINISHED = 'Time\'s up. Exam is finished'
 
 	def index
@@ -124,6 +126,16 @@ class ExamsController < ApplicationController
 
 	def stats
 		@exam = Exam.find params[:exam_id]
+	end
+
+	def get_stats
+		exam = Exam.find params[:exam_id]
+		student_class = (exam.student_classes.select { |stud_class| stud_class.id.equal? params[:class_id].to_i }).first
+		if student_class.nil?
+			respond_with nil, status: :bad_request, location: ''
+		end
+		stats = student_class.get_stats(exam.id)
+		respond_with stats, location: ''
 	end
 
 	private

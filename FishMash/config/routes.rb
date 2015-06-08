@@ -33,6 +33,7 @@ Rails.application.routes.draw do
     get 'summary'
     get 'learn'
     get 'stats'
+    post 'get_stats/:class_id', to: 'exams#get_stats'
   end
   resources :users, only: [:show, :create] do
     collection do
