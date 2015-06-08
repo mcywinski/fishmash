@@ -1,3 +1,13 @@
+<style>
+  .ct-series-a .ct-slice-pie {
+    fill: hsl(138, 56%, 46%);
+  }
+
+  .ct-series-b .ct-slice-pie {
+    fill: hsl(0, 55%, 54%);
+  }
+</style>
+
 <div>
   <p>Choose class to show statistics for:</p>
   <p>
@@ -6,9 +16,15 @@
     <% end %>
   </p>
 </div>
-<div>
+<div class="col-md-6">
+  <div id="participants-chart" class="ct-chart ct-perfect-fourth">
+  </div>
+</div>
+<div class="col-md-6">
+  <div id="passed-chart" class="ct-chart ct-perfect-fourth">
+  </div>
 </div>
 
-<input type="hidden" id="exam-id" value="<%= @exam.id %>" />
 
+<input type="hidden" id="exam-id" value="<%= @exam.id %>" />
 <%= javascript_include_tag 'exam-stats', 'data-turbolinks-track' => true %>

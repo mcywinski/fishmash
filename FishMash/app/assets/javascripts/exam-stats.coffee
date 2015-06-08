@@ -15,6 +15,12 @@ calculateExamPassed = (answers) ->
 
     return successFactor >= minimumSatisfactoryResult
 
+sum = (a, b) ->
+  return a + b
+
+calculatePercentage = (num, total) ->
+  return (num / total) * 100
+
 $ ->
   examParticipated = 0
   examNotParticipated = 0
@@ -47,6 +53,18 @@ $ ->
               examPassed++
             else
               examNotPassed++
+
+        data = {
+          labels: ['Participated: ' + String(calculatePercentage(examParticipated, examParticipated + examNotParticipated)) + '%', 'Did not participate: ',  + String(calculatePercentage(examNotParticipated, examParticipated + examNotParticipated)) + '%'],
+          series: [examParticipated, examNotParticipated]
+        }
+        new Chartist.Pie('#participants-chart', data);
+
+        dataPassed = {
+          labels: ['Passed students: ' + String(calculatePercentage(examPassed, examPassed + examNotPassed)) + '%', 'Failed students: ' + String(calculatePercentage(examNotPassed, examPassed + examNotPassed)) + '%'],
+          series: [examPassed, examNotPassed]
+        }
+        new Chartist.Pie('#passed-chart', dataPassed);
 
       error: () ->
         alert('An error occured while getting class information. Try again, please.');
