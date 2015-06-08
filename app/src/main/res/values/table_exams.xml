@@ -10,6 +10,7 @@
     <string name="exams_datePracticeFinish">date_practice_finish</string>
     <string name="exams_wordCount">word_count</string>
     <string name="exams_IsFinished">is_finished</string>
+    <string name="exams_timeLimit">time_limit</string>
 
     <string-array name="exams_columns">
         <item>@string/exams_id</item>
@@ -20,6 +21,7 @@
         <item>@string/exams_datePracticeFinish</item>
         <item>@string/exams_wordCount</item>
         <item>@string/exams_IsFinished</item>
+        <item>@string/exams_timeLimit</item>
     </string-array>
 
     <string name="exams_create">
@@ -32,7 +34,8 @@
             date_practice_start     TEXT,
             date_practice_finish    TEXT,
             word_count              INTEGER,
-            is_finished             INTEGER
+            is_finished             INTEGER,
+            time_limit              INTEGER
         );
     </string>
 </resources>

@@ -1,15 +1,14 @@
 package net.elenx.fishmash.updaters;
 
-import net.elenx.fishmash.utilities.Fishmash;
 import net.elenx.fishmash.activities.core.OptionsActivity;
 import net.elenx.fishmash.daos.WordListDAO;
 import net.elenx.fishmash.models.WordList;
+import net.elenx.fishmash.utilities.Fishmash;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -24,9 +23,9 @@ public class WordListUpdater extends FishmashUpdater
     }
 
     @Override
-    protected void download() throws JSONException, IOException
+    protected void download() throws Exception
     {
-        String json = fishmashRest.getForObject(Fishmash.LISTS, String.class);
+        String json = fishmashRest.getForObject(Fishmash.LISTS_TOKEN, String.class, buildParameters());
         jsonArray = new JSONArray(json);
     }
 
@@ -50,11 +49,6 @@ public class WordListUpdater extends FishmashUpdater
     @Override
     protected void save() throws Exception
     {
-        if(wordLists.size() == 0)
-        {
-            throw new Exception("word list is empty");
-        }
-
         WordListDAO wordListDAO = new WordListDAO(optionsActivity);
         wordListDAO.truncate();
         wordListDAO.insert(wordLists);

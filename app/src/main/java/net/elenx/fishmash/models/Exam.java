@@ -28,6 +28,9 @@ public class Exam extends FishmashModel
     @JsonProperty("is_finished")
     private boolean isFinished;
 
+    @JsonProperty("time_limit")
+    private long timeLimit;
+
     @SuppressWarnings("unused")
     Exam()
     {
@@ -44,6 +47,7 @@ public class Exam extends FishmashModel
         datePracticeFinish = new FishmashCalendar(cursor.getString(5));
         wordCount = cursor.getInt(6);
         isFinished = cursor.getInt(7) == 1;
+        timeLimit = cursor.getLong(8);
     }
 
     public String getName()
@@ -79,5 +83,10 @@ public class Exam extends FishmashModel
     public boolean isFinished()
     {
         return isFinished;
+    }
+
+    public long getTimeLimit()
+    {
+        return timeLimit;
     }
 }

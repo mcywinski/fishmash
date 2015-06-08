@@ -2,6 +2,7 @@ package net.elenx.fishmash.activities;
 
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -9,6 +10,7 @@ import android.widget.Toast;
 
 import net.elenx.fishmash.R;
 import net.elenx.fishmash.activities.core.OptionsActivity;
+import net.elenx.fishmash.daos.AuthenticateDAO;
 import net.elenx.fishmash.updaters.AuthenticateUpdater;
 import net.elenx.fishmash.updaters.listeners.UpdaterListener;
 
@@ -87,6 +89,7 @@ public class AuthenticateActivity extends OptionsActivity
                             public void onSuccess()
                             {
                                 learningAndExams();
+                                Log.e("otrzymany token to", new AuthenticateDAO(me).selectAll().get(0).getToken());
                             }
 
                             @Override

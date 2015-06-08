@@ -48,13 +48,13 @@ public class LearningActivity extends SpeakingActivity
 
         concludeWordListId();
 
+        Log.e("lastWordList", String.valueOf(lastWordList));
+
         // sanity check - no matter how did I get here - it needs to be > 0 to continue
         if(lastWordList <= 0)
         {
             learningAndExams();
         }
-
-        Log.e("lastWordList", String.valueOf(lastWordList));
 
         WordUpdater wordUpdater = new WordUpdater(this, lastWordList);
         wordUpdater.setUpdaterListener
@@ -93,6 +93,8 @@ public class LearningActivity extends SpeakingActivity
     private void prepareToLearning()
     {
         List<Word> words = new WordDAO(this).selectAll();
+
+        Log.e("ta lista slowek ma ich", String.valueOf(words.size()));
 
         if(words.size() < 1)
         {
