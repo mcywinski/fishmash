@@ -39,6 +39,7 @@ class Api::ExamsController < ApplicationController
     result_dto = Hash.new
     result_dto[:started] = exam.start_assesment(api_get_user.id)
     result_dto[:message] = result_dto[:started] ? 'Exam succesfuly started' : 'This assesment has already been taken.'
+    result_dto[:time_limit] = exam.time_limit
 
     respond_with result_dto, location: ''
   end

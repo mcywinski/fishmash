@@ -21,6 +21,7 @@ class Exam < ActiveRecord::Base
 		exam_dto[:date_practice_start] = self.date_practice_start
 		exam_dto[:date_practice_finish] = self.date_practice_finish
 		exam_dto[:word_count] = self.word_count
+		exam_dto[:time_limit] = self.time_limit
 
 		if options[:user_id]
 			exam_dto[:is_finished] = self.is_finished?(options[:user_id])
