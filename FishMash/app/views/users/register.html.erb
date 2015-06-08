@@ -17,10 +17,14 @@
         <p>
           <%= f.password_field :password_confirmation, :placeholder => 'repeat password' %>
         </p>
-        <p>
-          <%= f.radio_button :user_type, '1', checked: true %> Student
-          <%= f.radio_button :user_type, '2' %> Teacher
-        </p>
+        <div class="form-group user-type-box">
+          <div class="col-md-6 button-link">
+            <%= f.radio_button :user_type, '1', checked: true %> Student
+          </div>
+          <div class="col-md-6 button-link">
+            <%= f.radio_button :user_type, '2' %> Teacher
+          </div>
+        </div>
       </div>
       <div class="form-group">
         <%= f.submit "Sign up" %>

@@ -1,16 +1,25 @@
-<h2>You are learning for exam: <%= @exam.name %></h2>
-<div class="text-center">
-  <p>
-    Mistakes: <span id="learning-mistakes">0</span>, Words left: <span id="learning-left">0</span>, Words learned: <span id="learning-learned">0</span>
-    <br /><em>Question: <span id="learning-question"></span></em>
-  </p>
-  <p>
-    <input type="text" id="learning-text" />
-  </p>
-  <p>
-    <button type="button" id="learning-submit">Submit</button>
-  </p>
+<div class="col-md-12" style="height: 75px"></div>
+<div class="col-md-3"></div>
+<div class="col-md-6 learn-form">
+  <h2 class="fish-h2 fish-font-amatic">Practice</h2>
+  <h1 class="fish-h1"><%= @exam.name %></h1>
+  <div class="text-center">
+    <p>
+      <h3 class="fish-h3">Question:</h3> 
+      <span class="fish-h1 fish-font-amatic"" id="learning-question"></span>
+    </p>
+    <p>
+      <input type="text" id="learning-text" />
+    </p>
+    <p style="padding: 25px;">
+      Mistakes: <span id="learning-mistakes">0</span>, Words left: <span id="learning-left">0</span>, Words learned: <span id="learning-learned">0</span>
+    </p>
+    <p>
+      <button type="button" id="learning-submit">Submit</button>
+    </p>
+  </div>
 </div>
+<div class="col-md-3"></div>
 
 <script type="text/javascript">
   var wordsSrc = <%= raw @words.to_json %>;
