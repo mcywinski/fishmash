@@ -1,9 +1,12 @@
 classChooserBtn = '.studclass-choose'
 examId = $('#exam-id').val()
+studentResultTableId = '#student-results-table'
 
 minimumSatisfactoryResult = 0.5
 
 calculateExamPassed = (answers) ->
+  if answers == null
+    return false
   len = answers.length
   questionsPassed = 0
 
@@ -33,14 +36,17 @@ $ ->
 
     examParticipated = 0
     examNotParticipated = 0
+    iterator = 0
 
     $.ajax
       type: 'post'
       url: '/exams/' + examId + '/get_stats/' + classId
       success: (postback) ->
+        $('#student-results').show();
+        $(studentResultTableId).empty();
         for statRecord in postback
           noCalculation = false
-
+          iterator++
           if statRecord.exam.is_finished
             examParticipated++
           else
@@ -54,8 +60,16 @@ $ ->
             else
               examNotPassed++
 
+          if calculateExamPassed(statRecord.answers)
+            resultColor = 'green'
+            result = 'Passed'
+          else
+            resultColor = 'red'
+            result = 'Failed'
+          $(studentResultTableId).append('<tr><td>' + iterator + '</td><td>' + statRecord.login + '</td><td style="color: ' + resultColor + ';">' + result + '</td></tr>')
+
         data = {
-          labels: ['Participated: ' + String(calculatePercentage(examParticipated, examParticipated + examNotParticipated)) + '%', 'Did not participate: ',  + String(calculatePercentage(examNotParticipated, examParticipated + examNotParticipated)) + '%'],
+          labels: ['Participated: ' + String(calculatePercentage(examParticipated, examParticipated + examNotParticipated)) + '%', 'Did not participate: ' + String(calculatePercentage(examNotParticipated, examParticipated + examNotParticipated)) + '%'],
           series: [examParticipated, examNotParticipated]
         }
         new Chartist.Pie('#participants-chart', data);

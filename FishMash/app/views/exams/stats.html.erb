@@ -15,6 +15,17 @@
       <a href="#" class="btn btn-sm btn-primary studclass-choose" class-id="<%= stud_class.id %>"><%= stud_class.name %></a>
     <% end %>
   </p>
+  <p id="student-results" style="visibility: hidden;">
+    <table>
+      <thead>
+        <tr>
+          <td>No.</td>
+          <td>Student</td>
+          <td>Result</td>
+      </thead>
+      <tbody id="student-results-table"></tbody>
+    </table>
+  </p>
 </div>
 <div class="col-md-6">
   <div id="participants-chart" class="ct-chart ct-perfect-fourth">
