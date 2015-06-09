@@ -1,3 +1,4 @@
+# web gitignore start
 FishMash/.idea/.generators
 FishMash/.idea/.name
 FishMash/.idea/.rakeTasks
@@ -13,8 +14,18 @@ FishMash/.idea/runConfigurations/Development__FishMash.xml
 FishMash/.idea/runConfigurations/Production__FishMash.xml
 FishMash/.idea/runConfigurations/spec__FishMash.xml
 FishMash/.idea/runConfigurations/test__FishMash.xml
+# web gitignore end
 
+#
+
+# android gitignore start
 .gradle
 local.properties
 .idea
 build
+# android gitignore end
+
+#
+
+# windows phone gitignore start
+# windows phone gitignore end

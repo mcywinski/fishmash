@@ -126,7 +126,7 @@ public class SummaryActivity extends OptionsActivity
             question.setText(examSummary.getMeaning());
             userInput.setText(examSummary.getAnswer());
 
-            result.setText(isAnswerCorrect ? "PASSED" : "FAILED");
+            result.setText(isAnswerCorrect ? getString(R.string.passed) : getString(R.string.failed));
             result.setTextColor(isAnswerCorrect ? Color.GREEN : Color.RED);
 
             correctAnswer.setText(examSummary.getPhrase());
@@ -140,9 +140,6 @@ public class SummaryActivity extends OptionsActivity
 
         TextView examSummaryName = (TextView) findViewById(R.id.textViewExamSummaryName);
         examSummaryName.setText(exam.getName());
-
-        TextView examSummaryDescription = (TextView) findViewById(R.id.textViewExamSummaryDescription);
-        examSummaryDescription.setText("Summary"); // TODO wil api provide description for exam?
 
         ImageView back = (ImageView) findViewById(R.id.imageViewBack);
         back.setOnClickListener
