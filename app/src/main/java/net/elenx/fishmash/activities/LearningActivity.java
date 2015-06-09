@@ -30,9 +30,6 @@ public class LearningActivity extends SpeakingActivity
     private TextView mainXorForeignLanguage;
     private TextView tapToFlip;
 
-    private Language mainLanguage;
-    private Language foreignLanguage;
-
     private Locale mainLanguageLocale;
     private Locale foreignLanguageLocale;
 
@@ -109,8 +106,8 @@ public class LearningActivity extends SpeakingActivity
 
         WordList wordList = new WordListDAO(this).select(lastWordList);
 
-        mainLanguage = wordList.getMainLanguage();
-        foreignLanguage = wordList.getForeignLanguage();
+        Language mainLanguage = wordList.getMainLanguage();
+        Language foreignLanguage = wordList.getForeignLanguage();
 
         mainLanguageLocale = mainLanguage.getLocale();
         foreignLanguageLocale = foreignLanguage.getLocale();

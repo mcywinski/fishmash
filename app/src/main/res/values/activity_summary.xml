@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="finished">Finished?</string>
-    <string name="passed">Passed?</string>
-    <string name="examFinished">Exam finished?</string>
-</resources>

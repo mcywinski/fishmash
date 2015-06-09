@@ -18,7 +18,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="question"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:id="@+id/textViewQuestion"
                 android:layout_centerInParent="true"/>
@@ -32,7 +31,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="result"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:id="@+id/textViewResult"
                 android:layout_centerInParent="true"/>
@@ -49,7 +47,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="user input"
                 android:id="@+id/textViewUserInput"
                 android:layout_centerInParent="true"/>
         </RelativeLayout>
@@ -63,7 +60,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="correct"
                 android:id="@+id/textViewCorrectAnswer"
                 android:layout_centerInParent="true"/>
         </RelativeLayout>
