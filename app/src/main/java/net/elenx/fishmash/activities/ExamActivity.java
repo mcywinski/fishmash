@@ -39,13 +39,6 @@ public class ExamActivity extends OptionsActivity
         super.onCreate(savedInstanceState);
         attach(R.layout.exam);
 
-        prepareExamObjects();
-        prepareViews();
-        startExam();
-    }
-
-    private void prepareExamObjects()
-    {
         examId = getIntent().getLongExtra(Fishmash.EXAM_ID, -1);
 
         if(examId <= 0)
@@ -55,6 +48,21 @@ public class ExamActivity extends OptionsActivity
 
         exam = new ExamDAO(this).select(examId);
 
+        if(exam.isFinished())
+        {
+            switchIntentTo(SummaryActivity.class, Fishmash.EXAM_ID, examId);
+            finish();
+
+            return;
+        }
+
+        prepareQuestionListener();
+        prepareViews();
+        startExam();
+    }
+
+    private void prepareQuestionListener()
+    {
         examQuestionListener = new ExamQuestionListener()
         {
             @Override

@@ -1,25 +1,26 @@
 package net.elenx.fishmash.activities;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import net.elenx.fishmash.daos.ExamDAO;
-import net.elenx.fishmash.models.Exam;
-import net.elenx.fishmash.updaters.ExamUpdater;
-import net.elenx.fishmash.updaters.listeners.UpdaterListener;
-import net.elenx.fishmash.utilities.Fishmash;
 import net.elenx.fishmash.R;
 import net.elenx.fishmash.activities.core.OptionsActivity;
+import net.elenx.fishmash.daos.ExamDAO;
+import net.elenx.fishmash.models.Exam;
 import net.elenx.fishmash.models.ExamSummary;
+import net.elenx.fishmash.updaters.ExamUpdater;
 import net.elenx.fishmash.updaters.SummaryUpdater;
 import net.elenx.fishmash.updaters.listeners.SummaryListener;
+import net.elenx.fishmash.updaters.listeners.UpdaterListener;
+import net.elenx.fishmash.utilities.Fishmash;
 
 public class SummaryActivity extends OptionsActivity
 {
@@ -87,12 +88,11 @@ public class SummaryActivity extends OptionsActivity
     @SuppressLint("InflateParams")
     private void buildTable(ExamSummary[] examSummaries)
     {
-        TextView answer;
-        CheckBox finished;
-        CheckBox passed;
-        TextView meaning;
-        CheckBox examFinished;
-        TextView phrase;
+        TextView question;
+        TextView userInput;
+        TextView result;
+        TextView correctAnswer;
+        boolean isAnswerCorrect;
 
         TableLayout tableLayoutSummary = (TableLayout) findViewById(R.id.tableLayoutSummary);
 
@@ -100,29 +100,37 @@ public class SummaryActivity extends OptionsActivity
 
         for(ExamSummary examSummary : examSummaries)
         {
-           TableLayout tableLayout = (TableLayout) layoutInflater.inflate(R.layout.fragment_summary, null);
+            TableLayout tableLayout = (TableLayout) layoutInflater.inflate(R.layout.fragment_summary, null);
 
-            TableRow topRow = (TableRow) tableLayout.getChildAt(0);
-            answer = (TextView) topRow.getChildAt(0);
-            finished = (CheckBox) topRow.getChildAt(1);
-            passed = (CheckBox) topRow.getChildAt(2);
+            TableRow firstRow = (TableRow) tableLayout.getChildAt(0);
+            TableRow secondRow = (TableRow) tableLayout.getChildAt(1);
 
-            TableRow bottomRow = (TableRow) tableLayout.getChildAt(1);
-            meaning = (TextView) bottomRow.getChildAt(0);
-            examFinished = (CheckBox) topRow.getChildAt(1);
-            phrase = (TextView) bottomRow.getChildAt(2);
+            RelativeLayout questionLayout = (RelativeLayout) firstRow.getChildAt(0);
+            question = (TextView) questionLayout.getChildAt(0);
+
+            RelativeLayout resultLayout = (RelativeLayout) firstRow.getChildAt(1);
+            result = (TextView) resultLayout.getChildAt(0);
+
+            RelativeLayout userInputLayout = (RelativeLayout) secondRow.getChildAt(0);
+            userInput = (TextView) userInputLayout.getChildAt(0);
+
+            RelativeLayout correctAnswerLayout = (RelativeLayout) secondRow.getChildAt(1);
+            correctAnswer = (TextView) correctAnswerLayout.getChildAt(0);
 
             //
             tableLayoutSummary.addView(tableLayout);
             //
 
-            answer.setText(examSummary.getAnswer());
-            finished.setChecked(examSummary.isFinished());
-            passed.setChecked(examSummary.isPassed());
+            isAnswerCorrect = examSummary.isPassed();
 
-            meaning.setText(examSummary.getMeaning());
-            examFinished.setChecked(examSummary.isExamFinished());
-            phrase.setText(examSummary.getPhrase());
+            question.setText(examSummary.getMeaning());
+            userInput.setText(examSummary.getAnswer());
+
+            result.setText(isAnswerCorrect ? "PASSED" : "FAILED");
+            result.setTextColor(isAnswerCorrect ? Color.GREEN : Color.RED);
+
+            correctAnswer.setText(examSummary.getPhrase());
+            correctAnswer.setTextColor(isAnswerCorrect ? Color.GREEN : Color.RED);
         }
     }
 
@@ -134,7 +142,7 @@ public class SummaryActivity extends OptionsActivity
         examSummaryName.setText(exam.getName());
 
         TextView examSummaryDescription = (TextView) findViewById(R.id.textViewExamSummaryDescription);
-        examSummaryDescription.setText("Summary");
+        examSummaryDescription.setText("Summary"); // TODO wil api provide description for exam?
 
         ImageView back = (ImageView) findViewById(R.id.imageViewBack);
         back.setOnClickListener
