@@ -1,9 +1,9 @@
 package net.elenx.fishmash.activities.core.drawer;
 
 import android.os.Bundle;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.widget.FrameLayout;
@@ -42,7 +42,7 @@ public abstract class DrawerActivity extends AppCompatActivity implements Naviga
     public boolean onMenuOpened(int featureId, Menu menu)
     {
         // instead of traditional menu - show drawer
-        drawerLayout.openDrawer(Gravity.START);
+        drawerLayout.openDrawer(GravityCompat.START);
 
         return true;
     }

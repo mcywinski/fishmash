@@ -11,6 +11,7 @@ public class SummaryUpdater extends FishmashUpdater
 {
     private final long examId;
     private SummaryListener summaryListener;
+    private ExamSummary[] examSummaries;
 
     public SummaryUpdater(OptionsActivity optionsActivity, long examId)
     {
@@ -19,17 +20,23 @@ public class SummaryUpdater extends FishmashUpdater
     }
 
     @Override
-    void download() throws Exception
+    protected void onPostExecute(Void aVoid)
     {
-        Map<String, String> parameters = buildParameters();
-        parameters.put(Fishmash.EXAM_ID, String.valueOf(examId));
-
-        ExamSummary[] examSummaries = REST_INTERCEPTOR.getForObject(Fishmash.SUMMARY_EXAMID_TOKEN, ExamSummary[].class, parameters);
+        super.onPostExecute(aVoid);
 
         if(summaryListener != null)
         {
             summaryListener.showSummary(examSummaries);
         }
+    }
+
+    @Override
+    void download() throws Exception
+    {
+        Map<String, String> parameters = buildParameters();
+        parameters.put(Fishmash.EXAM_ID, String.valueOf(examId));
+
+        examSummaries = REST_INTERCEPTOR.getForObject(Fishmash.SUMMARY_EXAMID_TOKEN, ExamSummary[].class, parameters);
     }
 
     public void setSummaryListener(SummaryListener summaryListener)

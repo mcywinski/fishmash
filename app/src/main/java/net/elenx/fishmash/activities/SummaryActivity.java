@@ -19,6 +19,7 @@ public class SummaryActivity extends OptionsActivity
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+        super.onCreate(savedInstanceState);
         attach(R.layout.summary);
 
         long examId = getIntent().getLongExtra(Fishmash.EXAM_ID, -1);
@@ -66,7 +67,7 @@ public class SummaryActivity extends OptionsActivity
 
         for(ExamSummary examSummary : examSummaries)
         {
-           TableLayout tableLayout = (TableLayout) layoutInflater.inflate(R.layout.fragment_summary, tableLayoutSummary);
+           TableLayout tableLayout = (TableLayout) layoutInflater.inflate(R.layout.fragment_summary, null);
 
             TableRow topRow = (TableRow) tableLayout.getChildAt(0);
             answer = (TextView) topRow.getChildAt(0);

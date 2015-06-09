@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import net.elenx.fishmash.R;
 import net.elenx.fishmash.activities.core.OptionsActivity;
@@ -77,8 +76,7 @@ public class ExamActivity extends OptionsActivity
             @Override
             public void examFinished()
             {
-                next.setEnabled(false);
-                Toast.makeText(me, getString(R.string.examIsOver), Toast.LENGTH_LONG).show();
+                switchIntentTo(SummaryActivity.class, Fishmash.EXAM_ID, examId);
             }
         };
     }
