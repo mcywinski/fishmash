@@ -3,11 +3,17 @@ package net.elenx.fishmash.activities;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import net.elenx.fishmash.daos.ExamDAO;
+import net.elenx.fishmash.models.Exam;
+import net.elenx.fishmash.updaters.ExamUpdater;
+import net.elenx.fishmash.updaters.listeners.UpdaterListener;
 import net.elenx.fishmash.utilities.Fishmash;
 import net.elenx.fishmash.R;
 import net.elenx.fishmash.activities.core.OptionsActivity;
@@ -17,20 +23,22 @@ import net.elenx.fishmash.updaters.listeners.SummaryListener;
 
 public class SummaryActivity extends OptionsActivity
 {
+    private long examId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         attach(R.layout.summary);
 
-        long examId = getIntent().getLongExtra(Fishmash.EXAM_ID, -1);
+        examId = getIntent().getLongExtra(Fishmash.EXAM_ID, -1);
 
         if(examId <= 0)
         {
             learningAndExams();
         }
 
-        SummaryUpdater summaryUpdater = new SummaryUpdater(this, examId);
+        final SummaryUpdater summaryUpdater = new SummaryUpdater(this, examId);
         summaryUpdater.setSummaryListener
         (
             new SummaryListener()
@@ -50,7 +58,27 @@ public class SummaryActivity extends OptionsActivity
             }
         );
 
-        summaryUpdater.execute();
+        ExamUpdater examUpdater = new ExamUpdater(this);
+        examUpdater.setUpdaterListener
+        (
+            new UpdaterListener()
+            {
+                @Override
+                public void onSuccess()
+                {
+                    buildTableHeader();
+                    summaryUpdater.execute();
+                }
+
+                @Override
+                public void onFailure()
+                {
+                    learningAndExams();
+                }
+            }
+        );
+
+        examUpdater.execute();
     }
 
     // I am passing null as root - it's optional and I do not want to use it
@@ -96,5 +124,29 @@ public class SummaryActivity extends OptionsActivity
             examFinished.setChecked(examSummary.isExamFinished());
             phrase.setText(examSummary.getPhrase());
         }
+    }
+
+    private void buildTableHeader()
+    {
+        Exam exam = new ExamDAO(this).select(examId);
+
+        TextView examSummaryName = (TextView) findViewById(R.id.textViewExamSummaryName);
+        examSummaryName.setText(exam.getName());
+
+        TextView examSummaryDescription = (TextView) findViewById(R.id.textViewExamSummaryDescription);
+        examSummaryDescription.setText("Summary");
+
+        ImageView back = (ImageView) findViewById(R.id.imageViewBack);
+        back.setOnClickListener
+        (
+            new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View view)
+                {
+                    learningAndExams();
+                }
+            }
+        );
     }
 }
