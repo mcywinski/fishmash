@@ -1,5 +1,6 @@
 package net.elenx.fishmash.activities;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.widget.CheckBox;
@@ -52,6 +53,10 @@ public class SummaryActivity extends OptionsActivity
         summaryUpdater.execute();
     }
 
+    // I am passing null as root - it's optional and I do not want to use it
+    // inflated view should be attached as child to passed argument=root
+    // and I have it's future parent (TableLayout) - but it tries to cast TableRow to TableLayout
+    @SuppressLint("InflateParams")
     private void buildTable(ExamSummary[] examSummaries)
     {
         TextView answer;
