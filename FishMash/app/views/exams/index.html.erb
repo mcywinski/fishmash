@@ -23,6 +23,20 @@
         <td></td>
        <% end %>
       </tr>
+      <% if @exams.count == 0 %>
+        <tr>
+          <td>No exams created.</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      <% end %>
       <% @exams.each do |exam| %>
       	<tr>
       	  <td><%= exam.name %></td>
