@@ -6,8 +6,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.RelativeLayout;
 
 import net.elenx.fishmash.R;
 
@@ -55,10 +55,10 @@ public abstract class DrawerActivity extends AppCompatActivity implements Naviga
 
     protected void attach(int resourceId)
     {
-        RelativeLayout relativeLayout = (RelativeLayout) layoutInflater.inflate(resourceId, null);
+        View view = layoutInflater.inflate(resourceId, null);
 
         container.removeAllViews();
-        container.addView(relativeLayout);
+        container.addView(view);
     }
 
     protected int resourceIfOfPosition(int position)
