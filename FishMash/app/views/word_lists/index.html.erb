@@ -16,6 +16,16 @@
      <td></td>
      <td></td>
     </tr>
+    <% if @lists.count == 0%>
+      <tr>
+        <td>No word lists created</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    <% end %>
     <% @lists.each do |list| %>
     	<tr>
     	  <td><%= link_to list.name, wordlist_path(list) %></td>

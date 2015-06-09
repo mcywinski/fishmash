@@ -11,6 +11,13 @@
       <td>Name</td>
       <td></td>
     </tr>
+    <% if @classes.count == 0 %>
+      <tr>
+        <td>No classes created.</td>
+        <td></td>
+        <td></td>
+      </tr>
+    <% end %>
     <% @classes.each do |student_class| %>
       <tr>
         <td><%= student_class.id %></td>

@@ -12,7 +12,6 @@
 <div class="col-md-12" style="height: 75px"></div>
 <div class="col-md-3"></div>
 <div class="col-md-6">
-  <p>Choose class to show statistics for:</p>
   <p>
     <% @exam.student_classes.each do |stud_class| %>
       <a href="#" class="button-link studclass-choose" class-id="<%= stud_class.id %>"><%= stud_class.name %></a>
@@ -25,7 +24,11 @@
           <td>Student</td>
           <td>Result</td>
         </tr>
-        <tbody id="student-results-table"></tbody>
+        <tbody id="student-results-table">
+          <td>Choose class to show statistics for</td>
+          <td></td>
+          <td></td>
+        </tbody>
     </table>
   </p>
   <div class="col-md-12" style="height: 75px"></div>
