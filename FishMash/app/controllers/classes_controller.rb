@@ -1,10 +1,10 @@
 class ClassesController < ApplicationController
   before_action :require_login
+  before_action :require_teacher
 
   # Displays all classes in the system
-  # TODO: Display only classes belonging to a user
   def index
-    @classes = StudentClass.all
+    @classes = StudentClass.where(owner_id: get_logged_user.id)
   end
 
   def new
@@ -13,6 +13,7 @@ class ClassesController < ApplicationController
 
   def create
     stud_class = StudentClass.new(class_params)
+    stud_class.owner = get_logged_user
     if stud_class.save
       redirect_to classes_path
     else

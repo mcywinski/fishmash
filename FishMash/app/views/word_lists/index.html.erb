@@ -1,10 +1,12 @@
 <div class="col-md-12" style="height: 75px;"></div>
 <div class="col-md-3"></div>
 <div class="col-md-6">
-  <div class="fish-button-bar">
-    <%= link_to "Create a new list", new_wordlist_path, :class => 'button-link' %>
-    <%= link_to 'Create an exam', new_exam_path, :class => 'button-link'%>
-  </div>
+  <% if get_logged_user.is_teacher? %>
+    <div class="fish-button-bar">
+      <%= link_to "Create a new list", new_wordlist_path, :class => 'button-link' %>
+      <%= link_to 'Create an exam', new_exam_path, :class => 'button-link'%>
+    </div>
+  <% end %>
   <table>
     <tr class="fish-table-header">
   	 <td>List name</td>
@@ -14,14 +16,28 @@
      <td></td>
      <td></td>
     </tr>
+    <% if @lists.count == 0%>
+      <tr>
+        <td>No word lists created</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <% if get_logged_user.is_teacher? %>
+            <td></td>
+            <td></td>
+        <% end %>
+      </tr>
+    <% end %>
     <% @lists.each do |list| %>
     	<tr>
     	  <td><%= link_to list.name, wordlist_path(list) %></td>
     	  <td><em><%= list.description %></em></td>
     	  <td><%= output_language list.main_language %></em></td>
     	  <td><%= output_language list.foreign_language %></td>
-        <td><%= link_to "Edit list", edit_wordlist_path(list) %></td>
-        <td><%= link_to "Delete list", wordlist_path(list), method: :delete, data: { confirm: 'Are you sure that you really want to delete this list?' } %></td>
+          <% if get_logged_user.is_teacher? %>
+            <td><%= link_to "Edit list", edit_wordlist_path(list) %></td>
+            <td><%= link_to "Delete list", wordlist_path(list), method: :delete, data: { confirm: 'Are you sure that you really want to delete this list?' } %></td>
+          <% end %>
     	</tr>
     <% end %>
   </table>

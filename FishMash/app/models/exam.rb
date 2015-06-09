@@ -1,12 +1,18 @@
 class Exam < ActiveRecord::Base
 	has_many :word_list_exams
 	has_many :word_lists, through: :word_list_exams
+	has_many :student_class_allowed_exams
+	has_many :student_classes, through: :student_class_allowed_exams
 	has_many :assesments
+	belongs_to :owner, class_name: 'User', foreign_key: :owner_id
 
 	validates :name, presence: true, length: { minimum: 1}
 	validates :word_count, presence: true
 	validates :date_exam_start, presence: true
 	validates :date_exam_finish, presence: true
+	validates :date_practice_start, presence: true
+	validates :date_practice_start, presence: true
+	validates :time_limit, presence: true
 
 	def to_dto(options)
 		exam_dto = Hash.new
@@ -17,6 +23,7 @@ class Exam < ActiveRecord::Base
 		exam_dto[:date_practice_start] = self.date_practice_start
 		exam_dto[:date_practice_finish] = self.date_practice_finish
 		exam_dto[:word_count] = self.word_count
+		exam_dto[:time_limit] = self.time_limit
 
 		if options[:user_id]
 			exam_dto[:is_finished] = self.is_finished?(options[:user_id])
@@ -43,10 +50,13 @@ class Exam < ActiveRecord::Base
 			return false if self.word_lists.length.eql? 0 # TODO: Return statuses instead of true or false
 			gen_count = self.word_count / self.word_lists.length
 			randomizer = Random.new(Time.now.to_i)
+			additional_words = 0
 			# Generate answer for every word list
 			self.word_lists.each do |word_list|
 				used_indexes = Array.new
 				for i in 1..gen_count
+					break if used_indexes.length.eql? word_list.words.length # Prevent endless looping in until loop
+
 					index = 0
 					begin
 						index = randomizer.rand(word_list.words.length)

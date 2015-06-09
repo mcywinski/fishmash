@@ -50,6 +50,11 @@
   font-size: 21px;
 }
 
+.user-type-box {
+  padding: 10px 0px;
+  overflow: auto;
+}
+
 @media screen and (max-width: 800px) {
 
   .fish-login-box, .fish-register-box {

@@ -1,8 +1,9 @@
-<div class="col-md-3"></div>
-<div class="col-md-6">
+<div class="col-md-12" style="height: 75px"></div>
+<div class="col-md-4"></div>
+<div class="col-md-4">
 <div>
-  <h1><%= @list.name %></h1>
-  <p><em><%= @list.description %></em></p>
+  <h1 class="fish-h1"><%= @list.name %></h1>
+  <h3 class="fish-h3 fish-font-amatic"><%= @list.description %></h3>
 </div>
 <div id="wordlist-wordview">
   <div id="wordlist-wordview-main">
@@ -13,11 +14,11 @@
 <div>
   <p>
     <br>
-    <em>Use side arrow keys to navigate between the words and top & down arrow keys to switch languages.</em>
+    Use side arrow keys to navigate between the words and top & down arrow keys to switch languages.
   </p>
 </div>
 
-<div>
+<div style="text-align: center">
   <%= link_to  'Return', wordlists_path, :class => 'button-link'%>
 </div>
 
@@ -28,4 +29,4 @@
 
 <%= javascript_include_tag 'wordlist-browse', 'data-turbolinks-track' => true %>
 </div>
-<div class="col-md-3"></div>
+<div class="col-md-4"></div>
