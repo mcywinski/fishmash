@@ -50,10 +50,13 @@ class Exam < ActiveRecord::Base
 			return false if self.word_lists.length.eql? 0 # TODO: Return statuses instead of true or false
 			gen_count = self.word_count / self.word_lists.length
 			randomizer = Random.new(Time.now.to_i)
+			additional_words = 0
 			# Generate answer for every word list
 			self.word_lists.each do |word_list|
 				used_indexes = Array.new
 				for i in 1..gen_count
+					break if used_indexes.length.eql? word_list.words.length # Prevent endless looping in until loop
+
 					index = 0
 					begin
 						index = randomizer.rand(word_list.words.length)
