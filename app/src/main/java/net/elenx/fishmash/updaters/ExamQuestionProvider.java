@@ -11,21 +11,22 @@ import net.elenx.fishmash.utilities.Fishmash;
 
 import java.util.Map;
 
-public class ExamQuestionProvider extends FishmashUpdater implements Cloneable
+public class ExamQuestionProvider extends FishmashUpdater
 {
-    private long examId;
+    private static long activeQuestionId;
+
     private Map<String, String> parameters;
     private String answer;
     private ExamQuestionListener examQuestionListener;
     private ExamQuestion examQuestion;
+    private boolean shouldSendAnswer = true;
 
     public ExamQuestionProvider(OptionsActivity optionsActivity, long examId) throws Exception
     {
         super(optionsActivity);
-        this.examId = examId;
 
         parameters = buildParameters();
-        parameters.put("exam_id", String.valueOf(examId));
+        parameters.put(Fishmash.EXAM_ID, String.valueOf(examId));
     }
 
     @Override
@@ -33,7 +34,7 @@ public class ExamQuestionProvider extends FishmashUpdater implements Cloneable
     {
         super.onPostExecute(aVoid);
 
-        boolean hasExamFinished = examQuestion.getId() == 0 && examQuestion.isExamFinished();
+        boolean hasExamFinished = (examQuestion.getId() == 0 && examQuestion.isExamFinished());
 
         if(hasExamFinished)
         {
@@ -42,6 +43,7 @@ public class ExamQuestionProvider extends FishmashUpdater implements Cloneable
         else
         {
             Log.e("meaning", examQuestion.getMeaning());
+            activeQuestionId = examQuestion.getId();
             examQuestionListener.prepareQuestion(examQuestion.getMeaning());
         }
     }
@@ -49,7 +51,7 @@ public class ExamQuestionProvider extends FishmashUpdater implements Cloneable
     @Override
     void download() throws Exception
     {
-        if(answer != null)
+        if(shouldSendAnswer)
         {
             sendAnswer();
         }
@@ -59,7 +61,7 @@ public class ExamQuestionProvider extends FishmashUpdater implements Cloneable
 
     private void sendAnswer() throws Exception
     {
-        ExamAnswer examAnswer = new ExamAnswer(examId, answer);
+        ExamAnswer examAnswer = new ExamAnswer(activeQuestionId, answer);
         ExamResponse examResponse = REST_INTERCEPTOR.postForObject(Fishmash.ANSWER_EXAMID_TOKEN, examAnswer, ExamResponse.class, parameters);
 
         boolean responseHasBeenSaved = examResponse.isSaved() && examResponse.getMessage().equals("Answer saved");
@@ -75,12 +77,6 @@ public class ExamQuestionProvider extends FishmashUpdater implements Cloneable
         examQuestion = REST_INTERCEPTOR.postForObject(Fishmash.QUESTION_EXAMID_TOKEN, null, ExamQuestion.class, parameters);
     }
 
-    @Override
-    public Object clone() throws CloneNotSupportedException
-    {
-        return super.clone();
-    }
-
     public void setAnswer(String answer)
     {
         this.answer = answer;
@@ -89,5 +85,10 @@ public class ExamQuestionProvider extends FishmashUpdater implements Cloneable
     public void setExamQuestionListener(ExamQuestionListener examQuestionListener)
     {
         this.examQuestionListener = examQuestionListener;
+    }
+
+    public void setShouldSendAnswer(boolean shouldSendAnswer)
+    {
+        this.shouldSendAnswer = shouldSendAnswer;
     }
 }

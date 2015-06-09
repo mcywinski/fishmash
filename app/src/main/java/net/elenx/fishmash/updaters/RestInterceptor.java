@@ -2,6 +2,8 @@ package net.elenx.fishmash.updaters;
 
 import android.util.Log;
 
+import com.google.gson.Gson;
+
 import net.elenx.fishmash.utilities.Fishmash;
 
 import org.springframework.http.client.ClientHttpRequestFactory;
@@ -20,6 +22,8 @@ import java.util.Map;
 
 class RestInterceptor extends RestTemplate
 {
+    private final static Gson gson = new Gson();
+
     RestInterceptor()
     {
         int timeoutInMilliseconds = Fishmash.TIMEOUT_IN_SECONDS * 1000;
@@ -59,11 +63,7 @@ class RestInterceptor extends RestTemplate
     public <T> T getForObject(String url, Class<T> responseType, Map<String, ?> urlVariables) throws RestClientException
     {
         Log.e("getForObject-map", url);
-
-        for(String key : urlVariables.keySet())
-        {
-            Log.e(key, urlVariables.get(key).toString());
-        }
+        Log.e("variables", gson.toJson(urlVariables));
 
         return super.getForObject(url, responseType, urlVariables);
     }
@@ -72,11 +72,7 @@ class RestInterceptor extends RestTemplate
     public <T> T getForObject(String url, Class<T> responseType, Object... urlVariables) throws RestClientException
     {
         Log.e("getForObject-many", url);
-
-        for(Object object : urlVariables)
-        {
-            Log.e(object.getClass().getSimpleName(), object.toString());
-        }
+        Log.e("variables", gson.toJson(urlVariables));
 
         return super.getForObject(url, responseType, urlVariables);
     }
@@ -85,15 +81,11 @@ class RestInterceptor extends RestTemplate
     public <T> T postForObject(String url, Object request, Class<T> responseType, Map<String, ?> uriVariables) throws RestClientException
     {
         Log.e("postForObject-map", url);
+        Log.e("variables", gson.toJson(uriVariables));
 
         if(request != null)
         {
-            Log.e("request", request.toString());
-        }
-
-        for(String key : uriVariables.keySet())
-        {
-            Log.e(key, uriVariables.get(key).toString());
+            Log.e("request", gson.toJson(request));
         }
 
         return super.postForObject(url, request, responseType, uriVariables);
@@ -106,7 +98,7 @@ class RestInterceptor extends RestTemplate
 
         if(request != null)
         {
-            Log.e("request", request.toString());
+            Log.e("request", gson.toJson(request));
         }
 
         return super.postForObject(url, request, responseType);
@@ -116,15 +108,11 @@ class RestInterceptor extends RestTemplate
     public <T> T postForObject(String url, Object request, Class<T> responseType, Object... uriVariables) throws RestClientException
     {
         Log.e("postForObject-many", url);
+        Log.e("variables", gson.toJson(uriVariables));
 
         if(request != null)
         {
-            Log.e("request", request.toString());
-        }
-
-        for(Object object : uriVariables)
-        {
-            Log.e(object.getClass().getSimpleName(), object.toString());
+            Log.e("request", gson.toJson(request));
         }
 
         return super.postForObject(url, request, responseType, uriVariables);

@@ -20,10 +20,12 @@ import net.elenx.fishmash.utilities.Fishmash;
 
 public class ExamActivity extends OptionsActivity
 {
+    private final static String EMPTY_STRING = "";
+
     private Exam exam;
     private long examId;
-    private ExamQuestionProvider examQuestionProviderTemplate;
     private ExamQuestionListener examQuestionListener;
+    private boolean shouldSendAnswer = false;
 
     private TextView examName;
     private TextView examDescription;
@@ -41,38 +43,6 @@ public class ExamActivity extends OptionsActivity
         prepareExamObjects();
         prepareViews();
         startExam();
-    }
-
-    private void startExam()
-    {
-        try
-        {
-            ExamStarter examStarter = new ExamStarter(this, examId);
-            examStarter.setUpdaterListener
-            (
-                new UpdaterListener()
-                {
-                    @Override
-                    public void onSuccess()
-                    {
-                        next.performClick();
-                    }
-
-                    @Override
-                    public void onFailure()
-                    {
-                        learningAndExams();
-                    }
-                }
-            );
-
-            examStarter.execute();
-        }
-        catch(Exception e)
-        {
-            Log.e("", "", e);
-            learningAndExams();
-        }
     }
 
     private void prepareExamObjects()
@@ -107,6 +77,7 @@ public class ExamActivity extends OptionsActivity
             @Override
             public void examFinished()
             {
+                next.setEnabled(false);
                 Toast.makeText(me, getString(R.string.examIsOver), Toast.LENGTH_LONG).show();
             }
         };
@@ -131,8 +102,6 @@ public class ExamActivity extends OptionsActivity
             }
         );
 
-        final String answerText = answer.getText().toString();
-
         next.setOnClickListener
         (
             new View.OnClickListener()
@@ -144,7 +113,12 @@ public class ExamActivity extends OptionsActivity
                     {
                         ExamQuestionProvider examQuestionProvider = new ExamQuestionProvider(me, examId);
                         examQuestionProvider.setExamQuestionListener(examQuestionListener);
-                        examQuestionProvider.setAnswer(answerText);
+                        examQuestionProvider.setAnswer(fetchUserAnswer());
+
+                        // skip sending answer only one time - on the beginning
+                        examQuestionProvider.setShouldSendAnswer(shouldSendAnswer);
+                        shouldSendAnswer = true;
+
                         examQuestionProvider.execute();
                     }
                     catch(Exception e)
@@ -164,5 +138,50 @@ public class ExamActivity extends OptionsActivity
         answer = (EditText) findViewById(R.id.editTextAnswer);
         next = (ImageView) findViewById(R.id.imageViewNextWord);
         back = (ImageView) findViewById(R.id.imageViewBack);
+    }
+
+    private void startExam()
+    {
+        ExamStarter examStarter;
+
+        try
+        {
+            examStarter = new ExamStarter(this, examId);
+        }
+        catch(Exception e)
+        {
+            Log.e("", "", e);
+            learningAndExams();
+
+            return;
+        }
+
+        examStarter.setUpdaterListener
+        (
+            new UpdaterListener()
+            {
+                @Override
+                public void onSuccess()
+                {
+                    next.performClick();
+                }
+
+                @Override
+                public void onFailure()
+                {
+                    learningAndExams();
+                }
+            }
+        );
+
+        examStarter.execute();
+    }
+
+    private String fetchUserAnswer()
+    {
+        String userAnswer = answer.getText().toString();
+        answer.setText(EMPTY_STRING);
+
+        return userAnswer;
     }
 }
