@@ -8,7 +8,6 @@ namespace FishMash.WebAPI
 
     internal partial class ReadListModel
     {
-
         [JsonProperty("details")]
         public Details Values { get; set; }
     }

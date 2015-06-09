@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using FishMashNew.WebAPI;
 
 namespace FishMash.WebAPI
 {
@@ -28,6 +29,9 @@ namespace FishMash.WebAPI
 
             [JsonProperty("updated_at")]
             public string UpdatedAt { get; set; }
+
+            [JsonProperty("words")]
+            public ReadListWord[] Words { get; set; }
         }
     }
 

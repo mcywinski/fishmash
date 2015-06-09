@@ -4,6 +4,7 @@
     <RootPropertyPathName Name="Id" />
     <RootPropertyPathName Name="Name" />
     <RootPropertyPathName Name="ListOfList" />
+    <RootPropertyPathName Name="ListOfExams" />
     <RootPropertyPathName Name="ProgressBarVisibility" />
     <RootPropertyPathName Name="WordTranslate" />
     <RootPropertyPathName Name="NextButtonClick" />
