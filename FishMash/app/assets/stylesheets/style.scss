@@ -141,6 +141,23 @@ body, html {
   width: 100%;
   border-radius: 0px;
   padding: 5px;
+  border: none;
+}
+
+.datepicker-dropdown {
+  padding: 5px 25px;
+  width: 300px;
+  background: #fb6400;
+  color: #fff;
+}
+
+.datepicker-dropdown .active {
+  background: #fff;
+  color: #000;
+}
+
+.datepicker-dropdown thead, .datepicker-dropdown th {
+  text-align: center !important;
 }
 
 @media screen and (min-width: 991px) {
