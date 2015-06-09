@@ -10,7 +10,6 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import net.elenx.fishmash.utilities.Fishmash;
 import net.elenx.fishmash.R;
 import net.elenx.fishmash.activities.core.OptionsActivity;
 import net.elenx.fishmash.activities.core.drawer.NavigationDrawerFragment;
@@ -21,6 +20,7 @@ import net.elenx.fishmash.models.WordList;
 import net.elenx.fishmash.updaters.ExamUpdater;
 import net.elenx.fishmash.updaters.WordListUpdater;
 import net.elenx.fishmash.updaters.listeners.UpdaterListener;
+import net.elenx.fishmash.utilities.Fishmash;
 
 import java.util.List;
 
