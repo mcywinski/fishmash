@@ -14,6 +14,19 @@ class Exam < ActiveRecord::Base
 	validates :date_practice_start, presence: true
 	validates :time_limit, presence: true
 
+	def calculate_wordcount
+		count = 0
+		self.word_lists.each do |word_list|
+			count += word_list.words.length
+		end
+
+		if count < self.word_count
+			return count
+		else
+			return self.word_count
+		end
+	end
+
 	def to_dto(options)
 		exam_dto = Hash.new
 		exam_dto[:id] = self.id

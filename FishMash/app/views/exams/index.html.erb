@@ -45,7 +45,7 @@
           <td><%= exam.date_practice_finish %></em></td>
       	  <td><%= exam.date_exam_start %></em></td>
           <td><%= exam.date_exam_finish %></em></td>
-          <td><%= exam.word_count %></em></td>
+          <td><%= exam.calculate_wordcount %></em></td>
           <td>
             <% unless exam.is_finished?(get_logged_user_id) or ExamCommon.is_start_overdue?(exam.id) %>
               <%= link_to 'Start exam', exam_begin_path(exam) %>
