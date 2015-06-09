@@ -10,8 +10,8 @@ import java.util.Random;
 
 abstract public class SpeakingActivity extends OptionsActivity implements TextToSpeech.OnInitListener
 {
-    private static final Random random = new Random();
-    private static final HashMap<String, String> parameters = new HashMap<>();
+    private static final Random RANDOM = new Random();
+    private static final HashMap<String, String> PARAMETERS = new HashMap<>();
 
     private TextToSpeech textToSpeech;
     private boolean isReadyToSpeak = false;
@@ -36,9 +36,9 @@ abstract public class SpeakingActivity extends OptionsActivity implements TextTo
     }
 
     @Override
-    public void onInit(int i)
+    public void onInit(int resultCode)
     {
-        if(i == TextToSpeech.SUCCESS)
+        if(resultCode == TextToSpeech.SUCCESS)
         {
             isReadyToSpeak = true;
         }
@@ -55,15 +55,14 @@ abstract public class SpeakingActivity extends OptionsActivity implements TextTo
 
         if(Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP)
         {
-            textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null, String.valueOf(random.nextLong()));
+            textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null, String.valueOf(RANDOM.nextLong()));
         }
         else
         {
             // if running api version is below 21 (KitKat) then I am forced to use deprecated api
             // or else, application won't speak at all
-
             //noinspection deprecation
-            textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, parameters);
+            textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, PARAMETERS);
         }
     }
 }

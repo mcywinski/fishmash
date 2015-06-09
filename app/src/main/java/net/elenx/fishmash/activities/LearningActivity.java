@@ -13,6 +13,7 @@ import net.elenx.fishmash.daos.WordDAO;
 import net.elenx.fishmash.daos.WordListDAO;
 import net.elenx.fishmash.models.Word;
 import net.elenx.fishmash.models.WordList;
+import net.elenx.fishmash.models.adapters.Language;
 import net.elenx.fishmash.updaters.WordUpdater;
 import net.elenx.fishmash.updaters.listeners.UpdaterListener;
 import net.elenx.fishmash.utilities.Cycle;
@@ -28,6 +29,9 @@ public class LearningActivity extends SpeakingActivity
     private TextView phraseXorMeaning;
     private TextView mainXorForeignLanguage;
     private TextView tapToFlip;
+
+    private Language mainLanguage;
+    private Language foreignLanguage;
 
     private Locale mainLanguageLocale;
     private Locale foreignLanguageLocale;
@@ -105,11 +109,14 @@ public class LearningActivity extends SpeakingActivity
 
         WordList wordList = new WordListDAO(this).select(lastWordList);
 
-        mainLanguageLocale = wordList.getMainLanguage().getLocale();
-        foreignLanguageLocale = wordList.getForeignLanguage().getLocale();
+        mainLanguage = wordList.getMainLanguage();
+        foreignLanguage = wordList.getForeignLanguage();
 
-        mainLanguageName = mainLanguageLocale.getDisplayLanguage();
-        foreignLanguageName = foreignLanguageLocale.getDisplayLanguage();
+        mainLanguageLocale = mainLanguage.getLocale();
+        foreignLanguageLocale = foreignLanguage.getLocale();
+
+        mainLanguageName = mainLanguage.getName();
+        foreignLanguageName = foreignLanguage.getName();
 
         TextView wordListName = (TextView) findViewById(R.id.textViewWordListName);
         wordListName.setText(wordList.getName());

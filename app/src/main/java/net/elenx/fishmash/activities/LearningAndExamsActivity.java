@@ -111,7 +111,9 @@ public class LearningAndExamsActivity extends OptionsActivity
             wordListSecondLanguage = (TextView) relativeLayout.getChildAt(3);
             ImageView imageView = (ImageView) tableRow.getChildAt(1);
 
+            //
             tableLayoutWordList.addView(tableRow);
+            //
 
             wordListName.setText(wordList.getName());
             wordListFirstLanguage.setText(wordList.getMainLanguage().getName());
@@ -156,7 +158,9 @@ public class LearningAndExamsActivity extends OptionsActivity
             examDescription = (TextView) relativeLayout.getChildAt(1);
             ImageView imageView = (ImageView) tableRow.getChildAt(1);
 
+            //
             tableLayoutExams.addView(tableRow);
+            //
 
             examName.setText(exam.getName());
             examDescription.setText(Fishmash.TO + exam.getDateExamFinish().inShortFormat());

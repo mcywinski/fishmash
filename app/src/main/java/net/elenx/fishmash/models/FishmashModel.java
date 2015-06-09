@@ -7,7 +7,7 @@ import org.json.JSONObject;
 
 public abstract class FishmashModel
 {
-    private long id;
+    protected long id;
 
     FishmashModel()
     {
