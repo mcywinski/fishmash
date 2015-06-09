@@ -106,10 +106,11 @@ public class LearningAndExamsActivity extends OptionsActivity
             tableRow = (TableRow) layoutInflater.inflate(R.layout.fragment_wordlist, null);
 
             RelativeLayout relativeLayout = (RelativeLayout) tableRow.getChildAt(0);
+            ImageView imageView = (ImageView) tableRow.getChildAt(1);
+
             wordListName = (TextView) relativeLayout.getChildAt(0);
             wordListFirstLanguage = (TextView) relativeLayout.getChildAt(1);
             wordListSecondLanguage = (TextView) relativeLayout.getChildAt(3);
-            ImageView imageView = (ImageView) tableRow.getChildAt(1);
 
             //
             tableLayoutWordList.addView(tableRow);
@@ -154,9 +155,10 @@ public class LearningAndExamsActivity extends OptionsActivity
             tableRow = (TableRow) layoutInflater.inflate(R.layout.fragment_exam, null);
 
             RelativeLayout relativeLayout = (RelativeLayout) tableRow.getChildAt(0);
+            ImageView imageView = (ImageView) tableRow.getChildAt(1);
+
             examName = (TextView) relativeLayout.getChildAt(0);
             examDescription = (TextView) relativeLayout.getChildAt(1);
-            ImageView imageView = (ImageView) tableRow.getChildAt(1);
 
             //
             tableLayoutExams.addView(tableRow);
