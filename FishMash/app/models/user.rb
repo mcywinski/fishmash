@@ -23,8 +23,10 @@ class User < ActiveRecord::Base
   def get_available_wordlists
     wordlists = Array.new
     self.get_available_exams.each do |exam|
-      if exam.date_practice_start <= Date.today and exam.date_practice_finish >= Date.today
-        wordlists = wordlists | exam.word_lists
+      unless exam.date_practice_start.nil? or exam.date_practice_finish.nil?
+        if exam.date_practice_start <= Date.today and exam.date_practice_finish >= Date.today
+          wordlists = wordlists | exam.word_lists
+        end
       end
     end
     return wordlists
