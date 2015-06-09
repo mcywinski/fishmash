@@ -8,28 +8,14 @@ import net.elenx.fishmash.models.adapters.FishmashCalendar;
 
 public class Exam extends FishmashModel
 {
-    private String name;
-
-    @JsonProperty("date_exam_start")
-    private FishmashCalendar dateExamStart;
-
-    @JsonProperty("date_exam_finish")
-    private FishmashCalendar dateExamFinish;
-
-    @JsonProperty("date_practice_start")
-    private FishmashCalendar datePracticeStart;
-
-    @JsonProperty("date_practice_finish")
-    private FishmashCalendar datePracticeFinish;
-
-    @JsonProperty("word_count")
-    private int wordCount;
-
-    @JsonProperty("is_finished")
-    private boolean isFinished;
-
-    @JsonProperty("time_limit")
-    private long timeLimit;
+    @JsonProperty("name") private String name;
+    @JsonProperty("date_exam_start") private FishmashCalendar dateExamStart;
+    @JsonProperty("date_exam_finish") private FishmashCalendar dateExamFinish;
+    @JsonProperty("date_practice_start") private FishmashCalendar datePracticeStart;
+    @JsonProperty("date_practice_finish") private FishmashCalendar datePracticeFinish;
+    @JsonProperty("word_count") private int wordCount;
+    @JsonProperty("is_finished") private boolean isFinished;
+    @JsonProperty("time_limit") private long timeLimit;
 
     @SuppressWarnings("unused")
     Exam()
@@ -40,7 +26,7 @@ public class Exam extends FishmashModel
     public Exam(Cursor cursor)
     {
         super(cursor);
-        name = cursor.getColumnName(1);
+        name = cursor.getString(1);
         dateExamStart = new FishmashCalendar(cursor.getString(2));
         dateExamFinish = new FishmashCalendar(cursor.getString(3));
         datePracticeStart = new FishmashCalendar(cursor.getString(4));

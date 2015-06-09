@@ -114,8 +114,8 @@ public class LearningAndExamsActivity extends OptionsActivity
             tableLayoutWordList.addView(tableRow);
 
             wordListName.setText(wordList.getName());
-            wordListFirstLanguage.setText(wordList.getMainLanguage().getLocale().getDisplayLanguage());
-            wordListSecondLanguage.setText(wordList.getForeignLanguage().getLocale().getDisplayLanguage());
+            wordListFirstLanguage.setText(wordList.getMainLanguage().getName());
+            wordListSecondLanguage.setText(wordList.getForeignLanguage().getName());
             imageView.setOnClickListener
             (
                 new View.OnClickListener()

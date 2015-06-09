@@ -14,12 +14,12 @@ public class MainActivity extends OptionsActivity
 
         if(isAuthenticated())
         {
-            Log.e("authenticated", "yes");
+            Log.e("isAuthenticated", "yes");
             learningAndExams();
         }
         else
         {
-            Log.e("authenticated", "no");
+            Log.e("isAuthenticated", "no");
             switchIntentTo(AuthenticateActivity.class);
         }
     }

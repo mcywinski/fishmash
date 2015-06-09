@@ -56,7 +56,10 @@ class RestInterceptor extends RestTemplate
     {
         Log.e("getForObject-simple", url.toString());
 
-        return super.getForObject(url, responseType);
+        T response = super.getForObject(url, responseType);
+        Log.e("response", gson.toJson(response));
+
+        return response;
     }
 
     @Override
@@ -65,7 +68,10 @@ class RestInterceptor extends RestTemplate
         Log.e("getForObject-map", url);
         Log.e("variables", gson.toJson(urlVariables));
 
-        return super.getForObject(url, responseType, urlVariables);
+        T response = super.getForObject(url, responseType, urlVariables);
+        Log.e("response", gson.toJson(response));
+
+        return response;
     }
 
     @Override
@@ -74,7 +80,10 @@ class RestInterceptor extends RestTemplate
         Log.e("getForObject-many", url);
         Log.e("variables", gson.toJson(urlVariables));
 
-        return super.getForObject(url, responseType, urlVariables);
+        T response = super.getForObject(url, responseType, urlVariables);
+        Log.e("response", gson.toJson(response));
+
+        return response;
     }
 
     @Override
@@ -88,7 +97,10 @@ class RestInterceptor extends RestTemplate
             Log.e("request", gson.toJson(request));
         }
 
-        return super.postForObject(url, request, responseType, uriVariables);
+        T response = super.postForObject(url, request, responseType, uriVariables);
+        Log.e("response", gson.toJson(response));
+
+        return response;
     }
 
     @Override
@@ -101,7 +113,10 @@ class RestInterceptor extends RestTemplate
             Log.e("request", gson.toJson(request));
         }
 
-        return super.postForObject(url, request, responseType);
+        T response = super.postForObject(url, request, responseType);
+        Log.e("response", gson.toJson(response));
+
+        return response;
     }
 
     @Override
@@ -115,6 +130,9 @@ class RestInterceptor extends RestTemplate
             Log.e("request", gson.toJson(request));
         }
 
-        return super.postForObject(url, request, responseType, uriVariables);
+        T response = super.postForObject(url, request, responseType, uriVariables);
+        Log.e("response", gson.toJson(response));
+
+        return response;
     }
 }
