@@ -25,7 +25,7 @@ public class WordListUpdater extends FishmashUpdater
     @Override
     protected void download() throws Exception
     {
-        String json = fishmashRest.getForObject(Fishmash.LISTS_TOKEN, String.class, buildParameters());
+        String json = REST_INTERCEPTOR.getForObject(Fishmash.LISTS_TOKEN, String.class, buildParameters());
         jsonArray = new JSONArray(json);
     }
 

@@ -28,7 +28,7 @@ public class WordUpdater extends FishmashUpdater
     @Override
     protected void download() throws JSONException, IOException
     {
-        String json = fishmashRest.getForObject(Fishmash.LISTS_LISTID, String.class, wordListId);
+        String json = REST_INTERCEPTOR.getForObject(Fishmash.LISTS_LISTID, String.class, wordListId);
         jsonWordList = new JSONObject(json);
     }
 

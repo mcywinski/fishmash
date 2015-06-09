@@ -24,7 +24,7 @@ public class SummaryUpdater extends FishmashUpdater
         Map<String, String> parameters = buildParameters();
         parameters.put(Fishmash.EXAM_ID, String.valueOf(examId));
 
-        ExamSummary[] examSummaries = fishmashRest.getForObject(Fishmash.SUMMARY_EXAMID_TOKEN, ExamSummary[].class, parameters);
+        ExamSummary[] examSummaries = REST_INTERCEPTOR.getForObject(Fishmash.SUMMARY_EXAMID_TOKEN, ExamSummary[].class, parameters);
 
         if(summaryListener != null)
         {

@@ -17,7 +17,7 @@ import java.util.Map;
 
 abstract class FishmashUpdater extends AsyncTask<Void, Integer, Void>
 {
-    static final FishmashRest fishmashRest = new FishmashRest();
+    static final RestInterceptor REST_INTERCEPTOR = new RestInterceptor();
 
     private static final int CONNECTING = 0;
     private static final int DOWNLOADING = 1;

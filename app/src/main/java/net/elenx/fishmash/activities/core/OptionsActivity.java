@@ -120,8 +120,14 @@ public abstract class OptionsActivity extends ProgressDialogActivity
 
         Intent intent = new Intent(getApplicationContext(), clazz);
 
-        intent.putExtra(extraKey, extraValue);
-        Log.e(extraKey, String.valueOf(extraValue));
+        boolean hasNoExtraValues = (extraKey == null && extraValue == -1);
+        boolean hasExtraValues = ! hasNoExtraValues;
+
+        if(hasExtraValues)
+        {
+            intent.putExtra(extraKey, extraValue);
+            Log.e(extraKey, String.valueOf(extraValue));
+        }
 
         startActivity(intent);
         finish();

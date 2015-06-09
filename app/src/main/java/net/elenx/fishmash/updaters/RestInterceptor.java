@@ -18,9 +18,9 @@ import java.net.URI;
 import java.util.List;
 import java.util.Map;
 
-class FishmashRest extends RestTemplate
+class RestInterceptor extends RestTemplate
 {
-    FishmashRest()
+    RestInterceptor()
     {
         int timeoutInMilliseconds = Fishmash.TIMEOUT_IN_SECONDS * 1000;
 

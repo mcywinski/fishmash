@@ -17,7 +17,7 @@ public class ProfileUpdater extends FishmashUpdater
     @Override
     protected void download() throws Exception
     {
-        profile = fishmashRest.getForObject(Fishmash.USERS_USERID_TOKEN, Profile.class, buildParameters());
+        profile = REST_INTERCEPTOR.getForObject(Fishmash.USERS_USERID_TOKEN, Profile.class, buildParameters());
     }
 
     @Override

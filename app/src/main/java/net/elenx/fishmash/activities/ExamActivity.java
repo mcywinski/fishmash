@@ -8,24 +8,29 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import net.elenx.fishmash.utilities.Fishmash;
 import net.elenx.fishmash.R;
 import net.elenx.fishmash.activities.core.OptionsActivity;
 import net.elenx.fishmash.daos.ExamDAO;
 import net.elenx.fishmash.models.Exam;
-import net.elenx.fishmash.updaters.listeners.ExaminerListener;
-import net.elenx.fishmash.updaters.Examiner;
+import net.elenx.fishmash.updaters.ExamQuestionProvider;
+import net.elenx.fishmash.updaters.ExamStarter;
+import net.elenx.fishmash.updaters.listeners.ExamQuestionListener;
+import net.elenx.fishmash.updaters.listeners.UpdaterListener;
+import net.elenx.fishmash.utilities.Fishmash;
 
 public class ExamActivity extends OptionsActivity
 {
     private Exam exam;
-    private Examiner examiner;
+    private long examId;
+    private ExamQuestionProvider examQuestionProviderTemplate;
+    private ExamQuestionListener examQuestionListener;
 
     private TextView examName;
     private TextView examDescription;
     private TextView question;
     private EditText answer;
     private ImageView next;
+    private ImageView back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -33,7 +38,87 @@ public class ExamActivity extends OptionsActivity
         super.onCreate(savedInstanceState);
         attach(R.layout.exam);
 
-        ImageView back = (ImageView) findViewById(R.id.imageViewBack);
+        prepareExamObjects();
+        prepareViews();
+        startExam();
+    }
+
+    private void startExam()
+    {
+        try
+        {
+            ExamStarter examStarter = new ExamStarter(this, examId);
+            examStarter.setUpdaterListener
+            (
+                new UpdaterListener()
+                {
+                    @Override
+                    public void onSuccess()
+                    {
+                        next.performClick();
+                    }
+
+                    @Override
+                    public void onFailure()
+                    {
+                        learningAndExams();
+                    }
+                }
+            );
+
+            examStarter.execute();
+        }
+        catch(Exception e)
+        {
+            Log.e("", "", e);
+            learningAndExams();
+        }
+    }
+
+    private void prepareExamObjects()
+    {
+        examId = getIntent().getLongExtra(Fishmash.EXAM_ID, -1);
+
+        if(examId <= 0)
+        {
+            learningAndExams();
+        }
+
+        exam = new ExamDAO(this).select(examId);
+
+        examQuestionListener = new ExamQuestionListener()
+        {
+            @Override
+            public void prepareQuestion(final String nextQuestion)
+            {
+               runOnUiThread
+               (
+                   new Runnable()
+                   {
+                       @Override
+                       public void run()
+                       {
+                            question.setText(nextQuestion);
+                       }
+                   }
+               );
+            }
+
+            @Override
+            public void examFinished()
+            {
+                Toast.makeText(me, getString(R.string.examIsOver), Toast.LENGTH_LONG).show();
+            }
+        };
+    }
+
+    private void prepareViews()
+    {
+        bindViews();
+
+        examName.setText(exam.getName());
+        examDescription.setText(Fishmash.TO + exam.getDateExamFinish().inShortFormat());
+
         back.setOnClickListener
         (
             new View.OnClickListener()
@@ -46,38 +131,29 @@ public class ExamActivity extends OptionsActivity
             }
         );
 
-        final long examId = getIntent().getLongExtra(Fishmash.EXAM_ID, -1);
+        final String answerText = answer.getText().toString();
 
-        if(examId <= 0)
-        {
-            learningAndExams();
-        }
-
-        exam = new ExamDAO(this).select(examId);
-
-        prepareViews();
-
-        examiner = new Examiner(this, examId);
-        examiner.setExaminerListener
+        next.setOnClickListener
         (
-            new ExaminerListener()
+            new View.OnClickListener()
             {
                 @Override
-                public void prepareQuestion(String nextQuestion)
+                public void onClick(View view)
                 {
-                    question.setText(nextQuestion);
-                }
-
-                @Override
-                public void examFinished()
-                {
-                    Toast.makeText(me, getString(R.string.examIsOver), Toast.LENGTH_LONG).show();
-                    switchIntentTo(SummaryActivity.class, Fishmash.EXAM_ID, examId);
+                    try
+                    {
+                        ExamQuestionProvider examQuestionProvider = new ExamQuestionProvider(me, examId);
+                        examQuestionProvider.setExamQuestionListener(examQuestionListener);
+                        examQuestionProvider.setAnswer(answerText);
+                        examQuestionProvider.execute();
+                    }
+                    catch(Exception e)
+                    {
+                        Log.e("", "", e);
+                    }
                 }
             }
         );
-
-        examiner.execute();
     }
 
     private void bindViews()
@@ -87,26 +163,6 @@ public class ExamActivity extends OptionsActivity
         question = (TextView) findViewById(R.id.textViewQuestion);
         answer = (EditText) findViewById(R.id.editTextAnswer);
         next = (ImageView) findViewById(R.id.imageViewNextWord);
-    }
-
-    private void prepareViews()
-    {
-        bindViews();
-
-        examName.setText(exam.getName());
-        examDescription.setText(Fishmash.TO + exam.getDateExamFinish().inShortFormat());
-
-        next.setOnClickListener
-        (
-            new View.OnClickListener()
-            {
-                @Override
-                public void onClick(View view)
-                {
-                    examiner.setAnswer(answer.getText().toString());
-                    examiner.execute();
-                }
-            }
-        );
+        back = (ImageView) findViewById(R.id.imageViewBack);
     }
 }

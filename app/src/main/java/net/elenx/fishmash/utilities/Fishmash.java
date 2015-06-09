@@ -39,5 +39,6 @@ public abstract class Fishmash
     public static final String QUESTION_EXAMID_TOKEN = EXAMS_EXAMID + "/get_question" + TOKEN;
     public static final String ANSWER_EXAMID_TOKEN = EXAMS_EXAMID + "/answer" + TOKEN;
     public static final String SUMMARY_EXAMID_TOKEN = EXAMS_EXAMID + "/summary" + TOKEN;
+    public static final String EXAMS_EXAMID_START_TOKEN = EXAMS_EXAMID + "/start" + TOKEN;
     // end layer 4
 }

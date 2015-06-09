@@ -30,7 +30,7 @@ public class AuthenticateUpdater extends FishmashUpdater
     protected void download() throws JsonProcessingException
     {
         Credentials credentials = new Credentials(login, password);
-        authenticate = fishmashRest.postForObject(Fishmash.AUTHENTICATE, buildEntityWith(credentials), Authenticate.class);
+        authenticate = REST_INTERCEPTOR.postForObject(Fishmash.AUTHENTICATE, buildEntityWith(credentials), Authenticate.class);
     }
 
     @Override

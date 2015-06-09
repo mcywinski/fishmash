@@ -20,7 +20,7 @@ public class ExamUpdater extends FishmashUpdater
     @Override
     protected void download() throws Exception
     {
-        Exam[] exams = fishmashRest.getForObject(Fishmash.EXAMS_TOKEN, Exam[].class, buildParameters());
+        Exam[] exams = REST_INTERCEPTOR.getForObject(Fishmash.EXAMS_TOKEN, Exam[].class, buildParameters());
 
         examList = Arrays.asList(exams);
     }
