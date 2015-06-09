@@ -53,7 +53,7 @@ public class AuthenticateActivity extends OptionsActivity
     @Override
     public void onNavigationDrawerItemSelected(int position)
     {
-        if(resourceIfOfPosition(position) == R.string.register)
+        if(resourceIdOfPosition(position) == R.string.register)
         {
             super.onNavigationDrawerItemSelected(position);
         }

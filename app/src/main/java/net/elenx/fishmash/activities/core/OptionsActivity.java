@@ -40,7 +40,7 @@ public abstract class OptionsActivity extends ProgressDialogActivity
     @Override
     public void onNavigationDrawerItemSelected(int position)
     {
-        switch(resourceIfOfPosition(position))
+        switch(resourceIdOfPosition(position))
         {
             case R.string.last_word_list:
                 learning();
