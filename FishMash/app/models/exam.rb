@@ -10,6 +10,8 @@ class Exam < ActiveRecord::Base
 	validates :word_count, presence: true
 	validates :date_exam_start, presence: true
 	validates :date_exam_finish, presence: true
+	validates :date_practice_start, presence: true
+	validates :date_practice_start, presence: true
 	validates :time_limit, presence: true
 
 	def to_dto(options)
