@@ -1,15 +1,47 @@
 Rails.application.routes.draw do
   get 'api' => 'application#api'
   namespace :api, defaults: {format: :json} do
+    resources :exams, except: [:create, :delete, :update] do
+      post 'start'
+      post 'get_question'
+      post 'answer'
+      get 'summary'
+    end
     resources :lists, only: [:index, :show] do
       post 'add'
       post 'remove'
     end
     resources :words, only: [:create]
+    resources :users do
+      collection do
+        post 'authenticate'
+      end
+    end
   end
 
   resources :wordlists, controller: 'word_lists'
-  resources :exams, only: [:index, :new, :create]
+  resources :exams, only: [:index, :new, :create] do
+    get 'begin'
+    post 'start'
+    get 'answer'
+    post 'answer', to: 'exams#save_answer'
+    get 'summary'
+  end
+  resources :users, only: [:show, :create] do
+    collection do
+      get 'login'
+      post 'authenticate'
+      get 'logout'
+      get 'register'
+      get 'profile'
+    end
+
+    post 'set_password'
+  end
+  resources 'classes', except: [:show] do
+    post 'add_member'
+    post 'remove_member'
+  end
   root 'home#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

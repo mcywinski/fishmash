@@ -1,0 +1,23 @@
+<div class="col-md-12" style="height: 75px;"></div>
+<div class="col-md-3"></div>
+<div class="col-md-6">
+  <h1 class="fish-h1">Student classes</h1>
+  <div class="fish-button-bar">
+    <%= link_to "Create a new class", new_class_path, :class => 'button-link'%>
+  </div>
+  <table>
+    <tr class="fish-table-header">
+      <td>Id</td>
+      <td>Name</td>
+      <td></td>
+    </tr>
+    <% @classes.each do |student_class| %>
+      <tr>
+        <td><%= student_class.id %></td>
+        <td><%= student_class.name %></td>
+        <td><%= link_to "Edit", edit_class_path(student_class) %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+<div class="col-md-3"></div>

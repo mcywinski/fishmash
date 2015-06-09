@@ -1,7 +1,7 @@
 <div class="col-md-12" style="height: 75px;"></div>
 <div class="col-md-3"></div>
 <div class="col-md-6">
-  <h1>Create new list</h1>
+  <h1 class="fish-h1">Create new list</h1>
   <%= form_for :word_list, url: wordlists_path, action: :create do |f| %>
     <p>
       <%= f.text_field :name, placeholder: "Enter the list name" %>
@@ -14,7 +14,8 @@
       <%= f.select :foreign_language_id, create_select_options(@languages, "Foreign language") %>
     </p>
     <p>
-      <%= f.submit "Create a word list" %>
+      <%= f.submit "Create a word list", :class => 'button-link' %>
+      <%= link_to  'Return', wordlists_path, :class => 'button-link'%>
     </p>
   <% end %>
 </div>

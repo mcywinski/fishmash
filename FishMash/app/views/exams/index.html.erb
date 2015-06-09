@@ -1,28 +1,40 @@
-<h1>Exams</h1>
-<p>
-  <%= link_to "Create a new exam", new_exam_path %>
-</p>
+<div class="col-md-12" style="height: 75px;"></div>
+<div class="col-md-2"></div>
+<div class="col-md-8">
+<div class="fish-button-bar">
+  <%= link_to "Create a new exam", new_exam_path, :class => 'button-link' %>
+</div>
 <p>
   <table>
-    <tr>
-  	 <th>Exam name</th>
-  	 <th>Description</th>
-  	 <th>Date practice start</th>
-     <th>Date practice finish</th>
-     <th>Date exam start</th>
-     <th>Date exam finish</th>
-  	 <th>Word count</th>
+    <tr class="fish-table-header">
+  	 <td>Exam name</td>
+  	 <td>Description</td>
+  	 <td>Date practice start</td>
+     <td>Date practice finish</td>
+     <td>Date exam start</td>
+     <td>Date exam finish</td>
+  	 <td>Word count</td>
+     <td></td>
     </tr>
     <% @exams.each do |exam| %>
     	<tr>
     	  <td><%= exam.name %></td>
     	  <td><em><%= exam.description %></em></td>
     	  <td><%= exam.date_practice_start %></em></td>
-        <td><%= exam.date_practice_finish %></em></td>
+          <td><%= exam.date_practice_finish %></em></td>
     	  <td><%= exam.date_exam_start %></em></td>
         <td><%= exam.date_exam_finish %></em></td>
         <td><%= exam.word_count %></em></td>
+        <td>
+          <% unless exam.is_finished?(get_logged_user_id) %>
+            <%= link_to 'Start exam', exam_begin_path(exam) %>
+          <% else %>
+            <%= link_to 'Show summary', exam_summary_path(exam) %>
+          <% end %>
+        </td>
     	</tr>
     <% end %>
   </table>
 </p>
+</div>
+<div class="col-md-2"></div>

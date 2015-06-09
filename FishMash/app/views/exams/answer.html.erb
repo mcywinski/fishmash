@@ -1,0 +1,12 @@
+<h1>Exam: <%= @exam.name %></h1>
+<h2>Provide translation for <%= @answer.word.meaning %></h2>
+<%= form_for :answer, url: exam_answer_path, method: :post do |f| %>
+    <p>
+      <%= f.label 'Type in a foreign meaning' %>
+      <%= f.text_field :answer, placeholder: 'Type in a foreign meaning' %>
+    </p>
+    <%= f.hidden_field :answer_id, value: @answer.id %>
+    <p>
+      <%= f.submit %>
+    </p>
+<% end %>

@@ -1,0 +1,16 @@
+<div class="fish-login-box">
+
+<%= link_to raw(image_tag 'logo.svg'), root_path %>
+
+<%= form_for :user, url: authenticate_users_path do |f| %>
+  <div class="form-group">
+    <%= f.text_field :login, :placeholder => 'login' %>
+  </div>
+  <div class="form-group">
+    <%= f.password_field :password, :placeholder => 'password' %>
+  </div>
+  <div class="form-group">
+    <%= f.submit "log in" %>
+  </div>
+<% end %>
+</div>

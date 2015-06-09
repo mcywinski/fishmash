@@ -1,0 +1,61 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.blank-layout-body {
+  background: image_url('tweed.png'); 
+}
+
+.fish-login-box, .fish-register-box {
+  margin: 50px auto;
+  width: 400px;
+  background: #fff;
+  border-radius: 4px;
+  padding: 50px;
+  padding-bottom: 20px;
+  text-align: center;
+  box-shadow: 0px 0px 25px #777;
+  overflow: auto;
+}
+
+.fish-register-box {
+  width: 700px; 
+  background-image: image-url('dolphins_background.svg');
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+.fish-register-box a {
+  color: #FF6600;
+}
+
+.back-link {
+  margin-top: 5px;  
+}
+
+.blank-layout-body img {
+  width: 100%;
+  margin-bottom: 50px;
+}
+
+.fish-login-box input, .fish-register-box input {
+  width: 100%; 
+  text-align: center;
+  background: #fff;
+}
+
+.fish-login-box input[type="submit"], .fish-register-box input[type="submit"] {
+  background: #FF6600;
+  color: #fff;
+  font-size: 21px;
+}
+
+@media screen and (max-width: 800px) {
+
+  .fish-login-box, .fish-register-box {
+    width: 100%;
+    margin: 0px;
+    border-radius: 0px;
+  }
+
+}

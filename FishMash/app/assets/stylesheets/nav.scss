@@ -12,6 +12,11 @@
   overflow: hidden;
 }
 
+.fish-nav a {
+  color: #fff;
+}
+
+
 .fish-nav ul {
   list-style: none;
   height: 75px;
@@ -22,7 +27,7 @@
 .fish-nav li {
   display: inline-block;
   font-size: 21px;
-  font-family: 'Arimo';
+  font-family: 'Lobster 1.4';
   height: 75px; 
   transition: all 0.2s;
   width: 120px;
@@ -31,6 +36,10 @@
 
 .fish-nav li:hover {
   background: #fff;
+  color: #2b2b2b;
+}
+
+.fish-nav li:hover a {
   color: #2b2b2b;
 }
 

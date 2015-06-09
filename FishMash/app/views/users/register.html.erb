@@ -1,0 +1,38 @@
+<div class="fish-register-box">
+<div class="col-md-6">
+<h1 class="fish-h1">Sign up</h1>
+<h3 class="fish-h3 back-link"><%= link_to 'or go back', root_path%></h3>
+<br>
+<%= form_for @user, url: users_path, method: :post do |f| %>
+  <div class="form-group">
+    <%= f.text_field :email, :placeholder => 'email' %>
+  </div>
+  <div class="form-group">
+    <%= f.text_field :login, :placeholder => 'login' %>
+  </div>
+  <div class="form-group">
+    <p>
+      <%= f.password_field :password, :placeholder => 'password' %>
+    </p>
+    <p>
+      <%= f.password_field :password_confirmation, :placeholder => 'repeat password' %>
+    </p>
+  </div>
+  <div class="form-group">
+    <%= f.submit "Sign up" %>
+  </div>
+<% end %>
+</div>
+
+<div class="col-md-6 desktop">
+  <p>
+    <%= image_tag 'mobile_add.svg', :style => 'width: 100%; margin-bottom: 0px;'%>
+  </p>
+
+</div>
+
+<div class="col-md-12" style="text-align: center">
+  <h2 class="fish-h2 fish-font-amatic">Check our mobile phone apps!<br>Avaible on Android and Windows Phone</h2>
+</div>
+
+</div>

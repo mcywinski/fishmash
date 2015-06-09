@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FishMash</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body class="blank-layout-body">
+
+<% unless flash[:errors].blank? %>
+  <!-- Errors container -->
+  <div class="alert alert-error" role="alert">
+    <%= raw flash[:errors] %>
+  </div>
+<% end %>
+<% unless @errors.blank? %>
+  <div class="alert alert-error" role="alert">
+    <%= raw @errors %>
+  </div>
+<% end %>
+
+<% unless flash[:success].blank? %>
+  <!-- Success messages container -->
+  <div class="alert alert-success" role="alert">
+    <%= raw flash[:success] %>
+  </div>
+<% end %>
+<% unless @success.blank? %>
+  <div class="alert alert-success" role="alert">
+    <%= raw @success %>
+  </div>
+<% end %>
+
+  <%= yield %>
+
+</body>
+</html>
