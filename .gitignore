@@ -13,3 +13,8 @@ FishMash/.idea/runConfigurations/Development__FishMash.xml
 FishMash/.idea/runConfigurations/Production__FishMash.xml
 FishMash/.idea/runConfigurations/spec__FishMash.xml
 FishMash/.idea/runConfigurations/test__FishMash.xml
+
+.gradle
+local.properties
+.idea
+build
