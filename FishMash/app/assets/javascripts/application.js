@@ -13,7 +13,11 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
+//= require bootstrap-datepicker
 //= require turbolinks
+//= require moment
 //= stub wordlist-browse
 //= stub wordlist-edit
+//= stub exam-learn
+//= stub exam-stats
 //= require_tree .

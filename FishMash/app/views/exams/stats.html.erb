@@ -1,0 +1,48 @@
+<style>
+  .ct-series-a .ct-slice-pie {
+    fill: hsl(138, 56%, 46%);
+  }
+
+  .ct-series-b .ct-slice-pie {
+    fill: hsl(0, 55%, 54%);
+  }
+</style>
+
+
+<div class="col-md-12" style="height: 75px"></div>
+<div class="col-md-3"></div>
+<div class="col-md-6">
+  <p>
+    <% @exam.student_classes.each do |stud_class| %>
+      <a href="#" class="button-link studclass-choose" class-id="<%= stud_class.id %>"><%= stud_class.name %></a>
+    <% end %>
+  </p>
+  <p id="student-results" style="visibility: hidden;">
+    <table>
+        <tr class="fish-table-header">
+          <td>No.</td>
+          <td>Student</td>
+          <td>Result</td>
+        </tr>
+        <tbody id="student-results-table">
+          <td>Choose class to show statistics for</td>
+          <td></td>
+          <td></td>
+        </tbody>
+    </table>
+  </p>
+  <div class="col-md-12" style="height: 75px"></div>
+  <div class="col-md-6">
+    <div id="participants-chart" class="ct-chart ct-perfect-fourth">
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div id="passed-chart" class="ct-chart ct-perfect-fourth">
+    
+    </div>
+  </div>
+</div>
+<div class="col-md-3"></div>
+
+<input type="hidden" id="exam-id" value="<%= @exam.id %>" />
+<%= javascript_include_tag 'exam-stats', 'data-turbolinks-track' => true %>

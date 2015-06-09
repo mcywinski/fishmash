@@ -7,6 +7,10 @@ class UsersController < ApplicationController
   end
 
   def create
+    user_type = user_create_params[:user_type].to_i
+    unless user_type == 1 or user_type == 2
+      throw 'Invalid user type provided'
+    end
     @user = User.new user_create_params
     result = @user.save
     if !@user.save
@@ -70,7 +74,7 @@ class UsersController < ApplicationController
 
   private
     def user_create_params
-      params.require(:user).permit(:login, :email, :password, :password_confirmation)
+      params.require(:user).permit(:login, :email, :password, :password_confirmation, :user_type)
     end
 
     def user_login_params

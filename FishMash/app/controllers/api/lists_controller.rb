@@ -4,7 +4,12 @@ class Api::ListsController < ApplicationController
   respond_to :json, :xml
 
   def index
-    lists = WordList.all
+    user = api_get_user
+    if user.is_teacher?
+			lists = user.owned_wordlists
+		elsif user.is_student?
+			lists = user.get_available_wordlists
+		end
 
     lists_dto = Array.new
     lists.each do |list|

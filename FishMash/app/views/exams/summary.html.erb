@@ -1,14 +1,35 @@
-<h1>Summary for exam: <%= @exam.name %></h1>
-<h3>Answers</h3>
-<ul>
+<div class="col-md-12" style="height: 75px;"></div>
+<div class="col-md-3"></div>
+<div class="col-md-6">
+  <h1 class="fish-h1"><%= @exam.name %></h1>
+  <h3 class="summary-subtitle">Summary</h3>
+
+  <table>
+    <tr class="fish-table-header">
+      <td>Question</td>
+      <td>Correct answer</td>
+      <td>Provided answer</td>
+      <td>Mark</td>
+    </tr>
+
     <% @assesment.answers.each do |answer| %>
-        <li>
-          <strong>Q: </strong> <%= answer.word.meaning %>, <strong>A: </strong> <%= answer.word.phrase %>, <strong>Provided Answer: </strong> <%= answer.answer %>
-          <% if answer.passed %>
-            <span style="color: green">PASSED</span>
-          <% else %>
-            <span style="color: red">FAILED</span>
-          <% end %>
-        </li>
+    <tr>
+      <td> <%= answer.word.meaning %> </td>
+      <td> <%= answer.word.phrase %> </td>
+      <td> <%= answer.answer %> </td>
+      <td>
+        <% if answer.passed %>
+          <span style="color: green">PASSED</span>
+        <% else %>
+          <span style="color: red">FAILED</span>
+        <% end %>
+      </td>
+    </tr>
     <% end %>
-</ul>
+  </table>
+
+  <div class="fish-button-bar">
+    <%= link_to  'Return', exams_path, :class => 'button-link'%>
+  </div>
+</div>
+<div class="col-md-3"></div>

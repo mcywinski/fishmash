@@ -10,3 +10,39 @@
   width: 100%;
   min-height: 200px;
 }
+
+.begin-exam-header {
+  font-family: 'Amatic SC';
+  font-size: 32px;
+}
+
+.exam-name {
+  font-family: 'Lobster 1.4';
+  font-size: 72px;
+  padding: 50px 0px;
+  padding-top: 40px;
+}
+
+.exam-details {
+  background: image_url('shark_light.svg');
+  background-size: 100%;
+}
+
+.answer {
+  text-align: center;
+}
+
+.answer-word {
+  font-family: 'Amatic SC';
+  font-size: 48px;
+  padding: 25px 0px;
+}
+
+.summary-subtitle {
+  font-size: 32px;
+  font-family: 'Amatic SC';
+}
+
+.learn-form {
+  text-align: center;  
+}

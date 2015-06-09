@@ -1,0 +1,35 @@
+<div class="col-md-12" style="height: 75px"></div>
+<div class="col-md-3"></div>
+<div class="col-md-6 learn-form">
+  <h2 class="fish-h2 fish-font-amatic">Practice</h2>
+  <h1 class="fish-h1"><%= @exam.name %></h1>
+  <div class="text-center">
+    <p>
+      <h3 class="fish-h3">Question:</h3> 
+      <span class="fish-h1 fish-font-amatic"" id="learning-question"></span>
+    </p>
+    <p>
+      <input type="text" id="learning-text" />
+    </p>
+    <p style="padding: 25px;">
+      Mistakes: <span id="learning-mistakes">0</span>, Words left: <span id="learning-left">0</span>, Words learned: <span id="learning-learned">0</span>
+    </p>
+    <p>
+      <button type="button" id="learning-submit">Submit</button>
+    </p>
+  </div>
+</div>
+<div class="col-md-3"></div>
+
+<script type="text/javascript">
+  var wordsSrc = <%= raw @words.to_json %>;
+  /**
+   * Returns a random integer between min (inclusive) and max (inclusive)
+   * Using Math.round() will give you a non-uniform distribution!
+   */
+  function getRandomInt(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+</script>
+
+<%= javascript_include_tag 'exam-learn', 'data-turbolinks-track' => true %>

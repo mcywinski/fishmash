@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :is_user_logged_in?
   helper_method :get_logged_user_id
+  helper_method :get_logged_user
 
   def api
   end
@@ -25,6 +26,22 @@ class ApplicationController < ActionController::Base
 
   def get_logged_user_id
     session[:logged_user_id]
+  end
+
+  def get_logged_user
+    if is_user_logged_in?
+      return User.find(get_logged_user_id)
+    end
+  end
+
+  def require_teacher
+    user = get_logged_user
+    if user.nil?
+      redirect_to root_path and return
+    end
+    if !user.is_teacher?
+      redirect_to root_path and return
+    end
   end
 
   def stringify_errors(model)
