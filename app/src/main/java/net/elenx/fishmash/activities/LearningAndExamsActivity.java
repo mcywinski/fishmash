@@ -147,6 +147,7 @@ public class LearningAndExamsActivity extends OptionsActivity
         TableRow tableRow;
         TextView examName;
         TextView examDescription;
+        boolean isFinished;
 
         LayoutInflater layoutInflater = getLayoutInflater();
 
@@ -164,8 +165,12 @@ public class LearningAndExamsActivity extends OptionsActivity
             tableLayoutExams.addView(tableRow);
             //
 
+            isFinished = exam.isFinished();
+
             examName.setText(exam.getName());
             examDescription.setText(Fishmash.TO + exam.getDateExamFinish().inShortFormat());
+            imageView.setImageResource(isFinished ? R.drawable.stats : R.drawable.main_exams_button);
+            imageView.setContentDescription(getString(isFinished ? R.string.stats : R.string.exam));
             imageView.setOnClickListener
             (
                 new View.OnClickListener()
