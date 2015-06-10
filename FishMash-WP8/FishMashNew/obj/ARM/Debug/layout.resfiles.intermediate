@@ -1,0 +1,35 @@
+Assets\BadgeLogo.scale-240.png
+Assets\layout\login screen.png
+Assets\layout\login_button.png
+Assets\layout\login_logo.scale-100.png
+Assets\layout\login_logo.scale-140.png
+Assets\layout\login_logo.scale-240.png
+Assets\layout\main screen.png
+Assets\layout\main_exams_button.png
+Assets\layout\main_exams_header.png
+Assets\layout\main_learn_button.png
+Assets\layout\main_learning_header.png
+Assets\layout\main_top_bar.png
+Assets\layout\wall screen.png
+Assets\layout\wall_stats_header.png
+Assets\layout\wall_wall_header.png
+Assets\Logo.scale-100.png
+Assets\Logo.scale-240.png
+Assets\SmallLogo.scale-240.png
+Assets\SplashScreen.scale-240.png
+Assets\Square71x71Logo.scale-100.png
+Assets\Square71x71Logo.scale-240.png
+Assets\StoreLogo.scale-240.png
+Assets\WideLogo.scale-100.png
+Assets\WideLogo.scale-240.png
+App.xbf
+FishMashNew.xr.xml
+MainPage.xbf
+UserControls\ExamDetailsUserControl.xbf
+UserControls\ListDetailsUserControl.xbf
+UserControls\ListViewUserControl.xbf
+Views\BrowseWordsListView.xbf
+Views\FicheView.xbf
+Views\Login\IncorrectPasswordUserControl.xbf
+Views\Login\LoginUserControl.xbf
+Views\LoginView.xbf
