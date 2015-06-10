@@ -183,7 +183,7 @@ public class LearningActivity extends SpeakingActivity
     private void display(Word word)
     {
         this.word = word;
-        isMainLanguageActive = true;
+        isMainLanguageActive = false;
 
         flip();
     }
