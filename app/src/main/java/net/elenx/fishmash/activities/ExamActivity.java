@@ -2,6 +2,7 @@ package net.elenx.fishmash.activities;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -104,6 +105,20 @@ public class ExamActivity extends OptionsActivity
                 public void onClick(View view)
                 {
                     learningAndExams();
+                }
+            }
+        );
+
+        answer.setOnEditorActionListener
+        (
+            new TextView.OnEditorActionListener()
+            {
+                @Override
+                public boolean onEditorAction(TextView textView, int keyCode, KeyEvent keyEvent)
+                {
+                    next.performClick();
+
+                    return false;
                 }
             }
         );
