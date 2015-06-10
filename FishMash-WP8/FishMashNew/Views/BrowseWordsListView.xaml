@@ -77,9 +77,7 @@
                               Icon="Permissions"
                               Click="LogOutButton_Click"
                               />
-                <AppBarButton Label="Profile"
-                              Icon="Setting"
-                              />
+
             </CommandBar.PrimaryCommands>
 
 

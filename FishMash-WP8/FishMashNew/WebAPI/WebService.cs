@@ -367,11 +367,12 @@ namespace FishMashNew.WebAPI
             return Exam;
         }
 
-        public static async Task<QuestionEntity> GetQuestionToAnswer(int examId)
+        public static async Task<QuestionEntity> GetQuestionToAnswer(int examId, string token)
         {
             QuestionEntity questionResponse = new QuestionEntity();
 
-            string url = string.Format("{0}{1}{2}", "https://shrouded-fjord-4731.herokuapp.com/api/exams/", examId, "/get_question");
+            string url = string.Format("{0}{1}{2}", "https://shrouded-fjord-4731.herokuapp.com/api/exams/", examId, "/get_question") +
+                string.Format("?api_token={0}", token);
             var u = new Uri(url);
 
             var client = new HttpClient();

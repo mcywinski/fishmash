@@ -29,7 +29,7 @@ namespace FishMashNew.UserControls
         private void Grid_Tapped(object sender, TappedRoutedEventArgs e)
         {
             object t = this.ListId.Text.ToString();
-            Settings.Instance.navigationService.Navigate(typeof(FicheView), t);
+            Settings.Instance.navigationService.Navigate(typeof(ExamView), t);
         }
     }
 }

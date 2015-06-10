@@ -38,6 +38,16 @@ namespace FishMashApp.Models.Exams
 
         public string date_exam_start { get; set; }
         public string date_exam_finish { get; set; }
+
+        public string DateExamFinish
+        {
+            get { return "to " + date_exam_finish; }
+            set
+            {
+                date_exam_finish = value;
+                OnPropertyChanged();
+            }
+        }
         public string date_practice_start { get; set; }
         public string date_practice_finish { get; set; }
         public int word_count { get; set; }

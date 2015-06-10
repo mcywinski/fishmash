@@ -114,12 +114,16 @@
     </Compile>
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\BrowseWordsViewModel.cs" />
+    <Compile Include="ViewModels\ExamViewModel.cs" />
     <Compile Include="ViewModels\FischeViewModel.cs" />
     <Compile Include="ViewModels\LoginAndRegistation\LoginViewModel.cs" />
     <Compile Include="ViewModels\LoginAndRegistation\RegistrationViewModel.cs" />
     <Compile Include="ViewModels\WordViewModel.cs" />
     <Compile Include="Views\BrowseWordsListView.xaml.cs">
       <DependentUpon>BrowseWordsListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ExamView.xaml.cs">
+      <DependentUpon>ExamView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\FicheView.xaml.cs">
       <DependentUpon>FicheView.xaml</DependentUpon>
@@ -197,6 +201,10 @@
     <Page Include="Views\BrowseWordsListView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ExamView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\FicheView.xaml">
       <Generator>MSBuild:Compile</Generator>
