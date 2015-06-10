@@ -14,9 +14,16 @@
         android:theme="@style/fishmashTheme"
         tools:ignore="UnusedAttribute">
 
-        <activity android:name="net.elenx.fishmash.activities.AuthenticateActivity" android:screenOrientation="portrait"/>
-        <activity android:name="net.elenx.fishmash.activities.ExamActivity" android:screenOrientation="portrait"/>
-        <activity android:name="net.elenx.fishmash.activities.LearningActivity" android:screenOrientation="portrait"/>
+        <activity
+            android:name="net.elenx.fishmash.activities.AuthenticateActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="net.elenx.fishmash.activities.ExamActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity
+            android:name="net.elenx.fishmash.activities.LearningActivity"
+            android:screenOrientation="portrait"/>
 
         <activity
             android:name="net.elenx.fishmash.activities.MainActivity"
@@ -29,9 +36,15 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="net.elenx.fishmash.activities.LearningAndExamsActivity" android:screenOrientation="portrait"/>
-        <activity android:name="net.elenx.fishmash.activities.ProfileActivity" android:screenOrientation="portrait"/>
-        <activity android:name="net.elenx.fishmash.activities.SummaryActivity" android:screenOrientation="portrait"/>
+        <activity
+            android:name="net.elenx.fishmash.activities.LearningAndExamsActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="net.elenx.fishmash.activities.ProfileActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="net.elenx.fishmash.activities.SummaryActivity"
+            android:screenOrientation="portrait"/>
 
     </application>
 </manifest>
