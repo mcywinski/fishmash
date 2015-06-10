@@ -14,12 +14,13 @@
         android:theme="@style/fishmashTheme"
         tools:ignore="UnusedAttribute">
 
-        <activity android:name="net.elenx.fishmash.activities.AuthenticateActivity"/>
-        <activity android:name="net.elenx.fishmash.activities.ExamActivity"/>
-        <activity android:name="net.elenx.fishmash.activities.LearningActivity"/>
+        <activity android:name="net.elenx.fishmash.activities.AuthenticateActivity" android:screenOrientation="portrait"/>
+        <activity android:name="net.elenx.fishmash.activities.ExamActivity" android:screenOrientation="portrait"/>
+        <activity android:name="net.elenx.fishmash.activities.LearningActivity" android:screenOrientation="portrait"/>
 
         <activity
             android:name="net.elenx.fishmash.activities.MainActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/splashScreenTheme">
 
             <intent-filter>
@@ -28,9 +29,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="net.elenx.fishmash.activities.LearningAndExamsActivity"/>
-        <activity android:name="net.elenx.fishmash.activities.ProfileActivity"/>
-        <activity android:name="net.elenx.fishmash.activities.SummaryActivity"/>
+        <activity android:name="net.elenx.fishmash.activities.LearningAndExamsActivity" android:screenOrientation="portrait"/>
+        <activity android:name="net.elenx.fishmash.activities.ProfileActivity" android:screenOrientation="portrait"/>
+        <activity android:name="net.elenx.fishmash.activities.SummaryActivity" android:screenOrientation="portrait"/>
 
     </application>
 </manifest>
