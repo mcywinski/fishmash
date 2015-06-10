@@ -74,12 +74,13 @@ namespace FishMashNew.WebAPI
             return list;
         }
 
-        async static public Task<List<ListOfLists>> GetListOfListAsync()
+        async static public Task<List<ListOfLists>> GetListOfListAsync(string token)
         {
             List<ListOfLists> list = new List<ListOfLists>();
             try
             {
-                string url = "https://shrouded-fjord-4731.herokuapp.com/api/lists"; 
+                string url = "https://shrouded-fjord-4731.herokuapp.com/api/lists" +
+                    string.Format("?api_token={0}", token);
                 var u = new Uri(url);
 
                 var client = new HttpClient();

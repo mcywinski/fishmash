@@ -47,7 +47,7 @@
                  Margin="10,10,220,20" />
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <ItemsControl Name="Exam" 
-                      ItemsSource="{Binding ListOfList}"
+                      ItemsSource="{Binding ListOfExams}"
                       HorizontalAlignment="Stretch"
                       VerticalAlignment="Stretch"
                       >

@@ -52,13 +52,14 @@ namespace FishMashNew.ViewModels
             ListOfList = new ObservableCollection<ListOfLists>();
             ListOfExams = new ObservableCollection<ExamEntity>();
             ProgressBarVisibility = SetVisibility(true);
-            FillList(); //only for temp
+            if (!string.IsNullOrWhiteSpace(Settings.Instance.Cache.GetToken()))
+                FillList(); //only for temp
             
         }
 
         public async void FillList()
         {
-            List<ListOfLists> learnLists = await WebService.GetListOfListAsync();
+            List<ListOfLists> learnLists = await WebService.GetListOfListAsync(Settings.Instance.Cache.GetToken());
             List<ExamEntity> exams = await WebService.GetAllExams(Settings.Instance.Cache.GetToken());
             OnUIThread(() =>
             {
