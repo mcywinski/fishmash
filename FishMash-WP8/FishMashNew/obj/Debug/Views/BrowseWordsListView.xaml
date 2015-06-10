@@ -1,0 +1,90 @@
+﻿<Page
+    x:Class="FishMashNew.Views.BrowseWordsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:FishMashNew.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:view="using:FishMashNew.UserControls"
+    xmlns:overlay="using:FishMashNew.UserControls"
+    Background="White">
+    
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        
+        <StackPanel>
+
+            <Image Source="ms-appx:///Assets/layout/main_top_bar.png" />
+            <Image Source="ms-appx:///Assets/layout/main_learning_header.png" Margin="10,10,200,20" />
+            <ProgressBar
+            Visibility="{Binding ProgressBarVisibility}"
+            IsIndeterminate="True" 
+            HorizontalAlignment="Stretch"
+            x:Name="ProgressBar"
+            />
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+
+                <ItemsControl Name="Learn" 
+                      ItemsSource="{Binding ListOfList}"
+                      HorizontalAlignment="Stretch"
+                      VerticalAlignment="Stretch"
+                      >
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <overlay:ListDetailsUserControl 
+                                    x:Name="ListDetails" Margin="10,0,10,0"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+            <Image 
+                Source="ms-appx:///Assets/layout/main_exams_header.png" 
+                 Margin="10,10,220,20" />
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <ItemsControl Name="Exam" 
+                      ItemsSource="{Binding ListOfList}"
+                      HorizontalAlignment="Stretch"
+                      VerticalAlignment="Stretch"
+                      >
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <overlay:ExamDetailsUserControl 
+                                    x:Name="ExamDetails" Margin="10,0,10,0"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            
+            </ScrollViewer>
+        </StackPanel>
+        
+        
+    </ScrollViewer>
+    <Page.BottomAppBar>
+        <CommandBar ClosedDisplayMode="Compact">
+            <CommandBar.PrimaryCommands>
+                
+                <AppBarButton x:ConnectionId='1' Label="Log out"
+                              Icon="Permissions"
+                                                        
+                              />
+                <AppBarButton Label="Profile"
+                              Icon="Setting"
+                              />
+            </CommandBar.PrimaryCommands>
+
+
+
+        </CommandBar>
+    </Page.BottomAppBar>
+</Page>
+
