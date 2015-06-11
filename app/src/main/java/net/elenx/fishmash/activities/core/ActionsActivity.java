@@ -1,10 +1,24 @@
 package net.elenx.fishmash.activities.core;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 
-abstract class ActionsActivity extends ProgressDialogActivity
+import net.elenx.fishmash.R;
+import net.elenx.fishmash.activities.core.keyboard.KeyboardLayout;
+import net.elenx.fishmash.activities.core.keyboard.KeyboardListener;
+
+abstract class ActionsActivity extends ProgressDialogActivity implements KeyboardListener
 {
+    @Override
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+
+        KeyboardLayout keyboardLayout = (KeyboardLayout) findViewById(R.id.keyboardLayout);
+        keyboardLayout.setKeyboardListener(this);
+    }
+
     @Override
     public void onBackPressed()
     {

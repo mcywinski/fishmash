@@ -34,6 +34,13 @@ public class ExamQuestionProvider extends FishmashUpdater
     {
         super.onPostExecute(aVoid);
 
+        if(examQuestion == null)
+        {
+            examQuestionListener.examFinished();
+
+            return;
+        }
+
         boolean hasExamFinished = (examQuestion.getId() == 0 && examQuestion.isExamFinished());
 
         if(hasExamFinished)

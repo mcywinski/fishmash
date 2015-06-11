@@ -5,9 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
+    <net.elenx.fishmash.activities.core.keyboard.KeyboardLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:id="@+id/keyboardLayout">
 
         <ImageView
             android:layout_width="fill_parent"
@@ -29,7 +30,7 @@
             android:layout_height="match_parent">
         </FrameLayout>
 
-    </RelativeLayout>
+    </net.elenx.fishmash.activities.core.keyboard.KeyboardLayout>
 
     <fragment
         android:id="@+id/navigation_drawer"
