@@ -63,11 +63,11 @@ public class KeyboardLayout extends RelativeLayout
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(rect);
 
-        int activityHeight = activity.getWindowManager().getDefaultDisplay().getHeight();
         int statusBarHeight = rect.top;
         int layoutHeight = MeasureSpec.getSize(heightMeasureSpec);
+        int layoutAndStatusBarHeight = statusBarHeight + layoutHeight;
 
-        int difference = (activityHeight - statusBarHeight) - layoutHeight;
+        int keyboardHeight = calculateActivityHeight() - layoutAndStatusBarHeight;
 
         if(keyboardListener == null)
         {
@@ -75,7 +75,7 @@ public class KeyboardLayout extends RelativeLayout
         }
 
         // assume all soft keyboards are at least 128 pixels high
-        handleKeyboardState(difference > 128);
+        handleKeyboardState(keyboardHeight > 128);
     }
 
     /**
@@ -104,6 +104,11 @@ public class KeyboardLayout extends RelativeLayout
                 keyboardListener.onKeyboardClosedEvent();
             }
         }
+    }
+
+    private int calculateActivityHeight()
+    {
+        return activity.getWindowManager().getDefaultDisplay().getHeight();
     }
 
     public void setKeyboardListener(KeyboardListener keyboardListener)
