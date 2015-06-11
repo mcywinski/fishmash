@@ -3,15 +3,18 @@ package net.elenx.fishmash.activities.core.keyboard;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Point;
 import android.graphics.Rect;
 import android.os.Build;
 import android.util.AttributeSet;
+import android.view.Display;
 import android.widget.RelativeLayout;
 
 public class KeyboardLayout extends RelativeLayout
 {
     private KeyboardListener keyboardListener;
     private Activity activity;
+    private Display display = activity.getWindowManager().getDefaultDisplay();
     private final Rect rect = new Rect();
     private boolean wasKeyboardAlreadyOpenBefore = false;
 
@@ -34,7 +37,7 @@ public class KeyboardLayout extends RelativeLayout
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    @SuppressWarnings("unused") // constructors of this class are called by Android
+    @SuppressWarnings("unused") // constructors of this class can be called by Android in future
     public KeyboardLayout(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes)
     {
         super(context, attrs, defStyleAttr, defStyleRes);
@@ -74,7 +77,7 @@ public class KeyboardLayout extends RelativeLayout
             return;
         }
 
-        // assume all soft keyboards are at least 128 pixels high
+        // I am assuming, that all software keyboards have at least 128 pixels in height
         handleKeyboardState(keyboardHeight > 128);
     }
 
@@ -108,7 +111,19 @@ public class KeyboardLayout extends RelativeLayout
 
     private int calculateActivityHeight()
     {
-        return activity.getWindowManager().getDefaultDisplay().getHeight();
+        if(Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.HONEYCOMB_MR2)
+        {
+            Point size = new Point();
+            display.getSize(size);
+
+            return size.y;
+        }
+        else
+        {
+            // if API version is less than 13, then I am forced to use deprecated method
+            //noinspection deprecation
+            return display.getHeight();
+        }
     }
 
     public void setKeyboardListener(KeyboardListener keyboardListener)
