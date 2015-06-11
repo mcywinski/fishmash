@@ -12,6 +12,24 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: true
   validates :login, presence: true, uniqueness: true
 
+  def change_password(pass_old, pass_new, pass_new_confirmation)
+    return UserCommon::PASS_CHANGE_NOT_EQUAL if pass_new != pass_new_confirmation
+
+    #Old password check
+    user = User.find(self.id).try(:authenticate, pass_old)
+    if !user
+      return UserCommon::PASS_CHANGE_OLD_INVALID
+    end
+
+    #Change
+    password_params = { password: pass_new, password_confirmation: pass_new_confirmation }
+    if user.update(password_params)
+      return UserCommon::PASS_CHANGE_SUCCESS
+    else
+      return UserCommon::PASS_CHANGE_FAILURE
+    end
+  end
+
   def get_available_exams
     exams = Array.new
     self.student_classes.each do |student_class|

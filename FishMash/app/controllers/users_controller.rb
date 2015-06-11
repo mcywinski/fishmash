@@ -17,7 +17,7 @@ class UsersController < ApplicationController
       @errors = stringify_errors(@user)
       render 'register'
     else
-      flash[:success] = 'Account has been successfuly created.'
+      flash[:success] = 'Account has been successfuly creOated.'
       redirect_to root_path
     end
   end
@@ -54,19 +54,16 @@ class UsersController < ApplicationController
       redirect_to root_path and return
     end
 
-    #Old password check
-    user = User.find(get_logged_user_id).try(:authenticate, set_password_params[:password_old])
-    if !user
-      flash[:errors] = "You have provided incorrect old password."
-      redirect_to profile_users_path and return
-    end
-
-    #Change
-    password_params = { password: set_password_params[:password], password_confirmation: set_password_params[:password_confirmation] }
-    if user.update(password_params)
-      flash[:success] = "Password has been successfuly changed."
-    else
-      flash[:errors] = stringify_errors(user)
+    user = get_logged_user
+    result = user.change_password(set_password_params[:password_old], set_password_params[:password], set_password_params[:password_confirmation])
+    if result == UserCommon::PASS_CHANGE_SUCCESS
+      flash[:success] = 'Password has been successfuly changed.'
+    elsif result == UserCommon::PASS_CHANGE_NOT_EQUAL
+      flash[:errors] = 'Provided passwords were not equal.'
+    elsif result == UserCommon::PASS_CHANGE_FAILURE
+      flash[:errors] = 'An error occured while changing the password.'
+    elsif result == UserCommon::PASS_CHANGE_OLD_INVALID
+      flash[:errors] = 'Old password was invalid.'
     end
 
     redirect_to profile_users_path
