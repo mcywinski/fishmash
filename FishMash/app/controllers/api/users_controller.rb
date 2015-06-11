@@ -19,8 +19,22 @@ class Api::UsersController < ApplicationController
     respond_with api_get_user.to_dto, location: ''
   end
 
+  def set_password
+    user = api_get_user
+    pass_params = set_password_params
+    result = user.change_password(pass_params[:password_old], pass_params[:password], pass_params[:password_confirmation])
+    success = result.equal? UserCommon::PASS_CHANGE_SUCCESS
+    result = { success: success, result_status: result  }
+
+    respond_with result, location: ''
+  end
+
   private
     def user_authentication_params
       params.require(:user).permit(:login, :password)
     end
+
+  def set_password_params
+    { password_old: params.require(:password_old), password: params.require(:password), password_confirmation: params.require(:password_confirmation) }
+  end
 end
