@@ -1,5 +1,9 @@
 package net.elenx.fishmash.utilities;
 
+// todo change password
+// todo language resolving with api
+// todo exam counter
+// todo use KeyboardListener to affect ExamActivity
 public abstract class Fishmash
 {
     // start layer 0
