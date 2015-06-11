@@ -12,8 +12,8 @@ public class KeyboardLayout extends RelativeLayout
 {
     private KeyboardListener keyboardListener;
     private Activity activity;
-    private Rect rect = new Rect();
-    private boolean isKeyboardOpen = false;
+    private final Rect rect = new Rect();
+    private boolean wasKeyboardAlreadyOpenBefore = false;
 
     public KeyboardLayout(Context context)
     {
@@ -34,6 +34,7 @@ public class KeyboardLayout extends RelativeLayout
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    @SuppressWarnings("unused") // constructors of this class are called by Android
     public KeyboardLayout(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes)
     {
         super(context, attrs, defStyleAttr, defStyleRes);
@@ -45,18 +46,28 @@ public class KeyboardLayout extends RelativeLayout
         activity = (Activity) context;
     }
 
+    /**
+     * activityHeight is height of whole physical screen
+     * statusBarHeight is height of this part of screen, that is not inside this layout
+     * layoutHeight is height of every View in out application, except statusBar
+     *
+     * if keyboard is hidden, then: activityHeight = statusBarHeight + (full) layoutHeight
+     * if keyboard is shows, that: activityHeight = statusBarHeight + (shirked) layoutHeight + keyboardHeight (estimated as 128 pixels)
+     *
+     * @param widthMeasureSpec width of this layout
+     * @param heightMeasureSpec height of this layout
+     */
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec)
     {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-
-        int height = MeasureSpec.getSize(heightMeasureSpec);
-
         activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(rect);
 
+        int activityHeight = activity.getWindowManager().getDefaultDisplay().getHeight();
         int statusBarHeight = rect.top;
-        int screenHeight = activity.getWindowManager().getDefaultDisplay().getHeight();
-        int difference = (screenHeight - statusBarHeight) - height;
+        int layoutHeight = MeasureSpec.getSize(heightMeasureSpec);
+
+        int difference = (activityHeight - statusBarHeight) - layoutHeight;
 
         if(keyboardListener == null)
         {
@@ -64,27 +75,32 @@ public class KeyboardLayout extends RelativeLayout
         }
 
         // assume all soft keyboards are at least 128 pixels high
-        if(difference > 128)
-        {
-            // keyboard is open right now
-            // but check, if it was already opened
-            // to avoid unnecessary callbacks
+        handleKeyboardState(difference > 128);
+    }
 
-            if(!isKeyboardOpen)
+    /**
+     * if isKeyboardOpenRightNow and wasKeyboardAlreadyOpenBefore then do nothing
+     * if isKeyboardOpenRightNow and/but NOT wasKeyboardAlreadyOpenBefore then fire opened event
+     * if NOT isKeyboardOpenRightNow and/but wasKeyboardAlreadyOpenBefore then fire closed event
+     * if NOT isKeyboardOpenRightNow and NOT wasKeyboardAlreadyOpenBefore then do nothing
+     *
+     * @param isKeyboardOpenRightNow describes, if out screen has lost more than 128 pixels (for keyboard)
+     */
+    private void handleKeyboardState(boolean isKeyboardOpenRightNow)
+    {
+        if(isKeyboardOpenRightNow)
+        {
+            if(! wasKeyboardAlreadyOpenBefore)
             {
-                isKeyboardOpen = true;
+                wasKeyboardAlreadyOpenBefore = true;
                 keyboardListener.onKeyboardOpenedEvent();
             }
         }
         else
         {
-            // keyboard is closed right now
-            // but check, if it was already closed
-            // to avoid unnecessary callbacks
-
-            if(isKeyboardOpen)
+            if(wasKeyboardAlreadyOpenBefore)
             {
-                isKeyboardOpen = false;
+                wasKeyboardAlreadyOpenBefore = false;
                 keyboardListener.onKeyboardClosedEvent();
             }
         }
