@@ -4,10 +4,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.PersistableBundle;
-import android.util.Log;
 import android.view.View;
 
-import net.elenx.fishmash.utilities.Fishmash;
 import net.elenx.fishmash.R;
 import net.elenx.fishmash.activities.AuthenticateActivity;
 import net.elenx.fishmash.activities.LearningActivity;
@@ -15,8 +13,9 @@ import net.elenx.fishmash.activities.LearningAndExamsActivity;
 import net.elenx.fishmash.activities.ProfileActivity;
 import net.elenx.fishmash.activities.core.drawer.NavigationDrawerFragment;
 import net.elenx.fishmash.daos.AuthenticateDAO;
+import net.elenx.fishmash.utilities.Fishmash;
 
-public abstract class OptionsActivity extends ProgressDialogActivity
+public abstract class OptionsActivity extends ActionsActivity
 {
     protected final OptionsActivity me = this;
 
@@ -29,12 +28,6 @@ public abstract class OptionsActivity extends ProgressDialogActivity
         {
             logout();
         }
-    }
-
-    @Override
-    public void onBackPressed()
-    {
-        finish();
     }
 
     @Override
@@ -100,36 +93,5 @@ public abstract class OptionsActivity extends ProgressDialogActivity
         new AuthenticateDAO(this).truncate();
 
         switchIntentTo(AuthenticateActivity.class);
-    }
-
-    protected void switchIntentTo(Class<?> clazz)
-    {
-        switchIntentTo(clazz, null, -1);
-    }
-
-    protected void switchIntentTo(Class<?> clazz, String extraKey, long extraValue)
-    {
-        Class myClass = getClass();
-
-        if(myClass == clazz)
-        {
-            return;
-        }
-
-        Log.e(myClass.getSimpleName() + " is switching to", clazz.getSimpleName());
-
-        Intent intent = new Intent(getApplicationContext(), clazz);
-
-        boolean hasNoExtraValues = (extraKey == null && extraValue == -1);
-        boolean hasExtraValues = ! hasNoExtraValues;
-
-        if(hasExtraValues)
-        {
-            intent.putExtra(extraKey, extraValue);
-            Log.e(extraKey, String.valueOf(extraValue));
-        }
-
-        startActivity(intent);
-        finish();
     }
 }
