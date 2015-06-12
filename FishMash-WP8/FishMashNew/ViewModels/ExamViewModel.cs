@@ -1,8 +1,10 @@
 ﻿using FishMashApp.Models;
 using FishMashNew.Common;
+using FishMashNew.Models.StartExamModels;
 using FishMashNew.WebAPI;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +26,19 @@ namespace FishMashNew.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        private string answer;
+
+        public string Answer
+        {
+            get { return answer; }
+            set 
+            { 
+                answer = value;
+                OnPropertyChanged();
+            }
+        }
+        
         private QuestionEntity currentQuestion;
 
         #endregion
@@ -36,6 +51,9 @@ namespace FishMashNew.ViewModels
                     new RelayCommand(o =>
                     {
                         
+                        //if Answer != String.Empty
+                        // AnswerQuestion(Answer);
+                        GetQuestion();
                     });
             }
         }
@@ -67,18 +85,23 @@ namespace FishMashNew.ViewModels
         #region WebService
         private async void StartExam()
         {
-            //rozpoczęcie egzaminu + 
-            //GetQuestion();
+            StartedRoot startedRoot = await WebService.StartExam(examID, Settings.Instance.Cache.GetToken());
+            Debug.WriteLine(startedRoot.message.ToString());
+            // if(startedRoot == ok) 
+            // GetQuestion();
         }
         private async void GetQuestion()
         {
+            //sprawdzic czy nie nadeszło już ostatnie pytanie i czy można zapytać o następne!
             currentQuestion = await WebService.GetQuestionToAnswer(examID, Settings.Instance.Cache.GetToken());
-            Question = currentQuestion.meaning.ToString();
+            Question = currentQuestion.meaning.ToString(); // w to pole ma trafić pytanie
         }
 
         private async void AnswerQuestion(string answer)
         {
-
+            //wysłać odpowiedz 
+            //sprawdzić czy została zapisana
+           
         }
 
         #endregion

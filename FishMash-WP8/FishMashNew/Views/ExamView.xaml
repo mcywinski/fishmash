@@ -21,6 +21,12 @@
                            VerticalAlignment="Center"
                            Foreground="Black"
                            />
+        <TextBox 
+                    Text="{Binding Answer, Mode=TwoWay}"
+                    Background="#FFDDC6"
+                    Width="300" PlaceholderText="Answer here"
+                    Margin="40"
+                    />
 
     </StackPanel>
     <Page.BottomAppBar>
