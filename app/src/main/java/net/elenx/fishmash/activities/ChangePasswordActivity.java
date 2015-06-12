@@ -21,12 +21,6 @@ public class ChangePasswordActivity extends OptionsActivity
     {
         super.onCreate(savedInstanceState);
         attach(R.layout.layout_change_password);
-    }
-
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState)
-    {
-        super.onPostCreate(savedInstanceState);
         prepareViews();
     }
 

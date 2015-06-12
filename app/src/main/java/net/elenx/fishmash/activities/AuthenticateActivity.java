@@ -28,12 +28,7 @@ public class AuthenticateActivity extends OptionsActivity
         {
             learningAndExams();
         }
-    }
 
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState)
-    {
-        super.onPostCreate(savedInstanceState);
         attach(R.layout.layout_authenticate);
 
         hideMainTopBar();

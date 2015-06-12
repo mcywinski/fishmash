@@ -39,6 +39,11 @@ public class SummaryActivity extends OptionsActivity
             learningAndExams();
         }
 
+        showSummary();
+    }
+
+    private void showSummary()
+    {
         final SummaryUpdater summaryUpdater = new SummaryUpdater(this, examId);
         summaryUpdater.setSummaryListener
         (

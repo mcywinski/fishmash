@@ -27,9 +27,9 @@ import java.util.List;
 public class LearningAndExamsActivity extends OptionsActivity
 {
     @Override
-    protected void onPostCreate(Bundle savedInstanceState)
+    protected void onCreate(Bundle savedInstanceState)
     {
-        super.onPostCreate(savedInstanceState);
+        super.onCreate(savedInstanceState);
         attach(R.layout.layout_learning_and_exams);
 
         updateWordLists();

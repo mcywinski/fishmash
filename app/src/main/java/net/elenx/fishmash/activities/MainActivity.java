@@ -8,9 +8,9 @@ import net.elenx.fishmash.activities.core.OptionsActivity;
 public class MainActivity extends OptionsActivity
 {
     @Override
-    protected void onPostCreate(Bundle savedInstanceState)
+    protected void onCreate(Bundle savedInstanceState)
     {
-        super.onPostCreate(savedInstanceState);
+        super.onCreate(savedInstanceState);
 
         if(isAuthenticated())
         {

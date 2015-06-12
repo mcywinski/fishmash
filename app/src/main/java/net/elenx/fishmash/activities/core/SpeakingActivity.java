@@ -17,9 +17,9 @@ abstract public class SpeakingActivity extends OptionsActivity implements TextTo
     private boolean isReadyToSpeak = false;
 
     @Override
-    protected void onPostCreate(Bundle savedInstanceState)
+    protected void onCreate(Bundle savedInstanceState)
     {
-        super.onPostCreate(savedInstanceState);
+        super.onCreate(savedInstanceState);
         textToSpeech = new TextToSpeech(this, this);
     }
 

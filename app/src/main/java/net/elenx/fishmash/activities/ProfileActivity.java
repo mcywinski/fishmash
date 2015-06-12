@@ -21,9 +21,9 @@ public class ProfileActivity extends OptionsActivity
     private ImageView changePassword;
 
     @Override
-    protected void onPostCreate(final Bundle savedInstanceState)
+    protected void onCreate(final Bundle savedInstanceState)
     {
-        super.onPostCreate(savedInstanceState);
+        super.onCreate(savedInstanceState);
         attach(R.layout.layout_profile);
 
         bindViews();

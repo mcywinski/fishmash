@@ -57,6 +57,11 @@ public class LearningActivity extends SpeakingActivity
             learningAndExams();
         }
 
+        updateWords();
+    }
+
+    private void updateWords()
+    {
         WordUpdater wordUpdater = new WordUpdater(this, lastWordList);
         wordUpdater.setUpdaterListener
         (

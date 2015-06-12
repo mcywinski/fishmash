@@ -54,9 +54,6 @@ public class ExamActivity extends OptionsActivity
         if(exam.isFinished())
         {
             switchIntentTo(SummaryActivity.class, Fishmash.EXAM_ID, examId);
-            finish();
-
-            return;
         }
 
         prepareQuestionListener();
