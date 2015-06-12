@@ -6,4 +6,5 @@
     <string name="label_email">Email:</string>
     <string name="label_createdAt">Studying since:</string>
     <string name="label_updatedAt">Last change:</string>
+    <string name="changePassword">Change password</string>
 </resources>

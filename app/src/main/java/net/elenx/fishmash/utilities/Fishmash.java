@@ -31,7 +31,7 @@ public abstract class Fishmash
     // end layer 2
 
     // start layer 3
-    public static final String AUTHENTICATE = USERS + "layout_authenticate";
+    public static final String AUTHENTICATE = USERS + "authenticate";
     public static final String LISTS_TOKEN = LISTS + TOKEN;
     public static final String LISTS_LISTID = LISTS + "{" + LIST_ID + "}";
     public static final String EXAMS_TOKEN = EXAMS + TOKEN;

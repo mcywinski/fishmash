@@ -1,6 +1,8 @@
 package net.elenx.fishmash.activities;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import net.elenx.fishmash.R;
@@ -16,6 +18,7 @@ public class ProfileActivity extends OptionsActivity
     private TextView emailData;
     private TextView createdAtData;
     private TextView updatedAtData;
+    private ImageView changePassword;
 
     @Override
     protected void onPostCreate(final Bundle savedInstanceState)
@@ -23,11 +26,25 @@ public class ProfileActivity extends OptionsActivity
         super.onPostCreate(savedInstanceState);
         attach(R.layout.layout_profile);
 
-        loginData = (TextView) findViewById(R.id.textViewLoginData);
-        emailData = (TextView) findViewById(R.id.textViewEmailData);
-        createdAtData = (TextView) findViewById(R.id.textViewCreatedAtData);
-        updatedAtData = (TextView) findViewById(R.id.textViewUpdatedAtData);
+        bindViews();
 
+        changePassword.setOnClickListener
+        (
+            new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+                    switchIntentTo(ChangePasswordActivity.class);
+                }
+            }
+        );
+
+        displayData();
+    }
+
+    private void displayData()
+    {
         ProfileUpdater profileUpdater = new ProfileUpdater(this);
         profileUpdater.setUpdaterListener
         (
@@ -48,6 +65,15 @@ public class ProfileActivity extends OptionsActivity
         );
 
         profileUpdater.execute();
+    }
+
+    private void bindViews()
+    {
+        loginData = (TextView) findViewById(R.id.textViewLoginData);
+        emailData = (TextView) findViewById(R.id.textViewEmailData);
+        createdAtData = (TextView) findViewById(R.id.textViewCreatedAtData);
+        updatedAtData = (TextView) findViewById(R.id.textViewUpdatedAtData);
+        changePassword = (ImageView) findViewById(R.id.imageViewChangePassword);
     }
 
     private void showProfile()
