@@ -36,18 +36,26 @@ public class AuthenticateActivity extends OptionsActivity
         super.onPostCreate(savedInstanceState);
         attach(R.layout.layout_authenticate);
 
-        ImageView mainTopBar = (ImageView) findViewById(R.id.main_top_bar);
-        mainTopBar.setVisibility(View.GONE);
-
-        editTextLogin = (EditText) findViewById(R.id.editTextLogin);
-        editTextPassword = (EditText) findViewById(R.id.editTextPassword);
+        hideMainTopBar();
+        bindViews();
+        prepareButtonLogInListener();
 
         if(isOffline())
         {
             showOfflineWarning();
         }
+    }
 
-        prepareButtonLogInListener();
+    private void bindViews()
+    {
+        editTextLogin = (EditText) findViewById(R.id.editTextLogin);
+        editTextPassword = (EditText) findViewById(R.id.editTextPassword);
+    }
+
+    private void hideMainTopBar()
+    {
+        ImageView mainTopBar = (ImageView) findViewById(R.id.main_top_bar);
+        mainTopBar.setVisibility(View.GONE);
     }
 
     @Override
@@ -115,7 +123,7 @@ public class AuthenticateActivity extends OptionsActivity
                 @Override
                 public void run()
                 {
-                    Toast.makeText(me, getText(R.string.offline), Toast.LENGTH_LONG).show();
+                    Toast.makeText(me, R.string.offline, Toast.LENGTH_LONG).show();
                 }
             }
         );
@@ -130,7 +138,7 @@ public class AuthenticateActivity extends OptionsActivity
                 @Override
                 public void run()
                 {
-                    Toast.makeText(me, getText(R.string.bad_credentials), Toast.LENGTH_LONG).show();
+                    Toast.makeText(me, R.string.bad_credentials, Toast.LENGTH_LONG).show();
                 }
             }
         );
