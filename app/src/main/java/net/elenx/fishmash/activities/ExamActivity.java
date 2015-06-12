@@ -6,6 +6,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import net.elenx.fishmash.R;
@@ -33,6 +34,7 @@ public class ExamActivity extends OptionsActivity
     private EditText answer;
     private ImageView next;
     private ImageView back;
+    private TableRow tableRowExam;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -159,6 +161,7 @@ public class ExamActivity extends OptionsActivity
         answer = (EditText) findViewById(R.id.editTextAnswer);
         next = (ImageView) findViewById(R.id.imageViewNextWord);
         back = (ImageView) findViewById(R.id.imageViewBack);
+        tableRowExam = (TableRow) findViewById(R.id.tableRowExam);
     }
 
     private void startExam()
@@ -204,5 +207,19 @@ public class ExamActivity extends OptionsActivity
         answer.setText(EMPTY_STRING);
 
         return userAnswer;
+    }
+
+    @Override
+    public void onKeyboardOpenedEvent()
+    {
+        super.onKeyboardOpenedEvent();
+        tableRowExam.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    public void onKeyboardClosedEvent()
+    {
+        super.onKeyboardClosedEvent();
+        tableRowExam.setVisibility(View.VISIBLE);
     }
 }

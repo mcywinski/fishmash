@@ -64,8 +64,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/editTextAnswer"
-        android:layout_below="@+id/tableLayoutHeader"
-        android:id="@+id/relativeLayoutCenter">
+        android:id="@+id/relativeLayoutCenter"
+        android:layout_alignTop="@+id/tableLayoutHeader">
 
         <TextView
             android:layout_width="wrap_content"

@@ -14,7 +14,7 @@ public class KeyboardLayout extends RelativeLayout
 {
     private KeyboardListener keyboardListener;
     private Activity activity;
-    private Display display = activity.getWindowManager().getDefaultDisplay();
+    private Display display;
     private final Rect rect = new Rect();
     private boolean wasKeyboardAlreadyOpenBefore = false;
 
@@ -47,6 +47,7 @@ public class KeyboardLayout extends RelativeLayout
     private void prepareActivity(Context context)
     {
         activity = (Activity) context;
+        display = activity.getWindowManager().getDefaultDisplay();
     }
 
     /**
