@@ -40,6 +40,6 @@
             android:scaleType="centerInside"
 
             tools:ignore="ContentDescription"/>
-        <!--I am adding both image resource and content description, but it depends if exam is finished-->
+        <!--I am adding both image resource and content description, but it depends if layout_exam is finished-->
 
 </TableRow>

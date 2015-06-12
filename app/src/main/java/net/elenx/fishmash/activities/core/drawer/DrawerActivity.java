@@ -27,7 +27,7 @@ public abstract class DrawerActivity extends AppCompatActivity implements Naviga
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.drawer);
+        setContentView(R.layout.layout);
 
         layoutInflater = LayoutInflater.from(this);
         container = (FrameLayout) findViewById(R.id.container);

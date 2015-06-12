@@ -40,7 +40,7 @@ public class ExamActivity extends OptionsActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        attach(R.layout.exam);
+        attach(R.layout.layout_exam);
 
         examId = getIntent().getLongExtra(Fishmash.EXAM_ID, -1);
 

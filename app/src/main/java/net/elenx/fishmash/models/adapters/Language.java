@@ -33,7 +33,7 @@ public class Language
                 break;
             case 4:
                 name = "Francais";
-                locale =  Locale.FRENCH;
+                locale = Locale.FRENCH;
                 break;
             default:
                 name = "UNKNOWN LANGUAGE";

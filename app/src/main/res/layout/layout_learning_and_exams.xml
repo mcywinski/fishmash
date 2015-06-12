@@ -56,7 +56,7 @@
 
         <!-- ###-->
 
-        <!-- START exam header-->
+        <!-- START layout_exam header-->
         <LinearLayout
             android:id="@+id/linearLayoutExamHeader"
             android:layout_below="@+id/learning_and_exams_separator"
@@ -79,11 +79,11 @@
 
         </LinearLayout>
 
-        <!-- END exam header-->
+        <!-- END layout_exam header-->
 
         <!--###-->
 
-        <!-- START exam section-->
+        <!-- START layout_exam section-->
         <TableLayout
             android:id="@+id/tableLayoutExamSection"
             android:layout_below="@+id/linearLayoutExamHeader"
@@ -91,7 +91,7 @@
             android:layout_height="wrap_content"
             android:baselineAligned="true">
         </TableLayout>
-        <!-- END exam section-->
+        <!-- END layout_exam section-->
 
     </RelativeLayout>
 

@@ -34,7 +34,7 @@ public class AuthenticateActivity extends OptionsActivity
     protected void onPostCreate(Bundle savedInstanceState)
     {
         super.onPostCreate(savedInstanceState);
-        attach(R.layout.authenticate);
+        attach(R.layout.layout_authenticate);
 
         ImageView mainTopBar = (ImageView) findViewById(R.id.main_top_bar);
         mainTopBar.setVisibility(View.GONE);

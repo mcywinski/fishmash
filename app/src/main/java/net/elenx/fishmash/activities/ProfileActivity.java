@@ -21,7 +21,7 @@ public class ProfileActivity extends OptionsActivity
     protected void onPostCreate(final Bundle savedInstanceState)
     {
         super.onPostCreate(savedInstanceState);
-        attach(R.layout.profile);
+        attach(R.layout.layout_profile);
 
         loginData = (TextView) findViewById(R.id.textViewLoginData);
         emailData = (TextView) findViewById(R.id.textViewEmailData);

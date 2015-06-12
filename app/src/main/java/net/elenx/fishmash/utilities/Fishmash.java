@@ -2,8 +2,7 @@ package net.elenx.fishmash.utilities;
 
 // todo change password
 // todo language resolving with api
-// todo exam counter
-// todo use KeyboardListener to affect ExamActivity
+// todo layout_exam counter
 public abstract class Fishmash
 {
     // start layer 0
@@ -32,7 +31,7 @@ public abstract class Fishmash
     // end layer 2
 
     // start layer 3
-    public static final String AUTHENTICATE = USERS + "authenticate";
+    public static final String AUTHENTICATE = USERS + "layout_authenticate";
     public static final String LISTS_TOKEN = LISTS + TOKEN;
     public static final String LISTS_LISTID = LISTS + "{" + LIST_ID + "}";
     public static final String EXAMS_TOKEN = EXAMS + TOKEN;

@@ -30,7 +30,7 @@ public class LearningAndExamsActivity extends OptionsActivity
     protected void onPostCreate(Bundle savedInstanceState)
     {
         super.onPostCreate(savedInstanceState);
-        attach(R.layout.learning_and_exams);
+        attach(R.layout.layout_learning_and_exams);
 
         updateWordLists();
     }

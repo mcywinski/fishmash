@@ -30,7 +30,7 @@ public class SummaryActivity extends OptionsActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        attach(R.layout.summary);
+        attach(R.layout.layout_summary);
 
         examId = getIntent().getLongExtra(Fishmash.EXAM_ID, -1);
 
