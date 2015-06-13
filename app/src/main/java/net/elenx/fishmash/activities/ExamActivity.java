@@ -40,23 +40,31 @@ public class ExamActivity extends OptionsActivity
         super.onCreate(savedInstanceState);
         attach(R.layout.layout_exam);
 
+        validateExamId();
+        redirectToSummaryIfFinished();
+        prepareQuestionListener();
+        prepareViews();
+        startExam();
+    }
+
+    private void validateExamId()
+    {
         examId = getIntent().getLongExtra(Fishmash.EXAM_ID, -1);
 
         if(examId <= 0)
         {
             learningAndExams();
         }
+    }
 
+    private void redirectToSummaryIfFinished()
+    {
         exam = new ExamDAO(this).select(examId);
 
         if(exam.isFinished())
         {
             switchIntentTo(SummaryActivity.class, Fishmash.EXAM_ID, examId);
         }
-
-        prepareQuestionListener();
-        prepareViews();
-        startExam();
     }
 
     private void prepareQuestionListener()
@@ -141,7 +149,7 @@ public class ExamActivity extends OptionsActivity
                     }
                     catch(Exception e)
                     {
-                        Log.e("", "", e);
+                        Log.e(EMPTY_STRING, EMPTY_STRING, e);
                     }
                 }
             }
@@ -169,7 +177,7 @@ public class ExamActivity extends OptionsActivity
         }
         catch(Exception e)
         {
-            Log.e("", "", e);
+            Log.e(EMPTY_STRING, EMPTY_STRING, e);
             learningAndExams();
 
             return;
