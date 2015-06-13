@@ -35,7 +35,7 @@ public class ExamActivity extends OptionsActivity
     private TableRow tableRowExam;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
+    public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         attach(R.layout.layout_exam);

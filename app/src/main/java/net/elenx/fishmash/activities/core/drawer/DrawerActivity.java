@@ -24,7 +24,7 @@ public abstract class DrawerActivity extends AppCompatActivity implements Naviga
     private FrameLayout container;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
+    public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout);

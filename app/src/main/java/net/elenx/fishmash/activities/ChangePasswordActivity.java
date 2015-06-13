@@ -20,7 +20,7 @@ public class ChangePasswordActivity extends OptionsActivity
     private ImageView commit;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
+    public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         attach(R.layout.layout_change_password);

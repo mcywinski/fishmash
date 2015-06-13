@@ -11,7 +11,7 @@ import net.elenx.fishmash.activities.core.keyboard.KeyboardListener;
 abstract class ActionsActivity extends ProgressDialogActivity implements KeyboardListener
 {
     @Override
-    protected void onCreate(Bundle savedInstanceState)
+    public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
 

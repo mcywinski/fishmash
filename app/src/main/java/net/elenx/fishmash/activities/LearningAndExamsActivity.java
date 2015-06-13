@@ -27,7 +27,7 @@ import java.util.List;
 public class LearningAndExamsActivity extends OptionsActivity
 {
     @Override
-    protected void onCreate(Bundle savedInstanceState)
+    public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         attach(R.layout.layout_learning_and_exams);

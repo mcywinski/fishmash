@@ -8,7 +8,7 @@ import net.elenx.fishmash.activities.core.OptionsActivity;
 public class MainActivity extends OptionsActivity
 {
     @Override
-    protected void onCreate(Bundle savedInstanceState)
+    public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
 

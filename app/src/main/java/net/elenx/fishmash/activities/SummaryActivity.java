@@ -27,7 +27,7 @@ public class SummaryActivity extends OptionsActivity
     private long examId;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
+    public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         attach(R.layout.layout_summary);

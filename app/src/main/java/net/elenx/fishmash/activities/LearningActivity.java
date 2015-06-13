@@ -42,7 +42,7 @@ public class LearningActivity extends SpeakingActivity
     private boolean isMainLanguageActive;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
+    public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         attach(R.layout.layout_learning);

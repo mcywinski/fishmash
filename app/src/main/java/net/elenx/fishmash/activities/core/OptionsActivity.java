@@ -3,7 +3,6 @@ package net.elenx.fishmash.activities.core;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.View;
 
@@ -22,11 +21,13 @@ public abstract class OptionsActivity extends ActionsActivity
     protected final OptionsActivity me = this;
 
     @Override
-    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState)
+    public void onCreate(Bundle savedInstanceState)
     {
-        super.onCreate(savedInstanceState, persistentState);
+        super.onCreate(savedInstanceState);
 
-        if(!isAuthenticated())
+        boolean shouldStayLoggedIn = getClass() == AuthenticateActivity.class || isAuthenticated();
+
+        if(! shouldStayLoggedIn)
         {
             logout();
         }
@@ -85,7 +86,7 @@ public abstract class OptionsActivity extends ActionsActivity
     {
         AuthenticateDAO authenticateDAO = new AuthenticateDAO(this);
 
-        return authenticateDAO.count() > 0;
+        return (authenticateDAO.count() > 0);
     }
 
     protected void logout()

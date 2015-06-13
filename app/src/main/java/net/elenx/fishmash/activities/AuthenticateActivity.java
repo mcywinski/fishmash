@@ -1,7 +1,6 @@
 package net.elenx.fishmash.activities;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -20,9 +19,9 @@ public class AuthenticateActivity extends OptionsActivity
     private EditText editTextPassword;
 
     @Override
-    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState)
+    public void onCreate(Bundle savedInstanceState)
     {
-        // do not call super, because super redirects here, when not logged in
+        super.onCreate(savedInstanceState);
 
         if(isAuthenticated())
         {
