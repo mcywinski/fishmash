@@ -8,10 +8,13 @@ import android.widget.Toast;
 
 import net.elenx.fishmash.R;
 import net.elenx.fishmash.activities.core.OptionsActivity;
+import net.elenx.fishmash.models.adapters.PasswordsHolder;
+import net.elenx.fishmash.updaters.PasswordUpdater;
+import net.elenx.fishmash.updaters.listeners.PasswordListener;
 
 public class ChangePasswordActivity extends OptionsActivity
 {
-    private EditText oldPassowrd;
+    private EditText oldPassword;
     private EditText newPassword;
     private EditText repeatNewPassword;
     private ImageView commit;
@@ -27,6 +30,7 @@ public class ChangePasswordActivity extends OptionsActivity
     private void prepareViews()
     {
         bindViews();
+
         commit.setOnClickListener
         (
             new View.OnClickListener()
@@ -45,7 +49,9 @@ public class ChangePasswordActivity extends OptionsActivity
                     }
 
 
-                    String oldPasswordInput = oldPassowrd.getText().toString();
+                    String oldPasswordInput = oldPassword.getText().toString();
+
+                    changePassword(new PasswordsHolder(oldPasswordInput, newPasswordInput, repeatNewPasswordInput));
                 }
             }
         );
@@ -53,9 +59,57 @@ public class ChangePasswordActivity extends OptionsActivity
 
     private void bindViews()
     {
-        oldPassowrd = (EditText) findViewById(R.id.editTextOldPassword);
+        oldPassword = (EditText) findViewById(R.id.editTextOldPassword);
         newPassword = (EditText) findViewById(R.id.editTextNewPassword);
         repeatNewPassword = (EditText) findViewById(R.id.editTextRepeatNewPassword);
         commit = (ImageView) findViewById(R.id.imageViewCommit);
+    }
+
+    private void changePassword(PasswordsHolder passwordsHolder)
+    {
+        PasswordUpdater passwordUpdater = new PasswordUpdater(this);
+        passwordUpdater.setPasswordsHolder(passwordsHolder);
+        passwordUpdater.setPasswordListener
+        (
+            new PasswordListener()
+            {
+                @Override
+                public void passwordChanged()
+                {
+                    clear(oldPassword);
+                    clear(newPassword);
+                    clear(repeatNewPassword);
+                    Toast.makeText(me, R.string.passwordHasBennChanged, Toast.LENGTH_LONG).show();
+                }
+
+                @Override
+                public void internalError()
+                {
+                    Toast.makeText(me, R.string.internalError, Toast.LENGTH_LONG).show();
+                }
+
+                @Override
+                public void passwordsAreDifferent()
+                {
+                    clear(newPassword);
+                    clear(repeatNewPassword);
+                    Toast.makeText(me, R.string.passwordsAreDifferent, Toast.LENGTH_LONG).show();
+                }
+
+                @Override
+                public void oldPasswordIsWrong()
+                {
+                    clear(oldPassword);
+                    Toast.makeText(me, R.string.oldPasswordIsIncorrect, Toast.LENGTH_LONG).show();
+                }
+            }
+        );
+
+        passwordUpdater.execute();
+    }
+
+    private void clear(EditText editText)
+    {
+        editText.setText(EMPTY_STRING);
     }
 }

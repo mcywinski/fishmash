@@ -18,6 +18,7 @@ import net.elenx.fishmash.utilities.Fishmash;
 
 public abstract class OptionsActivity extends ActionsActivity
 {
+    protected final static String EMPTY_STRING = "";
     protected final OptionsActivity me = this;
 
     @Override

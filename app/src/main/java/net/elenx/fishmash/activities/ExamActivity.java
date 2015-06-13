@@ -21,8 +21,6 @@ import net.elenx.fishmash.utilities.Fishmash;
 
 public class ExamActivity extends OptionsActivity
 {
-    private final static String EMPTY_STRING = "";
-
     private Exam exam;
     private long examId;
     private ExamQuestionListener examQuestionListener;
