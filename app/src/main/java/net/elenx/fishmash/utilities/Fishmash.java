@@ -1,12 +1,11 @@
 package net.elenx.fishmash.utilities;
 
 // todo language resolving with api
-// todo layout_exam counter
 public abstract class Fishmash
 {
     // start layer 0
     public static final String DATABASE_NAME = "fishmash";
-    public static final int TIMEOUT_IN_SECONDS = 50;
+    public static final int API_TIMEOUT_IN_SECONDS = 50;
     public static final String TO = "to ";
     public static final String EXAM_ID = "exam_id";
     public static final String USER_ID = "user_id";

@@ -3,7 +3,7 @@ package net.elenx.fishmash.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-// all fields and constructor is used by spring-android
+// all fields and constructor are used by spring-android
 @SuppressWarnings("unused")
 @JsonIgnoreProperties({"answer", "finished", "passed"})
 public class ExamQuestion extends FishmashModel
