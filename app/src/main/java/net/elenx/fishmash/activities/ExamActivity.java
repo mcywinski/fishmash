@@ -1,6 +1,7 @@
 package net.elenx.fishmash.activities;
 
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import net.elenx.fishmash.R;
 import net.elenx.fishmash.activities.core.OptionsActivity;
@@ -45,6 +47,7 @@ public class ExamActivity extends OptionsActivity
         prepareQuestionListener();
         prepareViews();
         startExam();
+        prepareTimer();
     }
 
     private void validateExamId()
@@ -224,5 +227,25 @@ public class ExamActivity extends OptionsActivity
     {
         super.onKeyboardClosedEvent();
         tableRowExam.setVisibility(View.VISIBLE);
+    }
+
+    private void prepareTimer()
+    {
+        new CountDownTimer(exam.getTimeLimit() * 1000, 60 * 1000)
+        {
+            @Override
+            public void onTick(long millisUntilFinished)
+            {
+                long secondsUntilFinished = (long) Math.floor(millisUntilFinished / 1000);
+
+                Toast.makeText(me , String.format("%d seconds", secondsUntilFinished), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFinish()
+            {
+                switchIntentTo(SummaryActivity.class, Fishmash.EXAM_ID, examId);
+            }
+        }.start();
     }
 }
