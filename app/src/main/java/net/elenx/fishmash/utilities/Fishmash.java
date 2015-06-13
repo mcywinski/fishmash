@@ -1,6 +1,5 @@
 package net.elenx.fishmash.utilities;
 
-// todo change password
 // todo language resolving with api
 // todo layout_exam counter
 public abstract class Fishmash

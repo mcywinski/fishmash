@@ -7,13 +7,13 @@ import com.google.gson.annotations.SerializedName;
 public class PasswordsHolder
 {
     @SerializedName("password_old")
-    private String oldPassword;
+    private final String oldPassword;
 
     @SerializedName("password")
-    private String newPassword;
+    private final String newPassword;
 
     @SerializedName("password_confirmation")
-    private String passwordConfirmation;
+    private final String passwordConfirmation;
 
     public PasswordsHolder(String oldPassword, String newPassword, String passwordConfirmation)
     {

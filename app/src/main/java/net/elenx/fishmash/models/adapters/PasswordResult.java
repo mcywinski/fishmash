@@ -2,6 +2,9 @@ package net.elenx.fishmash.models.adapters;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+// it's used by spring-android
+// and cannot be local, because we will serialize it to json
+@SuppressWarnings({"unused", "FieldCanBeLocal"})
 public class PasswordResult
 {
     private boolean success;
@@ -11,12 +14,7 @@ public class PasswordResult
 
     PasswordResult()
     {
-
-    }
-
-    public boolean isSuccess()
-    {
-        return success;
+        // required by spring-android
     }
 
     public void setSuccess(boolean success)
