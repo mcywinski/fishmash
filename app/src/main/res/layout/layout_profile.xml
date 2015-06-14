@@ -1,5 +1,6 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -83,15 +84,28 @@
         android:layout_below="@+id/textViewCreatedAtLabel"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"/>
+    <!--END DATA-->
 
-    <ImageView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/imageViewChangePassword"
-        android:src="@drawable/next"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:contentDescription="@string/changePassword"/>
-    <!--END DATA-->
+        android:layout_alignParentStart="true">
+        
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            tools:ignore="UselessLeaf"/>
+            <!-- this view is only helping imageViewChangePassword to stay on the right-->
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageViewChangePassword"
+            android:src="@drawable/next"
+            android:contentDescription="@string/changePassword"/>
+    </LinearLayout>
 </RelativeLayout>
