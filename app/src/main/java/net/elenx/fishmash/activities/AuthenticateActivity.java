@@ -40,6 +40,12 @@ public class AuthenticateActivity extends OptionsActivity
         }
     }
 
+    @Override
+    public void onBackPressed()
+    {
+        finish();
+    }
+
     private void bindViews()
     {
         editTextLogin = (EditText) findViewById(R.id.editTextLogin);
