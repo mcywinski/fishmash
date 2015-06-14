@@ -1,7 +1,6 @@
 package net.elenx.fishmash.activities;
 
 import android.graphics.Color;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -40,12 +39,6 @@ public class LearningActivity extends SpeakingActivity
 
     private Word word;
     private boolean isMainLanguageActive;
-
-    @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-    }
 
     @Override
     public void onInit(int resultCode)
@@ -105,7 +98,7 @@ public class LearningActivity extends SpeakingActivity
     {
         List<Word> words = new WordDAO(this).selectAll();
 
-        Log.e("ta lista slowek ma ich", String.valueOf(words.size()));
+        Log.e("ta lista slowek ma ich ", String.valueOf(words.size()));
 
         if(words.size() < 1)
         {
