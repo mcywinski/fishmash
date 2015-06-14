@@ -16,7 +16,7 @@ calculateExamPassed = (answers) ->
 
     successFactor = questionsPassed / len
 
-    return successFactor >= minimumSatisfactoryResult
+  return successFactor >= minimumSatisfactoryResult
 
 sum = (a, b) ->
   return a + b
