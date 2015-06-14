@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Machine>HURO-PK</Machine>
+    <WindowsUser>Przemysław</WindowsUser>
+    <TargetPlatformIdentifier>WindowsPhoneApp</TargetPlatformIdentifier>
+    <SolutionConfiguration>Debug|AnyCPU</SolutionConfiguration>
+    <PackageArchitecture>neutral</PackageArchitecture>
+    <PackageIdentityName>3eb603dc-6ce9-4929-b737-c48c978534b0</PackageIdentityName>
+    <IntermediateOutputPath>C:\Users\Przemysław\Documents\fishmash\FishMash-WP8\FishMashNew\obj\Debug\</IntermediateOutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <AppXManifest Include="C:\Users\Przemysław\Documents\fishmash\FishMash-WP8\FishMashNew\bin\Debug\AppxManifest.xml">
+      <PackagePath>AppxManifest.xml</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppXManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxPackagedFile Include="C:\Users\Przemysław\Documents\fishmash\FishMash-WP8\FishMashNew\bin\Debug\FishMashNew.exe">
+      <PackagePath>FishMashNew.exe</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Przemysław\Documents\fishmash\FishMash-WP8\FishMashNew\bin\Debug\FishMashNew.exe.config">
+      <PackagePath>FishMashNew.exe.config</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Przemysław\Documents\fishmash\FishMash-WP8\packages\Newtonsoft.Json.6.0.8\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll">
+      <PackagePath>Newtonsoft.Json.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Przemysław\Documents\fishmash\FishMash-WP8\packages\Microsoft.Net.Http.2.2.22\lib\wpa81\System.Net.Http.Extensions.dll">
+      <PackagePath>System.Net.Http.Extensions.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Przemysław\Documents\fishmash\FishMash-WP8\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\portable-wp8+netcore45+net45+wp81+wpa81\System.Net.Http.Formatting.dll">
+      <PackagePath>System.Net.Http.Formatting.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Przemysław\Documents\fishmash\FishMash-WP8\packages\Microsoft.Net.Http.2.2.22\lib\wpa81\System.Net.Http.Primitives.dll">
+      <PackagePath>System.Net.Http.Primitives.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Przemysław\Documents\fishmash\FishMash-WP8\FishMashNew\Assets\BadgeLogo.scale-240.png">
+      <PackagePath>Assets\BadgeLogo.scale-240.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Przemysław\Documents\fishmash\FishMash-WP8\FishMashNew\Assets\layout\login screen.png">
+      <PackagePath>Assets\layout\login screen.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Przemysław\Documents\fishmash\FishMash-WP8\FishMashNew\Assets\layout\login_button.png">
+      <PackagePath>Assets\layout\login_button.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Przemysław\Documents\fishmash\FishMash-WP8\FishMashNew\Assets\layout\login_logo.scale-100.png">
+      <PackagePath>Assets\layout\login_logo.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Przemysław\Documents\fishmash\FishMash-WP8\FishMashNew\Assets\layout\login_logo.scale-140.png">
+      <PackagePath>Assets\layout\login_logo.scale-140.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Przemysław\Documents\fishmash\FishMash-WP8\FishMashNew\Assets\layout\login_logo.scale-240.png">
+      <PackagePath>Assets\layout\login_logo.scale-240.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Przemysław\Documents\fishmash\FishMash-WP8\FishMashNew\Assets\layout\main screen.png">
+      <PackagePath>Assets\layout\main screen.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Przemysław\Documents\fishmash\FishMash-WP8\FishMashNew\Assets\layout\main_exams_button.png">
+      <PackagePath>Assets\layout\main_exams_button.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Przemysław\Documents\fishmash\FishMash-WP8\FishMashNew\Assets\layout\main_exams_header.png">
+      <PackagePath>Assets\layout\main_exams_header.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Przemysław\Documents\fishmash\FishMash-WP8\FishMashNew\Assets\layout\main_learning_header.png">
+      <PackagePath>Assets\layout\main_learning_header.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Przemysław\Documents\fishmash\FishMash-WP8\FishMashNew\Assets\layout\main_learn_button.png">
+      <PackagePath>Assets\layout\main_learn_button.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Przemysław\Documents\fishmash\FishMash-WP8\FishMashNew\Assets\layout\main_top_bar.png">
+      <PackagePath>Assets\layout\main_top_bar.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Przemysław\Documents\fishmash\FishMash-WP8\FishMashNew\Assets\layout\wall screen.png">
+      <PackagePath>Assets\layout\wall screen.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Przemysław\Documents\fishmash\FishMash-WP8\FishMashNew\Assets\layout\wall_stats_header.png">
+      <PackagePath>Assets\layout\wall_stats_header.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Przemysław\Documents\fishmash\FishMash-WP8\FishMashNew\Assets\layout\wall_wall_header.png">
+      <PackagePath>Assets\layout\wall_wall_header.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Przemysław\Documents\fishmash\FishMash-WP8\FishMashNew\Assets\Logo.scale-100.png">
+      <PackagePath>Assets\Logo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Przemysław\Documents\fishmash\FishMash-WP8\FishMashNew\Assets\Logo.scale-240.png">
+      <PackagePath>Assets\Logo.scale-240.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Przemysław\Documents\fishmash\FishMash-WP8\FishMashNew\Assets\SmallLogo.scale-240.png">
+      <PackagePath>Assets\SmallLogo.scale-240.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Przemysław\Documents\fishmash\FishMash-WP8\FishMashNew\Assets\SplashScreen.scale-240.png">
+      <PackagePath>Assets\SplashScreen.scale-240.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Przemysław\Documents\fishmash\FishMash-WP8\FishMashNew\Assets\Square71x71Logo.scale-100.png">
+      <PackagePath>Assets\Square71x71Logo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Przemysław\Documents\fishmash\FishMash-WP8\FishMashNew\Assets\Square71x71Logo.scale-240.png">
+      <PackagePath>Assets\Square71x71Logo.scale-240.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Przemysław\Documents\fishmash\FishMash-WP8\FishMashNew\Assets\StoreLogo.scale-240.png">
+      <PackagePath>Assets\StoreLogo.scale-240.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Przemysław\Documents\fishmash\FishMash-WP8\FishMashNew\Assets\WideLogo.scale-100.png">
+      <PackagePath>Assets\WideLogo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Przemysław\Documents\fishmash\FishMash-WP8\FishMashNew\Assets\WideLogo.scale-240.png">
+      <PackagePath>Assets\WideLogo.scale-240.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Przemysław\Documents\fishmash\FishMash-WP8\FishMashNew\bin\Debug\App.xbf">
+      <PackagePath>App.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Przemysław\Documents\fishmash\FishMash-WP8\FishMashNew\bin\Debug\MainPage.xbf">
+      <PackagePath>MainPage.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Przemysław\Documents\fishmash\FishMash-WP8\FishMashNew\bin\Debug\UserControls\ExamDetailsUserControl.xbf">
+      <PackagePath>UserControls\ExamDetailsUserControl.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Przemysław\Documents\fishmash\FishMash-WP8\FishMashNew\bin\Debug\UserControls\ListDetailsUserControl.xbf">
+      <PackagePath>UserControls\ListDetailsUserControl.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Przemysław\Documents\fishmash\FishMash-WP8\FishMashNew\bin\Debug\UserControls\ListViewUserControl.xbf">
+      <PackagePath>UserControls\ListViewUserControl.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Przemysław\Documents\fishmash\FishMash-WP8\FishMashNew\bin\Debug\Views\BrowseWordsListView.xbf">
+      <PackagePath>Views\BrowseWordsListView.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Przemysław\Documents\fishmash\FishMash-WP8\FishMashNew\bin\Debug\Views\FicheView.xbf">
+      <PackagePath>Views\FicheView.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Przemysław\Documents\fishmash\FishMash-WP8\FishMashNew\bin\Debug\Views\LoginView.xbf">
+      <PackagePath>Views\LoginView.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Przemysław\Documents\fishmash\FishMash-WP8\FishMashNew\bin\Debug\Views\Login\IncorrectPasswordUserControl.xbf">
+      <PackagePath>Views\Login\IncorrectPasswordUserControl.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Przemysław\Documents\fishmash\FishMash-WP8\FishMashNew\bin\Debug\Views\Login\LoginUserControl.xbf">
+      <PackagePath>Views\Login\LoginUserControl.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Przemysław\Documents\fishmash\FishMash-WP8\FishMashNew\bin\Debug\FishMashNew.xr.xml">
+      <PackagePath>FishMashNew.xr.xml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Przemysław\Documents\fishmash\FishMash-WP8\FishMashNew\bin\Debug\resources.pri">
+      <PackagePath>resources.pri</PackagePath>
+    </AppxPackagedFile>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+</Project>
