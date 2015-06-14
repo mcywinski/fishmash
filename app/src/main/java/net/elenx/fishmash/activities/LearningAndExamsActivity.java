@@ -35,6 +35,12 @@ public class LearningAndExamsActivity extends OptionsActivity
         updateWordLists();
     }
 
+    @Override
+    public void onBackPressed()
+    {
+        finish();
+    }
+
     private void updateWordLists()
     {
         WordListUpdater wordListUpdater = new WordListUpdater(this);

@@ -3,7 +3,6 @@ package net.elenx.fishmash.activities.core;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import net.elenx.fishmash.R;
@@ -31,6 +30,12 @@ public abstract class OptionsActivity extends ActionsActivity
         {
             logout();
         }
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        learningAndExams();
     }
 
     @Override
@@ -96,17 +101,5 @@ public abstract class OptionsActivity extends ActionsActivity
         new AuthenticateDAO(this).truncate();
 
         switchIntentTo(AuthenticateActivity.class);
-    }
-
-    @Override
-    public void onKeyboardOpenedEvent()
-    {
-        Log.e("keyboard", "opened");
-    }
-
-    @Override
-    public void onKeyboardClosedEvent()
-    {
-        Log.e("keyboard", "closed");
     }
 }

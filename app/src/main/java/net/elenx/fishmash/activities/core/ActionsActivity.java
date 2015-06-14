@@ -19,12 +19,6 @@ abstract class ActionsActivity extends ProgressDialogActivity implements Keyboar
         keyboardLayout.setKeyboardListener(this);
     }
 
-    @Override
-    public void onBackPressed()
-    {
-        finish();
-    }
-
     protected void switchIntentTo(Class<?> clazz)
     {
         switchIntentTo(clazz, null, -1);
@@ -32,6 +26,8 @@ abstract class ActionsActivity extends ProgressDialogActivity implements Keyboar
 
     protected void switchIntentTo(Class<?> clazz, String extraKey, long extraValue)
     {
+        finish();
+
         Class myClass = getClass();
 
         if(myClass == clazz)
@@ -53,6 +49,17 @@ abstract class ActionsActivity extends ProgressDialogActivity implements Keyboar
         }
 
         startActivity(intent);
-        finish();
+    }
+
+    @Override
+    public void onKeyboardOpenedEvent()
+    {
+        Log.e("keyboard", "opened");
+    }
+
+    @Override
+    public void onKeyboardClosedEvent()
+    {
+        Log.e("keyboard", "closed");
     }
 }

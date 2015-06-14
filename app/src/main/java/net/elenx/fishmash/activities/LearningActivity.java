@@ -48,15 +48,6 @@ public class LearningActivity extends SpeakingActivity
         attach(R.layout.layout_learning);
 
         concludeWordListId();
-
-        Log.e("lastWordList", String.valueOf(lastWordList));
-
-        // sanity check - no matter how did I get here - it needs to be > 0 to continue
-        if(lastWordList <= 0)
-        {
-            learningAndExams();
-        }
-
         updateWords();
     }
 
@@ -93,6 +84,14 @@ public class LearningActivity extends SpeakingActivity
         {
             // do not show me last one (unless explicitly asked)
             lastWordList = wordListId;
+        }
+
+        Log.e("lastWordList", String.valueOf(lastWordList));
+
+        // sanity check - no matter how did I get here - it needs to be > 0 to continue
+        if(lastWordList <= 0)
+        {
+            learningAndExams();
         }
     }
 
@@ -199,7 +198,7 @@ public class LearningActivity extends SpeakingActivity
 
         if(isMainLanguageActive)
         {
-            buffer = word.getPhrase();
+            buffer = word.getMeaning();
             say(buffer, mainLanguageLocale);
 
             phraseXorMeaning.setTextColor(Color.GREEN);
@@ -207,11 +206,11 @@ public class LearningActivity extends SpeakingActivity
             mainXorForeignLanguage.setText(mainLanguageName);
             mainXorForeignLanguage.setTextColor(Color.GREEN);
 
-            tapToFlip.setText(getString(R.string.tap_to_show_meaning));
+            tapToFlip.setText(getString(R.string.tap_to_show_phrase));
         }
         else
         {
-            buffer = word.getMeaning();
+            buffer = word.getPhrase();
             say(buffer, foreignLanguageLocale);
 
             phraseXorMeaning.setTextColor(Color.RED);
@@ -219,7 +218,7 @@ public class LearningActivity extends SpeakingActivity
             mainXorForeignLanguage.setText(foreignLanguageName);
             mainXorForeignLanguage.setTextColor(Color.RED);
 
-            tapToFlip.setText(getString(R.string.tap_to_show_phrase));
+            tapToFlip.setText(getString(R.string.tap_to_show_meaning));
         }
 
         phraseXorMeaning.setText(buffer);
