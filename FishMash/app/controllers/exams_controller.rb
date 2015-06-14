@@ -69,6 +69,26 @@ class ExamsController < ApplicationController
 			exam.student_classes.push studclass
 		end
 		exam.owner = get_logged_user
+
+		date_errors = ''
+
+		if exam.date_exam_start > exam.date_exam_finish
+			date_errors += 'Exam start date cannot be set after exam finish date<br />'
+		end
+
+		if exam.date_practice_start > exam.date_exam_finish
+			date_errors += 'Practice start date cannot be set after exam finish date<br />'
+		end
+
+		if exam.date_practice_finish > exam.date_exam_finish
+			date_errors += 'Practice finish date cannot be set after exam finish date<br />'
+		end
+
+		unless date_errors == ''
+			flash[:errors] = date_errors
+			redirect_to new_exam_path	and return
+		end
+
 		if exam.save
 			flash[:success] = 'Exam has been successfuly created'
 			redirect_to exams_path
