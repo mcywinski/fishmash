@@ -35,9 +35,8 @@ public class LearningActivity extends SpeakingActivity
     private String mainLanguageName;
     private String foreignLanguageName;
 
-    private Cycle<Word> cycle;
-
     private Word word;
+    private Cycle<Word> cycle;
     private boolean isMainLanguageActive;
 
     @Override

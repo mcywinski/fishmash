@@ -4,16 +4,16 @@
 
     <string name="authenticate_id">id</string>
     <string name="authenticate_token">token</string>
-    <string name="authenticate_userId">user_id</string>
-    <string name="authenticate_createdAt">created_at</string>
-    <string name="authenticate_updatedAt">updated_at</string>
+    <string name="authenticate_useId">user_id</string>
+    <string name="authenticate_created_at">created_at</string>
+    <string name="authenticate_updated_at">updated_at</string>
 
     <string-array name="authenticate_columns">
         <item>@string/authenticate_id</item>
         <item>@string/authenticate_token</item>
-        <item>@string/authenticate_userId</item>
-        <item>@string/authenticate_createdAt</item>
-        <item>@string/authenticate_updatedAt</item>
+        <item>@string/authenticate_useId</item>
+        <item>@string/authenticate_created_at</item>
+        <item>@string/authenticate_updated_at</item>
     </string-array>
 
     <string name="authenticate_create">

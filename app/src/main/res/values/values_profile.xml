@@ -4,7 +4,7 @@
 
     <string name="label_login">Login:</string>
     <string name="label_email">Email:</string>
-    <string name="label_createdAt">Studying since:</string>
-    <string name="label_updatedAt">Last change:</string>
-    <string name="changePassword">Change password</string>
+    <string name="label_created_at">Studying since:</string>
+    <string name="label_updated_at">Last change:</string>
+    <string name="change_password">Change password</string>
 </resources>

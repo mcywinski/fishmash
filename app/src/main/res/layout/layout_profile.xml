@@ -29,7 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/label_createdAt"
+        android:text="@string/label_created_at"
         android:id="@+id/textViewCreatedAtLabel"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
@@ -39,7 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/label_updatedAt"
+        android:text="@string/label_updated_at"
         android:id="@+id/textViewUpdatedAtLabel"
         android:layout_below="@+id/textViewUpdatedAtData"
         android:layout_alignParentLeft="true"
@@ -106,6 +106,6 @@
             android:layout_height="wrap_content"
             android:id="@+id/imageViewChangePassword"
             android:src="@drawable/next"
-            android:contentDescription="@string/changePassword"/>
+            android:contentDescription="@string/change_password"/>
     </LinearLayout>
 </RelativeLayout>

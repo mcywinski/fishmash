@@ -43,7 +43,7 @@ public class ChangePasswordActivity extends OptionsActivity
 
                     if(! newPasswordInput.equals(repeatNewPasswordInput))
                     {
-                        Toast.makeText(me, R.string.passwordsMismatch, Toast.LENGTH_LONG).show();
+                        Toast.makeText(me, R.string.passwords_mismatch, Toast.LENGTH_LONG).show();
 
                         return;
                     }
@@ -79,13 +79,13 @@ public class ChangePasswordActivity extends OptionsActivity
                     clear(oldPassword);
                     clear(newPassword);
                     clear(repeatNewPassword);
-                    Toast.makeText(me, R.string.passwordHasBennChanged, Toast.LENGTH_LONG).show();
+                    Toast.makeText(me, R.string.password_has_benn_changed, Toast.LENGTH_LONG).show();
                 }
 
                 @Override
                 public void internalError()
                 {
-                    Toast.makeText(me, R.string.internalError, Toast.LENGTH_LONG).show();
+                    Toast.makeText(me, R.string.internal_error, Toast.LENGTH_LONG).show();
                 }
 
                 @Override
@@ -93,14 +93,14 @@ public class ChangePasswordActivity extends OptionsActivity
                 {
                     clear(newPassword);
                     clear(repeatNewPassword);
-                    Toast.makeText(me, R.string.passwordsAreDifferent, Toast.LENGTH_LONG).show();
+                    Toast.makeText(me, R.string.passwords_are_different, Toast.LENGTH_LONG).show();
                 }
 
                 @Override
                 public void oldPasswordIsWrong()
                 {
                     clear(oldPassword);
-                    Toast.makeText(me, R.string.oldPasswordIsIncorrect, Toast.LENGTH_LONG).show();
+                    Toast.makeText(me, R.string.old_password_is_incorrect, Toast.LENGTH_LONG).show();
                 }
             }
         );

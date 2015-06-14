@@ -138,7 +138,7 @@ public class AuthenticateActivity extends OptionsActivity
                 @Override
                 public void run()
                 {
-                    Toast.makeText(me, R.string.bad_credentials, Toast.LENGTH_LONG).show();
+                    Toast.makeText(me, R.string.login_failed, Toast.LENGTH_LONG).show();
                 }
             }
         );
