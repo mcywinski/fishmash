@@ -1,6 +1,5 @@
 package net.elenx.fishmash.utilities;
 
-// todo language resolving with api
 public abstract class Fishmash
 {
     // start layer 0
@@ -22,7 +21,6 @@ public abstract class Fishmash
     // end layer 1
 
     // start layer 2
-    public static final String LANGUAGES = API + "languages" + TOKEN;
     private static final String LISTS = API + "lists/";
     private static final String USERS = API + "users/";
     private static final String EXAMS = API + "exams/";

@@ -13,6 +13,8 @@ public abstract class ProgressDialogActivity extends DrawerActivity
 
     public void showProgressDialog()
     {
+        dismissProgressDialog();
+
         progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
         progressDialog.show();
@@ -20,9 +22,10 @@ public abstract class ProgressDialogActivity extends DrawerActivity
 
     public void dismissProgressDialog()
     {
-        if(progressDialog != null && progressDialog.isShowing())
+        if(progressDialog != null)
         {
             progressDialog.dismiss();
+            progressDialog.cancel();
         }
     }
 
@@ -47,5 +50,26 @@ public abstract class ProgressDialogActivity extends DrawerActivity
     {
         dismissProgressDialog();
         super.onPause();
+    }
+
+    @Override
+    protected void onRestart()
+    {
+        dismissProgressDialog();
+        super.onRestart();
+    }
+
+    @Override
+    protected void onDestroy()
+    {
+        dismissProgressDialog();
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onStop()
+    {
+        dismissProgressDialog();
+        super.onStop();
     }
 }

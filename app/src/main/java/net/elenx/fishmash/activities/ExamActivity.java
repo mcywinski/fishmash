@@ -66,7 +66,7 @@ public class ExamActivity extends OptionsActivity
 
         if(exam.isFinished())
         {
-            switchIntentTo(SummaryActivity.class, Fishmash.EXAM_ID, examId);
+            switchToSummary();
         }
     }
 
@@ -93,9 +93,14 @@ public class ExamActivity extends OptionsActivity
             @Override
             public void examFinished()
             {
-                switchIntentTo(SummaryActivity.class, Fishmash.EXAM_ID, examId);
+                switchToSummary();
             }
         };
+    }
+
+    private void switchToSummary()
+    {
+        switchIntentTo(SummaryActivity.class, Fishmash.EXAM_ID, examId);
     }
 
     private void prepareViews()
