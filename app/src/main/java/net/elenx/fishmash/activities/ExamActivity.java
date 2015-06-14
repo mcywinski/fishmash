@@ -65,6 +65,7 @@ public class ExamActivity extends OptionsActivity
 
         if(exam.isFinished())
         {
+            Log.e("examFinished", "from redirection");
             switchToSummary();
         }
     }
@@ -92,6 +93,7 @@ public class ExamActivity extends OptionsActivity
             @Override
             public void examFinished()
             {
+                Log.e("examFinished", "from listener");
                 switchToSummary();
             }
         };

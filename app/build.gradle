@@ -41,19 +41,23 @@ android
 
     buildTypes
     {
-        android.applicationVariants.all
-        {
-            variant -> variant.outputs.each
-            {
-                output -> def file = output.outputFile
-                output.outputFile = new File(file.parent, file.name.replace("app-debug.apk", "Fishmobile_" + getDateTime() + ".apk"))
-            }
-        }
-
         Fishmobile
         {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        def name = "Fishmobile_" + getDateTime() + ".apk"
+
+        android.applicationVariants.all
+        {
+            variant -> variant.outputs.each
+            {
+                output ->
+                def file = output.outputFile
+                def newName = file.name.replace("app-debug.apk", name)
+                output.outputFile = new File(file.parent, newName)
+            }
         }
     }
 
