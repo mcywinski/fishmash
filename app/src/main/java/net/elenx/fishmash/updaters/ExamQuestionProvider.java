@@ -19,7 +19,6 @@ public class ExamQuestionProvider extends FishmashUpdater
     private String answer;
     private ExamQuestionListener examQuestionListener;
     private ExamQuestion examQuestion;
-    private boolean shouldSendAnswer = true;
 
     public ExamQuestionProvider(OptionsActivity optionsActivity, long examId) throws Exception
     {
@@ -58,7 +57,7 @@ public class ExamQuestionProvider extends FishmashUpdater
     @Override
     void download() throws Exception
     {
-        if(shouldSendAnswer)
+        if(answer != null)
         {
             sendAnswer();
         }
@@ -92,10 +91,5 @@ public class ExamQuestionProvider extends FishmashUpdater
     public void setExamQuestionListener(ExamQuestionListener examQuestionListener)
     {
         this.examQuestionListener = examQuestionListener;
-    }
-
-    public void setShouldSendAnswer(boolean shouldSendAnswer)
-    {
-        this.shouldSendAnswer = shouldSendAnswer;
     }
 }

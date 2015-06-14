@@ -26,7 +26,6 @@ public class ExamActivity extends OptionsActivity
     private Exam exam;
     private long examId;
     private ExamQuestionListener examQuestionListener;
-    private boolean shouldSendAnswer = false;
 
     private TextView examName;
     private TextView examDescription;
@@ -46,8 +45,8 @@ public class ExamActivity extends OptionsActivity
         redirectToSummaryIfFinished();
         prepareQuestionListener();
         prepareViews();
-        startExam();
         prepareTimer();
+        startExam();
     }
 
     private void validateExamId()
@@ -143,25 +142,26 @@ public class ExamActivity extends OptionsActivity
                 @Override
                 public void onClick(View view)
                 {
-                    try
-                    {
-                        ExamQuestionProvider examQuestionProvider = new ExamQuestionProvider(me, examId);
-                        examQuestionProvider.setExamQuestionListener(examQuestionListener);
-                        examQuestionProvider.setAnswer(fetchUserAnswer());
-
-                        // skip sending answer only one time - on the beginning
-                        examQuestionProvider.setShouldSendAnswer(shouldSendAnswer);
-                        shouldSendAnswer = true;
-
-                        examQuestionProvider.execute();
-                    }
-                    catch(Exception e)
-                    {
-                        Log.e(EMPTY_STRING, EMPTY_STRING, e);
-                    }
+                    provideQuestion(true);
                 }
             }
         );
+    }
+
+    private void provideQuestion(boolean shouldTakeAnswer)
+    {
+        try
+        {
+            ExamQuestionProvider examQuestionProvider = new ExamQuestionProvider(me, examId);
+            examQuestionProvider.setExamQuestionListener(examQuestionListener);
+            examQuestionProvider.setAnswer(shouldTakeAnswer ? takeUserAnswer() : null);
+
+            examQuestionProvider.execute();
+        }
+        catch(Exception e)
+        {
+            Log.e(EMPTY_STRING, EMPTY_STRING, e);
+        }
     }
 
     private void bindViews()
@@ -198,7 +198,7 @@ public class ExamActivity extends OptionsActivity
                 @Override
                 public void onSuccess()
                 {
-                    next.performClick();
+                    provideQuestion(false);
                 }
 
                 @Override
@@ -212,7 +212,7 @@ public class ExamActivity extends OptionsActivity
         examStarter.execute();
     }
 
-    private String fetchUserAnswer()
+    private String takeUserAnswer()
     {
         String userAnswer = answer.getText().toString();
         answer.setText(EMPTY_STRING);

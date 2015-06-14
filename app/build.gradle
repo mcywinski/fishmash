@@ -1,5 +1,15 @@
 apply plugin: 'com.android.application'
 
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+
+def getDateTime()
+{
+    DateFormat df = new SimpleDateFormat("YYYY-MM-dd_HH-mm");
+
+    return df.format(new Date());
+}
+
 android
 {
     compileSdkVersion 22
@@ -31,15 +41,19 @@ android
 
     buildTypes
     {
-        release
+        android.applicationVariants.all
+        {
+            variant -> variant.outputs.each
+            {
+                output -> def file = output.outputFile
+                output.outputFile = new File(file.parent, file.name.replace("app-debug.apk", "Fishmobile_" + getDateTime() + ".apk"))
+            }
+        }
+
+        Fishmobile
         {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-
-        debug
-        {
-            debuggable true
         }
     }
 

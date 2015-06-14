@@ -1,7 +1,5 @@
 package net.elenx.fishmash.updaters;
 
-import android.util.Log;
-
 import net.elenx.fishmash.activities.core.OptionsActivity;
 import net.elenx.fishmash.utilities.Fishmash;
 
@@ -22,8 +20,6 @@ public class ExamStarter extends FishmashUpdater
     @Override
     void download() throws Exception
     {
-        String response = REST_INTERCEPTOR.postForObject(Fishmash.EXAMS_EXAMID_START_TOKEN, null, String.class, parameters);
-
-        Log.e("response", response);
+        REST_INTERCEPTOR.postForObject(Fishmash.EXAMS_EXAMID_START_TOKEN, null, String.class, parameters);
     }
 }

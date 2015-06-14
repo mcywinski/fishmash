@@ -46,8 +46,14 @@ public class KeyboardLayout extends RelativeLayout
 
     private void prepareActivity(Context context)
     {
-        activity = (Activity) context;
-        display = activity.getWindowManager().getDefaultDisplay();
+        try
+        {
+            activity = (Activity) context;
+            display = activity.getWindowManager().getDefaultDisplay();
+        }
+        catch(ClassCastException ignored)
+        {
+        }
     }
 
     /**
@@ -66,7 +72,8 @@ public class KeyboardLayout extends RelativeLayout
     {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
-        if(keyboardListener == null)
+        // if display != null, then activity too
+        if(keyboardListener == null || display == null)
         {
             return;
         }
