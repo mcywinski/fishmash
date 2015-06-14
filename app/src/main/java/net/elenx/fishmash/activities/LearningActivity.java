@@ -45,7 +45,6 @@ public class LearningActivity extends SpeakingActivity
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        attach(R.layout.layout_learning);
     }
 
     @Override
@@ -53,6 +52,7 @@ public class LearningActivity extends SpeakingActivity
     {
         super.onInit(resultCode);
 
+        attach(R.layout.layout_learning);
         concludeWordListId();
         updateWords();
     }
