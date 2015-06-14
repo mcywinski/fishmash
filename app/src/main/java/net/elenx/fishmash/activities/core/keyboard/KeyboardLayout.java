@@ -65,6 +65,12 @@ public class KeyboardLayout extends RelativeLayout
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec)
     {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+
+        if(keyboardListener == null)
+        {
+            return;
+        }
+
         activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(rect);
 
         int statusBarHeight = rect.top;
@@ -72,11 +78,6 @@ public class KeyboardLayout extends RelativeLayout
         int layoutAndStatusBarHeight = statusBarHeight + layoutHeight;
 
         int keyboardHeight = calculateActivityHeight() - layoutAndStatusBarHeight;
-
-        if(keyboardListener == null)
-        {
-            return;
-        }
 
         // I am assuming, that all software keyboards have at least 128 pixels in height
         handleKeyboardState(keyboardHeight > 128);

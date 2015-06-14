@@ -46,6 +46,12 @@ public class LearningActivity extends SpeakingActivity
     {
         super.onCreate(savedInstanceState);
         attach(R.layout.layout_learning);
+    }
+
+    @Override
+    public void onInit(int resultCode)
+    {
+        super.onInit(resultCode);
 
         concludeWordListId();
         updateWords();
