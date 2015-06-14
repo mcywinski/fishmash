@@ -17,7 +17,7 @@ class UsersController < ApplicationController
       @errors = stringify_errors(@user)
       render 'register'
     else
-      flash[:success] = 'Account has been successfuly creOated.'
+      flash[:success] = 'Account has been successfuly created.'
       redirect_to root_path
     end
   end
@@ -57,7 +57,7 @@ class UsersController < ApplicationController
     user = get_logged_user
     result = user.change_password(set_password_params[:password_old], set_password_params[:password], set_password_params[:password_confirmation])
     if result == UserCommon::PASS_CHANGE_SUCCESS
-      flash[:success] = 'Password has been successfuly changed.'
+      flash[:success] = 'Password has been successfully changed.'
     elsif result == UserCommon::PASS_CHANGE_NOT_EQUAL
       flash[:errors] = 'Provided passwords were not equal.'
     elsif result == UserCommon::PASS_CHANGE_FAILURE
