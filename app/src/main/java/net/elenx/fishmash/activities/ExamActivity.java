@@ -65,7 +65,6 @@ public class ExamActivity extends OptionsActivity
 
         if(exam.isFinished())
         {
-            Log.e("examFinished", "from redirection");
             switchToSummary();
         }
     }
@@ -93,7 +92,6 @@ public class ExamActivity extends OptionsActivity
             @Override
             public void examFinished()
             {
-                Log.e("examFinished", "from listener");
                 switchToSummary();
             }
         };
@@ -238,7 +236,7 @@ public class ExamActivity extends OptionsActivity
 
     private void prepareTimer()
     {
-        new CountDownTimer(exam.getTimeLimit() * 1000, 60 * 1000)
+        new CountDownTimer(exam.getTimeLimit() * 60 * 1000, 60 * 1000)
         {
             @Override
             public void onTick(long millisUntilFinished)
@@ -251,7 +249,7 @@ public class ExamActivity extends OptionsActivity
             @Override
             public void onFinish()
             {
-                switchIntentTo(SummaryActivity.class, Fishmash.EXAM_ID, examId);
+                switchToSummary();
             }
         }.start();
     }

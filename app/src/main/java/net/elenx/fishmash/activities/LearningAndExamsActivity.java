@@ -171,24 +171,50 @@ public class LearningAndExamsActivity extends OptionsActivity
             tableLayoutExams.addView(tableRow);
             //
 
-            isFinished = exam.isFinished();
-
             examName.setText(exam.getName());
             examDescription.setText(Fishmash.TO + exam.getDateExamFinish().inShortFormat());
-            imageView.setImageResource(isFinished ? R.drawable.stats : R.drawable.main_exams_button);
-            imageView.setContentDescription(getString(isFinished ? R.string.stats : R.string.exam));
-            imageView.setOnClickListener
-            (
-                new View.OnClickListener()
-                {
-                    @Override
-                    public void onClick(View v)
-                    {
-                        NavigationDrawerFragment.setCurrentSelectedPosition(0);
-                        switchIntentTo(ExamActivity.class, Fishmash.EXAM_ID, exam.getId());
-                    }
-                }
-            );
+
+            prepareExamButton(imageView, exam.isFinished(), exam.getId());
         }
+    }
+
+    private void prepareExamButton(ImageView imageView, boolean isFinished, final long examId)
+    {
+        int drawableResourceId;
+        int stringResourceId;
+        View.OnClickListener onClickListener;
+
+        if(isFinished)
+        {
+            drawableResourceId = R.drawable.stats;
+            stringResourceId = R.string.stats;
+            onClickListener = new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+                    NavigationDrawerFragment.setCurrentSelectedPosition(0);
+                    switchIntentTo(SummaryActivity.class, Fishmash.EXAM_ID, examId);
+                }
+            };
+        }
+        else
+        {
+            drawableResourceId = R.drawable.main_exams_button;
+            stringResourceId = R.string.exam;
+            onClickListener = new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+                    NavigationDrawerFragment.setCurrentSelectedPosition(0);
+                    switchIntentTo(ExamActivity.class, Fishmash.EXAM_ID, examId);
+                }
+            };
+        }
+
+        imageView.setImageResource(drawableResourceId);
+        imageView.setContentDescription(getString(stringResourceId));
+        imageView.setOnClickListener(onClickListener);
     }
 }
