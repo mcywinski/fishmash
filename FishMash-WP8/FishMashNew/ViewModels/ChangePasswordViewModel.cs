@@ -1,4 +1,5 @@
 ﻿using FishMashNew.Common;
+using FishMashNew.Views;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -47,7 +48,7 @@ namespace FishMashNew.ViewModels
                     new RelayCommand(o =>
                     {
                         ErrorInfoUserControlVisibility = SetVisibility(false);
-                        
+                        this.navigationService.Navigate(typeof(ExamSummaryView));
                     });
             }
         }
