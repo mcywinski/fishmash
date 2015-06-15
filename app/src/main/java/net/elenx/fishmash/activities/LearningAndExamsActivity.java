@@ -9,6 +9,7 @@ import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import net.elenx.fishmash.R;
 import net.elenx.fishmash.activities.core.OptionsActivity;
@@ -17,12 +18,16 @@ import net.elenx.fishmash.daos.ExamDAO;
 import net.elenx.fishmash.daos.WordListDAO;
 import net.elenx.fishmash.models.Exam;
 import net.elenx.fishmash.models.WordList;
+import net.elenx.fishmash.models.adapters.FishmashCalendar;
 import net.elenx.fishmash.updaters.ExamUpdater;
 import net.elenx.fishmash.updaters.WordListUpdater;
 import net.elenx.fishmash.updaters.listeners.UpdaterListener;
 import net.elenx.fishmash.utilities.Fishmash;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 public class LearningAndExamsActivity extends OptionsActivity
 {
@@ -153,7 +158,6 @@ public class LearningAndExamsActivity extends OptionsActivity
         TableRow tableRow;
         TextView examName;
         TextView examDescription;
-        boolean isFinished;
 
         LayoutInflater layoutInflater = getLayoutInflater();
 
@@ -174,12 +178,17 @@ public class LearningAndExamsActivity extends OptionsActivity
             examName.setText(exam.getName());
             examDescription.setText(Fishmash.TO + exam.getDateExamFinish().inShortFormat());
 
-            prepareExamButton(imageView, exam.isFinished(), exam.getId());
+            prepareExamButton(imageView, exam.isFinished(), exam);
         }
     }
 
-    private void prepareExamButton(ImageView imageView, boolean isFinished, final long examId)
+    private void prepareExamButton(ImageView imageView, boolean isFinished, final Exam exam)
     {
+        SimpleDateFormat timeFormat = new SimpleDateFormat("yyyy-MM-dd");
+        timeFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
+        String time = timeFormat.format(new Date());
+        FishmashCalendar today = new FishmashCalendar(time);
+
         int drawableResourceId;
         int stringResourceId;
         View.OnClickListener onClickListener;
@@ -194,7 +203,7 @@ public class LearningAndExamsActivity extends OptionsActivity
                 public void onClick(View v)
                 {
                     NavigationDrawerFragment.setCurrentSelectedPosition(0);
-                    switchIntentTo(SummaryActivity.class, Fishmash.EXAM_ID, examId);
+                    switchIntentTo(SummaryActivity.class, Fishmash.EXAM_ID, exam.getId());
                 }
             };
         }
@@ -202,15 +211,31 @@ public class LearningAndExamsActivity extends OptionsActivity
         {
             drawableResourceId = R.drawable.main_exams_button;
             stringResourceId = R.string.exam;
-            onClickListener = new View.OnClickListener()
+
+
+            if(today.after(exam.getDateExamFinish()))
             {
-                @Override
-                public void onClick(View v)
+                onClickListener = new View.OnClickListener()
                 {
-                    NavigationDrawerFragment.setCurrentSelectedPosition(0);
-                    switchIntentTo(ExamActivity.class, Fishmash.EXAM_ID, examId);
-                }
-            };
+                    @Override
+                    public void onClick(View v)
+                    {
+                        Toast.makeText(me, "Time for this exam expired", Toast.LENGTH_LONG).show();
+                    }
+                };
+            }
+            else
+            {
+                onClickListener = new View.OnClickListener()
+                {
+                    @Override
+                    public void onClick(View v)
+                    {
+                        NavigationDrawerFragment.setCurrentSelectedPosition(0);
+                        switchIntentTo(ExamActivity.class, Fishmash.EXAM_ID, exam.getId());
+                    }
+                };
+            }
         }
 
         imageView.setImageResource(drawableResourceId);

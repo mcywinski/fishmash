@@ -45,8 +45,8 @@ public class ExamActivity extends OptionsActivity
         redirectToSummaryIfFinished();
         prepareQuestionListener();
         prepareViews();
-        prepareTimer();
         startExam();
+//        prepareTimer();
     }
 
     private void validateExamId()
