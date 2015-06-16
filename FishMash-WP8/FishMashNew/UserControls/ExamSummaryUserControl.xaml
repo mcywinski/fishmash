@@ -18,7 +18,7 @@
             <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <TextBlock Text="{Binding Answer}" 
+        <TextBlock Text="{Binding Meaning}" 
                    FontSize="20"
                    Foreground="Black"
                    x:Name="Name"
@@ -26,7 +26,7 @@
                    Grid.Row="0"/>
 
         <TextBlock Foreground="Red"
-                   Text="FAILED"
+                   Text="{Binding Passed}"
                    Grid.Row="0"
                    Grid.Column="1"
                    />

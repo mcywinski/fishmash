@@ -39,8 +39,28 @@ namespace FishMashApp.Models
         }
 
         public string meaning { get; set; }
+
+        public string Meaning
+        {
+            get { return meaning; }
+            set
+            {
+                meaning = value;
+                OnPropertyChanged();
+            }
+        }
         public bool exam_finished { get; set; }
         public string phrase { get; set; }
+
+        public string Phrase
+        {
+            get { return phrase; }
+            set
+            {
+                phrase = value;
+                OnPropertyChanged();
+            }
+        }
 
 
         #region PropertyChanged

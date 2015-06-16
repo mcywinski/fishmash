@@ -42,6 +42,7 @@ namespace FishMashNew.ViewModels
         public ExamSummaryViewModel(INavigationService iNavigation) 
         {
             this.navigationService = iNavigation;
+            Summary = new ObservableCollection<SummaryEntity>();
             ExamID = -1;
         }
 
@@ -56,18 +57,16 @@ namespace FishMashNew.ViewModels
             List<SummaryEntity> temp = await WebService.GetExamSummary(ExamID, Settings.Instance.Cache.GetToken());
             if(temp == null)
             {
-                // wstawić label z informacją dla użytkownika "Brak odpowiedzi"
+                Debug.WriteLine("Brak statystyk.");
             }
             else
             {
-            foreach (SummaryEntity t in temp)
-            {
-                OnUIThread(() =>
+                foreach (SummaryEntity t in temp)
                 {
-                    Summary.Add(t);
-                });
+                    Summary.Add(t);                    
+                    Debug.WriteLine(t.id.ToString() + "  " + t.meaning.ToString() + " " + t.passed.ToString() + " " + t.phrase.ToString() + " " + t.answer + " " + t.exam_finished.ToString() + " " + t.finished.ToString());
+                }
             }
-        }
     }
 }
 }
