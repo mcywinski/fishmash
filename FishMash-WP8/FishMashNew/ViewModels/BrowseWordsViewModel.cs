@@ -12,6 +12,7 @@ using FishMashNew.WebAPI;
 using FishMashApp.Models;
 using FishMashApp.Models.Exams;
 using FishMash.WebAPI;
+using System.Diagnostics;
 
 namespace FishMashNew.ViewModels
 {
@@ -19,6 +20,7 @@ namespace FishMashNew.ViewModels
     {
     #region Properties
         #region Binding
+        
         public ObservableCollection<ListOfLists> ListOfList
         {
             get;
@@ -46,16 +48,20 @@ namespace FishMashNew.ViewModels
         #endregion
 
     #endregion
-
+        private List<Language> LanguageList;
         public BrowseWordsViewModel(INavigationService navigationService)
         {
             this.navigationService = navigationService;
             ListOfList = new ObservableCollection<ListOfLists>();
             ListOfExams = new ObservableCollection<ExamEntity>();
             ProgressBarVisibility = SetVisibility(true);
+
+            LanguageList = new List<Language>();
+            GetLanguagesFromAPI();
+
             if (!string.IsNullOrWhiteSpace(Settings.Instance.Cache.GetToken()))
                 FillList(); //only for temp
-            
+
         }
 
         public async void FillList()
@@ -75,6 +81,12 @@ namespace FishMashNew.ViewModels
             });
             ProgressBarVisibility = SetVisibility(false);
             
+        }
+
+        private async void GetLanguagesFromAPI()
+        {
+            LanguageList = await WebAPI.WebService.GetLanguages(Settings.Instance.Cache.GetToken());
+            Settings.Instance.Cache.SetLanguages(LanguageList);
         }
 
         public void GoToLoginPage()

@@ -1,6 +1,8 @@
-﻿using FishMashNew.ViewModels;
+﻿using FishMashNew.Common;
+using FishMashNew.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -94,6 +96,16 @@ namespace FishMashNew.Models
             {
                 dateUpdatedAt = value;
                 OnPropertyChanged("DateUpdatedAt");
+            }
+        }
+
+        public string LanguagePairs
+        {
+            get
+            {
+                Language main = Settings.Instance.Cache.GetLanguages().Where(x => x.id == MainLanguageId).First();
+                Language foregin = Settings.Instance.Cache.GetLanguages().Where(x => x.id == ForeignLanguageId).First();
+                return main.name + " - " + foregin.name;                
             }
         }
     }

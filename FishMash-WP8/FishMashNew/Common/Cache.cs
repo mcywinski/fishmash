@@ -11,10 +11,12 @@ namespace FishMashNew.Common
     class Cache
     {
         ApplicationDataContainer localSettings;
+        private List<Language> LanguageList;
         public Cache()
         {
             localSettings = ApplicationData.Current.LocalSettings;
             initProperties();
+            LanguageList = new List<Language>();
         }
         public ApplicationDataContainer getLocalSettings()
         {
@@ -39,6 +41,7 @@ namespace FishMashNew.Common
             {
                 localSettings.Values["UserID"] = "";
             }
+
         }
 
         public void SetToken(TokenResponse inputTokenResponse)
@@ -69,6 +72,15 @@ namespace FishMashNew.Common
         public void SetUserID(string id)
         {
             localSettings.Values["UserID"] = id;
+        }
+        public List<Language> GetLanguages()
+        {
+            return LanguageList;
+        }
+
+        public void SetLanguages(List<Language> languagesList)
+        {
+            LanguageList = languagesList;
         }
     }
 }
