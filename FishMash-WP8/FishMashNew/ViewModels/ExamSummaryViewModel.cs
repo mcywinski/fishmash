@@ -5,6 +5,7 @@ using FishMashNew.WebAPI;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -53,7 +54,7 @@ namespace FishMashNew.ViewModels
         private async void GetSummary() 
         {
             List<SummaryEntity> temp = await WebService.GetExamSummary(ExamID, Settings.Instance.Cache.GetToken());
-
+            Debug.WriteLine(temp.ToString());
             foreach (SummaryEntity t in temp)
             {
                 OnUIThread(() =>

@@ -140,6 +140,8 @@ namespace FishMashNew.ViewModels.LoginAndRegistation
             {
                 token = await WebAPI.WebService.LoginToFishMash(User, Password);
                 Settings.Instance.Cache.SetToken(token);
+                Settings.Instance.Cache.SetUserID(token.user_id);
+                
                 GoToMainPage();
             }
             catch(UnauthorizedAccessException e) 

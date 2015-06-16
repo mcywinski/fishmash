@@ -35,6 +35,10 @@ namespace FishMashNew.Common
             {
                 localSettings.Values["Password"] = "";
             }
+            if (localSettings.Values["UserID"] == null)
+            {
+                localSettings.Values["UserID"] = "";
+            }
         }
 
         public void SetToken(TokenResponse inputTokenResponse)
@@ -50,6 +54,21 @@ namespace FishMashNew.Common
         public string GetToken()
         {
             return localSettings.Values["Token"].ToString();
+        }
+
+        public string GetUserID()
+        {
+            return localSettings.Values["UserID"].ToString();
+        }
+
+        public void SetUserID(int id)
+        {
+            localSettings.Values["UserID"] = id;
+        }
+
+        public void SetUserID(string id)
+        {
+            localSettings.Values["UserID"] = id;
         }
     }
 }
