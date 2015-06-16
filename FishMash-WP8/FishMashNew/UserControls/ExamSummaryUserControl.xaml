@@ -18,7 +18,7 @@
             <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <TextBlock Text="słowo wpisane" 
+        <TextBlock Text="{Binding Answer}" 
                    FontSize="20"
                    Foreground="Black"
                    x:Name="Name"
@@ -30,7 +30,7 @@
                    Grid.Row="0"
                    Grid.Column="1"
                    />
-        <TextBlock Text="Slowo poprawne"
+        <TextBlock Text="{Binding Passed}"
                    Grid.Row="1"
                    Grid.Column="1"
                    />

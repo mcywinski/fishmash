@@ -42,7 +42,7 @@
         <ScrollViewer VerticalScrollBarVisibility="Auto">
 
             <ItemsControl Name="Learn" 
-                      ItemsSource="{Binding ListOfList}"
+                      ItemsSource="{Binding Summary}"
                       HorizontalAlignment="Stretch"
                       VerticalAlignment="Stretch"
                       >

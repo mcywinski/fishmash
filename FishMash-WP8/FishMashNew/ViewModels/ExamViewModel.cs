@@ -1,6 +1,7 @@
 ﻿using FishMashApp.Models;
 using FishMashNew.Common;
 using FishMashNew.Models.StartExamModels;
+using FishMashNew.Views;
 using FishMashNew.WebAPI;
 using System;
 using System.Collections.Generic;
@@ -92,6 +93,8 @@ namespace FishMashNew.ViewModels
             else
             {
                 // nawiguj to strony, ze egzamin zakonczony
+                object t = this.examID.ToString();
+                this.navigationService.Navigate(typeof(ExamSummaryView), t);
             }
         }
         private async void GetQuestion()
@@ -119,7 +122,8 @@ namespace FishMashNew.ViewModels
                 currentQuestion = await WebService.GetQuestionToAnswer(examID, Settings.Instance.Cache.GetToken());
                 if(currentQuestion.exam_finished)
                 {
-                    // nawiguj do strony z wynikami egzaminu
+                    object t = this.examID.ToString();
+                    this.navigationService.Navigate(typeof(ExamSummaryView), t);
                 }
                 else
                 {
