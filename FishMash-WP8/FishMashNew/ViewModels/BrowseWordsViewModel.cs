@@ -13,6 +13,7 @@ using FishMashApp.Models;
 using FishMashApp.Models.Exams;
 using FishMash.WebAPI;
 using System.Diagnostics;
+using Windows.Graphics.Display;
 
 namespace FishMashNew.ViewModels
 {
@@ -64,7 +65,7 @@ namespace FishMashNew.ViewModels
                 GetLanguagesFromAPI();
                 FillList(); //only for temp
             }
-
+            DisplayInformation.AutoRotationPreferences = DisplayOrientations.Portrait;
         }
 
         public async void FillList()
