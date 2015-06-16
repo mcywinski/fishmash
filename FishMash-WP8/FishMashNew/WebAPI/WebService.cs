@@ -217,8 +217,8 @@ namespace FishMashNew.WebAPI
             UserInfo info = new UserInfo();
             try
             {
-                string url = "https://shrouded-fjord-4731.herokuapp.com/api/users" +
-                    id.ToString("0", CultureInfo.InvariantCulture);
+                string url = "https://shrouded-fjord-4731.herokuapp.com/api/users/" +
+                    id.ToString("0", CultureInfo.InvariantCulture) + string.Format("?api_token={0}", token);
                 var u = new Uri(url);
 
                 var client = new HttpClient();
