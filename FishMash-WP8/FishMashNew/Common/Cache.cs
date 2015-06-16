@@ -41,6 +41,10 @@ namespace FishMashNew.Common
             {
                 localSettings.Values["UserID"] = "";
             }
+            if (localSettings.Values["ExamName"] == null)
+            {
+                localSettings.Values["ExamName"] = "";
+            }
 
         }
 
@@ -81,6 +85,16 @@ namespace FishMashNew.Common
         public void SetLanguages(List<Language> languagesList)
         {
             LanguageList = languagesList;
+        }
+
+        public void SetExamName(string name)
+        {
+            localSettings.Values["ExamName"] = name;
+        }
+
+        public string GetExamName()
+        {
+            return localSettings.Values["ExamName"].ToString();
         }
     }
 }

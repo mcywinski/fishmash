@@ -20,7 +20,7 @@
                 <RowDefinition />
                 <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
-        <TextBlock Text="Exam name" 
+        <TextBlock Text="{Binding ExamName}" 
                    Foreground="Black"
                    FontSize="25"
                    Margin="10,10,0,0"

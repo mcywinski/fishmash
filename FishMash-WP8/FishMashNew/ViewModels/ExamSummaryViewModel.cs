@@ -21,6 +21,14 @@ namespace FishMashNew.ViewModels
             get;
             set;
         }
+
+        public string ExamName
+        {
+            get
+            {
+                return Settings.Instance.Cache.GetExamName();
+            }
+        }
         
         #region ICommand
         public ICommand BackButtonClick

@@ -18,6 +18,6 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Bottom"
             FontFamily="/Assets/Lobster.otf#Lobster 1.4"
-            Command="{Binding OkButtonOnIncorrectPasswordUserControl}">OK</Button>
+            Command="{Binding OkButtonOnIncorrectPasswordUserControl}">ok</Button>
     </Grid>
 </UserControl>
