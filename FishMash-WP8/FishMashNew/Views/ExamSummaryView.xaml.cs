@@ -39,6 +39,14 @@ namespace FishMashNew.Views
         /// This parameter is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            if (e.Parameter.ToString() != "")
+            {
+                viewModel.RegisterExamID(Convert.ToInt32(e.Parameter.ToString()));
+            }
+            else
+            {
+                Frame.Navigate(typeof(BrowseWordsView));
+            }
         }
     }
 }
