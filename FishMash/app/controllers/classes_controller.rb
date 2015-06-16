@@ -15,7 +15,7 @@ class ClassesController < ApplicationController
     stud_class = StudentClass.new(class_params)
     stud_class.owner = get_logged_user
     if stud_class.save
-      redirect_to classes_path
+      redirect_to edit_class_path(stud_class)
     else
       flash[:errors] = stringify_errors(stud_class)
       redirect_to new_class_path and return

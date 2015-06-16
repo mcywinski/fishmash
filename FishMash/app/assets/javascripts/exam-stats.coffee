@@ -16,7 +16,7 @@ calculateExamPassed = (answers) ->
 
     successFactor = questionsPassed / len
 
-    return successFactor >= minimumSatisfactoryResult
+  return successFactor >= minimumSatisfactoryResult
 
 sum = (a, b) ->
   return a + b
@@ -36,6 +36,8 @@ $ ->
 
     examParticipated = 0
     examNotParticipated = 0
+    examPassed = 0
+    examNotPassed = 0
     iterator = 0
 
     $.ajax
@@ -51,7 +53,6 @@ $ ->
             examParticipated++
           else
             examNotParticipated++
-            examNotPassed++
             noCalculation = true
 
           if !noCalculation
@@ -64,8 +65,12 @@ $ ->
             resultColor = 'green'
             result = 'Passed'
           else
-            resultColor = 'red'
-            result = 'Failed'
+            if !statRecord.exam.is_finished
+              resultColor = 'orange'
+              result = 'Did not participate'
+            else
+              resultColor = 'red'
+              result = 'Failed'
           $(studentResultTableId).append('<tr><td>' + iterator + '</td><td>' + statRecord.login + '</td><td style="color: ' + resultColor + ';">' + result + '</td></tr>')
 
         data = {
@@ -74,9 +79,13 @@ $ ->
         }
         new Chartist.Pie('#participants-chart', data);
 
+        passedLabelPassed = 'Passed students: ' + String(calculatePercentage(examPassed, examPassed + examNotPassed + examNotParticipated)) + '%'
+        passedLabelFailed = 'Failed students: ' + String(calculatePercentage(examNotPassed, examPassed + examNotPassed)) + '%'
+        passedLabelNotParticipated = 'Did not participate: ' + String(calculatePercentage(examNotParticipated, examPassed + examNotPassed + examNotParticipated)) + '%'
+
         dataPassed = {
-          labels: ['Passed students: ' + String(calculatePercentage(examPassed, examPassed + examNotPassed)) + '%', 'Failed students: ' + String(calculatePercentage(examNotPassed, examPassed + examNotPassed)) + '%'],
-          series: [examPassed, examNotPassed]
+          labels: [passedLabelPassed, passedLabelFailed, passedLabelNotParticipated],
+          series: [examPassed, examNotPassed, examNotParticipated]
         }
         new Chartist.Pie('#passed-chart', dataPassed);
 

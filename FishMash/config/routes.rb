@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     resources :users do
       collection do
         post 'authenticate'
+        post 'set_password'
       end
     end
   end
