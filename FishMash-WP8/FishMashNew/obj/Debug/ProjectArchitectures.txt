@@ -1,1 +1,1 @@
-C:\Users\Przemysław\Documents\fishmash\FishMash-WP8\FishMashNew\FishMashNew.csproj;neutral
+C:\Users\Przemysław\Desktop\FISHLAST\FishMash-WP8\FishMashNew\FishMashNew.csproj;neutral

@@ -1,9 +1,9 @@
 <XamlCompilerSaveState>
   <ReferenceAssemblyList>
     <LocalAssembly PathName="c:\users\krzysztof\documents\visual studio 2013\projects\fishmashnew\fishmashnew\obj\debug\intermediatexaml\fishmashnew.exe" HashGuid="50736482-1279-b974-329a-a86fa990dc8c" />
-    <ReferenceAssembly PathName="c:\users\przemysław\documents\fishmash\fishmash-wp8\packages\newtonsoft.json.6.0.8\lib\portable-net40+sl5+wp80+win8+wpa81\newtonsoft.json.dll" HashGuid="225745d8-3693-ad6f-ebd5-8845d81f8e0f" />
-    <ReferenceAssembly PathName="c:\users\przemysław\documents\fishmash\fishmash-wp8\packages\microsoft.net.http.2.2.22\lib\wpa81\system.net.http.extensions.dll" HashGuid="1d9d21be-6daa-468f-1b93-4e738d786e1b" />
-    <ReferenceAssembly PathName="c:\users\przemysław\documents\fishmash\fishmash-wp8\packages\microsoft.aspnet.webapi.client.5.2.3\lib\portable-wp8+netcore45+net45+wp81+wpa81\system.net.http.formatting.dll" HashGuid="2be584ba-1a95-71f0-a34d-ef121720ead4" />
-    <ReferenceAssembly PathName="c:\users\przemysław\documents\fishmash\fishmash-wp8\packages\microsoft.net.http.2.2.22\lib\wpa81\system.net.http.primitives.dll" HashGuid="7b71418d-e056-7613-c839-85fb8f6472a6" />
+    <ReferenceAssembly PathName="c:\users\przemysław\desktop\fishlast\fishmash-wp8\packages\newtonsoft.json.6.0.8\lib\portable-net40+sl5+wp80+win8+wpa81\newtonsoft.json.dll" HashGuid="225745d8-3693-ad6f-ebd5-8845d81f8e0f" />
+    <ReferenceAssembly PathName="c:\users\przemysław\desktop\fishlast\fishmash-wp8\fishmashnew\bin\debug\system.net.http.extensions.dll" HashGuid="1d9d21be-6daa-468f-1b93-4e738d786e1b" />
+    <ReferenceAssembly PathName="c:\users\przemysław\desktop\fishlast\fishmash-wp8\fishmashnew\bin\debug\system.net.http.formatting.dll" HashGuid="2be584ba-1a95-71f0-a34d-ef121720ead4" />
+    <ReferenceAssembly PathName="c:\users\przemysław\desktop\fishlast\fishmash-wp8\fishmashnew\bin\debug\system.net.http.primitives.dll" HashGuid="7b71418d-e056-7613-c839-85fb8f6472a6" />
   </ReferenceAssemblyList>
 </XamlCompilerSaveState>

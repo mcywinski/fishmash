@@ -50,15 +50,14 @@ namespace FishMashNew.ViewModels
                 return null ??
                     new RelayCommand(o =>
                     {
-                        
-                        //if Answer != String.Empty
-                        // AnswerQuestion(Answer);
-                        GetQuestion();
+                        GetNextQuestion();
                     });
             }
         }
         #endregion
         private int examID;
+
+        private int currentQuestionID { get; set; }
         public ExamViewModel(INavigationService iNavigation) 
         {
             examID = -1;
@@ -86,24 +85,51 @@ namespace FishMashNew.ViewModels
         private async void StartExam()
         {
             StartedRoot startedRoot = await WebService.StartExam(examID, Settings.Instance.Cache.GetToken());
-            Debug.WriteLine(startedRoot.message.ToString());
-            // if(startedRoot == ok) 
-            // GetQuestion();
+            if(startedRoot.message != "END")
+            {
+                GetQuestion();
+            }
+            else
+            {
+                // nawiguj to strony, ze egzamin zakonczony
+            }
         }
         private async void GetQuestion()
         {
-            //sprawdzic czy nie nadeszło już ostatnie pytanie i czy można zapytać o następne!
             currentQuestion = await WebService.GetQuestionToAnswer(examID, Settings.Instance.Cache.GetToken());
+            currentQuestionID = currentQuestion.id;
             Question = currentQuestion.meaning.ToString(); // w to pole ma trafić pytanie
         }
 
         private async void AnswerQuestion(string answer)
         {
-            //wysłać odpowiedz 
-            //sprawdzić czy została zapisana
-           
+            AnswerEntity answerResult = await WebService.AnswerQuestion(currentQuestionID, answer, examID, Settings.Instance.Cache.GetToken());
+            if(answerResult.saved == true)
+            {
+                Answer = string.Empty;
+            }
         }
 
+        private async Task GetNextQuestion()
+        {
+            AnswerEntity answerResult = await WebService.AnswerQuestion(currentQuestionID, answer, examID, Settings.Instance.Cache.GetToken());
+            if (answerResult.saved == true)
+            {
+                Answer = string.Empty;
+                currentQuestion = await WebService.GetQuestionToAnswer(examID, Settings.Instance.Cache.GetToken());
+                if(currentQuestion.exam_finished)
+                {
+                    // nawiguj do strony z wynikami egzaminu
+                }
+                else
+                {
+                    //ustaw wartość publicznej zmiennej z id pobranego pytania dla przekazania do odpowiedzi
+                    currentQuestionID = currentQuestion.id;
+                    //ustaw znaczenie słowa
+                    Question = currentQuestion.meaning.ToString();
+                }
+            }
+        }
         #endregion
 
     }

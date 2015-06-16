@@ -1,20 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Roots >
   <Roots.PropertyPathNames>
+    <RootPropertyPathName Name="OkButtonOnIncorrectPasswordUserControl" />
+    <RootPropertyPathName Name="ErrorUserControlText" />
     <RootPropertyPathName Name="Id" />
+    <RootPropertyPathName Name="DateExamFinish" />
     <RootPropertyPathName Name="Name" />
     <RootPropertyPathName Name="ListOfList" />
     <RootPropertyPathName Name="ListOfExams" />
     <RootPropertyPathName Name="ProgressBarVisibility" />
-    <RootPropertyPathName Name="WordTranslate" />
+    <RootPropertyPathName Name="ErrorInfoUserControlVisibility" />
+    <RootPropertyPathName Name="ChangePasswordClick" />
+    <RootPropertyPathName Name="Password" />
+    <RootPropertyPathName Name="BackButtonClick" />
+    <RootPropertyPathName Name="Answer" />
+    <RootPropertyPathName Name="Question" />
     <RootPropertyPathName Name="NextButtonClick" />
+    <RootPropertyPathName Name="WordTranslate" />
     <RootPropertyPathName Name="PreviousButtonClick" />
     <RootPropertyPathName Name="IncorrectPasswordUserControlVisibility" />
     <RootPropertyPathName Name="LogInClick" />
-    <RootPropertyPathName Name="Password" />
     <RootPropertyPathName Name="User" />
-    <RootPropertyPathName Name="OkButtonOnIncorrectPasswordUserControl" />
-    <RootPropertyPathName Name="ErrorUserControlText" />
     <RootPropertyPathName Name="CheckBox" />
   </Roots.PropertyPathNames>
   <Roots.RootTypes>
@@ -26,12 +32,12 @@
     </RootType>
     <RootType FullName="Microsoft.Xaml.Tools.DirectUI.ProxyTypes.ThemeResourceExtension" />
     <RootType FullName="Windows.UI.Xaml.Controls.Grid">
-      <RootProperty Name="ColumnDefinitions" />
-      <RootProperty Name="RowDefinitions" />
-      <RootProperty Name="Children" />
-      <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="Margin" />
       <RootProperty Name="Background" />
+      <RootProperty Name="Children" />
+      <RootProperty Name="ColumnDefinitions" />
+      <RootProperty Name="RowDefinitions" />
+      <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="Height" />
       <RootEvent Name="Tapped" />
       <RootMethod Name="GetColumn" />
@@ -45,37 +51,46 @@
     <RootType FullName="Windows.UI.Xaml.Controls.UserControl">
       <RootProperty Name="Content" />
     </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.ColumnDefinition">
-      <RootProperty Name="Width" />
-    </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.RowDefinition">
-      <RootProperty Name="Height" />
-    </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.TextBlock">
       <RootProperty Name="Text" />
       <RootProperty Name="FontSize" />
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="Foreground" />
       <RootProperty Name="Visibility" />
+      <RootProperty Name="Margin" />
       <RootProperty Name="FontWeight" />
-      <RootProperty Name="HorizontalAlignment" />
-      <RootProperty Name="VerticalAlignment" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Button">
-      <RootProperty Name="Background" />
-      <RootProperty Name="Content" />
       <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="Command" />
+      <RootProperty Name="Content" />
+      <RootProperty Name="Background" />
       <RootProperty Name="Margin" />
       <RootProperty Name="FontFamily" />
       <RootProperty Name="FontSize" />
-      <RootProperty Name="Command" />
       <RootProperty Name="UseLayoutRounding" />
       <RootEvent Name="Tapped" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Data.Binding">
       <RootProperty Name="Mode" />
     </RootType>
+    <RootType FullName="FishMashNew.UserControls.ErrorInfoUserControl">
+      <RootProperty Name="Visibility" />
+      <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="Height" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.ColumnDefinition">
+      <RootProperty Name="Width" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.RowDefinition">
+      <RootProperty Name="Height" />
+    </RootType>
     <RootType FullName="FishMashNew.UserControls.ExamDetailsUserControl">
+      <RootProperty Name="Margin" />
+    </RootType>
+    <RootType FullName="FishMashNew.UserControls.ExamSummaryUserControl">
       <RootProperty Name="Margin" />
     </RootType>
     <RootType FullName="FishMashNew.UserControls.ListDetailsUserControl">
@@ -125,19 +140,6 @@
       <RootEvent Name="Click" />
     </RootType>
     <RootType FullName="FishMashNew.Views.BrowseWordsView" />
-    <RootType FullName="FishMashNew.Views.FicheView" />
-    <RootType FullName="FishMashNew.Views.LoginAndRegistration.IncorrectPasswordUserControl">
-      <RootProperty Name="Visibility" />
-      <RootProperty Name="VerticalAlignment" />
-      <RootProperty Name="Height" />
-    </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.TextBox">
-      <RootProperty Name="Background" />
-      <RootProperty Name="PlaceholderText" />
-      <RootProperty Name="Text" />
-      <RootProperty Name="Margin" />
-      <RootProperty Name="Name" />
-    </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.PasswordBox">
       <RootProperty Name="PasswordChar" />
       <RootProperty Name="Background" />
@@ -145,6 +147,24 @@
       <RootProperty Name="Password" />
       <RootProperty Name="Margin" />
       <RootProperty Name="Name" />
+    </RootType>
+    <RootType FullName="FishMashNew.Views.ChangePasswordView" />
+    <RootType FullName="FishMashNew.Views.EditProfileView" />
+    <RootType FullName="FishMashNew.Views.ExamSummaryView" />
+    <RootType FullName="Windows.UI.Xaml.Controls.TextBox">
+      <RootProperty Name="Text" />
+      <RootProperty Name="Background" />
+      <RootProperty Name="Width" />
+      <RootProperty Name="PlaceholderText" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="Name" />
+    </RootType>
+    <RootType FullName="FishMashNew.Views.ExamView" />
+    <RootType FullName="FishMashNew.Views.FicheView" />
+    <RootType FullName="FishMashNew.Views.LoginAndRegistration.IncorrectPasswordUserControl">
+      <RootProperty Name="Visibility" />
+      <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="Height" />
     </RootType>
     <RootType FullName="FishMashNew.Views.LoginView" />
     <RootType FullName="Windows.UI.Xaml.Controls.CheckBox">

@@ -90,6 +90,8 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\ChangePasswordModels\PasswordChange.cs" />
+    <Compile Include="Models\ChangePasswordModels\PasswordChangeResult.cs" />
     <Compile Include="Models\Exams\AnswerBody.cs" />
     <Compile Include="Models\Exams\AnswerEntity.cs" />
     <Compile Include="Models\Exams\AnswerPostBody.cs" />
@@ -97,6 +99,7 @@
     <Compile Include="Models\Exams\QuestionEntity.cs" />
     <Compile Include="Models\Exams\SummaryEntity.cs" />
     <Compile Include="Models\GetUserInfoModels\UserInfo.cs" />
+    <Compile Include="Models\Language.cs" />
     <Compile Include="Models\ListOfLists.cs" />
     <Compile Include="Models\LoginModels\User.cs" />
     <Compile Include="Models\LoginModels\UserPost.cs" />

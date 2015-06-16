@@ -8,8 +8,6 @@ namespace FishMashApp.Models
 {
     public class AnswerPostBody
     {
-        public string token { get; set; }
-
         public AnswerBody answer { get; set; }
     }
 }

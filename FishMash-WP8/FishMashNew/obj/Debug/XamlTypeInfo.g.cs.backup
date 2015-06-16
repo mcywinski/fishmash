@@ -124,31 +124,43 @@ namespace FishMashNew.FishMashNew_XamlTypeInfo
 
         private void InitTypeTables()
         {
-            _typeNameTable = new string[11];
+            _typeNameTable = new string[17];
             _typeNameTable[0] = "FishMashNew.MainPage";
             _typeNameTable[1] = "Windows.UI.Xaml.Controls.Page";
             _typeNameTable[2] = "Windows.UI.Xaml.Controls.UserControl";
-            _typeNameTable[3] = "FishMashNew.UserControls.ExamDetailsUserControl";
-            _typeNameTable[4] = "FishMashNew.UserControls.ListDetailsUserControl";
-            _typeNameTable[5] = "FishMashNew.UserControls.ListViewUserControl";
-            _typeNameTable[6] = "FishMashNew.Views.BrowseWordsView";
-            _typeNameTable[7] = "FishMashNew.Views.FicheView";
-            _typeNameTable[8] = "FishMashNew.Views.LoginAndRegistration.IncorrectPasswordUserControl";
-            _typeNameTable[9] = "FishMashNew.Views.LoginView";
-            _typeNameTable[10] = "FishMashNew.Views.LoginAndRegistration.LoginUserControl";
+            _typeNameTable[3] = "FishMashNew.UserControls.ErrorInfoUserControl";
+            _typeNameTable[4] = "FishMashNew.UserControls.ExamDetailsUserControl";
+            _typeNameTable[5] = "FishMashNew.UserControls.ExamSummaryUserControl";
+            _typeNameTable[6] = "FishMashNew.UserControls.ListDetailsUserControl";
+            _typeNameTable[7] = "FishMashNew.UserControls.ListViewUserControl";
+            _typeNameTable[8] = "FishMashNew.Views.BrowseWordsView";
+            _typeNameTable[9] = "FishMashNew.Views.ChangePasswordView";
+            _typeNameTable[10] = "FishMashNew.Views.EditProfileView";
+            _typeNameTable[11] = "FishMashNew.Views.ExamSummaryView";
+            _typeNameTable[12] = "FishMashNew.Views.ExamView";
+            _typeNameTable[13] = "FishMashNew.Views.FicheView";
+            _typeNameTable[14] = "FishMashNew.Views.LoginAndRegistration.IncorrectPasswordUserControl";
+            _typeNameTable[15] = "FishMashNew.Views.LoginView";
+            _typeNameTable[16] = "FishMashNew.Views.LoginAndRegistration.LoginUserControl";
 
-            _typeTable = new global::System.Type[11];
+            _typeTable = new global::System.Type[17];
             _typeTable[0] = typeof(global::FishMashNew.MainPage);
             _typeTable[1] = typeof(global::Windows.UI.Xaml.Controls.Page);
             _typeTable[2] = typeof(global::Windows.UI.Xaml.Controls.UserControl);
-            _typeTable[3] = typeof(global::FishMashNew.UserControls.ExamDetailsUserControl);
-            _typeTable[4] = typeof(global::FishMashNew.UserControls.ListDetailsUserControl);
-            _typeTable[5] = typeof(global::FishMashNew.UserControls.ListViewUserControl);
-            _typeTable[6] = typeof(global::FishMashNew.Views.BrowseWordsView);
-            _typeTable[7] = typeof(global::FishMashNew.Views.FicheView);
-            _typeTable[8] = typeof(global::FishMashNew.Views.LoginAndRegistration.IncorrectPasswordUserControl);
-            _typeTable[9] = typeof(global::FishMashNew.Views.LoginView);
-            _typeTable[10] = typeof(global::FishMashNew.Views.LoginAndRegistration.LoginUserControl);
+            _typeTable[3] = typeof(global::FishMashNew.UserControls.ErrorInfoUserControl);
+            _typeTable[4] = typeof(global::FishMashNew.UserControls.ExamDetailsUserControl);
+            _typeTable[5] = typeof(global::FishMashNew.UserControls.ExamSummaryUserControl);
+            _typeTable[6] = typeof(global::FishMashNew.UserControls.ListDetailsUserControl);
+            _typeTable[7] = typeof(global::FishMashNew.UserControls.ListViewUserControl);
+            _typeTable[8] = typeof(global::FishMashNew.Views.BrowseWordsView);
+            _typeTable[9] = typeof(global::FishMashNew.Views.ChangePasswordView);
+            _typeTable[10] = typeof(global::FishMashNew.Views.EditProfileView);
+            _typeTable[11] = typeof(global::FishMashNew.Views.ExamSummaryView);
+            _typeTable[12] = typeof(global::FishMashNew.Views.ExamView);
+            _typeTable[13] = typeof(global::FishMashNew.Views.FicheView);
+            _typeTable[14] = typeof(global::FishMashNew.Views.LoginAndRegistration.IncorrectPasswordUserControl);
+            _typeTable[15] = typeof(global::FishMashNew.Views.LoginView);
+            _typeTable[16] = typeof(global::FishMashNew.Views.LoginAndRegistration.LoginUserControl);
         }
 
         private int LookupTypeIndexByName(string typeName)
@@ -184,14 +196,20 @@ namespace FishMashNew.FishMashNew_XamlTypeInfo
         }
 
         private object Activate_0_MainPage() { return new global::FishMashNew.MainPage(); }
-        private object Activate_3_ExamDetailsUserControl() { return new global::FishMashNew.UserControls.ExamDetailsUserControl(); }
-        private object Activate_4_ListDetailsUserControl() { return new global::FishMashNew.UserControls.ListDetailsUserControl(); }
-        private object Activate_5_ListViewUserControl() { return new global::FishMashNew.UserControls.ListViewUserControl(); }
-        private object Activate_6_BrowseWordsView() { return new global::FishMashNew.Views.BrowseWordsView(); }
-        private object Activate_7_FicheView() { return new global::FishMashNew.Views.FicheView(); }
-        private object Activate_8_IncorrectPasswordUserControl() { return new global::FishMashNew.Views.LoginAndRegistration.IncorrectPasswordUserControl(); }
-        private object Activate_9_LoginView() { return new global::FishMashNew.Views.LoginView(); }
-        private object Activate_10_LoginUserControl() { return new global::FishMashNew.Views.LoginAndRegistration.LoginUserControl(); }
+        private object Activate_3_ErrorInfoUserControl() { return new global::FishMashNew.UserControls.ErrorInfoUserControl(); }
+        private object Activate_4_ExamDetailsUserControl() { return new global::FishMashNew.UserControls.ExamDetailsUserControl(); }
+        private object Activate_5_ExamSummaryUserControl() { return new global::FishMashNew.UserControls.ExamSummaryUserControl(); }
+        private object Activate_6_ListDetailsUserControl() { return new global::FishMashNew.UserControls.ListDetailsUserControl(); }
+        private object Activate_7_ListViewUserControl() { return new global::FishMashNew.UserControls.ListViewUserControl(); }
+        private object Activate_8_BrowseWordsView() { return new global::FishMashNew.Views.BrowseWordsView(); }
+        private object Activate_9_ChangePasswordView() { return new global::FishMashNew.Views.ChangePasswordView(); }
+        private object Activate_10_EditProfileView() { return new global::FishMashNew.Views.EditProfileView(); }
+        private object Activate_11_ExamSummaryView() { return new global::FishMashNew.Views.ExamSummaryView(); }
+        private object Activate_12_ExamView() { return new global::FishMashNew.Views.ExamView(); }
+        private object Activate_13_FicheView() { return new global::FishMashNew.Views.FicheView(); }
+        private object Activate_14_IncorrectPasswordUserControl() { return new global::FishMashNew.Views.LoginAndRegistration.IncorrectPasswordUserControl(); }
+        private object Activate_15_LoginView() { return new global::FishMashNew.Views.LoginView(); }
+        private object Activate_16_LoginUserControl() { return new global::FishMashNew.Views.LoginAndRegistration.LoginUserControl(); }
 
         private global::Windows.UI.Xaml.Markup.IXamlType CreateXamlType(int typeIndex)
         {
@@ -218,58 +236,100 @@ namespace FishMashNew.FishMashNew_XamlTypeInfo
                 xamlType = new global::FishMashNew.FishMashNew_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 3:   //  FishMashNew.UserControls.ExamDetailsUserControl
+            case 3:   //  FishMashNew.UserControls.ErrorInfoUserControl
                 userType = new global::FishMashNew.FishMashNew_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.UserControl"));
-                userType.Activator = Activate_3_ExamDetailsUserControl;
+                userType.Activator = Activate_3_ErrorInfoUserControl;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 4:   //  FishMashNew.UserControls.ListDetailsUserControl
-                userType = new global::FishMashNew.FishMashNew_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_4_ListDetailsUserControl;
-                userType.SetIsLocalType();
-                xamlType = userType;
-                break;
-
-            case 5:   //  FishMashNew.UserControls.ListViewUserControl
-                userType = new global::FishMashNew.FishMashNew_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_5_ListViewUserControl;
-                userType.SetIsLocalType();
-                xamlType = userType;
-                break;
-
-            case 6:   //  FishMashNew.Views.BrowseWordsView
-                userType = new global::FishMashNew.FishMashNew_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_6_BrowseWordsView;
-                userType.SetIsLocalType();
-                xamlType = userType;
-                break;
-
-            case 7:   //  FishMashNew.Views.FicheView
-                userType = new global::FishMashNew.FishMashNew_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_7_FicheView;
-                userType.SetIsLocalType();
-                xamlType = userType;
-                break;
-
-            case 8:   //  FishMashNew.Views.LoginAndRegistration.IncorrectPasswordUserControl
+            case 4:   //  FishMashNew.UserControls.ExamDetailsUserControl
                 userType = new global::FishMashNew.FishMashNew_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.UserControl"));
-                userType.Activator = Activate_8_IncorrectPasswordUserControl;
+                userType.Activator = Activate_4_ExamDetailsUserControl;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 9:   //  FishMashNew.Views.LoginView
-                userType = new global::FishMashNew.FishMashNew_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_9_LoginView;
-                userType.SetIsLocalType();
-                xamlType = userType;
-                break;
-
-            case 10:   //  FishMashNew.Views.LoginAndRegistration.LoginUserControl
+            case 5:   //  FishMashNew.UserControls.ExamSummaryUserControl
                 userType = new global::FishMashNew.FishMashNew_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.UserControl"));
-                userType.Activator = Activate_10_LoginUserControl;
+                userType.Activator = Activate_5_ExamSummaryUserControl;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 6:   //  FishMashNew.UserControls.ListDetailsUserControl
+                userType = new global::FishMashNew.FishMashNew_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_6_ListDetailsUserControl;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 7:   //  FishMashNew.UserControls.ListViewUserControl
+                userType = new global::FishMashNew.FishMashNew_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_7_ListViewUserControl;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 8:   //  FishMashNew.Views.BrowseWordsView
+                userType = new global::FishMashNew.FishMashNew_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_8_BrowseWordsView;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 9:   //  FishMashNew.Views.ChangePasswordView
+                userType = new global::FishMashNew.FishMashNew_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_9_ChangePasswordView;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 10:   //  FishMashNew.Views.EditProfileView
+                userType = new global::FishMashNew.FishMashNew_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_10_EditProfileView;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 11:   //  FishMashNew.Views.ExamSummaryView
+                userType = new global::FishMashNew.FishMashNew_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_11_ExamSummaryView;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 12:   //  FishMashNew.Views.ExamView
+                userType = new global::FishMashNew.FishMashNew_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_12_ExamView;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 13:   //  FishMashNew.Views.FicheView
+                userType = new global::FishMashNew.FishMashNew_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_13_FicheView;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 14:   //  FishMashNew.Views.LoginAndRegistration.IncorrectPasswordUserControl
+                userType = new global::FishMashNew.FishMashNew_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.UserControl"));
+                userType.Activator = Activate_14_IncorrectPasswordUserControl;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 15:   //  FishMashNew.Views.LoginView
+                userType = new global::FishMashNew.FishMashNew_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_15_LoginView;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 16:   //  FishMashNew.Views.LoginAndRegistration.LoginUserControl
+                userType = new global::FishMashNew.FishMashNew_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.UserControl"));
+                userType.Activator = Activate_16_LoginUserControl;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
