@@ -14,7 +14,12 @@
             Margin="0,0,0,60"
             Source="ms-appx:///Assets/layout/main_top_bar.png"
             />
-        
+        <ProgressBar
+            Visibility="{Binding ProgressBarVisibility}"
+            IsIndeterminate="True" 
+            HorizontalAlignment="Stretch"
+            x:Name="ProgressBar"
+            />
         <TextBlock Text="{Binding Question}"
                            FontSize="30" 
                            HorizontalAlignment="Center"

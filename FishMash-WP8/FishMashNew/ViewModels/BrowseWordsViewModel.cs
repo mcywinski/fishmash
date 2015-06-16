@@ -57,10 +57,13 @@ namespace FishMashNew.ViewModels
             ProgressBarVisibility = SetVisibility(true);
 
             LanguageList = new List<Language>();
-            GetLanguagesFromAPI();
+            
 
             if (!string.IsNullOrWhiteSpace(Settings.Instance.Cache.GetToken()))
+            {
+                GetLanguagesFromAPI();
                 FillList(); //only for temp
+            }
 
         }
 

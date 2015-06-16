@@ -18,7 +18,7 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition />
-                <RowDefinition />
+                <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
         <TextBlock Text="Exam name" 
                    Foreground="Black"
@@ -33,9 +33,10 @@
                    Grid.Column="0"
                    Grid.Row="1"
                    />
-            <Button Background="#FF6600" Content="Back"
+            <Button Background="#FF6600" Content="back"
                     HorizontalAlignment="Right"
                     Grid.Column="1"
+                    FontFamily="/Assets/Lobster.otf#Lobster 1.4"
                     Grid.Row="0"
                  Command="{Binding BackButtonClick}" />
         </Grid>

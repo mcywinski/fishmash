@@ -16,6 +16,19 @@ namespace FishMashNew.ViewModels
     class ExamViewModel : BaseViewModel
     {
         #region Binding
+        private string progressBarVisibility;
+
+        public string ProgressBarVisibility
+        {
+            get { return progressBarVisibility; }
+            set 
+            { 
+                progressBarVisibility = value;
+                OnPropertyChanged();
+            }
+        }
+        
+
         private string question;
 
         public string Question
@@ -63,6 +76,7 @@ namespace FishMashNew.ViewModels
         {
             examID = -1;
             this.navigationService = iNavigation;
+            ProgressBarVisibility = SetVisibility(false);
         }
 
         #region Register and check exam ID
@@ -85,7 +99,9 @@ namespace FishMashNew.ViewModels
         #region WebService
         private async void StartExam()
         {
+            ProgressBarVisibility = SetVisibility(true);
             StartedRoot startedRoot = await WebService.StartExam(examID, Settings.Instance.Cache.GetToken());
+            ProgressBarVisibility = SetVisibility(false);
             if(startedRoot.message != "END")
             {
                 GetQuestion();
@@ -99,14 +115,18 @@ namespace FishMashNew.ViewModels
         }
         private async void GetQuestion()
         {
+            ProgressBarVisibility = SetVisibility(true);
             currentQuestion = await WebService.GetQuestionToAnswer(examID, Settings.Instance.Cache.GetToken());
+            ProgressBarVisibility = SetVisibility(false);
             currentQuestionID = currentQuestion.id;
             Question = currentQuestion.meaning.ToString(); // w to pole ma trafić pytanie
         }
 
         private async void AnswerQuestion(string answer)
         {
+            ProgressBarVisibility = SetVisibility(true);
             AnswerEntity answerResult = await WebService.AnswerQuestion(currentQuestionID, answer, examID, Settings.Instance.Cache.GetToken());
+            ProgressBarVisibility = SetVisibility(false);
             if(answerResult.saved == true)
             {
                 Answer = string.Empty;
@@ -115,11 +135,16 @@ namespace FishMashNew.ViewModels
 
         private async Task GetNextQuestion()
         {
+            ProgressBarVisibility = SetVisibility(true);
             AnswerEntity answerResult = await WebService.AnswerQuestion(currentQuestionID, answer, examID, Settings.Instance.Cache.GetToken());
+            ProgressBarVisibility = SetVisibility(false);
             if (answerResult.saved == true)
             {
                 Answer = string.Empty;
+                Question = string.Empty;
+                ProgressBarVisibility = SetVisibility(true);
                 currentQuestion = await WebService.GetQuestionToAnswer(examID, Settings.Instance.Cache.GetToken());
+                ProgressBarVisibility = SetVisibility(false);
                 if(currentQuestion.exam_finished)
                 {
                     object t = this.examID.ToString();
