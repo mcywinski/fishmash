@@ -1,5 +1,5 @@
 ﻿<UserControl
-    x:Class="FishMashNew.UserControls.ExamDetailsUserControl"
+    x:Class="FishMashNew.UserControls.ExamSummaryUserControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:FishMashNew.UserControls"
@@ -8,7 +8,7 @@
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
-    
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -18,26 +18,21 @@
             <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <TextBlock Text="{Binding Name}" 
+        <TextBlock Text="słowo wpisane" 
                    FontSize="20"
                    Foreground="Black"
                    x:Name="Name"
                    Grid.Column="0"
                    Grid.Row="0"/>
-        <TextBlock Text="{Binding DateExamFinish}"
-                   Foreground="Black"
-                   FontSize="16"
-                   Grid.Column="0"
+
+        <TextBlock Foreground="Red"
+                   Text="FAILED"
+                   Grid.Row="0"
+                   Grid.Column="1"
+                   />
+        <TextBlock Text="Slowo poprawne"
                    Grid.Row="1"
+                   Grid.Column="1"
                    />
-        <TextBlock x:Name="ListId"
-                   Text="{Binding Id}"
-                   Visibility="Collapsed"
-                   />
-        <Button  Grid.Column="1" Grid.RowSpan="2"
-                 Background="#FF6600" Content="exam"
-                 HorizontalAlignment="Center"
-                 VerticalAlignment="Stretch"
-                  Tapped="Grid_Tapped"/>
     </Grid>
 </UserControl>

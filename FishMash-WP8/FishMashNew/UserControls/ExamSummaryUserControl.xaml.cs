@@ -1,6 +1,4 @@
-﻿using FishMashNew.Common;
-using FishMashNew.Views;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -19,17 +17,11 @@ using Windows.UI.Xaml.Navigation;
 
 namespace FishMashNew.UserControls
 {
-    public sealed partial class ExamDetailsUserControl : UserControl
+    public sealed partial class ExamSummaryUserControl : UserControl
     {
-        public ExamDetailsUserControl()
+        public ExamSummaryUserControl()
         {
             this.InitializeComponent();
-        }
-
-        private void Grid_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            object t = this.ListId.Text.ToString();
-            Settings.Instance.navigationService.Navigate(typeof(ExamView), t);
         }
     }
 }

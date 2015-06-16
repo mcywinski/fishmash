@@ -45,7 +45,7 @@ namespace FishMashNew.ViewModels
 
         public async void FillList(int i)
         {
-            List<ReadWord.Word> x = await WebService.GetWordsOfListAsync(i);
+            List<ReadWord.Word> x = await WebService.GetWordsOfListAsync(i, Settings.Instance.Cache.GetToken());
             OnUIThread(() =>
             {
                 foreach (ReadWord.Word t in x)

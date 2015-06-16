@@ -17,15 +17,14 @@ using System.Net;
 using FishMashNew.Models.GetUserInfoModels;
 using FishMashApp.Models;
 using FishMashApp.Models.Exams;
+using FishMashNew.Models.StartExamModels;
 
 
 namespace FishMashNew.WebAPI
 {
     class WebService
     {
-        private string userToken;
-
-        async static public Task<List<ReadWord.Word>> GetWordsOfListAsync(int id)
+        async static public Task<List<ReadWord.Word>> GetWordsOfListAsync(int id, string token)
         {
             List<ReadWord.Word> list = new List<ReadWord.Word>();
             try
@@ -171,45 +170,45 @@ namespace FishMashNew.WebAPI
         {
             TokenResponse tokenResponse = new TokenResponse();
 
-                User usr = new User()
-                {
-                    login = inputLogin,
-                    password = inputPassword
-                };
+            User usr = new User()
+            {
+                login = inputLogin,
+                password = inputPassword
+            };
 
-                UserPost user = new UserPost()
-                {
-                    user = usr
-                };
+            UserPost user = new UserPost()
+            {
+                user = usr
+            };
 
-                var client = new HttpClient();
-                client.BaseAddress = new Uri("https://shrouded-fjord-4731.herokuapp.com");
+            var client = new HttpClient();
+            client.BaseAddress = new Uri("https://shrouded-fjord-4731.herokuapp.com");
 
-                var response = await client.PostAsJsonAsync("/api/users/authenticate", user);
-                if (!response.IsSuccessStatusCode)
+            var response = await client.PostAsJsonAsync("/api/users/authenticate", user);
+            if (!response.IsSuccessStatusCode)
+            {
+                if (response.StatusCode == HttpStatusCode.Unauthorized)
                 {
-                    if (response.StatusCode == HttpStatusCode.Unauthorized)
-                    {
-                        throw new UnauthorizedAccessException();
-                    }
-                    else 
-                    {
-                        throw new HttpRequestException();
-                    }
+                    throw new UnauthorizedAccessException();
                 }
-                //Debug.WriteLine(response);
+                else
+                {
+                    throw new HttpRequestException();
+                }
+            }
+            //Debug.WriteLine(response);
 
-                var result = await response.Content.ReadAsStringAsync();
+            var result = await response.Content.ReadAsStringAsync();
 
-                var temp = JsonConvert.DeserializeObject<TokenResponse>(result);
+            var temp = JsonConvert.DeserializeObject<TokenResponse>(result);
 
-                tokenResponse.id = temp.id;
-                tokenResponse.token = temp.token;
-                tokenResponse.user_id = temp.user_id;
-                tokenResponse.created_at = temp.created_at;
-                tokenResponse.updated_at = temp.updated_at;
+            tokenResponse.id = temp.id;
+            tokenResponse.token = temp.token;
+            tokenResponse.user_id = temp.user_id;
+            tokenResponse.created_at = temp.created_at;
+            tokenResponse.updated_at = temp.updated_at;
 
-                return tokenResponse;
+            return tokenResponse;
         }
 
         public static async Task<UserInfo> GetUserInfo(string token, int id)
@@ -255,14 +254,14 @@ namespace FishMashNew.WebAPI
             return info;
 
         }
-        public static async Task<List<ExamEntity>> GetAllExams(string userToken)
+        public static async Task<List<ExamEntity>> GetAllExams(string token)
         {
 
             List<ExamEntity> Exams = new List<ExamEntity>();
             try
             {
                 string url = "https://shrouded-fjord-4731.herokuapp.com/api/exams" +
-                    string.Format("?api_token={0}", userToken);
+                    string.Format("?api_token={0}", token);
                 var u = new Uri(url);
 
                 var client = new HttpClient();
@@ -313,7 +312,7 @@ namespace FishMashNew.WebAPI
 
         }
 
-        public static async Task<ExamEntity> GetExam(int examId, string userToken)
+        public static async Task<ExamEntity> GetExam(int examId, string token)
         {
 
             ExamEntity Exam = new ExamEntity();
@@ -321,7 +320,7 @@ namespace FishMashNew.WebAPI
             {
                 string url = "https://shrouded-fjord-4731.herokuapp.com/api/exams" +
                     examId +
-                    string.Format("?api_token={0}", userToken);
+                    string.Format("?api_token={0}", token);
                 var u = new Uri(url);
 
                 var client = new HttpClient();
@@ -367,11 +366,12 @@ namespace FishMashNew.WebAPI
             return Exam;
         }
 
-        public static async Task<QuestionEntity> GetQuestionToAnswer(int examId)
+        public static async Task<QuestionEntity> GetQuestionToAnswer(int examId, string token)
         {
             QuestionEntity questionResponse = new QuestionEntity();
 
-            string url = string.Format("{0}{1}{2}", "https://shrouded-fjord-4731.herokuapp.com/api/exams/", examId, "/get_question");
+            string url = string.Format("{0}{1}{2}", "https://shrouded-fjord-4731.herokuapp.com/api/exams/", examId, "/get_question") +
+                string.Format("?api_token={0}", token);
             var u = new Uri(url);
 
             var client = new HttpClient();
@@ -403,7 +403,7 @@ namespace FishMashNew.WebAPI
             return questionResponse;
         }
 
-        public static async Task<AnswerEntity> AnswerQuestion(int question_id, string answer, int examId, string userToken)
+        public static async Task<AnswerEntity> AnswerQuestion(int question_id, string answer, int examId, string token)
         {
             AnswerEntity answerEntity = new AnswerEntity();
 
@@ -415,13 +415,12 @@ namespace FishMashNew.WebAPI
 
             AnswerPostBody answerPostBody = new AnswerPostBody()
             {
-                token = userToken,
                 answer = answerBody
             };
 
             var client = new HttpClient();
             client.BaseAddress = new Uri("https://shrouded-fjord-4731.herokuapp.com");
-            var apiCallAdress = string.Format("{0}{1}{2}", "/api/exams/", examId, "/answer");
+            var apiCallAdress = string.Format("{0}{1}{2}{3}{4}", "/api/exams/", examId, "/answer", "?api_token=", token);
 
             var response = await client.PostAsJsonAsync(apiCallAdress, answerPostBody);
             if (!response.IsSuccessStatusCode)
@@ -496,6 +495,57 @@ namespace FishMashNew.WebAPI
                 throw new Exception("Brak dostępu do internetu.");
             }
             return summary;
+        }
+
+        public static async Task<StartedRoot> StartExam(int examId, string token)
+        {
+            StartedRoot startanswer = new StartedRoot();
+            try
+            {
+                string url = "https://shrouded-fjord-4731.herokuapp.com/api/exams/" +
+                    examId + "/start/" +
+                    string.Format("?api_token={0}", token);
+                var u = new Uri(url);
+
+                var client = new HttpClient();
+                var response = await client.PostAsync(u, null);
+                if (!response.IsSuccessStatusCode)
+                {
+                    if (response.StatusCode == HttpStatusCode.Unauthorized)
+                    {
+                        throw new UnauthorizedAccessException();
+                    }
+                    else
+                    {
+                        throw new HttpRequestException();
+                    }
+                }
+                var result = await response.Content.ReadAsStringAsync();
+
+                var temp = JsonConvert.DeserializeObject<StartedRoot>(result);
+
+                startanswer.message = temp.message;
+                startanswer.started.created_at = temp.started.created_at;
+                startanswer.started.exam_id = temp.started.exam_id;
+                startanswer.started.finished = temp.started.finished;
+                startanswer.started.id = temp.started.id;
+                startanswer.started.time_started = temp.started.time_started;
+                startanswer.started.updated_at = temp.started.updated_at;
+                startanswer.started.user_id = temp.started.user_id;
+
+                return startanswer;
+            }
+            catch (JsonSerializationException jsonerr)
+            {
+                Debug.WriteLine(jsonerr.ToString());
+                Debug.WriteLine("Błąd serializacji.");
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.ToString());
+                throw new Exception("Brak dostępu do internetu.");
+            }
+            return startanswer;
         }
     }
 }

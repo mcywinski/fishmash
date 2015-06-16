@@ -114,7 +114,7 @@ namespace FishMashNew.ViewModels
         #region WebService
         public async void FillList(int id)
         {
-            listOfWords = await WebService.GetWordsOfListAsync(id);
+            listOfWords = await WebService.GetWordsOfListAsync(id, Settings.Instance.Cache.GetToken());
             ShowFirstWord();
         }
         #endregion
