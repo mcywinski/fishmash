@@ -8,8 +8,9 @@
     mc:Ignorable="d"
     xmlns:overlay="using:FishMashNew.UserControls"
     Background="White">
-
-    <StackPanel>
+    
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel>
         <Image Source="ms-appx:///Assets/layout/main_top_bar.png" />
         <Grid>
             <Grid.ColumnDefinitions>
@@ -40,26 +41,27 @@
                     Grid.Row="0"
                  Command="{Binding BackButtonClick}" />
         </Grid>
-        <ScrollViewer VerticalScrollBarVisibility="Auto">
 
-            <ItemsControl Name="Learn" 
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <ItemsControl Name="Learn" 
                       ItemsSource="{Binding Summary}"
                       HorizontalAlignment="Stretch"
                       VerticalAlignment="Stretch"
                       >
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel/>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <overlay:ExamSummaryUserControl 
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <overlay:ExamSummaryUserControl 
                             x:Name="ExamSummary" 
                             Margin="20,0,20,0"/>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </ScrollViewer>
-    </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </StackPanel>
+    </ScrollViewer>
 </Page>
