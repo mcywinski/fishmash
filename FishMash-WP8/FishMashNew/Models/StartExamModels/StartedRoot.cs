@@ -10,5 +10,6 @@ namespace FishMashNew.Models.StartExamModels
     {
         public Started started { get; set; }
         public string message { get; set; }
+        public string time_limit { get; set; }
     }
 }
