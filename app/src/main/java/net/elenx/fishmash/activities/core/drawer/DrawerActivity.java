@@ -17,25 +17,27 @@ import java.util.List;
 public abstract class DrawerActivity extends AppCompatActivity implements NavigationDrawerCallbacks
 {
     private static List<String> drawerItemPositionToResourceName;
+    private static NavigationDrawerFragment navigationDrawerFragment;
 
     private LayoutInflater layoutInflater;
     private DrawerLayout drawerLayout;
-
-    private NavigationDrawerFragment navigationDrawerFragment;
     private FrameLayout container;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
+    public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.drawer);
+        setContentView(R.layout.layout);
 
         layoutInflater = LayoutInflater.from(this);
         container = (FrameLayout) findViewById(R.id.container);
         drawerLayout = (DrawerLayout) findViewById(R.id.main_drawer_layout);
 
-        navigationDrawerFragment = (NavigationDrawerFragment) getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
-        navigationDrawerFragment.setUp(drawerLayout);
+        if(navigationDrawerFragment == null)
+        {
+            navigationDrawerFragment = (NavigationDrawerFragment) getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
+            navigationDrawerFragment.setUp(drawerLayout);
+        }
     }
 
     @Override
@@ -61,7 +63,7 @@ public abstract class DrawerActivity extends AppCompatActivity implements Naviga
         container.addView(view);
     }
 
-    protected int resourceIfOfPosition(int position)
+    protected int resourceIdOfPosition(int position)
     {
         if(drawerItemPositionToResourceName == null)
         {

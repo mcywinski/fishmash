@@ -2,10 +2,12 @@ package net.elenx.fishmash.models;
 
 import android.database.Cursor;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import net.elenx.fishmash.models.adapters.FishmashCalendar;
 
+@JsonIgnoreProperties("is_started")
 public class Exam extends FishmashModel
 {
     @JsonProperty("name") private String name;
@@ -16,6 +18,7 @@ public class Exam extends FishmashModel
     @JsonProperty("word_count") private int wordCount;
     @JsonProperty("is_finished") private boolean isFinished;
     @JsonProperty("time_limit") private long timeLimit;
+    @JsonProperty("is_started") private boolean isStarted;
 
     @SuppressWarnings("unused")
     Exam()

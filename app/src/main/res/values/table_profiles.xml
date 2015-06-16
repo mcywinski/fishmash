@@ -3,19 +3,19 @@
     <string name="profiles_table_name">profiles</string>
 
     <string name="profiles_id">id</string>
-    <string name="profiles_createdAt">created_at</string>
+    <string name="profiles_created_at">created_at</string>
     <string name="profiles_email">email</string>
     <string name="profiles_login">login</string>
-    <string name="profiles_updatedAt">updated_at</string>
-    <string name="profiles_userType">user_type</string>
+    <string name="profiles_updated_at">updated_at</string>
+    <string name="profiles_user_type">user_type</string>
 
     <string-array name="profiles_columns">
         <item>@string/profiles_id</item>
-        <item>@string/profiles_createdAt</item>
+        <item>@string/profiles_created_at</item>
         <item>@string/profiles_email</item>
         <item>@string/profiles_login</item>
-        <item>@string/profiles_updatedAt</item>
-        <item>@string/profiles_userType</item>
+        <item>@string/profiles_updated_at</item>
+        <item>@string/profiles_user_type</item>
     </string-array>
 
     <string name="profiles_create">

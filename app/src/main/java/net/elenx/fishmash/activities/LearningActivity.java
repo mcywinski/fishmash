@@ -1,7 +1,6 @@
 package net.elenx.fishmash.activities;
 
 import android.graphics.Color;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -26,6 +25,13 @@ public class LearningActivity extends SpeakingActivity
 {
     private static long lastWordList = -1;
 
+    private ImageView nextWord;
+    private ImageView previousWord;
+
+    private TextView name;
+    private TextView description;
+    private ImageView back;
+
     private TextView phraseXorMeaning;
     private TextView mainXorForeignLanguage;
     private TextView tapToFlip;
@@ -36,27 +42,23 @@ public class LearningActivity extends SpeakingActivity
     private String mainLanguageName;
     private String foreignLanguageName;
 
-    private Cycle<Word> cycle;
-
+    private WordList wordList;
     private Word word;
+    private Cycle<Word> cycle;
     private boolean isMainLanguageActive;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
+    public void onInit(int resultCode)
     {
-        super.onCreate(savedInstanceState);
-        attach(R.layout.learning);
+        super.onInit(resultCode);
 
+        attach(R.layout.layout_learning);
         concludeWordListId();
+        showWords();
+    }
 
-        Log.e("lastWordList", String.valueOf(lastWordList));
-
-        // sanity check - no matter how did I get here - it needs to be > 0 to continue
-        if(lastWordList <= 0)
-        {
-            learningAndExams();
-        }
-
+    private void showWords()
+    {
         WordUpdater wordUpdater = new WordUpdater(this, lastWordList);
         wordUpdater.setUpdaterListener
         (
@@ -89,13 +91,35 @@ public class LearningActivity extends SpeakingActivity
             // do not show me last one (unless explicitly asked)
             lastWordList = wordListId;
         }
+
+        Log.e("lastWordList", String.valueOf(lastWordList));
+
+        // sanity check - no matter how did I get here - it needs to be > 0 to continue
+        if(lastWordList <= 0)
+        {
+            learningAndExams();
+        }
+    }
+
+    private void bindViews()
+    {
+        name = (TextView) findViewById(R.id.textViewWordListName);
+        description = (TextView) findViewById(R.id.textViewWordListDescription);
+
+        phraseXorMeaning = (TextView) findViewById(R.id.textViewQuestion);
+        mainXorForeignLanguage = (TextView) findViewById(R.id.TextViewMainXorForeignLanguage);
+        tapToFlip = (TextView) findViewById(R.id.textViewTapToFlip);
+
+        nextWord = (ImageView) findViewById(R.id.imageViewNextWord);
+        previousWord = (ImageView) findViewById(R.id.imageViewPreviousWord);
+        back = (ImageView) findViewById(R.id.imageViewBack);
     }
 
     private void prepareToLearning()
     {
         List<Word> words = new WordDAO(this).selectAll();
 
-        Log.e("ta lista slowek ma ich", String.valueOf(words.size()));
+        Log.e("ta lista slowek ma ich ", String.valueOf(words.size()));
 
         if(words.size() < 1)
         {
@@ -104,26 +128,18 @@ public class LearningActivity extends SpeakingActivity
 
         cycle = new Cycle<>(words);
 
-        WordList wordList = new WordListDAO(this).select(lastWordList);
+        prepareLanguages();
+        prepareViews();
 
-        Language mainLanguage = wordList.getMainLanguage();
-        Language foreignLanguage = wordList.getForeignLanguage();
+        nextWord.performClick();
+    }
 
-        mainLanguageLocale = mainLanguage.getLocale();
-        foreignLanguageLocale = foreignLanguage.getLocale();
+    private void prepareViews()
+    {
+        bindViews();
 
-        mainLanguageName = mainLanguage.getName();
-        foreignLanguageName = foreignLanguage.getName();
-
-        TextView wordListName = (TextView) findViewById(R.id.textViewWordListName);
-        wordListName.setText(wordList.getName());
-
-        TextView wordListDescription = (TextView) findViewById(R.id.textViewWordListDescription);
-        wordListDescription.setText(wordList.getDescription());
-
-        phraseXorMeaning = (TextView) findViewById(R.id.textViewQuestion);
-        mainXorForeignLanguage = (TextView) findViewById(R.id.TextViewMainXorForeignLanguage);
-        tapToFlip = (TextView) findViewById(R.id.textViewTapToFlip);
+        name.setText(wordList.getName());
+        description.setText(wordList.getDescription());
 
         phraseXorMeaning.setOnClickListener
         (
@@ -138,8 +154,7 @@ public class LearningActivity extends SpeakingActivity
             }
         );
 
-        ImageView imageViewNextWord = (ImageView) findViewById(R.id.imageViewNextWord);
-        imageViewNextWord.setOnClickListener
+        nextWord.setOnClickListener
         (
             new View.OnClickListener()
             {
@@ -151,8 +166,7 @@ public class LearningActivity extends SpeakingActivity
             }
         );
 
-        ImageView imageViewPreviousWord = (ImageView) findViewById(R.id.imageViewPreviousWord);
-        imageViewPreviousWord.setOnClickListener
+        previousWord.setOnClickListener
         (
             new View.OnClickListener()
             {
@@ -164,8 +178,7 @@ public class LearningActivity extends SpeakingActivity
             }
         );
 
-        ImageView imageViewBack = (ImageView) findViewById(R.id.imageViewBack);
-        imageViewBack.setOnClickListener
+        back.setOnClickListener
         (
             new View.OnClickListener()
             {
@@ -176,14 +189,26 @@ public class LearningActivity extends SpeakingActivity
                 }
             }
         );
+    }
 
-        imageViewNextWord.performClick();
+    private void prepareLanguages()
+    {
+        wordList = new WordListDAO(this).select(lastWordList);
+
+        Language mainLanguage = wordList.getMainLanguage();
+        Language foreignLanguage = wordList.getForeignLanguage();
+
+        mainLanguageLocale = mainLanguage.getLocale();
+        foreignLanguageLocale = foreignLanguage.getLocale();
+
+        mainLanguageName = mainLanguage.getName();
+        foreignLanguageName = foreignLanguage.getName();
     }
 
     private void display(Word word)
     {
         this.word = word;
-        isMainLanguageActive = true;
+        isMainLanguageActive = false;
 
         flip();
     }
@@ -194,7 +219,7 @@ public class LearningActivity extends SpeakingActivity
 
         if(isMainLanguageActive)
         {
-            buffer = word.getPhrase();
+            buffer = word.getMeaning();
             say(buffer, mainLanguageLocale);
 
             phraseXorMeaning.setTextColor(Color.GREEN);
@@ -202,11 +227,11 @@ public class LearningActivity extends SpeakingActivity
             mainXorForeignLanguage.setText(mainLanguageName);
             mainXorForeignLanguage.setTextColor(Color.GREEN);
 
-            tapToFlip.setText(getString(R.string.tap_to_show_meaning));
+            tapToFlip.setText(getString(R.string.tap_to_show_phrase));
         }
         else
         {
-            buffer = word.getMeaning();
+            buffer = word.getPhrase();
             say(buffer, foreignLanguageLocale);
 
             phraseXorMeaning.setTextColor(Color.RED);
@@ -214,7 +239,7 @@ public class LearningActivity extends SpeakingActivity
             mainXorForeignLanguage.setText(foreignLanguageName);
             mainXorForeignLanguage.setTextColor(Color.RED);
 
-            tapToFlip.setText(getString(R.string.tap_to_show_phrase));
+            tapToFlip.setText(getString(R.string.tap_to_show_meaning));
         }
 
         phraseXorMeaning.setText(buffer);

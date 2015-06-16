@@ -1,11 +1,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin">
+    android:layout_height="match_parent">
 
     <ImageView
         android:layout_width="fill_parent"
@@ -21,7 +17,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="@string/login"
-        android:text="android5t"
         android:id="@+id/editTextLogin"
         android:layout_above="@+id/editTextPassword"
         android:layout_alignParentLeft="true"
@@ -37,7 +32,6 @@
         android:inputType="textPassword"
         android:ems="10"
         android:hint="@string/password"
-        android:text="android5t"
         android:id="@+id/editTextPassword"
         android:layout_above="@+id/imageViewLogIn"
         android:layout_alignParentLeft="true"

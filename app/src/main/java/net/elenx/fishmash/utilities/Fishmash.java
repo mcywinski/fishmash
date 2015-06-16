@@ -4,7 +4,7 @@ public abstract class Fishmash
 {
     // start layer 0
     public static final String DATABASE_NAME = "fishmash";
-    public static final int TIMEOUT_IN_SECONDS = 50;
+    public static final int API_TIMEOUT_IN_SECONDS = 50;
     public static final String TO = "to ";
     public static final String EXAM_ID = "exam_id";
     public static final String USER_ID = "user_id";
@@ -21,7 +21,6 @@ public abstract class Fishmash
     // end layer 1
 
     // start layer 2
-    public static final String LANGUAGES = API + "languages" + TOKEN;
     private static final String LISTS = API + "lists/";
     private static final String USERS = API + "users/";
     private static final String EXAMS = API + "exams/";
@@ -29,6 +28,7 @@ public abstract class Fishmash
 
     // start layer 3
     public static final String AUTHENTICATE = USERS + "authenticate";
+    public static final String SET_PASSWORD = USERS + "set_password" + TOKEN;
     public static final String LISTS_TOKEN = LISTS + TOKEN;
     public static final String LISTS_LISTID = LISTS + "{" + LIST_ID + "}";
     public static final String EXAMS_TOKEN = EXAMS + TOKEN;

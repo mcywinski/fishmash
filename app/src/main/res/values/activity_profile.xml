@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="profile">Profile</string>
-
-    <string name="label_login">Login:</string>
-    <string name="label_email">Email:</string>
-    <string name="label_createdAt">Studying since:</string>
-    <string name="label_updatedAt">Last change:</string>
-</resources>

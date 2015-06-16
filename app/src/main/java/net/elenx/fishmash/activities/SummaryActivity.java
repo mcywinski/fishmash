@@ -27,10 +27,10 @@ public class SummaryActivity extends OptionsActivity
     private long examId;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
+    public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        attach(R.layout.summary);
+        attach(R.layout.layout_summary);
 
         examId = getIntent().getLongExtra(Fishmash.EXAM_ID, -1);
 
@@ -39,6 +39,11 @@ public class SummaryActivity extends OptionsActivity
             learningAndExams();
         }
 
+        showSummary();
+    }
+
+    private void showSummary()
+    {
         final SummaryUpdater summaryUpdater = new SummaryUpdater(this, examId);
         summaryUpdater.setSummaryListener
         (
@@ -126,7 +131,7 @@ public class SummaryActivity extends OptionsActivity
             question.setText(examSummary.getMeaning());
             userInput.setText(examSummary.getAnswer());
 
-            result.setText(isAnswerCorrect ? "PASSED" : "FAILED");
+            result.setText(isAnswerCorrect ? getString(R.string.passed) : getString(R.string.failed));
             result.setTextColor(isAnswerCorrect ? Color.GREEN : Color.RED);
 
             correctAnswer.setText(examSummary.getPhrase());
@@ -140,9 +145,6 @@ public class SummaryActivity extends OptionsActivity
 
         TextView examSummaryName = (TextView) findViewById(R.id.textViewExamSummaryName);
         examSummaryName.setText(exam.getName());
-
-        TextView examSummaryDescription = (TextView) findViewById(R.id.textViewExamSummaryDescription);
-        examSummaryDescription.setText("Summary"); // TODO wil api provide description for exam?
 
         ImageView back = (ImageView) findViewById(R.id.imageViewBack);
         back.setOnClickListener

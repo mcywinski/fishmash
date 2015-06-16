@@ -2,7 +2,7 @@
 <resources>
     <string name="log_in">Log in</string>
     <string name="offline">No internet access</string>
-    <string name="bad_credentials">Login or password is incorrect</string>
+    <string name="login_failed">Incorrect login/password or server error</string>
     <string name="login">Login</string>
     <string name="password">Password</string>
     <string name="logo_description">Logo</string>

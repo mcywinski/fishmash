@@ -1,7 +1,6 @@
 package net.elenx.fishmash.activities;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -20,40 +19,49 @@ public class AuthenticateActivity extends OptionsActivity
     private EditText editTextPassword;
 
     @Override
-    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState)
+    public void onCreate(Bundle savedInstanceState)
     {
-        // do not call super, because super redirects here, when not logged in
+        super.onCreate(savedInstanceState);
 
         if(isAuthenticated())
         {
             learningAndExams();
         }
-    }
 
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState)
-    {
-        super.onPostCreate(savedInstanceState);
-        attach(R.layout.authenticate);
+        attach(R.layout.layout_authenticate);
 
-        ImageView mainTopBar = (ImageView) findViewById(R.id.main_top_bar);
-        mainTopBar.setVisibility(View.GONE);
-
-        editTextLogin = (EditText) findViewById(R.id.editTextLogin);
-        editTextPassword = (EditText) findViewById(R.id.editTextPassword);
+        hideMainTopBar();
+        bindViews();
+        prepareButtonLogInListener();
 
         if(isOffline())
         {
             showOfflineWarning();
         }
+    }
 
-        prepareButtonLogInListener();
+    @Override
+    public void onBackPressed()
+    {
+        finish();
+    }
+
+    private void bindViews()
+    {
+        editTextLogin = (EditText) findViewById(R.id.editTextLogin);
+        editTextPassword = (EditText) findViewById(R.id.editTextPassword);
+    }
+
+    private void hideMainTopBar()
+    {
+        ImageView mainTopBar = (ImageView) findViewById(R.id.main_top_bar);
+        mainTopBar.setVisibility(View.GONE);
     }
 
     @Override
     public void onNavigationDrawerItemSelected(int position)
     {
-        if(resourceIfOfPosition(position) == R.string.register)
+        if(resourceIdOfPosition(position) == R.string.register)
         {
             super.onNavigationDrawerItemSelected(position);
         }
@@ -115,7 +123,7 @@ public class AuthenticateActivity extends OptionsActivity
                 @Override
                 public void run()
                 {
-                    Toast.makeText(me, getText(R.string.offline), Toast.LENGTH_LONG).show();
+                    Toast.makeText(me, R.string.offline, Toast.LENGTH_LONG).show();
                 }
             }
         );
@@ -130,7 +138,7 @@ public class AuthenticateActivity extends OptionsActivity
                 @Override
                 public void run()
                 {
-                    Toast.makeText(me, getText(R.string.bad_credentials), Toast.LENGTH_LONG).show();
+                    Toast.makeText(me, R.string.login_failed, Toast.LENGTH_LONG).show();
                 }
             }
         );

@@ -10,6 +10,7 @@ public class Profile extends FishmashModel
 {
     @JsonProperty("created_at")
     private FishmashCalendar createdAt;
+
     private String email;
     private String login;
 

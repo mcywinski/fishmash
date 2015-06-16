@@ -29,7 +29,7 @@ public abstract class FishmashDAO<Model extends FishmashModel>
         this.table = context.getString(tableNameResourceId);
         this.columns = context.getResources().getStringArray(columnsResourceId);
 
-        sqLiteDatabase = new FishmashOpener(context).getWritableDatabase();
+        sqLiteDatabase = new DatabaseOpener(context).getWritableDatabase();
     }
 
     public List<Model> selectAll()

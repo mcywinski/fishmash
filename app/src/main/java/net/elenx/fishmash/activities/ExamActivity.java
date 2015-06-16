@@ -1,11 +1,15 @@
 package net.elenx.fishmash.activities;
 
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import net.elenx.fishmash.R;
 import net.elenx.fishmash.activities.core.OptionsActivity;
@@ -19,12 +23,9 @@ import net.elenx.fishmash.utilities.Fishmash;
 
 public class ExamActivity extends OptionsActivity
 {
-    private final static String EMPTY_STRING = "";
-
     private Exam exam;
     private long examId;
     private ExamQuestionListener examQuestionListener;
-    private boolean shouldSendAnswer = false;
 
     private TextView examName;
     private TextView examDescription;
@@ -32,33 +33,40 @@ public class ExamActivity extends OptionsActivity
     private EditText answer;
     private ImageView next;
     private ImageView back;
+    private TableRow tableRowExam;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
+    public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        attach(R.layout.exam);
+        attach(R.layout.layout_exam);
 
+        validateExamId();
+        redirectToSummaryIfFinished();
+        prepareQuestionListener();
+        prepareViews();
+        startExam();
+//        prepareTimer();
+    }
+
+    private void validateExamId()
+    {
         examId = getIntent().getLongExtra(Fishmash.EXAM_ID, -1);
 
         if(examId <= 0)
         {
             learningAndExams();
         }
+    }
 
+    private void redirectToSummaryIfFinished()
+    {
         exam = new ExamDAO(this).select(examId);
 
         if(exam.isFinished())
         {
-            switchIntentTo(SummaryActivity.class, Fishmash.EXAM_ID, examId);
-            finish();
-
-            return;
+            switchToSummary();
         }
-
-        prepareQuestionListener();
-        prepareViews();
-        startExam();
     }
 
     private void prepareQuestionListener()
@@ -84,9 +92,14 @@ public class ExamActivity extends OptionsActivity
             @Override
             public void examFinished()
             {
-                switchIntentTo(SummaryActivity.class, Fishmash.EXAM_ID, examId);
+                switchToSummary();
             }
         };
+    }
+
+    private void switchToSummary()
+    {
+        switchIntentTo(SummaryActivity.class, Fishmash.EXAM_ID, examId);
     }
 
     private void prepareViews()
@@ -108,6 +121,20 @@ public class ExamActivity extends OptionsActivity
             }
         );
 
+        answer.setOnEditorActionListener
+        (
+            new TextView.OnEditorActionListener()
+            {
+                @Override
+                public boolean onEditorAction(TextView textView, int keyCode, KeyEvent keyEvent)
+                {
+                    next.performClick();
+
+                    return false;
+                }
+            }
+        );
+
         next.setOnClickListener
         (
             new View.OnClickListener()
@@ -115,25 +142,26 @@ public class ExamActivity extends OptionsActivity
                 @Override
                 public void onClick(View view)
                 {
-                    try
-                    {
-                        ExamQuestionProvider examQuestionProvider = new ExamQuestionProvider(me, examId);
-                        examQuestionProvider.setExamQuestionListener(examQuestionListener);
-                        examQuestionProvider.setAnswer(fetchUserAnswer());
-
-                        // skip sending answer only one time - on the beginning
-                        examQuestionProvider.setShouldSendAnswer(shouldSendAnswer);
-                        shouldSendAnswer = true;
-
-                        examQuestionProvider.execute();
-                    }
-                    catch(Exception e)
-                    {
-                        Log.e("", "", e);
-                    }
+                    provideQuestion(true);
                 }
             }
         );
+    }
+
+    private void provideQuestion(boolean shouldTakeAnswer)
+    {
+        try
+        {
+            ExamQuestionProvider examQuestionProvider = new ExamQuestionProvider(me, examId);
+            examQuestionProvider.setExamQuestionListener(examQuestionListener);
+            examQuestionProvider.setAnswer(shouldTakeAnswer ? takeUserAnswer() : null);
+
+            examQuestionProvider.execute();
+        }
+        catch(Exception e)
+        {
+            Log.e(EMPTY_STRING, EMPTY_STRING, e);
+        }
     }
 
     private void bindViews()
@@ -144,6 +172,7 @@ public class ExamActivity extends OptionsActivity
         answer = (EditText) findViewById(R.id.editTextAnswer);
         next = (ImageView) findViewById(R.id.imageViewNextWord);
         back = (ImageView) findViewById(R.id.imageViewBack);
+        tableRowExam = (TableRow) findViewById(R.id.tableRowExam);
     }
 
     private void startExam()
@@ -156,7 +185,7 @@ public class ExamActivity extends OptionsActivity
         }
         catch(Exception e)
         {
-            Log.e("", "", e);
+            Log.e(EMPTY_STRING, EMPTY_STRING, e);
             learningAndExams();
 
             return;
@@ -169,7 +198,7 @@ public class ExamActivity extends OptionsActivity
                 @Override
                 public void onSuccess()
                 {
-                    next.performClick();
+                    provideQuestion(false);
                 }
 
                 @Override
@@ -183,11 +212,45 @@ public class ExamActivity extends OptionsActivity
         examStarter.execute();
     }
 
-    private String fetchUserAnswer()
+    private String takeUserAnswer()
     {
         String userAnswer = answer.getText().toString();
         answer.setText(EMPTY_STRING);
 
         return userAnswer;
+    }
+
+    @Override
+    public void onKeyboardOpenedEvent()
+    {
+        super.onKeyboardOpenedEvent();
+        tableRowExam.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    public void onKeyboardClosedEvent()
+    {
+        super.onKeyboardClosedEvent();
+        tableRowExam.setVisibility(View.VISIBLE);
+    }
+
+    private void prepareTimer()
+    {
+        new CountDownTimer(exam.getTimeLimit() * 60 * 1000, 60 * 1000)
+        {
+            @Override
+            public void onTick(long millisUntilFinished)
+            {
+                long secondsUntilFinished = (long) Math.floor(millisUntilFinished / 1000);
+
+                Toast.makeText(me , String.format("%d seconds", secondsUntilFinished), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFinish()
+            {
+                switchToSummary();
+            }
+        }.start();
     }
 }

@@ -3,11 +3,8 @@ package net.elenx.fishmash.activities.core;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.util.Log;
 import android.view.View;
 
-import net.elenx.fishmash.utilities.Fishmash;
 import net.elenx.fishmash.R;
 import net.elenx.fishmash.activities.AuthenticateActivity;
 import net.elenx.fishmash.activities.LearningActivity;
@@ -15,17 +12,21 @@ import net.elenx.fishmash.activities.LearningAndExamsActivity;
 import net.elenx.fishmash.activities.ProfileActivity;
 import net.elenx.fishmash.activities.core.drawer.NavigationDrawerFragment;
 import net.elenx.fishmash.daos.AuthenticateDAO;
+import net.elenx.fishmash.utilities.Fishmash;
 
-public abstract class OptionsActivity extends ProgressDialogActivity
+public abstract class OptionsActivity extends ActionsActivity
 {
+    protected final static String EMPTY_STRING = "";
     protected final OptionsActivity me = this;
 
     @Override
-    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState)
+    public void onCreate(Bundle savedInstanceState)
     {
-        super.onCreate(savedInstanceState, persistentState);
+        super.onCreate(savedInstanceState);
 
-        if(!isAuthenticated())
+        boolean shouldStayLoggedIn = getClass() == AuthenticateActivity.class || isAuthenticated();
+
+        if(! shouldStayLoggedIn)
         {
             logout();
         }
@@ -34,13 +35,13 @@ public abstract class OptionsActivity extends ProgressDialogActivity
     @Override
     public void onBackPressed()
     {
-        finish();
+        learningAndExams();
     }
 
     @Override
     public void onNavigationDrawerItemSelected(int position)
     {
-        switch(resourceIfOfPosition(position))
+        switch(resourceIdOfPosition(position))
         {
             case R.string.last_word_list:
                 learning();
@@ -90,7 +91,7 @@ public abstract class OptionsActivity extends ProgressDialogActivity
     {
         AuthenticateDAO authenticateDAO = new AuthenticateDAO(this);
 
-        return authenticateDAO.count() > 0;
+        return (authenticateDAO.count() > 0);
     }
 
     protected void logout()
@@ -100,36 +101,5 @@ public abstract class OptionsActivity extends ProgressDialogActivity
         new AuthenticateDAO(this).truncate();
 
         switchIntentTo(AuthenticateActivity.class);
-    }
-
-    protected void switchIntentTo(Class<?> clazz)
-    {
-        switchIntentTo(clazz, null, -1);
-    }
-
-    protected void switchIntentTo(Class<?> clazz, String extraKey, long extraValue)
-    {
-        Class myClass = getClass();
-
-        if(myClass == clazz)
-        {
-            return;
-        }
-
-        Log.e(myClass.getSimpleName() + " is switching to", clazz.getSimpleName());
-
-        Intent intent = new Intent(getApplicationContext(), clazz);
-
-        boolean hasNoExtraValues = (extraKey == null && extraValue == -1);
-        boolean hasExtraValues = ! hasNoExtraValues;
-
-        if(hasExtraValues)
-        {
-            intent.putExtra(extraKey, extraValue);
-            Log.e(extraKey, String.valueOf(extraValue));
-        }
-
-        startActivity(intent);
-        finish();
     }
 }

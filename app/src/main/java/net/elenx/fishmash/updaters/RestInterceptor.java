@@ -26,7 +26,7 @@ class RestInterceptor extends RestTemplate
 
     RestInterceptor()
     {
-        int timeoutInMilliseconds = Fishmash.TIMEOUT_IN_SECONDS * 1000;
+        int timeoutInMilliseconds = Fishmash.API_TIMEOUT_IN_SECONDS * 1000;
 
         ClientHttpRequestFactory clientHttpRequestFactory = getRequestFactory();
 

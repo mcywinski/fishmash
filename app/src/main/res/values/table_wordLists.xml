@@ -5,17 +5,17 @@
     <string name="wordList_id">id</string>
     <string name="wordList_name">name</string>
     <string name="wordList_description">description</string>
-    <string name="wordList_mainLanguageId">mainLanguageId</string>
-    <string name="wordList_foreignLanguageId">foreignLanguageId</string>
-    <string name="wordList_updatedAt">updatedAt</string>
+    <string name="wordList_mainLanguage_id">mainLanguageId</string>
+    <string name="wordList_foreignLanguage_id">foreignLanguageId</string>
+    <string name="wordList_updated_at">updatedAt</string>
 
     <string-array name="wordList_columns">
         <item>@string/wordList_id</item>
         <item>@string/wordList_name</item>
         <item>@string/wordList_description</item>
-        <item>@string/wordList_mainLanguageId</item>
-        <item>@string/wordList_foreignLanguageId</item>
-        <item>@string/wordList_updatedAt</item>
+        <item>@string/wordList_mainLanguage_id</item>
+        <item>@string/wordList_foreignLanguage_id</item>
+        <item>@string/wordList_updated_at</item>
     </string-array>
 
     <string name="wordList_create">

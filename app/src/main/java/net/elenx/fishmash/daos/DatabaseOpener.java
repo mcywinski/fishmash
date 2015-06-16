@@ -4,17 +4,17 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import net.elenx.fishmash.utilities.Fishmash;
 import net.elenx.fishmash.R;
+import net.elenx.fishmash.utilities.Fishmash;
 
 import java.util.LinkedList;
 import java.util.List;
 
-class FishmashOpener extends SQLiteOpenHelper
+class DatabaseOpener extends SQLiteOpenHelper
 {
     private static final List<String> createTableQueries = new LinkedList<>();
 
-    public FishmashOpener(Context context)
+    public DatabaseOpener(Context context)
     {
         super(context, Fishmash.DATABASE_NAME, null, 1);
 
