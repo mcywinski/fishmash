@@ -62,7 +62,12 @@ namespace FishMashNew.ViewModels
                         }
                         else
                         {
-                            Debug.WriteLine("Pola nie są wypełnione prawisłowo!");
+                            if (Password1 != Password2)
+                                ErrorUserControlText = "New passwords must be identical!";
+                            if(OldPassword == "")
+                                ErrorUserControlText = "Old password is empty!";
+
+                            ErrorInfoUserControlVisibility = SetVisibility(true);
                         }
                     });
             }
@@ -122,6 +127,7 @@ namespace FishMashNew.ViewModels
         private async void ChangePassword()
         {
             PasswordChangeResult temp = await WebAPI.WebService.ChangePassword(OldPassword, Password1, Password2, Settings.Instance.Cache.GetToken());
+            Debug.WriteLine(temp.result_status.ToString());
             if (temp.success)
             {
                 Debug.WriteLine("Hasło zmienione");
@@ -129,7 +135,11 @@ namespace FishMashNew.ViewModels
             }
             else
             {
-                Debug.WriteLine("Hasło nie zostało poprawnie zmienione");
+                if (temp.result_status == -2)
+                {
+                    ErrorUserControlText = "Old password is incorrect!";
+                    ErrorInfoUserControlVisibility = SetVisibility(true);
+                }
             }
         }
     }
