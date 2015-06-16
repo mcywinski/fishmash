@@ -62,6 +62,26 @@ namespace FishMashApp.Models
             }
         }
 
+        public string CorrectInfo
+        {
+            get
+            {
+                if (passed)
+                    return "Success";
+                else
+                    return "FAILED";
+            }
+        }
+        public string Color
+        {
+            get
+            {
+                if (Passed)
+                    return "Green";
+                else
+                    return "Red";
+            }
+        }
 
         #region PropertyChanged
         protected delegate void OnUIThreadDelegate();

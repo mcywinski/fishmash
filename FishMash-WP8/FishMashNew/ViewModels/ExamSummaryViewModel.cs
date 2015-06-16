@@ -64,7 +64,7 @@ namespace FishMashNew.ViewModels
                 foreach (SummaryEntity t in temp)
                 {
                     Summary.Add(t);                    
-                    Debug.WriteLine(t.id.ToString() + "  " + t.meaning.ToString() + " " + t.passed.ToString() + " " + t.phrase.ToString() + " " + t.answer + " " + t.exam_finished.ToString() + " " + t.finished.ToString());
+                    
                 }
             }
     }

@@ -53,6 +53,35 @@ namespace FishMashApp.Models.Exams
         public int word_count { get; set; }
         public bool is_finished { get; set; }
 
+        public bool IsFinished
+        {
+            get { return is_finished; }
+            set
+            {
+                is_finished = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string buttonLabel;
+
+        public string ButtonLabel
+        {
+            get 
+            {
+                if (IsFinished)
+                    return "stats";
+                else
+                    return "exam";
+            }
+            set 
+            { 
+                buttonLabel = value;
+                OnPropertyChanged();
+            }
+        }
+        
+
         #region PropertyChanged
         protected delegate void OnUIThreadDelegate();
         protected async void OnUIThread(DispatchedHandler onUIThreadDelegate)

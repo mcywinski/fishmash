@@ -54,7 +54,8 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <overlay:ExamSummaryUserControl 
-                                    x:Name="ExamSummary" Margin="10,0,10,0"/>
+                            x:Name="ExamSummary" 
+                            Margin="20,0,20,0"/>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>

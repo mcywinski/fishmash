@@ -35,9 +35,10 @@
                    Visibility="Collapsed"
                    />
         <Button  Grid.Column="1" Grid.RowSpan="2"
-                 Background="#FF6600" Content="exam"
+                 Background="#FF6600" Content="{Binding ButtonLabel}"
                  HorizontalAlignment="Center"
                  VerticalAlignment="Stretch"
-                  Tapped="Grid_Tapped"/>
+                 x:Name="Label"
+                 Tapped="Grid_Tapped"/>
     </Grid>
 </UserControl>

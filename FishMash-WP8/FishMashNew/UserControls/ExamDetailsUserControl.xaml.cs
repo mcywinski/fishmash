@@ -29,7 +29,14 @@ namespace FishMashNew.UserControls
         private void Grid_Tapped(object sender, TappedRoutedEventArgs e)
         {
             object t = this.ListId.Text.ToString();
-            Settings.Instance.navigationService.Navigate(typeof(ExamView), t);
+            if (Label.Content.ToString() == "stats")
+            {
+                Settings.Instance.navigationService.Navigate(typeof(ExamSummaryView), t);
+            }
+            else
+            {
+                Settings.Instance.navigationService.Navigate(typeof(ExamView), t);
+            }
         }
     }
 }
