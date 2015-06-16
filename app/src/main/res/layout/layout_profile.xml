@@ -54,36 +54,38 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/textViewLoginData"
-        android:layout_below="@+id/textViewLoginLabel"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"/>
+        android:layout_alignParentTop="true"
+        android:text="login"
+        android:layout_toRightOf="@+id/textViewLoginLabel"
+        android:layout_toEndOf="@+id/textViewLoginLabel"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="email"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/textViewEmailData"
-        android:layout_below="@+id/textViewEmailLabel"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"/>
+        android:layout_below="@+id/textViewLoginData"
+        android:layout_toRightOf="@+id/textViewLoginLabel"
+        android:layout_toEndOf="@+id/textViewLoginLabel"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/textViewCreatedAtData"
-        android:layout_below="@+id/textViewUpdatedAtLabel"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"/>
+        android:layout_below="@+id/textViewCreatedAtLabel"
+        android:layout_toRightOf="@+id/textViewUpdatedAtLabel"
+        android:layout_toEndOf="@+id/textViewUpdatedAtLabel"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/textViewUpdatedAtData"
-        android:layout_below="@+id/textViewCreatedAtLabel"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"/>
+        android:layout_alignTop="@+id/textViewCreatedAtLabel"
+        android:layout_toRightOf="@+id/textViewCreatedAtLabel"
+        android:layout_toEndOf="@+id/textViewCreatedAtLabel"/>
     <!--END DATA-->
 
     <LinearLayout

@@ -9,11 +9,15 @@ import net.elenx.fishmash.R;
 import net.elenx.fishmash.activities.core.OptionsActivity;
 import net.elenx.fishmash.daos.ProfileDAO;
 import net.elenx.fishmash.models.Profile;
+import net.elenx.fishmash.models.adapters.FishmashCalendar;
 import net.elenx.fishmash.updaters.ProfileUpdater;
 import net.elenx.fishmash.updaters.listeners.UpdaterListener;
 
 public class ProfileActivity extends OptionsActivity
 {
+    private final static int LENGTH = 20;
+    private final static String DOTS = "...";
+
     private TextView loginData;
     private TextView emailData;
     private TextView createdAtData;
@@ -40,10 +44,10 @@ public class ProfileActivity extends OptionsActivity
             }
         );
 
-        displayData();
+        queryData();
     }
 
-    private void displayData()
+    private void queryData()
     {
         ProfileUpdater profileUpdater = new ProfileUpdater(this);
         profileUpdater.setUpdaterListener
@@ -96,10 +100,25 @@ public class ProfileActivity extends OptionsActivity
                 @Override
                 public void run()
                 {
-                    loginData.setText(profile.getLogin());
-                    emailData.setText(profile.getEmail());
-                    createdAtData.setText(profile.getCreatedAt());
-                    updatedAtData.setText(profile.getUpdatedAt());
+                    String login = profile.getLogin();
+                    if(login.length() > LENGTH)
+                    {
+                        login = login.substring(0, LENGTH) + DOTS;
+                    }
+
+                    String email = profile.getEmail();
+                    if(email.length() > LENGTH)
+                    {
+                        email = email.substring(0, LENGTH) + DOTS;
+                    }
+
+                    FishmashCalendar createdAt = new FishmashCalendar(profile.getCreatedAt());
+                    FishmashCalendar updatedAt = new FishmashCalendar(profile.getUpdatedAt());
+
+                    loginData.setText(login);
+                    emailData.setText(email);
+                    createdAtData.setText(createdAt.inShortFormat());
+                    updatedAtData.setText(updatedAt.inShortFormat());
                 }
             }
         );
