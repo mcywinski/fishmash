@@ -446,9 +446,9 @@ namespace FishMashNew.WebAPI
             return answerEntity;
         }
 
-        public static async Task<SummaryEntity> GetExamSummary(int examId, string userToken)
+        public static async Task<List<SummaryEntity>> GetExamSummary(int examId, string userToken)
         {
-            SummaryEntity summary = new SummaryEntity();
+            List<SummaryEntity> summary = new List<SummaryEntity>();
             try
             {
                 string url = "https://shrouded-fjord-4731.herokuapp.com/api/exams/" +
@@ -472,16 +472,21 @@ namespace FishMashNew.WebAPI
                 }
                 var result = await response.Content.ReadAsStringAsync();
 
-                var temp = JsonConvert.DeserializeObject<SummaryEntity>(result);
+                var temp = JsonConvert.DeserializeObject<List<SummaryEntity>>(result);
 
-                summary.answer = temp.answer;
-                summary.exam_finished = temp.exam_finished;
-                summary.finished = temp.finished;
-                summary.id = temp.id;
-                summary.meaning = temp.meaning;
-                summary.passed = temp.passed;
-                summary.phrase = temp.phrase;
-
+                foreach (SummaryEntity sum in temp)
+                {
+                    summary.Add(new SummaryEntity()
+                    {
+                        answer = sum.answer,
+                        exam_finished = sum.exam_finished,
+                        finished = sum.finished,
+                        id = sum.id,
+                        meaning = sum.meaning,
+                        passed = sum.passed,
+                        phrase = sum.phrase
+                    });
+                }
                 return summary;
 
             }
