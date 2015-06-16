@@ -47,11 +47,20 @@ namespace FishMashNew.ViewModels
         public void RegisterExamID(int ID)
         {
             ExamID = ID;
+            GetSummary();
         }
 
-        private async Task GetSummary() 
+        private async void GetSummary() 
         {
-            Summary.Add(await WebService.GetExamSummary(ExamID, Settings.Instance.Cache.GetToken()));
+            List<SummaryEntity> temp = await WebService.GetExamSummary(ExamID, Settings.Instance.Cache.GetToken());
+
+            foreach (SummaryEntity t in temp)
+            {
+                OnUIThread(() =>
+                {
+                    Summary.Add(t);
+                });
+            }
         }
     }
 }
