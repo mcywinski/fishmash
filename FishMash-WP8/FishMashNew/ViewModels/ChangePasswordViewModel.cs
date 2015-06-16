@@ -1,6 +1,7 @@
 ﻿using FishMashApp.Models.Exams;
 using FishMashNew.Common;
 using FishMashNew.Models;
+using FishMashNew.Models.ChangePasswordModels;
 using FishMashNew.Views;
 using FishMashNew.WebAPI;
 using System;
@@ -16,17 +17,37 @@ namespace FishMashNew.ViewModels
     class ChangePasswordViewModel : BaseViewModel
     {
         #region Binding
-        private string password;
-
-        public string Password
+        private string oldPassword;
+        public string OldPassword
         {
-            get { return password; }
+            get { return oldPassword; }
             set 
-            { 
-                password = value;
+            {
+                oldPassword = value;
                 OnPropertyChanged(); 
             }
         }
+        private string password1;
+        public string Password1
+        {
+            get { return password1; }
+            set
+            {
+                password1 = value;
+                OnPropertyChanged();
+            }
+        }
+        private string password2;
+        public string Password2
+        {
+            get { return password2; }
+            set
+            {
+                password2 = value;
+                OnPropertyChanged();
+            }
+        }
+
         #region ICommand
         public ICommand ChangePasswordClick
         {
@@ -35,8 +56,14 @@ namespace FishMashNew.ViewModels
                 return null ??
                     new RelayCommand(o =>
                     {
-                        Debug.WriteLine("change password click");
-                        ErrorInfoUserControlVisibility = SetVisibility(true);
+                        if (OldPassword != "" && Password1 != "" && Password1 == Password2)
+                        {
+                            ChangePassword();
+                        }
+                        else
+                        {
+                            Debug.WriteLine("Pola nie są wypełnione prawisłowo!");
+                        }
                     });
             }
         }
@@ -51,7 +78,7 @@ namespace FishMashNew.ViewModels
                     new RelayCommand(o =>
                     {
                         ErrorInfoUserControlVisibility = SetVisibility(false);
-                        this.navigationService.Navigate(typeof(ExamSummaryView));
+                        
                     });
             }
         }
@@ -88,8 +115,22 @@ namespace FishMashNew.ViewModels
         public ChangePasswordViewModel(INavigationService iNavigation) 
         {
             this.navigationService = iNavigation;
+            Password1 = "";
             ErrorInfoUserControlVisibility = SetVisibility(false);
         }
 
+        private async void ChangePassword()
+        {
+            PasswordChangeResult temp = await WebAPI.WebService.ChangePassword(OldPassword, Password1, Password2, Settings.Instance.Cache.GetToken());
+            if (temp.success)
+            {
+                Debug.WriteLine("Hasło zmienione");
+                this.navigationService.Navigate(typeof(BrowseWordsView));
+            }
+            else
+            {
+                Debug.WriteLine("Hasło nie zostało poprawnie zmienione");
+            }
+        }
     }
 }
