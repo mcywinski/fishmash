@@ -54,7 +54,12 @@ namespace FishMashNew.ViewModels
         private async void GetSummary() 
         {
             List<SummaryEntity> temp = await WebService.GetExamSummary(ExamID, Settings.Instance.Cache.GetToken());
-            Debug.WriteLine(temp.ToString());
+            if(temp == null)
+            {
+                // wstawić label z informacją dla użytkownika "Brak odpowiedzi"
+            }
+            else
+            {
             foreach (SummaryEntity t in temp)
             {
                 OnUIThread(() =>
@@ -64,4 +69,5 @@ namespace FishMashNew.ViewModels
             }
         }
     }
+}
 }

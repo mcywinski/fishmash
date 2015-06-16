@@ -452,7 +452,7 @@ namespace FishMashNew.WebAPI
             try
             {
                 string url = "https://shrouded-fjord-4731.herokuapp.com/api/exams/" +
-                    examId + "/summary/" +
+                    examId + "/summary" +
                     string.Format("?api_token={0}", userToken);
                 var u = new Uri(url);
 
@@ -467,7 +467,8 @@ namespace FishMashNew.WebAPI
                     }
                     else
                     {
-                        throw new HttpRequestException();
+                        summary = null;
+                        return summary;
                     }
                 }
                 var result = await response.Content.ReadAsStringAsync();
