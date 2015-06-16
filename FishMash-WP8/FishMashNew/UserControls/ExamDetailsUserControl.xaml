@@ -38,6 +38,7 @@
                  Background="#FF6600" Content="{Binding ButtonLabel}"
                  HorizontalAlignment="Center"
                  VerticalAlignment="Stretch"
+                 FontFamily="/Assets/Lobster.otf#Lobster 1.4"
                  x:Name="Label"
                  Tapped="Grid_Tapped"/>
     </Grid>

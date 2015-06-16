@@ -37,6 +37,7 @@
                  Background="#FF6600" Content="learn"
                  HorizontalAlignment="Center"
                  VerticalAlignment="Stretch"
-                  Tapped="Grid_Tapped"/>
+                 FontFamily="/Assets/Lobster.otf#Lobster 1.4"
+                 Tapped="Grid_Tapped"/>
     </Grid>
 </Page>

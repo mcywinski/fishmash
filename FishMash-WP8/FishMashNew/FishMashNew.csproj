@@ -282,6 +282,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <Content Include="Assets\Lobster.otf" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />

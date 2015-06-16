@@ -36,8 +36,8 @@
                                 Background="#FF6600"
                                 Margin="20"
                                 Content="log in"
-                                FontFamily="Lopster"
-                                FontSize="30"
+                                FontFamily="/Assets/Lobster.otf#Lobster 1.4"
+                                FontSize="30"            
                                 Command="{Binding LogInClick}" UseLayoutRounding="True"/>
 
 
