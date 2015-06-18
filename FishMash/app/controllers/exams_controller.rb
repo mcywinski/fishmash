@@ -115,11 +115,11 @@ class ExamsController < ApplicationController
 	def answer
 		assesment = @exam.get_assesment(get_logged_user_id)
 		@answer = assesment.get_answer
-		@finish_time = (assesment.time_started + @exam.time_limit.minutes)
-		unless assesment.is_time_exceeded?
-			flash[:errors] = MSG_EXAM_TIME_FINISHED
-			finish_exam(assesment) and return
-		end
+		@finish_timetime = (assesment.time_started + @exam.time_limit.minutes)
+		# unless assesment.is_time_exceeded?
+		# 	flash[:errors] = MSG_EXAM_TIME_FINISHED
+		# 	finish_exam(assesment) and return
+		# end
 
 		if @answer.nil? # No more questions to answer -> exam's finished.
 			finish_exam(assesment)
@@ -128,10 +128,10 @@ class ExamsController < ApplicationController
 
 	def save_answer
 		@assesment = @exam.get_assesment(get_logged_user_id)
-		unless @assesment.is_time_exceeded?
-			flash[:errors] = MSG_EXAM_TIME_FINISHED
-			finish_exam(@assesment) and return
-		end
+		# unless @assesment.is_time_exceeded?
+		# 	flash[:errors] = MSG_EXAM_TIME_FINISHED
+		# 	finish_exam(@assesment) and return
+		# end
 
 		# TODO: Validate if this is user's question.
 		answer = Answer.find(params[:answer][:answer_id])

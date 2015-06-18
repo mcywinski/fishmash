@@ -4,8 +4,8 @@
   <h1 class="fish-h1"><%= @exam.name %></h1>
   <h2 class="fish-h2">Provide translation for
     <p class="answer-word"><%= @answer.word.meaning %></p>
-    <p id="time-left">
-    </p>
+    <!--<p id="time-left">-->
+    <!--</p>-->
   </h2>
   <%= form_for :answer, url: exam_answer_path, method: :post do |f| %>
     <p>
@@ -19,13 +19,13 @@
 </div>
 <div class="col-md-3"></div>
 <script type="text/javascript">
-  $(document).ready(function () {
-    setInterval(function () {
-      $('#time-left').empty();
-      var time = countdown(new Date(<%= @finish_time.to_i %>) * 1000);
-      $('#time-left').append(time.toString() + ' left');
-      if (time == 0)
-        location.reload();
-    }, 1000);
-  });
+//  $(document).ready(function () {
+//    setInterval(function () {
+//      $('#time-left').empty();
+//      var time = countdown(new Date(<%= @finish_time.to_i %>) * 1000);
+//      $('#time-left').append(time.toString() + ' left');
+//      if (time == 0)
+//        location.reload();
+//    }, 1000);
+//  });
 </script>

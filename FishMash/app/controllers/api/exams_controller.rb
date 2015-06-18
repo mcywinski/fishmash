@@ -47,10 +47,10 @@ class Api::ExamsController < ApplicationController
   # Gets the next question to answer
   def get_question
     assesment = Exam.find(params[:exam_id]).get_assesment(api_get_user.id)
-    unless assesment.is_time_exceeded?
-      finish_exam(assesment)
-      respond_with Answer.exam_finished_dto, location: '' and return
-    end
+    # unless assesment.is_time_exceeded?
+    #   finish_exam(assesment)
+    #   respond_with Answer.exam_finished_dto, location: '' and return
+    # end
 
     answer = assesment.get_answer
     if answer.nil? # No more questions to answer -> exam's finished.
@@ -64,10 +64,10 @@ class Api::ExamsController < ApplicationController
   # Saves the answer in db
   def answer
     assesment = Exam.find(params[:exam_id]).get_assesment(api_get_user.id)
-    unless assesment.is_time_exceeded?
-      finish_exam(assesment)
-      respond_with Answer.exam_finished_dto, location: '' and return
-    end
+    # unless assesment.is_time_exceeded?
+    #   finish_exam(assesment)
+    #   respond_with Answer.exam_finished_dto, location: '' and return
+    # end
 
     # TODO: Validate if this is user's question
     answer = Answer.find(params[:answer_id])

@@ -25,9 +25,9 @@
       <p>
         <%= f.text_field :word_count, placeholder: "Word count", id: 'word-count' %>
       </p>
-      <p>
-        <%= f.text_field :time_limit, placeholder: 'Time limit (in minutes)', id: 'time-imit' %>
-      </p>
+      <!--<p>-->
+        <%= f.hidden_field :time_limit, placeholder: 'Time limit (in minutes)', id: 'time-imit', value: '0' %>
+      <!--</p>-->
       </div>
       <div class="col-md-6">
       <p>
