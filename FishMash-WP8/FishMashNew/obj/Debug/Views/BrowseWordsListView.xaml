@@ -77,9 +77,11 @@
                               Icon="Permissions"
                                                         
                               />
-                <AppBarButton Label="Profile"
-                              Icon="Setting"
+                <AppBarButton x:ConnectionId='2' Label="Profile"
+                              Icon="People"
+                                                         
                               />
+
             </CommandBar.PrimaryCommands>
 
 

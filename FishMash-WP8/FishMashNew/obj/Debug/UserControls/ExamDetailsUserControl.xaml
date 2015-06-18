@@ -24,7 +24,7 @@
                    x:Name="Name"
                    Grid.Column="0"
                    Grid.Row="0"/>
-        <TextBlock Text="English- Polish"
+        <TextBlock Text="{Binding DateExamFinish}"
                    Foreground="Black"
                    FontSize="16"
                    Grid.Column="0"

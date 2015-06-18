@@ -24,7 +24,7 @@
                    x:Name="Name"
                    Grid.Column="0"
                    Grid.Row="0"/>
-        <TextBlock Text="English- Polish"
+        <TextBlock Text="{Binding DateExamFinish}"
                    Foreground="Black"
                    FontSize="16"
                    Grid.Column="0"
@@ -35,9 +35,11 @@
                    Visibility="Collapsed"
                    />
         <Button  Grid.Column="1" Grid.RowSpan="2"
-                 Background="#FF6600" Content="exam"
+                 Background="#FF6600" Content="{Binding ButtonLabel}"
                  HorizontalAlignment="Center"
                  VerticalAlignment="Stretch"
-                  Tapped="Grid_Tapped"/>
+                 FontFamily="/Assets/Lobster.otf#Lobster 1.4"
+                 x:Name="Label"
+                 Tapped="Grid_Tapped"/>
     </Grid>
 </UserControl>

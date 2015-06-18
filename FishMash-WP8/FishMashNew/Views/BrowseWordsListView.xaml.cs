@@ -82,5 +82,12 @@ namespace FishMashNew.Views
 
 
 
+        private void ProfileButton_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(EditProfileView));
+        }
+
+
+
     }
 }

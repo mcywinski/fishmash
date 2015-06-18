@@ -25,10 +25,16 @@ Assets\WideLogo.scale-240.png
 App.xbf
 FishMashNew.xr.xml
 MainPage.xbf
+UserControls\ErrorInfoUserControl.xbf
 UserControls\ExamDetailsUserControl.xbf
+UserControls\ExamSummaryUserControl.xbf
 UserControls\ListDetailsUserControl.xbf
 UserControls\ListViewUserControl.xbf
 Views\BrowseWordsListView.xbf
+Views\ChangePasswordView.xbf
+Views\EditProfileView.xbf
+Views\ExamSummaryView.xbf
+Views\ExamView.xbf
 Views\FicheView.xbf
 Views\Login\IncorrectPasswordUserControl.xbf
 Views\Login\LoginUserControl.xbf

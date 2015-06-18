@@ -23,7 +23,7 @@
                    x:Name="Name"
                    Grid.Column="0"
                    Grid.Row="0"/>
-        <TextBlock Text="English- Polish"
+        <TextBlock Text="{Binding LanguagePairs}"
                    Foreground="Black"
                    FontSize="16"
                    Grid.Column="0"
@@ -37,6 +37,7 @@
                  Background="#FF6600" Content="learn"
                  HorizontalAlignment="Center"
                  VerticalAlignment="Stretch"
-                  Tapped="Grid_Tapped"/>
+                 FontFamily="/Assets/Lobster.otf#Lobster 1.4"
+                 Tapped="Grid_Tapped"/>
     </Grid>
 </Page>

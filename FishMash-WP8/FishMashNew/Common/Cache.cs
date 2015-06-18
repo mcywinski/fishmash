@@ -11,10 +11,12 @@ namespace FishMashNew.Common
     class Cache
     {
         ApplicationDataContainer localSettings;
+        private List<Language> LanguageList;
         public Cache()
         {
             localSettings = ApplicationData.Current.LocalSettings;
             initProperties();
+            LanguageList = new List<Language>();
         }
         public ApplicationDataContainer getLocalSettings()
         {
@@ -35,6 +37,15 @@ namespace FishMashNew.Common
             {
                 localSettings.Values["Password"] = "";
             }
+            if (localSettings.Values["UserID"] == null)
+            {
+                localSettings.Values["UserID"] = "";
+            }
+            if (localSettings.Values["ExamName"] == null)
+            {
+                localSettings.Values["ExamName"] = "";
+            }
+
         }
 
         public void SetToken(TokenResponse inputTokenResponse)
@@ -50,6 +61,40 @@ namespace FishMashNew.Common
         public string GetToken()
         {
             return localSettings.Values["Token"].ToString();
+        }
+
+        public string GetUserID()
+        {
+            return localSettings.Values["UserID"].ToString();
+        }
+
+        public void SetUserID(int id)
+        {
+            localSettings.Values["UserID"] = id;
+        }
+
+        public void SetUserID(string id)
+        {
+            localSettings.Values["UserID"] = id;
+        }
+        public List<Language> GetLanguages()
+        {
+            return LanguageList;
+        }
+
+        public void SetLanguages(List<Language> languagesList)
+        {
+            LanguageList = languagesList;
+        }
+
+        public void SetExamName(string name)
+        {
+            localSettings.Values["ExamName"] = name;
+        }
+
+        public string GetExamName()
+        {
+            return localSettings.Values["ExamName"].ToString();
         }
     }
 }
